@@ -31,3 +31,13 @@ export const project = {
     githubLink: 'https://github.com', 
     userId: 1,
 }
+
+export const post = {
+    title: 'My first project',
+    description: 'I tell you about problems with wich i will face',
+    preview: 'preview.png',
+    text: 'bla bla bla',
+    visible: false,
+    dirname: 'my_first_project',
+    userId: 1,
+};
