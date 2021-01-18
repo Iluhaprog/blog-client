@@ -22,3 +22,12 @@ export const tag = {
 export const role = {
     role: 'TEST_ROLE',
 };
+
+export const project = {
+    preview: 'project_preview.png',
+    title: 'Chat',
+    description: 'Chat for people',
+    projectLink: 'https://chat.com',
+    githubLink: 'https://github.com', 
+    userId: 1,
+}
