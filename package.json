@@ -43,6 +43,11 @@
     ]
   },
   "react-dotenv": {
-    "whitelist": ["API_URL"]
+    "whitelist": [
+      "API_URL"
+    ]
+  },
+  "devDependencies": {
+    "axios-mock-adapter": "^1.19.0"
   }
 }
