@@ -18,3 +18,7 @@ export const tag = {
     "title": "React",
     "postId": 1,
 };
+
+export const role = {
+    role: 'TEST_ROLE',
+};
