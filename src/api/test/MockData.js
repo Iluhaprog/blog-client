@@ -12,3 +12,9 @@ export const user = {
     "date": "2021-01-17T20:51:55.000Z",
     "roleId": 1
 };
+
+export const tag = {
+    "id": 1,
+    "title": "React",
+    "postId": 1,
+};
