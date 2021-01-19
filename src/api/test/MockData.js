@@ -55,3 +55,9 @@ export const file = {
 
 export const formData = new FormData();
 formData.append('file', 'Filedata');
+
+export const comment = {
+    text: 'Cool post',
+    postId: 1,
+    userId: 1,
+};
