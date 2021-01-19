@@ -14,14 +14,14 @@ function getAll(page, limit) {
     return api.get(`/comment/getAll/${page}/${limit}`);
 }
 
-function getByPostId(postId) {
-    return api.get('/comment/getByPostId', {
+function getByPostId(postId, page, limit) {
+    return api.get(`/comment/getByPostId/${page}/${limit}`, {
         params: { postId }
     });
 }
 
-function getByUserId(userId) {
-    return api.get('/comment/getByUserId', {
+function getByUserId(userId, page, limit) {
+    return api.get(`/comment/getByUserId/${page}/${limit}`, {
         params: { userId }
     });
 }
