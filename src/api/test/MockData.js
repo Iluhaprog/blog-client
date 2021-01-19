@@ -41,3 +41,8 @@ export const post = {
     dirname: 'my_first_project',
     userId: 1,
 };
+
+export const like = {
+    postId: 1,
+    userId: 1,
+};
