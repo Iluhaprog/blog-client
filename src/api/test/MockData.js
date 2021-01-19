@@ -46,3 +46,12 @@ export const like = {
     postId: 1,
     userId: 1,
 };
+
+export const file = {
+    name: 'image.jpg',
+    path: 'test-post.jpg',
+    postId: 1,
+}
+
+export const formData = new FormData();
+formData.append('file', 'Filedata');
