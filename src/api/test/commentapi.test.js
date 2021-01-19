@@ -20,17 +20,30 @@ describe('Test comment api', () => {
     });
 
     test('GET /getByPostId', () => {
-        mock.onGet('/comment/getByPostId', {
+        mock.onGet('/comment/getByPostId/0/1', {
             params: {
                 postId: 1,
             },
         }).reply(200, [comment]);
-        return commentapi.getByPostId(1).then(response => {
+        return commentapi.getByPostId(1, 0, 1).then(response => {
             const { status, data } = response;
             expect(status).toBe(200);
             expect(data).toEqual([comment]);
         });
-    })
+    });
+
+    test('GET /getByUserId', () => {
+        mock.onGet('/comment/getByUserId/0/1', {
+            params: {
+                userId: 1,
+            },
+        }).reply(200, [comment]);
+        return commentapi.getByPostId(1, 0, 1).then(response => {
+            const { status, data } = response;
+            expect(status).toBe(200);
+            expect(data).toEqual([comment]);
+        });
+    });
 
     test('POST /create', () => {
         mock.onPost('/comment/create', { comment }).reply(200, comment);
