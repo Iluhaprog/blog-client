@@ -1,11 +1,15 @@
 import api from  './api';
-import { base64Encode } from '../util/base64';
 
 function login(username, password) {
-    const token = base64Encode(`${username}:${password}`);
     return api.post('/user/login', {}, {
+        withCredentials: true,
         headers: {
-            'Authorization': `Bearer ${token}`,
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        auth: {
+            username,
+            password,
         },
     });
 }
