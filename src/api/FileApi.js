@@ -1,12 +1,12 @@
 import api from './api';
 
-function create(postId, formData) {
+function create(dirname, formData) {
     return api.post('/file/create', formData, {
         headers: {
             'Content-Type': 'multipart/form-data',
         },
         params: {
-            postId,
+            dirname,
         },
     });
 }
