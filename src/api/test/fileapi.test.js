@@ -19,30 +19,17 @@ describe('Test file api', () => {
         });
     });
 
-    test('GET /getByPostId', () => {
-        mock.onGet('/file/getByPostId', {
-            params: {
-                postId: 1,
-            },
-        }).reply(200, [file]);
-        return fileapi.getByPostId(1).then(response => {
-            const { status, data } = response;
-            expect(status).toBe(200);
-            expect(data).toEqual([file]);
-        });
-    })
-
     test('POST /create', () => {
         mock.onPost('/file/create').reply(config => {
             const { headers, data, params } = config;
-            expect(params.postId).toBe(1);
+            expect(params.dirname).toBe('uploads');
             expect(headers['Content-Type']).toBe('multipart/form-data');
             expect(data).toEqual(formData);
             return new Promise((resolve, reject) => {
                 resolve([200, file]);
             });
         });
-        return fileapi.create(1, formData).then(responce => {
+        return fileapi.create('uploads', formData).then(responce => {
             const { status, data } = responce;
             expect(status).toBe(200);
             expect(data).toEqual(file);

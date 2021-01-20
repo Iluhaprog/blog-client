@@ -50,7 +50,7 @@ export const like = {
 export const file = {
     name: 'image.jpg',
     path: 'test-post.jpg',
-    postId: 1,
+    directoryId: 1,
 }
 
 export const formData = new FormData();
