@@ -11,7 +11,8 @@ describe('Test user api', () => {
         const username = 'username', password = 'password'
         const token = base64Encode(`${username}:${password}`);
         mock.onPost('/user/login', {}, expect.objectContaining({
-            Authorization: `Bearer ${token}`,
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
         })).reply(200, user);
 
         return userapi.login(username, password).then(responce => {
