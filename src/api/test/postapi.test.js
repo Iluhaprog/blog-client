@@ -19,6 +19,15 @@ describe('Test post api', () => {
         });
     });
     
+    test('GET /getCount', () => {
+        mock.onGet('/post/getCount').reply(200, { count: 1 });
+        return postapi.getCount().then(responce => {
+            const { status, data } = responce;
+            expect(status).toBe(200);
+            expect(data).toEqual({ count: 1 });
+        });
+    });
+
     test('GET /getAll', () => {
         mock.onGet('/post/getAll/0/1').reply(200, [post]);
         return postapi.getAll(0, 1).then(responce => {
@@ -59,7 +68,7 @@ describe('Test post api', () => {
             expect(data).toEqual(updatedPost);
         });
     });
-    
+
     test('DELETE /deleteById', () => {
         mock.onDelete('/post/deleteById', {
             params: {

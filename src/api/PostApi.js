@@ -6,6 +6,10 @@ function getById(id) {
     });
 }
 
+function getCount() {
+    return api.get('/post/getCount');
+}
+
 function getByUserId(userId) {
     return api.get('/post/getByUserId', {
         params: { userId },
@@ -45,4 +49,5 @@ export default {
     setTags,
     update,
     deleteById,
+    getCount,
 };
