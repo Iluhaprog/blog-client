@@ -64,6 +64,27 @@ export const loginFetch = (username, password) => (dispatch) => (
     })
 );
 
+export const createFetch = user => dispatch => (
+    UserApi.create(user).then(responce => {
+        const { status, data } = responce;
+        if (status === 200) {
+            dispatch(setUser(data));
+        }
+    }).catch(error => {
+        console.log(error);
+    })
+);
+export const updateFetch = user => dispatch => (
+    UserApi.update(user).then(responce => {
+        const { status, data } = responce;
+        if (status === 200) {
+            dispatch(setUser(data));
+        }
+    }).catch(error => {
+        console.log(error);
+    })
+);
+
 export const logoutFetch = (dispatch) => (
     UserApi.logout().then(responce => {
         const { status } = responce;

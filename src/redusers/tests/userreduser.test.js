@@ -3,7 +3,9 @@ import thunk from 'redux-thunk'
 import MockAdapter from 'axios-mock-adapter';
 import api from '../../api/api';
 
-import userReduser, { loginFetch, logoutFetch, login, setUser, clearUser } from '../UserReduser';
+import userReduser from '../UserReduser';
+import { loginFetch, logoutFetch, createFetch, updateFetch } from '../UserReduser';
+import { login, setUser, clearUser } from '../UserReduser';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -71,6 +73,40 @@ describe('Test async action creators', () => {
         const store = mockStore({ user: {}});
         
         return store.dispatch(loginFetch('Ilya', '111')).then(() => {
+            expect(store.getActions()).toEqual(expectedActions);
+        });
+    });
+
+    test('Should create SET_USER action (createFetch)', () => {
+        const user = {
+            ...initUserState,
+            username: 'ilkass',
+            password: '123456',
+        };
+
+        mock.onPost('/user/create', { user }).reply(200, user);
+
+        const expectedActions = [{ type: 'SET_USER', user }];
+        const store = mockStore({ user: {} });
+
+        return store.dispatch(createFetch(user)).then(() => {
+            expect(store.getActions()).toEqual(expectedActions);
+        });
+    });
+
+    test('Should create SET_USER action (createFetch)', () => {
+        const user = {
+            ...initUserState,
+            username: 'ilkass1',
+            password: '123456',
+        };
+
+        mock.onPut('/user/update', { user }).reply(200, user);
+
+        const expectedActions = [{ type: 'SET_USER', user }];
+        const store = mockStore({ user: {} });
+
+        return store.dispatch(updateFetch(user)).then(() => {
             expect(store.getActions()).toEqual(expectedActions);
         });
     });
