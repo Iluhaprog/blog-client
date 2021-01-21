@@ -6,6 +6,9 @@ function getById(id) {
     });
 }
 
+function getCount() {
+    return api.get('/like/getCount');
+}
 
 function getAll() {
     return api.get('/like/getAll');
@@ -40,4 +43,5 @@ export default {
     getAll,
     create,
     deleteById,
+    getCount,
 };

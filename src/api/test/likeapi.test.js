@@ -19,6 +19,15 @@ describe('Test post api', () => {
         });
     });
 
+    test('GET /getCount', () => {
+        mock.onGet('/like/getCount').reply(200, { count: 1 });
+        return likeapi.getCount().then(responce => {
+            const { status, data } = responce;
+            expect(status).toBe(200);
+            expect(data).toEqual({ count: 1 });
+        });
+    });
+
     test('GET /getByUserId', () => {
         mock.onGet('/like/getByUserId', { 
             params: { 
