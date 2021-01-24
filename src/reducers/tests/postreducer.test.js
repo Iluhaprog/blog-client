@@ -3,7 +3,7 @@ import thunk from 'redux-thunk'
 import MockAdapter from 'axios-mock-adapter';
 import api from '../../api/api';
 
-import PostReducer from '../PostReducer';
+import PostReducer, { addFile, addFiles, createFileFetch, deleteFile, deleteFileFetch, getFilesFetch } from '../PostReducer';
 import { selectPostById, clearSelectedPost, deletePostById } from '../PostReducer';
 import { addPosts, addPost, clearPosts, updatePost } from '../PostReducer';
 import { createFetch, updateFetch, deleteFetch, getAllFetch } from '../PostReducer';
@@ -20,6 +20,7 @@ const initPostState = {
         date: '',
         directoryId: 0,
     },
+    files: [],
     array: [],
 };
 
@@ -73,7 +74,30 @@ describe('Test for sync action creators', () => {
         const expectedActions = [{ type: 'DELETE_POST_FROM_ARRAY', id: 1 }];
         const store = mockStore({ post: {}});
         store.dispatch(deletePostById(1));
-        expect(store.getActions()).toEqual(expectedActions)
+        expect(store.getActions()).toEqual(expectedActions);
+    });
+
+    test('Should create ADD_FILES action', () => {
+        const files = [{ name: 'file' }]
+        const expectedActions = [{ type: 'ADD_FILES', files}];
+        const store = mockStore({ post: {}});
+        store.dispatch(addFiles(files));
+        expect(store.getActions()).toEqual(expectedActions);
+    });
+
+    test('Should create ADD_FILE action', () => {
+        const file = { name: 'file' };
+        const expectedActions = [{ type: 'ADD_FILE', file}];
+        const store = mockStore({ post: {}});
+        store.dispatch(addFile(file));
+        expect(store.getActions()).toEqual(expectedActions);
+    });
+
+    test('Should create DELETE_FILE action', () => {
+        const expectedActions = [{ type: 'DELETE_FILE', id: 1}];
+        const store = mockStore({ post: {}});
+        store.dispatch(deleteFile(1));
+        expect(store.getActions()).toEqual(expectedActions);
     });
 });
 
@@ -127,7 +151,51 @@ describe('Test async action creators', () => {
         return store.dispatch(getAllFetch(0, 1)).then(() => {
             expect(store.getActions()).toEqual(expectedActions);
         });
-    })
+    });
+
+    test('Should create ADD_FILE action', () => {
+        const fd = new FormData();
+        const file = { name: 'file.ext' };
+        mock.onPost('/file/create').reply(config => {
+            const { headers, data, params } = config;
+            expect(params.dirname).toBe('test');
+            expect(headers['Content-Type']).toBe('multipart/form-data');
+            expect(data).toEqual(fd);
+            return new Promise((resolve, reject) => {
+                resolve([200, file]);
+            });
+        });
+        const expectedActions = [{ type: 'ADD_FILE', file}];
+        const store = mockStore({ post: {}});
+        return store.dispatch(createFileFetch('test', fd)).then(() => {
+            expect(store.getActions()).toEqual(expectedActions);
+        });
+    });
+
+    test('Should create ADD_FILES action', () => {
+        const file = { name: 'file.ext' };
+        mock.onGet('/file/getByDirectoryId', {
+            params: {
+                directoryId: 1,
+            },
+        }).reply(200, [file]);
+        const expectedActions = [{ type: 'ADD_FILES', files: [file] }];
+        const store = mockStore({ post: {}});
+        return store.dispatch(getFilesFetch(1)).then(() => {
+            expect(store.getActions()).toEqual(expectedActions);
+        });
+    });
+
+    test('Should create DELETE_FILE action', () => {
+        mock.onDelete('/file/deleteById', {
+            params: { id: 1 }
+        }).reply(204);
+        const expectedActions = [{ type: 'DELETE_FILE', id: 1 }];
+        const store = mockStore({ post: {}});
+        return store.dispatch(deleteFileFetch(1)).then(() => {
+            expect(store.getActions()).toEqual(expectedActions);
+        });
+    });
 });
 
 describe('Test for post reduser', () => {
@@ -142,6 +210,7 @@ describe('Test for post reduser', () => {
             array: [post],
         }
         expect(PostReducer(beginState, selectPostById(1))).toEqual({
+            ...beginState,
             selected: {...post},
             array: [post]
         });
@@ -155,6 +224,7 @@ describe('Test for post reduser', () => {
         };
         const beginState = {
             selected: {...post},
+            files: [],
             array: [post],
         };
         expect(PostReducer(beginState, clearSelectedPost())).toEqual(expectedState);
@@ -206,6 +276,31 @@ describe('Test for post reduser', () => {
             array: [post],
         };
         expect(PostReducer(beginState, deletePostById(1))).toEqual(initPostState);
+    });
+
+    test('Should handle ADD_FILES action', () => {
+        const files = [{ name: 'file.ext' }];
+        expect(PostReducer(initPostState, addFiles(files))).toEqual({
+            ...initPostState,
+            files,
+        });
+    });
+
+    test('Should handle ADD_FILE action', () => {
+        const file = { name: 'file.ext' };
+        expect(PostReducer(initPostState, addFile(file))).toEqual({
+            ...initPostState,
+            files: [file],
+        });
+    });
+
+    test('Should handle DELETE_FILE action', () => {
+        const file = { id: 1, name: 'file.ext'};
+        const beginState = {
+            ...initPostState,
+            files: [file],
+        };
+        expect(PostReducer(beginState, deleteFile(1))).toEqual(initPostState);
     });
 
 });

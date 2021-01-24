@@ -1,4 +1,5 @@
 import PostApi from '../api/PostApi';
+import FileApi from '../api/FileApi';
 import * as array from '../util/array';
 
 const initPostState = {
@@ -11,6 +12,7 @@ const initPostState = {
         date: '',
         directoryId: 0,
     },
+    files: [],
     array: [],
 };
 
@@ -21,6 +23,9 @@ const ADD_POST = 'ADD_POST';
 const CLEAR_POSTS = 'CLEAR_POSTS';
 const UPDATE_POST = 'UPDATE_POST';
 const DELETE_POST_FROM_ARRAY = 'DELETE_POST_FROM_ARRAY';
+const ADD_FILES = 'ADD_FILES';
+const ADD_FILE = 'ADD_FILE';
+const DELETE_FILE = 'DELETE_FILE';
 
 const postReduser = (state = initPostState, action) => {
     switch(action.type) {
@@ -29,6 +34,21 @@ const postReduser = (state = initPostState, action) => {
             return {
                 ...state,
                 selected: post ? {...post} : {...state.selected},
+            };
+        case ADD_FILES:
+            return {
+                ...state,
+                files: [...action.files],
+            };
+        case DELETE_FILE:
+            return {
+                ...state,
+                files: array.deleteEl(action.id, state.files),
+            };
+        case ADD_FILE :
+            return {
+                ...state,
+                files: [...state.files, action.file],
             };
         case CLEAR_SELECTED_POST:
             return {
@@ -67,21 +87,41 @@ const postReduser = (state = initPostState, action) => {
     }
 }
 
+
+export const addFiles = files => ({
+    type: ADD_FILES,
+    files,
+});
+
+export const addFile = file => ({
+    type: ADD_FILE,
+    file,
+});
+
+export const deleteFile = id => ({
+    type: DELETE_FILE,
+    id,
+});
+
 export const selectPostById = id => ({ 
     type: SELECT_POST,
     id,
 });
+
 export const clearSelectedPost = () => ({ 
     type: CLEAR_SELECTED_POST,
 });
+
 export const addPosts = posts => ({ 
     type: ADD_POSTS,
     posts,
 });
+
 export const addPost = post => ({ 
     type: ADD_POST,
     post,
 });
+
 export const clearPosts = () => ({ 
     type: CLEAR_POSTS,
 });
@@ -96,6 +136,7 @@ export const deletePostById = id => ({
     id,
 });
 
+
 export const createFetch = post => dispatch => (
     PostApi.create(post).then(responce => {
         const { status, data } = responce;
@@ -104,6 +145,7 @@ export const createFetch = post => dispatch => (
         } 
     }).catch(error => console.error(error))
 );
+
 export const updateFetch = post => dispatch => (
     PostApi.update(post).then(responce => {
         const { status, data } = responce;
@@ -112,6 +154,7 @@ export const updateFetch = post => dispatch => (
         }
     }).catch(error => console.error(error))
 );
+
 export const deleteFetch = id => dispatch => (
     PostApi.deleteById(id).then(responce => {
         const { status } = responce;
@@ -120,6 +163,7 @@ export const deleteFetch = id => dispatch => (
         }
     }).catch(error => console.error(error))
 );
+
 export const getAllFetch = (page, limit) => dispatch => (
     PostApi.getAll(page, limit).then(responce => {
         const { status, data } = responce;
@@ -129,5 +173,31 @@ export const getAllFetch = (page, limit) => dispatch => (
     }).catch(error => console.error(error))
 );
 
+export const createFileFetch = (dirname, formData) => dispatch => (
+    FileApi.create(dirname, formData).then(responce => {
+        const { status, data } = responce;
+        if (status === 200) {
+            dispatch(addFile(data));
+        }
+    }).catch(error => console.error(error))
+);
+
+export const getFilesFetch = directoryId => dispatch => (
+    FileApi.getByDirectoryId(directoryId).then(responce => {
+        const { status, data } = responce;
+        if (status === 200) {
+            dispatch(addFiles(data));
+        }
+    }).catch(error => console.error(error))
+);
+
+export const deleteFileFetch = id => dispatch => (
+    FileApi.deleteById(id).then(responce => {
+        const { status } = responce;
+        if (status === 204) {
+            dispatch(deleteFile(id));
+        }
+    }).catch(error => console.error(error))
+);
 
 export default postReduser;
