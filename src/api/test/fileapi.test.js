@@ -46,7 +46,19 @@ describe('Test file api', () => {
             expect(status).toBe(200);
             expect(data).toEqual(updatedFile);
         });
-    })
+    });
+
+    test('GET /getByDirectoryId', () => {
+        const fileData = {...file};
+        mock.onGet('/file/getByDirectoryId', { 
+            params: { directoryId: 1 }
+        }).reply(200, [fileData]);
+        return fileapi.getByDirectoryId(1).then(responce => {
+            const { status, data } = responce;
+            expect(status).toBe(200);
+            expect(data).toEqual([fileData]);
+        });
+    });
 
     test('DELETE /deleteById', () => {
         mock.onDelete('/file/deleteById', {

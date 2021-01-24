@@ -21,9 +21,9 @@ function getByName(name) {
     return api.get(`/file/getByName/${name}`);
 }
 
-function getByPostId(postId) {
-    return api.get('/file/getByPostId', {
-        params: { postId }
+function getByDirectoryId(directoryId) {
+    return api.get('/file/getByDirectoryId', {
+        params: { directoryId }
     });
 }
 
@@ -41,7 +41,7 @@ export default {
     create,
     getById,
     getByName,
-    getByPostId,
+    getByDirectoryId,
     update,
     deleteById,
 };
