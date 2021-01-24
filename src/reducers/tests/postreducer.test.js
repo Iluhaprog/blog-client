@@ -3,10 +3,10 @@ import thunk from 'redux-thunk'
 import MockAdapter from 'axios-mock-adapter';
 import api from '../../api/api';
 
-import postReduser from '../PostReduser';
-import { selectPostById, clearSelectedPost, deletePostById } from '../PostReduser';
-import { addPosts, addPost, clearPosts, updatePost } from '../PostReduser';
-import { createFetch, updateFetch, deleteFetch, getAllFetch } from '../PostReduser';
+import PostReducer from '../PostReducer';
+import { selectPostById, clearSelectedPost, deletePostById } from '../PostReducer';
+import { addPosts, addPost, clearPosts, updatePost } from '../PostReducer';
+import { createFetch, updateFetch, deleteFetch, getAllFetch } from '../PostReducer';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -132,7 +132,7 @@ describe('Test async action creators', () => {
 
 describe('Test for post reduser', () => {
     test('Should return init state', () => {
-        expect(postReduser(undefined, {})).toEqual(initPostState);
+        expect(PostReducer(undefined, {})).toEqual(initPostState);
     });
 
     test('Should handle SELECT_POST action', () => {
@@ -141,7 +141,7 @@ describe('Test for post reduser', () => {
             ...initPostState,
             array: [post],
         }
-        expect(postReduser(beginState, selectPostById(1))).toEqual({
+        expect(PostReducer(beginState, selectPostById(1))).toEqual({
             selected: {...post},
             array: [post]
         });
@@ -157,12 +157,12 @@ describe('Test for post reduser', () => {
             selected: {...post},
             array: [post],
         };
-        expect(postReduser(beginState, clearSelectedPost())).toEqual(expectedState);
+        expect(PostReducer(beginState, clearSelectedPost())).toEqual(expectedState);
     });
 
     test('Should handle ADD_POSTS action', () => {
         const posts = [{...initPostState.selected, title: 'In array'}];
-        expect(postReduser(initPostState, addPosts(posts))).toEqual({
+        expect(PostReducer(initPostState, addPosts(posts))).toEqual({
             ...initPostState,
             array: posts,
         });
@@ -170,7 +170,7 @@ describe('Test for post reduser', () => {
 
     test('Should handle ADD_POST action', () => {
         const post = {...initPostState.selected, title: 'Added post', id: 1};
-        expect(postReduser(initPostState, addPost(post))).toEqual({
+        expect(PostReducer(initPostState, addPost(post))).toEqual({
             ...initPostState,
             array: [post],
         });
@@ -182,7 +182,7 @@ describe('Test for post reduser', () => {
             ...initPostState,
             array: [post],
         }
-        expect(postReduser(beginState, clearPosts())).toEqual(initPostState);
+        expect(PostReducer(beginState, clearPosts())).toEqual(initPostState);
     });
 
     test('Should handle UPDATE_POST action', () => {
@@ -196,7 +196,7 @@ describe('Test for post reduser', () => {
             selected: updatedPost,
             array: [updatedPost],
         };
-        expect(postReduser(beginState, updatePost(updatedPost))).toEqual(expectedState);
+        expect(PostReducer(beginState, updatePost(updatedPost))).toEqual(expectedState);
     });
 
     test('Should handle DELETE_POST_FROM_ARRAY action', () => {
@@ -205,7 +205,7 @@ describe('Test for post reduser', () => {
             ...initPostState,
             array: [post],
         };
-        expect(postReduser(beginState, deletePostById(1))).toEqual(initPostState);
+        expect(PostReducer(beginState, deletePostById(1))).toEqual(initPostState);
     });
 
 });

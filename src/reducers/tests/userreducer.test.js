@@ -3,9 +3,9 @@ import thunk from 'redux-thunk'
 import MockAdapter from 'axios-mock-adapter';
 import api from '../../api/api';
 
-import userReduser from '../UserReduser';
-import { loginFetch, logoutFetch, createFetch, updateFetch } from '../UserReduser';
-import { login, setUser, clearUser } from '../UserReduser';
+import UserReducer from '../UserReducer';
+import { loginFetch, logoutFetch, createFetch, updateFetch } from '../UserReducer';
+import { login, setUser, clearUser } from '../UserReducer';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -123,7 +123,7 @@ describe('Test async action creators', () => {
 
 describe('Test for user reduser', () => {
     test('Should return init state', () => {
-        expect(userReduser(undefined, {})).toEqual(initUserState);
+        expect(UserReducer(undefined, {})).toEqual(initUserState);
     });
 
     test('Should handle SET_USER', () => {
@@ -132,7 +132,7 @@ describe('Test for user reduser', () => {
             username: 'ilyaprog',
             confirmed: true,
         };
-        expect(userReduser(initUserState, setUser(user))).toEqual(user);
+        expect(UserReducer(initUserState, setUser(user))).toEqual(user);
     });
 
     test('Should handle LOGIN', () => {
@@ -140,10 +140,10 @@ describe('Test for user reduser', () => {
             ...initUserState,
             authorized: true,
         };
-        expect(userReduser(initUserState, login(true))).toEqual(user);
+        expect(UserReducer(initUserState, login(true))).toEqual(user);
     });
 
     test('Should handle CLEAR', () => {
-        expect(userReduser(initUserState, clearUser())).toEqual(initUserState);
+        expect(UserReducer(initUserState, clearUser())).toEqual(initUserState);
     });
 });
