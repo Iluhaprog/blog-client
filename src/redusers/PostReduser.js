@@ -1,4 +1,5 @@
 import PostApi from '../api/PostApi';
+import * as array from '../util/array';
 
 const initPostState = {
     selected: {
@@ -24,7 +25,7 @@ const DELETE_POST_FROM_ARRAY = 'DELETE_POST_FROM_ARRAY';
 const postReduser = (state = initPostState, action) => {
     switch(action.type) {
         case SELECT_POST:
-            const post = state.array.find(post => post.id === action.id);
+            const post = array.search(action.id, state.array);
             return {
                 ...state,
                 selected: post ? {...post} : {...state.selected},
@@ -37,7 +38,7 @@ const postReduser = (state = initPostState, action) => {
         case ADD_POSTS: {
             return {
                 ...state,
-                array: [...state.array, ...action.posts],
+                array: array.concat(state.array, action.posts),
             };
         }
         case ADD_POST: {
@@ -54,17 +55,12 @@ const postReduser = (state = initPostState, action) => {
         case UPDATE_POST:
             return {
                 selected: action.post,
-                array: state.array.map(post => {
-                    if (post.id === action.post.id) {
-                        return action.post;
-                    }
-                    return post;
-                }),
+                array: array.replace(action.post, state.array),
             };
         case DELETE_POST_FROM_ARRAY:
             return {
                 ...state,
-                array: state.array.filter(post => post.id !== action.id),
+                array: array.deleteEl(action.id, state.array),
             };
         default:
             return state;
