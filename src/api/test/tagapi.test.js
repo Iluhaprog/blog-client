@@ -2,6 +2,7 @@ import api from '../api';
 import MockAdapter from 'axios-mock-adapter';
 import { tag } from './MockData';
 import tagapi from '../TagApi';
+import TagApi from '../TagApi';
 
 describe('Test tag api', () => {
     const mock = new MockAdapter(api);
@@ -37,6 +38,15 @@ describe('Test tag api', () => {
             },
         }).reply(200, [tag]);
         return tagapi.getByPostId(1).then(responce => {
+            const { status, data } = responce;
+            expect(status).toBe(200);
+            expect(data).toEqual([tag]);
+        });
+    });
+
+    test('GET /getAll', () => {
+        mock.onGet('/tag/getAll').reply(200, [tag]);
+        return TagApi.getAll().then(responce => {
             const { status, data } = responce;
             expect(status).toBe(200);
             expect(data).toEqual([tag]);

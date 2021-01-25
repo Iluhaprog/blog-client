@@ -16,6 +16,10 @@ function getByPostId(postId) {
     });
 }
 
+function getAll() {
+    return api.get('/tag/getAll');
+}
+
 function deleteById(id) {
     return api.delete('/tag/deleteById', {
         params: { id },
@@ -27,4 +31,5 @@ export default {
     getById,
     getByPostId,
     deleteById,
+    getAll,
 };
