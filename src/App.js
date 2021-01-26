@@ -1,5 +1,5 @@
 import './App.scss';
-import Nav from './components/nav/Nav';
+import Nav from './components/nav';
 import { BrowserRouter, Switch } from 'react-router-dom';
 
 function App() {
