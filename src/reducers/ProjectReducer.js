@@ -1,5 +1,14 @@
-import ProjectApi from '../api/ProjectApi';
 import * as array from '../util/array';
+
+import {
+    SELECT_PROJECT,
+    CLEAR_SELECTED_PROJECT,
+    ADD_PROJECTS,
+    ADD_PROJECT,
+    CLEAR_PROJECTS,
+    UPDATE_PROJECT,
+    DELETE_PROJECT_FROM_ARRAY 
+} from '../actoins/project';
 
 const initProjectState = {
     selected: {
@@ -11,14 +20,6 @@ const initProjectState = {
     },
     array: [],
 };
-
-const SELECT_PROJECT = 'SELECT_PROJECT';
-const CLEAR_SELECTED_PROJECT = 'CLEAR_SELECTED_PROJECT';
-const ADD_PROJECTS = 'ADD_PROJECTS';
-const ADD_PROJECT = 'ADD_PROJECT';
-const CLEAR_PROJECTS = 'CLEAR_PROJECTS';
-const UPDATE_PROJECT = 'UPDATE_PROJECT';
-const DELETE_PROJECT_FROM_ARRAY = 'DELETE_PROJECT_FROM_ARRAY';
 
 const projectReducer = (state = initProjectState, action) => {
     switch(action.type) {
@@ -62,68 +63,6 @@ const projectReducer = (state = initProjectState, action) => {
             return state;
     }
 }
-
-export const selectProjectById = id => ({ 
-    type: SELECT_PROJECT,
-    id,
-});
-export const clearSelectedProject = () => ({ 
-    type: CLEAR_SELECTED_PROJECT,
-});
-export const addProjects = projects => ({ 
-    type: ADD_PROJECTS,
-    projects,
-});
-export const addProject = project => ({ 
-    type: ADD_PROJECT,
-    project,
-});
-export const clearProjects = () => ({ 
-    type: CLEAR_PROJECTS,
-});
-
-export const updateProject = project => ({
-    type: UPDATE_PROJECT,
-    project,
-});
-
-export const deleteProjectById = id => ({
-    type: DELETE_PROJECT_FROM_ARRAY,
-    id,
-});
-
-export const createFetch = project => dispatch => (
-    ProjectApi.create(project).then(responce => {
-        const { status, data } = responce;
-        if (status === 200) {
-            dispatch(addProject(data));
-        } 
-    }).catch(error => console.error(error))
-);
-export const updateFetch = project => dispatch => (
-    ProjectApi.update(project).then(responce => {
-        const { status, data } = responce;
-        if (status === 200) {
-            dispatch(updateProject(data));
-        }
-    }).catch(error => console.error(error))
-);
-export const deleteFetch = id => dispatch => (
-    ProjectApi.deleteById(id).then(responce => {
-        const { status } = responce;
-        if (status === 204) {
-            dispatch(deleteProjectById(id));
-        }
-    }).catch(error => console.error(error))
-);
-export const getAllFetch = () => dispatch => (
-    ProjectApi.getAll().then(responce => {
-        const { status, data } = responce;
-        if (status === 200) {
-            dispatch(addProjects(data));
-        }
-    }).catch(error => console.error(error))
-);
 
 export default projectReducer;
 
