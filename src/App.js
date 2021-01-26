@@ -1,16 +1,19 @@
 import './App.scss';
 import Nav from './components/nav/Nav';
+import { BrowserRouter, Switch } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <div className="App__box App__box_left">
-        <Nav />
+    <BrowserRouter>
+      <div className="App">
+        <div className="App__box App__box_left">
+          <Nav />
+        </div>
+        <main className="App__box">
+          
+        </main>
       </div>
-      <main className="App__box">
-
-      </main>
-    </div>
+    </BrowserRouter>
   );
 }
 
