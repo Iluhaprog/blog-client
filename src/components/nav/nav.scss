@@ -1,0 +1,31 @@
+@import '../../vars.scss';
+@import '../../App.scss';
+
+.nav {
+    a {
+        display: flex;
+        align-items: center;
+        padding: 10px 20px;
+        color: $text-color-1;
+        text-decoration: none;
+        font-size: 14px;
+        opacity: .5;
+        transition: .3s ease-in-out;
+        border-right: 4px solid rgba($color: #000000, $alpha: 0);
+
+        &.selected {
+            opacity: 1;
+            background-color: $selected-nav-link-bg;
+        border-right: 4px solid rgba($color: #fff, $alpha: 1);
+
+        }
+
+        span {
+            min-width: 100px;
+            display: block;
+            margin-left: auto;
+            margin-right: 0;
+            text-align: left;
+        }
+    }
+}
