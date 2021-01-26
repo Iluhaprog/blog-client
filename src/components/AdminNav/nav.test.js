@@ -3,7 +3,7 @@ import { render, unmountComponentArNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 
 import { BrowserRouter } from 'react-router-dom';
-import Nav from './Nav';
+import Nav from './AdminNav';
 
 let container = null;
 

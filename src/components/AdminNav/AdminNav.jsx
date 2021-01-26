@@ -9,19 +9,19 @@ import './nav.scss';
 export default props => (
     <nav className='nav'>
         <div className='column column_jc-c'>
-            <NavLink to='/profile' activeClassName='selected'>
+            <NavLink to='/admin/profile' activeClassName='selected'>
                 <img src={profile} alt='profile'/>
                 <span>Profile</span>
             </NavLink>
-            <NavLink to='/posts' activeClassName='selected'>
+            <NavLink to='/admin/posts' activeClassName='selected'>
                 <img src={posts} alt='posts'/>
                 <span>Posts</span>
             </NavLink>
-            <NavLink to='/projects' activeClassName='selected'>
+            <NavLink to='/admin/projects' activeClassName='selected'>
                 <img src={posts} alt='projects'/>
                 <span>Projects</span>
             </NavLink>
-            <NavLink to='/settings' activeClassName='selected'>
+            <NavLink to='/admin/settings' activeClassName='selected'>
                 <img src={settings} alt='settings'/>
                 <span>Settings</span>
             </NavLink>
