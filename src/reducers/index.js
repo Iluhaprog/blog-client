@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { reduser as formReduser } from 'redux-form';
+import { reducer as formReducer } from 'redux-form';
 import userReduser from './UserReducer';
 import postReduser from './PostReducer';
 import projectReducer from './ProjectReducer';
@@ -12,5 +12,5 @@ export default combineReducers({
     project: projectReducer,
     tags: tagReducer,
     comment: commentReducer,
-    form: formReduser,
+    form: formReducer,
 });
