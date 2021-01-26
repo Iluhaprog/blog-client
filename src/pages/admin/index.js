@@ -1,5 +1,6 @@
+import { Switch, Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 import AdminNav from '../../components/AdminNav';
-import { Switch, Route } from 'react-router-dom';
 import Profile from './Profile';
 import Posts from './Posts';
 import Settings from './Settings';
@@ -7,7 +8,9 @@ import Projects from './Projects';
 
 import './styles.scss';
 
-function Admin(props) {
+function Admin({ isAuth }) {
+    if (!isAuth) return <Redirect to='/login' />
+    
     return (
         <div className='admin'>
             <div className="admin__box admin__box_left">
@@ -25,4 +28,8 @@ function Admin(props) {
     );
 }
 
-export default Admin;
+const mapStateToProps = state => ({
+    isAuth: state.user.authorized,
+});
+
+export default connect(mapStateToProps)(Admin);
