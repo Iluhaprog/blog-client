@@ -33,7 +33,8 @@ export const loginFetch = (username, password) => (dispatch) => (
             console.warn(status);
         }
     }).catch(error => {
-        console.error(error);
+        const { status, statusText } = error.request;
+        dispatch(loginError(status, { msg: statusText }));
     })
 );
 
