@@ -41,4 +41,10 @@
 
 @include direction(row);
 @include direction(column);
-@include direction(row-reverse)
+@include direction(row-reverse);
+
+.button {
+    display: block;
+    border: none;
+    cursor: pointer;
+}
