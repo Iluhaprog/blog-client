@@ -87,6 +87,22 @@ describe('Test async action creators', () => {
         });
     });
 
+    test('Should create error login, set user action ', () => {
+        mock.onPost('/user/login', {}, expect.objectContaining({
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        })).reply(403, {});
+
+        const expectedActions = [
+            {type: 'LOGIN_ERROR', status: 403, errorData: {msg: 'Forbidden'}}
+        ];
+        const store = mockStore({ user: {}});
+        
+        return store.dispatch(loginFetch('Ilya', '111')).then(() => {
+            expect(store.getActions()).toEqual(expectedActions);
+        });
+    });
+
     test('Should create SET_USER action (createFetch)', () => {
         const user = {
             ...initUserState,

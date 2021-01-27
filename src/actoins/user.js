@@ -33,8 +33,12 @@ export const loginFetch = (username, password) => (dispatch) => (
             console.warn(status);
         }
     }).catch(error => {
-        const { status, statusText } = error.request;
-        dispatch(loginError(status, { msg: statusText }));
+        if (error.request) {
+            const { status, statusText } = error.request;
+            dispatch(loginError(status, { msg: statusText }));
+        } else {
+            dispatch(loginError(403, { msg: 'Forbidden' }))
+        }
     })
 );
 
