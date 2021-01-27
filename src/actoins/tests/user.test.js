@@ -4,7 +4,7 @@ import MockAdapter from 'axios-mock-adapter';
 import api from '../../api/api';
 
 import { loginFetch, logoutFetch, createFetch, updateFetch } from '../user';
-import { login, setUser, clearUser } from '../user';
+import { login, setUser, clearUser, loginError } from '../user';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -23,6 +23,16 @@ const initUserState = {
 }
 
 describe('Test sync action creators', () => {
+
+    test('Should create login error action ', () => {
+        const expectedActions = [
+            { type: 'LOGIN_ERROR', status: 403, errorData: {data: ''} },
+        ];
+        const store = mockStore({ user: {}});
+    
+        store.dispatch(loginError(403, {data: ''}));
+        expect(store.getActions()).toEqual(expectedActions);
+    });
 
     test('Should create login action ', () => {
         const expectedActions = [

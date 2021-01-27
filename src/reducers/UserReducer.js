@@ -1,4 +1,4 @@
-import { LOGIN, SET_USER, CLEAR } from '../actoins/user';
+import { LOGIN, SET_USER, CLEAR, LOGIN_ERROR } from '../actoins/user';
 
 const defaultUserState = {
     avatarImage: '',
@@ -11,7 +11,9 @@ const defaultUserState = {
     skills: '',
     confirmed: false,
     authorized: false,
-}
+    status: 0,
+    errorData: {},
+};
 
 const userReduser = (state = defaultUserState, action) => {
     switch(action.type) {
@@ -28,6 +30,12 @@ const userReduser = (state = defaultUserState, action) => {
         case CLEAR:
             return {
                 ...defaultUserState,
+            };
+        case LOGIN_ERROR:
+            return {
+                ...state,
+                status: action.status,
+                errorData: action.errorData,
             };
         default:
             return state;

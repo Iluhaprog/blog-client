@@ -1,5 +1,5 @@
 import UserReducer from '../UserReducer';
-import { login, setUser, clearUser } from '../../actoins/user';
+import { login, setUser, clearUser, loginError } from '../../actoins/user';
 
 const initUserState = {
     avatarImage: '',
@@ -12,6 +12,8 @@ const initUserState = {
     skills: '',
     confirmed: false,
     authorized: false,
+    status: 0,
+    errorData: {},
 }
 
 describe('Test for user reduser', () => {
@@ -38,5 +40,13 @@ describe('Test for user reduser', () => {
 
     test('Should handle CLEAR', () => {
         expect(UserReducer(initUserState, clearUser())).toEqual(initUserState);
+    });
+
+    test('Should handle LOGIN_ERROR', () => {
+        expect(UserReducer(initUserState, loginError(403, {msg: ''}))).toEqual({
+            ...initUserState,
+            status: 403,
+            errorData: {msg: ''},
+        });
     });
 });

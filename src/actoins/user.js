@@ -3,6 +3,7 @@ import UserApi from '../api/UserApi';
 export const LOGIN = 'LOGIN';
 export const SET_USER = 'SET_USER';
 export const CLEAR = 'CLEAR';
+export const LOGIN_ERROR = 'LOGIN_ERROR';
 
 export const setUser = user => ({
     type: SET_USER,
@@ -14,6 +15,12 @@ export const clearUser = () => ({ type: CLEAR });
 export const login = (authorized) => ({
     type: LOGIN,
     authorized,
+});
+
+export const loginError = (status, errorData) => ({
+    type: LOGIN_ERROR,
+    errorData, 
+    status,
 });
 
 export const loginFetch = (username, password) => (dispatch) => (
