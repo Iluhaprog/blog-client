@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
-import { LoginForm } from '../components/LoginForm';
+import { LoginForm } from '../components/forms';
 import { loginFetch } from '../actoins/user';
+import { Center } from '../components/containers';
 
 const Login = props => {
     const { status, errorData } = props;
@@ -10,9 +11,9 @@ const Login = props => {
     };
 
     return (
-        <>
+        <Center>
             <LoginForm onSubmit={submit} err={{status, errorData}}/>
-        </>
+        </Center>
     );
 };
 

@@ -1,8 +1,8 @@
 import { reduxForm } from 'redux-form';
 import { NavLink } from 'react-router-dom';
-import FormBox from '../FormBox';
-import FormElement from '../FormElement';
-import SendButton from '../SendButton';
+import { FormBox } from '../../boxes';
+import { LabeledInput } from '../../formElements';
+import { SendButton } from '../../buttons';
 import './loginForm.scss';
 
 function LoginForm(props) {
@@ -12,13 +12,13 @@ function LoginForm(props) {
             <form onSubmit={handleSubmit} className='login-form'>
                 <div className='column column_jc-c column_ai-c'>
                     <h1>Login</h1>
-                    <FormElement 
+                    <LabeledInput 
                         label='Email' 
                         type='email' 
                         name='username' 
                         component='input'
                     />
-                    <FormElement 
+                    <LabeledInput 
                         label='Password' 
                         type='password' 
                         name='password' 

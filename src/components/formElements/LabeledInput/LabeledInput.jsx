@@ -1,5 +1,5 @@
 import { Field } from "redux-form";
-import './formElement.scss';
+import './labeledInput.scss';
 
 export default props => (
     <div className='form__box row-reverse'>

@@ -1,19 +1,4 @@
-@import '../../vars.scss';
-
-body {
-    display: flex;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-}
-
-.App {
-    width: 100vw;
-}
-
-.form-box {
-    margin: 0 auto;
-}
+@import '../../../vars.scss';
 
 .login-form {
     h1 {
