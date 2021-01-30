@@ -5,10 +5,12 @@ import posts from './../../assets/icons/posts.svg';
 import settings from './../../assets/icons/settings.svg';
 
 import './nav.scss';
+import { UserShortInfo } from '../UserShortInfo';
 
 export default props => (
     <nav className='nav'>
         <div className='column column_jc-c'>
+            <UserShortInfo />
             <NavLink to='/admin/profile' activeClassName='selected'>
                 <img src={profile} alt='profile'/>
                 <span>Profile</span>
