@@ -1,37 +1,25 @@
 import React from 'react';
-import { render, unmountComponentArNode } from 'react-dom';
-import { act } from 'react-dom/test-utils';
-
+import configureMockStore from 'redux-mock-store'
+import { render } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import Nav from './AdminNav';
 
-let container = null;
-
-beforeEach(() => {
-    container = document.createElement('div');
-    document.body.appendChild(container);
-});
-
-afterEach(() => {
-    setTimeout(() => {
-        unmountComponentArNode(container);
-        container.remove();
-        container = null;
-    }, 1000);
-});
+const mockStore = configureMockStore();
 
 test('Test nav render', () => {
-    act(() => {
-        render(<BrowserRouter><Nav /></BrowserRouter>, container);
-    });
-    const expectText = ['Profile', 'Posts', 'Projects', 'Settings'];
-    const links = container.querySelectorAll('a');
-    const isEqual = true;
-    for (const link of links) {
-        if (!expectText.includes(link.textContent)) {
-            isEqual = false;
-            break;
+    const store = mockStore({
+        user: {
+            firstName: 'Test firstname',
+            lastName: 'Test lastname'
         }
-    }
-    expect(isEqual).toBe(true);
+    });
+    const { asFragment } = render(
+        <Provider store={store}>
+            <BrowserRouter>
+                <Nav />
+            </BrowserRouter>
+        </Provider>
+    );
+    expect(asFragment()).toMatchSnapshot();
 });
