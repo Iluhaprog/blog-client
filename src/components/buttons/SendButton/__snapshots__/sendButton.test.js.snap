@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test view send button 1`] = `
+<DocumentFragment>
+  <button
+    class="button send-button"
+  >
+    Test text
+  </button>
+</DocumentFragment>
+`;

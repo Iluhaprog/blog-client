@@ -3,9 +3,8 @@ import SendButton from './SendButton';
 
 test('Test view send button', () => {
     const testText = 'Test text';
-    render(<SendButton text={ testText }/>);
-    const btn = screen.getByText(testText);
-    expect(!!btn).toBe(true);
+    const { asFragment } = render(<SendButton text={ testText }/>);
+    expect(asFragment()).toMatchSnapshot();
 });
 
 test('Text send button onclick', async () => {
