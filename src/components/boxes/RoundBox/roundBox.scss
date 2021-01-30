@@ -1,3 +1,5 @@
+@import '../../../vars.scss';
+
 @mixin size($w, $h) {
     max-width: $w;
     width: 100%;
@@ -7,6 +9,7 @@
 .round-box {
     border-radius: 50%;
     overflow: hidden;
+    box-shadow: $shadow;
     @include size(65px, 65px);
 
     &__max {
