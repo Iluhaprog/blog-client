@@ -1,3 +1,1 @@
-import 'jest-localstorage-mock';
-
-global.localStorage = localStorage;
+require('jest-localstorage-mock');
