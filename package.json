@@ -100,7 +100,6 @@
   },
   "devDependencies": {
     "axios-mock-adapter": "^1.19.0",
-    "jest-localstorage-mock": "^2.4.6",
     "redux-mock-store": "^1.5.4"
   },
   "jest": {
