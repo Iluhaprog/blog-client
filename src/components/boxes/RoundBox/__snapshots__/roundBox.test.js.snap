@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test view of round image component 1`] = `
+<DocumentFragment>
+  <div
+    class="round-box"
+  />
+</DocumentFragment>
+`;
+
+exports[`Test view of round image max size component 1`] = `
+<DocumentFragment>
+  <div
+    class="round-box round-box__max"
+  />
+</DocumentFragment>
+`;

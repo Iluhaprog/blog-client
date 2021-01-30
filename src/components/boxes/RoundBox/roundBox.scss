@@ -1,0 +1,25 @@
+@mixin size($w, $h) {
+    max-width: $w;
+    width: 100%;
+    height: $h;
+}
+
+.round-box {
+    border-radius: 50%;
+    overflow: hidden;
+    @include size(65px, 65px);
+
+    &__max {
+        @include size(300px, 300px);
+    }
+
+    * {
+        width: 100%;
+        height: 100%;
+    }
+
+    img {
+        object-position: center;
+        object-fit: cover;
+    }
+}
