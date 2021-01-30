@@ -1,4 +1,5 @@
 import { render } from '@testing-library/react';
+import React from 'react';
 import RoundBox from './RoundBox';
 
 test('Test view of round image component', () => {

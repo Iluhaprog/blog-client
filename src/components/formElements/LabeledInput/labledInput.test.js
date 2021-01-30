@@ -1,3 +1,4 @@
+import React from 'react';
 import { render } from '@testing-library/react';
 import { reduxForm } from 'redux-form';
 import { Provider } from 'react-redux';

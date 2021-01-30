@@ -1,3 +1,4 @@
+import React from 'react';
 import './sendButton.scss';
 
 export default props => (

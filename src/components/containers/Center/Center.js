@@ -1,3 +1,4 @@
+import React from 'react';
 import './center.scss';
 
 export default props => (

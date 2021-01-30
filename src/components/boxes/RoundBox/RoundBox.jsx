@@ -1,3 +1,4 @@
+import React from 'react';
 import './roundBox.scss';
 
 export default ({ children, max }) => (

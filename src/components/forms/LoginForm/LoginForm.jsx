@@ -1,3 +1,4 @@
+import React from 'react';
 import { reduxForm } from 'redux-form';
 import { NavLink } from 'react-router-dom';
 import { FormBox } from '../../boxes';
