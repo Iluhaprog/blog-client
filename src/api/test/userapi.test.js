@@ -2,7 +2,7 @@ import api from '../api';
 import userapi from '../UserApi';
 import MockAdapter from 'axios-mock-adapter';
 import { base64Encode } from '../../util/base64';
-import { user } from './MockData';
+import { user, formData, file } from './MockData';
 
 describe('Test user api', () => {
     const mock = new MockAdapter(api);
@@ -102,6 +102,23 @@ describe('Test user api', () => {
             const { status, data } = responce;
             expect(status).toBe(200);
             expect(data).toEqual(updatedUser);
+        });
+    });
+
+    test('PUT /updateAvatar', () => {
+        mock.onPut('/user/updateAvatar').reply(config => {
+            const { headers, data, params } = config;
+            expect(params.dirname).toBe('avatars');
+            expect(headers['Content-Type']).toBe('multipart/form-data');
+            expect(data).toEqual(formData);
+            return new Promise((resolve, reject) => {
+                resolve([200, file]);
+            });
+        });
+        return userapi.updateAvatar('avatars', formData).then(responce => {
+            const { status, data } = responce;
+            expect(status).toBe(200);
+            expect(data).toEqual(file);
         });
     });
     

@@ -60,6 +60,17 @@ function update(user) {
 }
 
 
+function updateAvatar(dirname, formData) {
+    return api.put('/user/updateAvatar', formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+        params: {
+            dirname,
+        },
+    });
+}
+
 function remove() {
     return api.delete('/user/remove');
 }
@@ -81,6 +92,7 @@ export default {
     create,
     verify,
     update,
+    updateAvatar,
     remove,
     deleteById,
 };
