@@ -63,6 +63,16 @@ export const updateFetch = user => dispatch => (
     })
 );
 
+export const updateAvatarFetch = formData => dispatch => {
+    const avatarsDir = process.env.REACT_APP_AVATARS_DIR;
+    return UserApi.updateAvatar(avatarsDir, formData).then(responce => {
+        const { status, data } = responce;
+        if (status === 200) {
+            dispatch(setUser(data));
+        }
+    }).catch(error => console.error(error));
+}
+
 export const logoutFetch = (dispatch) => (
     UserApi.logout().then(responce => {
         const { status } = responce;

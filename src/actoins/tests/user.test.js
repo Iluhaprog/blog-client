@@ -3,7 +3,7 @@ import thunk from 'redux-thunk'
 import MockAdapter from 'axios-mock-adapter';
 import api from '../../api/api';
 
-import { loginFetch, logoutFetch, createFetch, updateFetch } from '../user';
+import { loginFetch, logoutFetch, createFetch, updateFetch, updateAvatarFetch } from '../user';
 import { login, setUser, clearUser, loginError } from '../user';
 
 const middlewares = [thunk];
@@ -136,6 +136,31 @@ describe('Test async action creators', () => {
             expect(store.getActions()).toEqual(expectedActions);
         });
     });
+
+    test('Should create SET_USER action (updateAvatarFetch)', () => {
+        const user = {
+            ...initUserState,
+            avatarImage: 'new.ext'
+        };
+        const fd = new FormData();
+        const expectedActions = [{ type: 'SET_USER', user }];
+
+        mock.onPut('/user/updateAvatar').reply(config => {
+            const { headers, data, params } = config;
+            expect(params.dirname).toBe('avatars');
+            expect(headers['Content-Type']).toBe('multipart/form-data');
+            expect(data).toEqual(fd);
+            return new Promise((resolve, reject) => {
+                resolve([200, user]);
+            });
+        });
+
+        const store = mockStore({ user: {} });
+
+        return store.dispatch(updateAvatarFetch(fd)).then(() => {
+            expect(store.getActions()).toEqual(expectedActions);
+        });
+    })
 
     test('Should create CLEAR action', () => {
         mock.onPost('/user/logout').reply(204);
