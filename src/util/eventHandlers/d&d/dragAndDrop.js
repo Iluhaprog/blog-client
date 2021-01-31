@@ -1,6 +1,5 @@
 const dragOverHandler = (e, cb) => {
     e.preventDefault();
-    console.log('drag over');
     cb(true);
 };
 
