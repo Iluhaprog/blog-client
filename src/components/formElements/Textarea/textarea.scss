@@ -1,0 +1,24 @@
+@import '../../../vars.scss';
+
+.textarea {
+    min-height: 130px;
+    width: 100%;
+    font-family: $main-font;
+    font-size: 16px;
+    box-shadow: $shadow;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    border: $border-2;
+    padding: 15px;
+    resize: none;
+    outline: none;
+    transition: .1s ease-in;
+
+    &::placeholder {
+        color: $text-color-4;
+    }
+
+    &:focus {
+        border: $border-1;
+    }
+}
