@@ -55,7 +55,7 @@ function ProfileForm(props) {
                     <p>Write your real email namd and unique username</p>
                 </HintBox>
             </Row>
-            <h2>Account info</h2>
+            <h2>Profile info</h2>
             <Row alignItems='c' justifyContent='sb'>
                 <Textarea name='bio'/>
                 <HintBox>

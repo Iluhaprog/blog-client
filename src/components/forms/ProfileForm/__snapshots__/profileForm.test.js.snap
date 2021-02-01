@@ -110,7 +110,7 @@ exports[`Test for profile form view Should have values from inital state 1`] = `
       </div>
     </div>
     <h2>
-      Account info
+      Profile info
     </h2>
     <div
       class="row row_jc-sb row_ai-c"
