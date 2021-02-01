@@ -5,8 +5,8 @@ import './userShortInfo.scss';
 import empty from '../../assets/default.png';
 
 const UserShortInfo = ({ avatar, firstName, lastName}) => {
-    const url = process.env.REACT_APP_API_URL;
-    const img = avatar ? `${url}file/get/${avatar}` : empty;
+    const url = process.env.REACT_APP_FILES_URL;
+    const img = avatar ? `${url}${avatar}` : empty;
     return (
         <div className='user-short-info column column_ai-c'>
             <RoundBox>
