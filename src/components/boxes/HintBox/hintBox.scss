@@ -1,6 +1,7 @@
 @import '../../../vars.scss';
 
 .hint-box {
+    height: max-content;
     color: $text-color-5;
     border-left: $border-3;
     padding: 0;
