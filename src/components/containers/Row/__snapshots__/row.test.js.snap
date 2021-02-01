@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test of row component  (view witn jystify-content and align-items) 1`] = `
+<DocumentFragment>
+  <div
+    class="row row_jc-c row_ai-c"
+  />
+</DocumentFragment>
+`;
+
+exports[`Test of row component (default view) 1`] = `
+<DocumentFragment>
+  <div
+    class="row  "
+  />
+</DocumentFragment>
+`;
