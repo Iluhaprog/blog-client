@@ -1,0 +1,14 @@
+@import '../../../vars.scss';
+
+.hint-box {
+    color: $text-color-5;
+    border-left: $border-3;
+    padding: 0;
+    padding-left: 50px;
+    font-size: 14px;
+    transition: .2s ease-in-out;
+    
+    &:hover {
+        color: $text-color-6;
+    }
+}
