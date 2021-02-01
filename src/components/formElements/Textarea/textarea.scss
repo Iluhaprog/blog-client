@@ -12,6 +12,7 @@
     padding: 15px;
     resize: none;
     outline: none;
+    color: $text-color-6;
     transition: .1s ease-in;
 
     &::placeholder {
@@ -20,5 +21,6 @@
 
     &:focus {
         border: $border-1;
+        color: $text-color-7;
     }
 }
