@@ -30,11 +30,20 @@ class DropZone extends React.Component {
     }
 
     setFromData(formData) {
+        const { input: { onChange } } = this.props;
         this.setState({ formData });
+        onChange(this.state.formData.get('avatar'));
     }
 
     onClick() {
-        this.inputRef.getRenderedComponent().click();
+        this.inputRef.click();
+    }
+
+    onChange(e) {
+        const setFromData = this.setFromData.bind(this);
+        const setFocus = this.setFocus.bind(this);
+        const setFile = this.setFile.bind(this);
+        dropHandler(e, setFile, setFromData, setFocus);
     }
 
     render() {
@@ -56,13 +65,11 @@ class DropZone extends React.Component {
                     ? <img src={file} alt='image'/>
                     : <img src={picture} className='empty' alt='empty'/>
                 }
-                <Field
-                    forwardRef={true}
+                <input
                     ref={r => this.inputRef = r}
                     type='file'
                     name={this.props.name}
-                    component='input'
-                    onChange={e => dropHandler(e, setFile, setFromData, setFocus)}
+                    onChange={this.onChange.bind(this)}
                     />
             </div>
         );

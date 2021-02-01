@@ -13,7 +13,6 @@ exports[`Test for drop zone view Should view drop zone with img 1`] = `
       <input
         name="avatar"
         type="file"
-        value=""
       />
     </div>
   </form>
@@ -34,7 +33,6 @@ exports[`Test for drop zone view Should view focused drop zone 1`] = `
       <input
         name="avatar"
         type="file"
-        value=""
       />
     </div>
   </form>
@@ -55,7 +53,6 @@ exports[`Test for drop zone view Should view unfocused drop zone 1`] = `
       <input
         name="avatar"
         type="file"
-        value=""
       />
     </div>
   </form>
