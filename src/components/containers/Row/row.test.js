@@ -12,6 +12,7 @@ test('Test of row component  (view witn jystify-content and align-items)', () =>
         <Row
             justifyContent='c'
             alignItems='c'   
+            wrap='w'
         >
         </Row>
     );
