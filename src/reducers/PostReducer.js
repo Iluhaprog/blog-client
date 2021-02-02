@@ -48,7 +48,7 @@ const postReduser = (state = initPostState, action) => {
         case ADD_POSTS: {
             return {
                 ...state,
-                array: array.concat(state.array, action.posts),
+                array: action.posts,
             };
         }
         case ADD_POST: {
