@@ -3,7 +3,7 @@ import thunk from 'redux-thunk'
 import MockAdapter from 'axios-mock-adapter';
 import api from '../../api/api';
 
-import { selectPostById, clearSelectedPost, deletePostById } from '../post';
+import { selectPostById, clearSelectedPost, deletePostById, setTotal, setTotalFetch } from '../post';
 import { addPosts, addPost, clearPosts, updatePost } from '../post';
 import { addFiles, addFile, deleteFile } from '../post';
 import { createFetch, updateFetch, deleteFetch, getAllFetch } from '../post'
@@ -24,9 +24,17 @@ const initPostState = {
     },
     files: [],
     array: [],
+    total: 0,
 };
 
 describe('Test for sync action creators', () => {
+    test('Should create SET_TOTAL action', () => {
+        const expectedActions = [{ type: 'SET_TOTAL', total: 1 }]
+        const store = mockStore({ post: {}});
+        store.dispatch(setTotal(1));
+        expect(store.getActions()).toEqual(expectedActions)
+    });
+
     test('Should create SELECT action', () => {
         const expectedActions = [{ type: 'SELECT_POST', id: 1 }]
         const store = mockStore({ post: {}});
@@ -105,6 +113,16 @@ describe('Test for sync action creators', () => {
 
 describe('Test async action creators', () => {
     const mock = new MockAdapter(api);
+
+    test('Should create SET_TOTAL action', () => {
+        const total = { count: 1 };
+        mock.onGet('/post/getCount').reply(200, total);
+        const expectedActions = [{ type: 'SET_TOTAL', total: 1 }]
+        const store = mockStore({ post: {}});
+        return store.dispatch(setTotalFetch()).then(() => {
+            expect(store.getActions()).toEqual(expectedActions);
+        });
+    });
 
     test('Should create ADD_POST action', () => {
         const post = {...initPostState, title: 'New post'};

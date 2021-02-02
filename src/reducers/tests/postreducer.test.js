@@ -1,7 +1,7 @@
 import PostReducer from '../PostReducer';
 import { selectPostById, clearSelectedPost, deletePostById } from '../../actoins/post';
 import { addPosts, addPost, clearPosts, updatePost } from '../../actoins/post';
-import { addFiles, addFile, deleteFile } from '../../actoins/post';
+import { addFiles, addFile, deleteFile, setTotal } from '../../actoins/post';
 
 const initPostState = {
     selected: {
@@ -15,6 +15,7 @@ const initPostState = {
     },
     files: [],
     array: [],
+    total: 0,
 };
 
 describe('Test for post reduser', () => {
@@ -45,6 +46,7 @@ describe('Test for post reduser', () => {
             selected: {...post},
             files: [],
             array: [post],
+            total: 0,
         };
         expect(PostReducer(beginState, clearSelectedPost())).toEqual(expectedState);
     });
@@ -122,4 +124,13 @@ describe('Test for post reduser', () => {
         expect(PostReducer(beginState, deleteFile(1))).toEqual(initPostState);
     });
 
+    test('Should handle SET_TOTAL action', () => {
+        const beginState = {
+            ...initPostState,
+        };
+        expect(PostReducer(beginState, setTotal(10))).toEqual({
+            ...beginState,
+            total: 10,
+        });
+    });
 });

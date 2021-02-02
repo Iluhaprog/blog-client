@@ -11,6 +11,7 @@ export const DELETE_POST_FROM_ARRAY = 'DELETE_POST_FROM_ARRAY';
 export const ADD_FILES = 'ADD_FILES';
 export const ADD_FILE = 'ADD_FILE';
 export const DELETE_FILE = 'DELETE_FILE';
+export const SET_TOTAL = 'SET_TOTAL';
 
 
 export const addFiles = files => ({
@@ -61,6 +62,19 @@ export const deletePostById = id => ({
     id,
 });
 
+export const setTotal = total => ({
+    type: SET_TOTAL,
+    total,
+});
+
+export const setTotalFetch = () => dispatch => (
+    PostApi.getCount().then(responce => {
+        const { status, data } = responce;
+        if (status === 200) {
+            dispatch(setTotal(data.count));
+        }
+    }).catch(error => console.error(error))
+)
 
 export const createFetch = post => dispatch => (
     PostApi.create(post).then(responce => {
