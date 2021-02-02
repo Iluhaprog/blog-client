@@ -6,5 +6,6 @@ export default props => (
         className={`button default-button ${props.style || ''}`} 
         onClick={props.onClick}>
         {props.text}
+        {props.children}
     </button>
 );
