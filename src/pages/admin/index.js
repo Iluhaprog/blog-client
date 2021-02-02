@@ -20,7 +20,7 @@ function Admin({ isAuth }) {
             <main className="admin__box">
             <Switch>
                 <Route exact path='/admin/profile' component={Profile} />
-                <Route path='/admin/posts' component={Posts} />
+                <Route path='/admin/posts/:pageNumber' component={Posts} />
                 <Route path='/admin/projects' component={Projects} />
                 <Route path='/admin/settings' component={Settings} />
                 <Route path='/admin/post/:id' component={Post} />

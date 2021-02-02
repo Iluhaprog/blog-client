@@ -11,7 +11,23 @@
         padding: 30px;
         overflow: scroll;
         overflow-x: hidden;
+        font-size: 24px;
         
+        h1 {
+            margin: 0;
+            font-size: 1em;
+            font-weight: 400;
+            color: $nav-bg;
+        }
+
+        .post-card {
+            margin-right: 30px;
+            margin-bottom: 40px;
+        }
+
+        &__header {
+            margin-bottom: 30px;
+        }
     }
 
     &__box {
