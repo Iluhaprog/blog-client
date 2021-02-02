@@ -2,9 +2,9 @@
 
 .danger-button {
     min-width: 75px;
-    padding: 8px;
+    padding: calc(4/7 * 1em);
     background-color: $danger-bg;
-    font-size: 14px;
+    font-size: 1em;
     color: $text-color-1;
     border-radius: 5px;
     box-shadow: $shadow-2;
