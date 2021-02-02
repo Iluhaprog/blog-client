@@ -51,7 +51,7 @@ export default props => {
                                 <DangerButton text='Delete' onClick={props.onDelete} />
                             </Row>
                             <time className="date">
-                                {props.date}
+                                {props.date && props.date.split('T')[0]}
                             </time>
                         </Row>
                     </div>
