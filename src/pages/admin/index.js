@@ -5,6 +5,7 @@ import Profile from './Profile';
 import Posts from './Posts';
 import Settings from './Settings';
 import Projects from './Projects';
+import Post from './Post';
 
 import './styles.scss';
 
@@ -22,6 +23,7 @@ function Admin({ isAuth }) {
                 <Route path='/admin/posts' component={Posts} />
                 <Route path='/admin/projects' component={Projects} />
                 <Route path='/admin/settings' component={Settings} />
+                <Route path='/admin/post/:id' component={Post} />
             </Switch>
             </main>
         </div>
