@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { LabeledButton } from '../../components/buttons';
 import { Row } from '../../components/containers';
 import { 
+    selectPostById,
     getAllFetch, 
     deleteFetch, 
     setTotalFetch, 
@@ -14,7 +15,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { Pagination } from '../../components/Pagination';
 
 const Posts = props => {
-    const { posts, getAllPosts, total, getTotal, userId } = props;
+    const { posts, getAllPosts, total, getTotal, userId, selectPost } = props;
     const { openModalForPostCreation, openModalForPostDeleting } = props;
     const offset = process.env.REACT_APP_OFFSET;
     const { pageNumber } = useParams();
@@ -57,6 +58,7 @@ const Posts = props => {
                                         date={post.date}
                                         onClick={() => {
                                             history.push(`/admin/post/${post.id}`)
+                                            selectPost(post.id)
                                         }}
                                         onDelete={() => {
                                             openModalForPostDeleting(post, () => {
@@ -98,6 +100,9 @@ const mapDispatchToProps = dispatch => ({
     },
     getTotal: () => {
         dispatch(setTotalFetch())
+    },
+    selectPost: (id) => {
+        dispatch(selectPostById(id))
     },
     openModalForPostCreation: (userId, success) => {
         dispatch(setModal({
