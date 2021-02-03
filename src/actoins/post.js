@@ -76,11 +76,12 @@ export const setTotalFetch = () => dispatch => (
     }).catch(error => console.error(error))
 )
 
-export const createFetch = post => dispatch => (
+export const createFetch = (post, success = () => {}) => dispatch => (
     PostApi.create(post).then(responce => {
         const { status, data } = responce;
         if (status === 200) {
             dispatch(addPost(data));
+            success();
         } 
     }).catch(error => console.error(error))
 );
@@ -94,11 +95,12 @@ export const updateFetch = post => dispatch => (
     }).catch(error => console.error(error))
 );
 
-export const deleteFetch = id => dispatch => (
+export const deleteFetch = (id, success = () => {} ) => dispatch => (
     PostApi.deleteById(id).then(responce => {
         const { status } = responce;
         if (status === 204) {
             dispatch(deletePostById(id));
+            success();
         }
     }).catch(error => console.error(error))
 );
