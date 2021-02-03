@@ -1,0 +1,145 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test modal view Should return modal with fail 1`] = `
+<DocumentFragment>
+  <div
+    class="modal "
+  >
+    <div
+      class="row row_jc-c row_ai-c "
+    >
+      <div
+        class="modal-window"
+      >
+        <p
+          class="modal-window__text"
+        />
+        <strong>
+          test fail
+        </strong>
+        <div
+          class="row row_jc-sb  "
+        >
+          <button
+            class="button default-button success-button"
+          >
+            ok
+          </button>
+          <button
+            class="button default-button danger-button"
+          >
+            close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Test modal view Should return modal with input 1`] = `
+<DocumentFragment>
+  <div
+    class="modal "
+  >
+    <div
+      class="row row_jc-c row_ai-c "
+    >
+      <div
+        class="modal-window"
+      >
+        <p
+          class="modal-window__text"
+        />
+        <input
+          class="modal-window__input"
+          type="text"
+          value=""
+        />
+        <div
+          class="row row_jc-sb  "
+        >
+          <button
+            class="button default-button success-button"
+          >
+            ok
+          </button>
+          <button
+            class="button default-button danger-button"
+          >
+            close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Test modal view Should return unvisible modal 1`] = `
+<DocumentFragment>
+  <div
+    class="modal "
+  >
+    <div
+      class="row row_jc-c row_ai-c "
+    >
+      <div
+        class="modal-window"
+      >
+        <p
+          class="modal-window__text"
+        />
+        <div
+          class="row row_jc-sb  "
+        >
+          <button
+            class="button default-button success-button"
+          >
+            ok
+          </button>
+          <button
+            class="button default-button danger-button"
+          >
+            close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Test modal view Should return visible modal 1`] = `
+<DocumentFragment>
+  <div
+    class="modal modal_visible"
+  >
+    <div
+      class="row row_jc-c row_ai-c "
+    >
+      <div
+        class="modal-window"
+      >
+        <p
+          class="modal-window__text"
+        />
+        <div
+          class="row row_jc-sb  "
+        >
+          <button
+            class="button default-button success-button"
+          >
+            ok
+          </button>
+          <button
+            class="button default-button danger-button"
+          >
+            close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
