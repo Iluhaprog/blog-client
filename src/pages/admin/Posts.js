@@ -43,31 +43,33 @@ const Posts = props => {
                         />
                     </Row>
                 </div>
-                <Row justifyContent='sb' wrap='w'>
-                    {
-                        posts.map(post => {
-                            return (
-                                <PostCard
-                                    key={post.id+Date.now()}
-                                    img={post.preview}
-                                    title={post.title}
-                                    description={post.description}
-                                    tags={post.Tags}
-                                    date={post.date}
-                                    onClick={() => {
-                                        history.push(`/admin/post/${post.id}`)
-                                    }}
-                                    onDelete={() => {
-                                        openModalForPostDeleting(post, () => {
-                                            getAllPosts(page, offset);
-                                            getTotal();
-                                        })
-                                    }}
-                                />
-                            );
-                        })
-                    }
-                </Row>
+                <div className='admin-page__main'>
+                    <Row justifyContent='sb' wrap='w'>
+                        {
+                            posts.map(post => {
+                                return (
+                                    <PostCard
+                                        key={post.id+Date.now()}
+                                        img={post.preview}
+                                        title={post.title}
+                                        description={post.description}
+                                        tags={post.Tags}
+                                        date={post.date}
+                                        onClick={() => {
+                                            history.push(`/admin/post/${post.id}`)
+                                        }}
+                                        onDelete={() => {
+                                            openModalForPostDeleting(post, () => {
+                                                getAllPosts(page, offset);
+                                                getTotal();
+                                            })
+                                        }}
+                                    />
+                                );
+                            })
+                        }
+                    </Row>
+                </div>
                 <Pagination
                     totalItems={total}
                     itemsPerPage={offset}

@@ -28,6 +28,10 @@
         &__header {
             margin-bottom: 30px;
         }
+
+        &__main {
+            min-height: calc(100vh - 190px);
+        }
     }
 
     &__box {
