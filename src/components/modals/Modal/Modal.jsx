@@ -37,6 +37,7 @@ function Modal(props) {
                             text='ok'
                             onClick={() => {
                                 handleSuccess(value, setFail);
+                                close();
                             }}
                         />
                         <DangerButton 
