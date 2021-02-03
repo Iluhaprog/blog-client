@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { connect } from 'react-redux';
 import { LabeledButton } from '../../components/buttons';
 import { Row } from '../../components/containers';
@@ -21,14 +21,10 @@ const Posts = props => {
     const [page, setPage] = useState(pageNumber ? pageNumber - 1 : 0);
     const history = useHistory();
 
-    const calcPosts = useCallback(() => {
+    useEffect(() => {
         getAllPosts(page, offset);
         getTotal();
-    }, [posts])
-
-    useEffect(() => {
-        calcPosts(posts);
-    }, [page, calcPosts]);
+    }, [page]);
 
     return (
         <section className='admin-page'>
@@ -39,7 +35,10 @@ const Posts = props => {
                         <LabeledButton 
                             text='New'
                             onClick={() => {
-                                openModalForPostCreation(userId)
+                                openModalForPostCreation(userId, () => {
+                                    getAllPosts(page, offset);
+                                    getTotal();
+                                });
                             }}
                         />
                     </Row>
@@ -49,7 +48,7 @@ const Posts = props => {
                         posts.map(post => {
                             return (
                                 <PostCard
-                                    key={post.id}
+                                    key={post.id+Date.now()}
                                     img={post.preview}
                                     title={post.title}
                                     description={post.description}
@@ -59,7 +58,10 @@ const Posts = props => {
                                         history.push(`/admin/post/${post.id}`)
                                     }}
                                     onDelete={() => {
-                                        openModalForPostDeleting(post)
+                                        openModalForPostDeleting(post, () => {
+                                            getAllPosts(page, offset);
+                                            getTotal();
+                                        })
                                     }}
                                 />
                             );
@@ -95,7 +97,7 @@ const mapDispatchToProps = dispatch => ({
     getTotal: () => {
         dispatch(setTotalFetch())
     },
-    openModalForPostCreation: userId => {
+    openModalForPostCreation: (userId, success) => {
         dispatch(setModal({
             text: 'Write unique title for new post:',
             visible: true,
@@ -108,16 +110,16 @@ const mapDispatchToProps = dispatch => ({
                     text: '',
                     visible: false,
                     userId,
-                }));
+                }, success));
             }
         }));
     },
-    openModalForPostDeleting: post => {
+    openModalForPostDeleting: (post, success) => {
         dispatch(setModal({
             text: `Do you really want to hit "${post.title}"`,
             visible: true,
             handleSuccess: (value, fail) => {
-                dispatch(deleteFetch(post.id));
+                dispatch(deleteFetch(post.id, success));
             }
         }))
     }
