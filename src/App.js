@@ -4,6 +4,7 @@ import Login from './pages/Login';
 import Registration from './pages/Registration';
 import NotFound from './pages/NotFound';
 import './App.scss';
+import { Modal } from './components/modals/Modal';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path='/registration' component={Registration} />
           <Route component={NotFound} />
         </Switch>
+        <Modal />
       </div>
     </BrowserRouter>
   );

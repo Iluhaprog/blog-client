@@ -1,23 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { LabeledButton } from '../../components/buttons';
 import { Row } from '../../components/containers';
-import { getAllFetch, deleteFetch, setTotalFetch } from '../../actoins/post';
+import { 
+    getAllFetch, 
+    deleteFetch, 
+    setTotalFetch, 
+    createFetch 
+} from '../../actoins/post';
+import { setModal } from '../../actoins/modal';
 import { PostCard } from '../../components/PostCard';
 import { useHistory, useParams } from 'react-router-dom';
 import { Pagination } from '../../components/Pagination';
 
 const Posts = props => {
-    const { posts, getAllPosts, deletePostById, total, getTotal } = props;
+    const { posts, getAllPosts, total, getTotal, userId } = props;
+    const { openModalForPostCreation, openModalForPostDeleting } = props;
     const offset = process.env.REACT_APP_OFFSET;
     const { pageNumber } = useParams();
     const [page, setPage] = useState(pageNumber ? pageNumber - 1 : 0);
     const history = useHistory();
 
-    useEffect(() => {
+    const calcPosts = useCallback(() => {
         getAllPosts(page, offset);
         getTotal();
-    }, [page]);
+    }, [posts])
+
+    useEffect(() => {
+        calcPosts(posts);
+    }, [page, calcPosts]);
 
     return (
         <section className='admin-page'>
@@ -27,7 +38,10 @@ const Posts = props => {
                         <h1>Posts</h1>
                         <LabeledButton 
                             text='New'
-                            onClick={() => alert('new')}/>
+                            onClick={() => {
+                                openModalForPostCreation(userId)
+                            }}
+                        />
                     </Row>
                 </div>
                 <Row justifyContent='sb' wrap='w'>
@@ -45,7 +59,7 @@ const Posts = props => {
                                         history.push(`/admin/post/${post.id}`)
                                     }}
                                     onDelete={() => {
-                                        deletePostById(post.id)
+                                        openModalForPostDeleting(post)
                                     }}
                                 />
                             );
@@ -67,6 +81,7 @@ const Posts = props => {
 const mapStateToProps = state => ({
     posts: state.post.array,
     total: state.post.total,
+    userId: state.user.id,
 });
 
 
@@ -79,6 +94,32 @@ const mapDispatchToProps = dispatch => ({
     },
     getTotal: () => {
         dispatch(setTotalFetch())
+    },
+    openModalForPostCreation: userId => {
+        dispatch(setModal({
+            text: 'Write unique title for new post:',
+            visible: true,
+            withInput: true,
+            handleSuccess: (value, fail) => {
+                dispatch(createFetch({
+                    title: value,
+                    description: '',
+                    preview: '',
+                    text: '',
+                    visible: false,
+                    userId,
+                }));
+            }
+        }));
+    },
+    openModalForPostDeleting: post => {
+        dispatch(setModal({
+            text: `Do you really want to hit "${post.title}"`,
+            visible: true,
+            handleSuccess: (value, fail) => {
+                dispatch(deleteFetch(post.id));
+            }
+        }))
     }
 });
 
