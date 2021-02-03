@@ -5,6 +5,7 @@ import postReduser from './PostReducer';
 import projectReducer from './ProjectReducer';
 import tagReducer from './TagReducer';
 import commentReducer from './CommentReducer';
+import modalReducer from './ModalReducer';
 
 export default combineReducers({
     user: userReduser,
@@ -12,5 +13,6 @@ export default combineReducers({
     project: projectReducer,
     tags: tagReducer,
     comment: commentReducer,
+    modal: modalReducer,
     form: formReducer,
 });
