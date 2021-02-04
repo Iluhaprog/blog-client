@@ -9,7 +9,7 @@ import { DangerButton, PrimaryButton } from '../buttons';
 export default props => {
 
     return (
-        <article className='post-card'>
+        <article className='post-card column'>
             <div className="wave-box">
                 <div className="wave-box__bg">
                     { props.img && <img src={props.img} alt="post-preview" /> }
@@ -30,7 +30,7 @@ export default props => {
                 </div>
             </div>
             <div className="post-description">
-                <div className="column">
+                <div className="column column_jc-sb">
                     <h3 className="post-description__title">{props.title}</h3>
                     <p className="post-description__text">
                         {props.description}

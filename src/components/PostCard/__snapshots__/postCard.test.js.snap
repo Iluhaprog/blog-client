@@ -3,7 +3,7 @@
 exports[`Test post card view Should view post card 1`] = `
 <DocumentFragment>
   <article
-    class="post-card"
+    class="post-card column"
   >
     <div
       class="wave-box"
@@ -52,7 +52,7 @@ exports[`Test post card view Should view post card 1`] = `
       class="post-description"
     >
       <div
-        class="column"
+        class="column column_jc-sb"
       >
         <h3
           class="post-description__title"
