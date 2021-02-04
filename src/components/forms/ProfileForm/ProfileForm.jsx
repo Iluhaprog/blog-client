@@ -57,7 +57,7 @@ function ProfileForm(props) {
             </Row>
             <h2>Profile info</h2>
             <Row alignItems='c' justifyContent='sb'>
-                <Textarea name='bio'/>
+                <Textarea name='bio' placeholder='Bio' />
                 <HintBox>
                     <p>Write about your developer path, projects etc. </p>
                 </HintBox>
