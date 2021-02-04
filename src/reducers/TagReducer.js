@@ -1,4 +1,4 @@
-import { SET_TAGS, ADD_TAG } from '../actoins/tag';
+import { INSERT_TAGS, ADD_TAG } from '../actoins/tag';
 
 const initTagState = {
     tags: [],
@@ -6,7 +6,7 @@ const initTagState = {
 
 const tagReducer = (state = initTagState, action) => {
     switch(action.type) {
-        case SET_TAGS:
+        case INSERT_TAGS:
             return {
                 tags: [...action.tags],
             };

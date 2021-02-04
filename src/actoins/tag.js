@@ -1,10 +1,10 @@
 import TagApi from '../api/TagApi';
 
-export const SET_TAGS = 'SET_TAGS';
+export const INSERT_TAGS = 'INSERT_TAGS';
 export const ADD_TAG = 'ADD_TAG';
 
 export const setTags = tags => ({
-    type: SET_TAGS,
+    type: INSERT_TAGS,
     tags,
 });
 
