@@ -64,7 +64,7 @@ const postReduser = (state = initPostState, action) => {
         case ADD_FILE :
             return {
                 ...state,
-                files: [...state.files, action.file],
+                files: state.files ? [...state.files, action.file] : [action.file],
             };
         case CLEAR_SELECTED_POST:
             return {
