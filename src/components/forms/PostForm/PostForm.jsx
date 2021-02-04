@@ -8,14 +8,15 @@ import {
     MarkdownRedactor, 
     DropZone, 
     MultipleSelect,
-    Textarea
+    Textarea,
+    Toggler
 } from '../../formElements';
 import { addTagFetch, getAllFetch } from '../../../actoins/tag';
 import { setModal } from '../../../actoins/modal'
 import './postForm.scss';
 
 function PostForm(props) {
-    const { handleSubmit, openModalWindow, setSelect } = props;
+    const { handleSubmit, openModalWindow, setSelect, setVisible } = props;
 
     useEffect(() => {
         props.getAllTags();
@@ -44,6 +45,22 @@ function PostForm(props) {
                 placeholder='Text'
                 value={props.formValues ? props.formValues.text : ''}
             />
+            <Row>
+                <p className={`toggler-title ${
+                        props.formValues 
+                            ? props.formValues.visible 
+                                ? 'toggler-title__visible' 
+                                : ''
+                            : '' }
+                            `}
+                >
+                    Visible: 
+                </p>
+                <Toggler 
+                    value={props.formValues ? props.formValues.visible : false}
+                    onChange={setVisible}
+                />
+            </Row>
             <Row alignItems='fs'>
                 <div className='post-form__tags'>
                     <p>Tags:</p>
@@ -96,6 +113,9 @@ const mapDispatchToProps = dispatch => ({
     },
     setSelect: value => {
         dispatch(arrayPush('postForm', 'Tags', value))
+    },
+    setVisible: value => {
+        dispatch(change('postForm', 'visible', value))
     }
 });
 

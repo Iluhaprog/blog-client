@@ -62,6 +62,27 @@ exports[`Test view of post form 1`] = `
       />
     </div>
     <div
+      class="row   "
+    >
+      <p
+        class="toggler-title 
+                            "
+      >
+        Visible:
+      </p>
+      <div
+        class="toggler"
+      >
+        <div
+          class="toggler-box"
+        >
+          <div
+            class="toggler-box__item "
+          />
+        </div>
+      </div>
+    </div>
+    <div
       class="row  row_ai-fs "
     >
       <div
