@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test view of multiple select With values and options 1`] = `
+<DocumentFragment>
+  <div
+    class="multiple-select"
+    tabindex="0"
+  >
+    <ul
+      class="values"
+    >
+      <div
+        class="row row_jc-fs row_ai-c row_w-w"
+      />
+    </ul>
+    <div
+      class="options"
+    >
+      <div
+        class="option"
+      >
+        test1
+      </div>
+      <div
+        class="option"
+      >
+        test2
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Test view of multiple select Without values and options 1`] = `
+<DocumentFragment>
+  <div
+    class="multiple-select"
+    tabindex="0"
+  >
+    <ul
+      class="values"
+    >
+      <div
+        class="row row_jc-fs row_ai-c row_w-w"
+      />
+    </ul>
+    <div
+      class="options"
+    />
+  </div>
+</DocumentFragment>
+`;
