@@ -1,7 +1,18 @@
 import PostReducer from '../PostReducer';
-import { selectPostById, clearSelectedPost, deletePostById } from '../../actoins/post';
-import { addPosts, addPost, clearPosts, updatePost } from '../../actoins/post';
-import { addFiles, addFile, deleteFile, setTotal } from '../../actoins/post';
+import { 
+    selectPostById, 
+    clearSelectedPost, 
+    deletePostById, 
+    setTags,
+    addPosts, 
+    addPost, 
+    clearPosts, 
+    updatePost,
+    addFiles,
+    addFile, 
+    deleteFile, 
+    setTotal
+} from '../../actoins/post';
 
 const initPostState = {
     selected: {
@@ -12,6 +23,7 @@ const initPostState = {
         visible: false,
         date: '',
         directoryId: 0,
+        Tags: [],
     },
     files: [],
     array: [],
@@ -21,6 +33,17 @@ const initPostState = {
 describe('Test for post reduser', () => {
     test('Should return init state', () => {
         expect(PostReducer(undefined, {})).toEqual(initPostState);
+    });
+
+    test('Should handle SET_TAGS action', () => {
+        const tags = [{ id: 1, title: 'test'}];
+        expect(PostReducer(initPostState, setTags(tags))).toEqual({
+            ...initPostState,
+            selected: {
+                ...initPostState.selected,
+                Tags: [...tags]
+            }
+        });
     });
 
     test('Should handle SELECT_POST action', () => {

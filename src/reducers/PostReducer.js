@@ -1,7 +1,18 @@
 import * as array from '../util/array';
-import { SELECT_POST, CLEAR_SELECTED_POST, ADD_POST, ADD_POSTS } from '../actoins/post';
-import { CLEAR_POSTS, UPDATE_POST, DELETE_POST_FROM_ARRAY } from '../actoins/post';
-import { ADD_FILES, ADD_FILE, DELETE_FILE, SET_TOTAL } from '../actoins/post';
+import { 
+    SELECT_POST, 
+    CLEAR_SELECTED_POST, 
+    ADD_POST, 
+    ADD_POSTS,
+    CLEAR_POSTS, 
+    UPDATE_POST, 
+    DELETE_POST_FROM_ARRAY,
+    ADD_FILES, 
+    ADD_FILE, 
+    DELETE_FILE, 
+    SET_TOTAL,
+    SET_TAGS,
+} from '../actoins/post';
 
 const initPostState = {
     selected: {
@@ -12,6 +23,7 @@ const initPostState = {
         visible: false,
         date: '',
         directoryId: 0,
+        Tags: [],
     },
     files: [],
     array: [],
@@ -25,6 +37,14 @@ const postReduser = (state = initPostState, action) => {
             return {
                 ...state,
                 selected: post ? {...post} : {...state.selected},
+            };
+        case SET_TAGS:
+            return {
+                ...state,
+                selected: {
+                    ...state.selected,
+                    Tags: action.Tags,
+                },
             };
         case SET_TOTAL:
             return {
