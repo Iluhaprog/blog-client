@@ -18,6 +18,12 @@ class MultipleSelect extends React.Component {
         this.select && this.select.current.focus();
     }
 
+    componentDidMount() {
+        this.setState({
+            tags: this.props.values
+        });
+    }
+
     handleChange(value) {
         const el = this.state.tags.filter(option => option.id === value.id);
         if (!el.length) {
