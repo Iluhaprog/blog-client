@@ -12,7 +12,7 @@ export const ADD_FILES = 'ADD_FILES';
 export const ADD_FILE = 'ADD_FILE';
 export const DELETE_FILE = 'DELETE_FILE';
 export const SET_TOTAL = 'SET_TOTAL';
-
+export const SET_TAGS = 'SET_TAGS';
 
 export const addFiles = files => ({
     type: ADD_FILES,
@@ -66,6 +66,20 @@ export const setTotal = total => ({
     type: SET_TOTAL,
     total,
 });
+
+export const setTags = tags => ({
+    type: SET_TAGS,
+    Tags: tags,
+});
+
+export const setTagsFetch = (postId, tags) => dispatch => (
+    PostApi.setTags(postId, tags.map(tag => tag.id)).then(responce => {
+        const { status } = responce;
+        if (status === 204) {
+            dispatch(setTags(tags));
+        }
+    }).catch(error => console.log(error))
+)
 
 export const setTotalFetch = () => dispatch => (
     PostApi.getCount().then(responce => {

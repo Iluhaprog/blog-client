@@ -3,9 +3,9 @@ import thunk from 'redux-thunk'
 import MockAdapter from 'axios-mock-adapter';
 import api from '../../api/api';
 
-import { selectPostById, clearSelectedPost, deletePostById, setTotal, setTotalFetch } from '../post';
+import { selectPostById, clearSelectedPost, deletePostById, setTotal, setTotalFetch, setTagsFetch } from '../post';
 import { addPosts, addPost, clearPosts, updatePost } from '../post';
-import { addFiles, addFile, deleteFile } from '../post';
+import { addFiles, addFile, deleteFile, setTags } from '../post';
 import { createFetch, updateFetch, deleteFetch, getAllFetch } from '../post'
 import { createFileFetch, getFilesFetch, deleteFileFetch } from '../post'
 
@@ -21,6 +21,7 @@ const initPostState = {
         visible: false,
         date: '',
         directoryId: 0,
+        Tags: [],
     },
     files: [],
     array: [],
@@ -28,6 +29,14 @@ const initPostState = {
 };
 
 describe('Test for sync action creators', () => {
+    test('Should create SET_TAGS action', () => {
+        const tags = [{id: 1, title: 'test'}];
+        const expectedActions = [{ type: 'SET_TAGS', Tags: tags }]
+        const store = mockStore({ post: {}});
+        store.dispatch(setTags(tags));
+        expect(store.getActions()).toEqual(expectedActions)
+    });
+
     test('Should create SET_TOTAL action', () => {
         const expectedActions = [{ type: 'SET_TOTAL', total: 1 }]
         const store = mockStore({ post: {}});
@@ -113,6 +122,19 @@ describe('Test for sync action creators', () => {
 
 describe('Test async action creators', () => {
     const mock = new MockAdapter(api);
+
+    test('Should create SET_TAGS action', () => {
+        const tags = [{id: 1, title: 'test'}];
+        mock.onPut('/post/setTags', {
+            postId: 1,
+            tagsId: [1],
+        }).reply(204);
+        const expectedActions = [{ type: 'SET_TAGS', Tags: tags }]
+        const store = mockStore({ post: {}});
+        return store.dispatch(setTagsFetch(1, tags)).then(() => {
+            expect(store.getActions()).toEqual(expectedActions);
+        });
+    });
 
     test('Should create SET_TOTAL action', () => {
         const total = { count: 1 };
