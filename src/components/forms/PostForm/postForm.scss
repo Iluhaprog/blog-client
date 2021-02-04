@@ -1,0 +1,47 @@
+@import '../../../vars.scss';
+
+.post-form {
+    max-width: 60%;
+
+    .drop-zone {
+        min-width: 120px;
+        margin-right: 20px;
+    }
+
+    .form__box {
+        max-width: 100%;
+    }
+
+    .send-button {
+        margin-top: 20px;
+    }
+
+    .success-button {
+        font-size: 20px;
+        margin-right: 10px;
+        flex: 0 0 auto;
+    }
+
+    &__tags {
+        min-width: 110px;
+
+        .button {
+            margin: 0 auto;
+            margin-top: 10px;
+        }
+
+        p {
+            margin: 0;
+            padding: 10px;
+            text-align: center;
+            color: $text-color-6;
+            border: $border-2;
+            border-radius: 5px 0 0 5px;
+        }
+
+    }
+
+    .multiple-select {
+        border-radius: 0 5px 0 0;
+    }
+}

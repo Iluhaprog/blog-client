@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test view of post form 1`] = `
+<DocumentFragment>
+  <form
+    class="post-form"
+  >
+    <div
+      class="form__box row-reverse"
+    >
+      <input
+        name="title"
+        type="text"
+        value=""
+      />
+      <label
+        for="title"
+      >
+        Title
+      </label>
+    </div>
+    <div
+      class="row   "
+    >
+      <div
+        class="drop-zone "
+      >
+        <img
+          alt="empty"
+          class="empty"
+          src="picture.svg"
+        />
+        <input
+          type="file"
+        />
+      </div>
+      <textarea
+        class="textarea"
+        name="description"
+        placeholder="Description"
+      />
+    </div>
+    <div
+      class="markdown-redactor "
+    >
+      <div
+        class="markdown-redactor__write-zone"
+      >
+        <button
+          class="button default-button success-button"
+        >
+          view
+        </button>
+        <textarea
+          class="textarea"
+          name="text"
+          placeholder="Text"
+        />
+      </div>
+      <div
+        class="markdown-redactor__view-zone markdown-body"
+      />
+    </div>
+    <div
+      class="row  row_ai-fs "
+    >
+      <div
+        class="post-form__tags"
+      >
+        <p>
+          Tags:
+        </p>
+        <button
+          class="button default-button success-button"
+        >
+          New tag
+        </button>
+      </div>
+      <div
+        class="multiple-select"
+        tabindex="0"
+      >
+        <ul
+          class="values"
+        >
+          <div
+            class="row row_jc-fs row_ai-c row_w-w"
+          />
+        </ul>
+        <div
+          class="options"
+        />
+      </div>
+    </div>
+    <button
+      class="button send-button"
+    >
+      Send
+    </button>
+  </form>
+  )
+</DocumentFragment>
+`;
