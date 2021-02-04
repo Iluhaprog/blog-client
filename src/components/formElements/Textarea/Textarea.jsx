@@ -7,7 +7,7 @@ export default props => (
         <Field
             className='textarea'
             name={props.name} 
-            placeholder='Bio'
+            placeholder={props.placeholder || ''}
             component='textarea'
         />
     </>

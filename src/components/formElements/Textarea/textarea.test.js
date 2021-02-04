@@ -20,7 +20,7 @@ const decor = el => {
 test('Test view of textaria', () => {
     const store = mockStore({});
     const Ta = decor(
-        <Textarea name='test_name' />
+        <Textarea name='test_name' placeholder='test' />
     );
     const { asFragment } = render(<Provider store={store}><Ta /></Provider>);
     expect(asFragment()).toMatchSnapshot();

@@ -6,7 +6,7 @@ exports[`Test view of textaria 1`] = `
     <textarea
       class="textarea"
       name="test_name"
-      placeholder="Bio"
+      placeholder="test"
     />
   </form>
 </DocumentFragment>
