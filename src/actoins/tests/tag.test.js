@@ -18,9 +18,9 @@ describe('Test sync action creators', () => {
         expect(store.getActions()).toEqual(expectedActions);
     });
 
-    test('Should create SET_TAGS action', () => {
+    test('Should create INSERT_TAGS action', () => {
         const tag = { id: 1, title: 'TEST TITLE' };
-        const expectedActions = [{ type: 'SET_TAGS', tags: [tag] }];
+        const expectedActions = [{ type: 'INSERT_TAGS', tags: [tag] }];
         const store = mockStore({});
         store.dispatch(setTags([tag]));
         expect(store.getActions()).toEqual(expectedActions);
@@ -40,10 +40,10 @@ describe('Test async action creators', () => {
         });
     });
 
-    test('Should create SET_TAGS action', () => {
+    test('Should create INSERT_TAGS action', () => {
         const tag = { title: 'TEST TITLE' };
         mock.onGet('/tag/getAll').reply(200, [tag]);
-        const expectedActions = [{ type: 'SET_TAGS', tags: [tag] }];
+        const expectedActions = [{ type: 'INSERT_TAGS', tags: [tag] }];
         const store = mockStore({});
         return store.dispatch(getAllFetch()).then(() => {
             expect(store.getActions()).toEqual(expectedActions);
