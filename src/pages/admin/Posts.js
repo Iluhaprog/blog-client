@@ -7,7 +7,8 @@ import {
     getAllFetch, 
     deleteFetch, 
     setTotalFetch, 
-    createFetch 
+    createFetch, 
+    getDirFetch
 } from '../../actoins/post';
 import { setModal } from '../../actoins/modal';
 import { PostCard } from '../../components/PostCard';
@@ -15,7 +16,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { Pagination } from '../../components/Pagination';
 
 const Posts = props => {
-    const { posts, getAllPosts, total, getTotal, userId, selectPost } = props;
+    const { posts, getAllPosts, total, getTotal, userId, selectPost, getDir } = props;
     const { openModalForPostCreation, openModalForPostDeleting } = props;
     const offset = process.env.REACT_APP_OFFSET;
     const { pageNumber } = useParams();
@@ -58,8 +59,9 @@ const Posts = props => {
                                         tags={post.Tags}
                                         date={post.date}
                                         onClick={() => {
-                                            history.push(`/admin/post/${post.id}`)
-                                            selectPost(post.id)
+                                            history.push(`/admin/post/${post.id}`);
+                                            selectPost(post.id);
+                                            getDir(post.directoryId);
                                         }}
                                         onDelete={() => {
                                             openModalForPostDeleting(post, () => {
@@ -104,6 +106,9 @@ const mapDispatchToProps = dispatch => ({
     },
     selectPost: (id) => {
         dispatch(selectPostById(id))
+    },
+    getDir: dirId => {
+        dispatch(getDirFetch(dirId))
     },
     openModalForPostCreation: (userId, success) => {
         dispatch(setModal({
