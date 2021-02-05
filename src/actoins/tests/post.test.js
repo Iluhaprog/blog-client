@@ -3,7 +3,7 @@ import thunk from 'redux-thunk'
 import MockAdapter from 'axios-mock-adapter';
 import api from '../../api/api';
 
-import { selectPostById, clearSelectedPost, deletePostById, setTotal, setTotalFetch, setTagsFetch } from '../post';
+import { selectPostById, clearSelectedPost, deletePostById, setTotal, setTotalFetch, setTagsFetch, updatePreviewFetch } from '../post';
 import { addPosts, addPost, clearPosts, updatePost } from '../post';
 import { addFiles, addFile, deleteFile, setTags } from '../post';
 import { createFetch, updateFetch, deleteFetch, getAllFetch } from '../post'
@@ -167,6 +167,27 @@ describe('Test async action creators', () => {
             expect(store.getActions()).toEqual(expectedActions);
         });
     });
+
+    test('Should create UPDATE_POST action (updatePreviewFetch)', () => {
+        const post = {...initPostState, preview: 'np.jpeg'};
+        const formData = new FormData();
+        const expectedActions = [{ type: 'UPDATE_POST', post }]
+        const store = mockStore({ post: {}});
+        mock.onPut('/post/updatePreview').reply(config => {
+            const { headers, data, params } = config;
+            expect(params.postId).toBe(1);
+            expect(params.dirname).toBe(process.env.REACT_APP_PREVIEWS_DIR);
+            expect(headers['Content-Type']).toBe('multipart/form-data');
+            expect(data).toEqual(formData);
+            return new Promise((resolve, reject) => {
+                resolve([200, post]);
+            });
+        });
+
+        return store.dispatch(updatePreviewFetch(1, formData)).then(() => {
+            expect(store.getActions()).toEqual(expectedActions);
+        });
+    })
 
     test('Should create CLEAR_SELECTED_POST, DELETE_POST_FROM_ARRAY action', () => {
         mock.onDelete('/post/deleteById', {

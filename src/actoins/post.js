@@ -109,6 +109,15 @@ export const updateFetch = post => dispatch => (
     }).catch(error => console.error(error))
 );
 
+export const updatePreviewFetch = (postId, formData) => dispatch => (
+    PostApi.updatePreview(postId, formData).then(responce => {
+        const { status, data } = responce;
+        if (status === 200) {
+            dispatch(updatePost(data));
+        }
+    }).catch(error => console.error(error))
+);
+
 export const deleteFetch = (id, success = () => {} ) => dispatch => (
     PostApi.deleteById(id).then(responce => {
         const { status } = responce;
