@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { 
-    createFileFetch, 
     selectPostById, 
     setTagsFetch,
-    updateFetch
+    updateFetch,
+    updatePreviewFetch
 } from '../../actoins/post';
 import { PostForm } from '../../components/forms';
 
@@ -23,7 +23,7 @@ const Post = props => {
             props.setTags(id, tags);
             console.log(tags);
         }
-        props.updatePreview(preview);
+        props.updatePreview(id, preview);
         props.updatePost({
             id,
             title,
@@ -51,11 +51,10 @@ const mapDispatchToProps = dispatch => ({
     setTags: (postId, tags) => {
         dispatch(setTagsFetch(postId, tags || []));
     },
-    updatePreview: file => {
+    updatePreview: (postId, file) => {
         const fd = new FormData();
         fd.append('preview', file);
-        const dir = process.env.REACT_APP_PREVIEWS_DIR;
-        dispatch(createFileFetch(dir, fd));
+        dispatch(updatePreviewFetch(postId, fd));
     },
     updatePost: post => {
         console.log(post);
