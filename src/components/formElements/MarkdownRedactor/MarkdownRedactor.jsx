@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import marked from 'marked';
+import marked from '../../../util/setting/marked';
 import { Textarea } from '../Textarea';
 import './markdownRedactor.scss';
 import { SuccessButton, DangerButton } from '../../buttons';
