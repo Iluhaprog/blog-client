@@ -1,0 +1,35 @@
+@import '../../vars.scss';
+
+.files-viewer {
+    max-height: 250px;
+    overflow-y: scroll;
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .file-view {
+        max-width: 250px;
+        border: $border-1;
+        border-radius: 5px;
+        box-shadow: $shadow-2;
+        margin-bottom: 20px;
+        
+        .image-box {
+            padding: 10px;
+            margin-right: 10px;
+            border-right: $border-1;
+        }
+
+        img {
+            border-radius: 5px;
+        }
+
+        &__name {
+            margin: 0;
+            font-size: 12px;
+            color: $text-color-6;
+        }
+    }
+}
