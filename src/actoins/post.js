@@ -1,5 +1,6 @@
 import PostApi from '../api/PostApi';
 import FileApi from '../api/FileApi';
+import DirectoryApi from '../api/DirectoryApi';
 
 export const SELECT_POST = 'SELECT_POST';
 export const CLEAR_SELECTED_POST = 'CLEAR_SELECTED_POST';
@@ -13,6 +14,7 @@ export const ADD_FILE = 'ADD_FILE';
 export const DELETE_FILE = 'DELETE_FILE';
 export const SET_TOTAL = 'SET_TOTAL';
 export const SET_TAGS = 'SET_TAGS';
+export const SET_DIR = 'SET_DIR';
 
 export const addFiles = files => ({
     type: ADD_FILES,
@@ -71,6 +73,20 @@ export const setTags = tags => ({
     type: SET_TAGS,
     Tags: tags,
 });
+
+export const setDir = dir => ({
+    type: SET_DIR,
+    dir,
+});
+
+export const getDirFetch = id => dispatch => (
+    DirectoryApi.getById(id).then(responce => {
+        const { status, data } = responce;
+        if (status === 200) {
+            dispatch(setDir(data));
+        }
+    }).catch(error => console.error(error))
+);
 
 export const setTagsFetch = (postId, tags) => dispatch => (
     PostApi.setTags(postId, tags.map(tag => tag.id)).then(responce => {
