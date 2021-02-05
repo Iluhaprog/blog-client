@@ -21,6 +21,7 @@ const Posts = props => {
     const { pageNumber } = useParams();
     const [page, setPage] = useState(pageNumber ? pageNumber - 1 : 0);
     const history = useHistory();
+    const apiUrl = process.env.REACT_APP_FILES_URL;
 
     useEffect(() => {
         getAllPosts(page, offset);
@@ -51,7 +52,7 @@ const Posts = props => {
                                 return (
                                     <PostCard
                                         key={post.id+Date.now()}
-                                        img={post.preview}
+                                        img={post.preview ? apiUrl + post.preview : ''}
                                         title={post.title}
                                         description={post.description}
                                         tags={post.Tags}
