@@ -1,6 +1,6 @@
 import api from '../api';
 import MockAdapter from 'axios-mock-adapter';
-import { post } from './MockData';
+import { post, file, formData } from './MockData';
 import postapi from '../PostApi';
 
 describe('Test post api', () => {
@@ -68,6 +68,24 @@ describe('Test post api', () => {
             expect(data).toEqual(updatedPost);
         });
     });
+
+    test('PUT /updatePreview', () => {
+        mock.onPut('/post/updatePreview').reply(config => {
+            const { headers, data, params } = config;
+            expect(params.postId).toBe(1);
+            expect(params.dirname).toBe(process.env.REACT_APP_PREVIEWS_DIR);
+            expect(headers['Content-Type']).toBe('multipart/form-data');
+            expect(data).toEqual(formData);
+            return new Promise((resolve, reject) => {
+                resolve([200, file]);
+            });
+        });
+        return postapi.updatePreview(1, formData).then(responce => {
+            const { status, data } = responce;
+            expect(status).toBe(200);
+            expect(data).toEqual(file);
+        });
+    })
 
     test('DELETE /deleteById', () => {
         mock.onDelete('/post/deleteById', {

@@ -31,6 +31,18 @@ function setTags(postId, tagsId) {
     });
 }
 
+function updatePreview(postId, formData) {
+    return api.put('/post/updatePreview', formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+        params: {
+           postId,
+           dirname: process.env.REACT_APP_PREVIEWS_DIR, 
+        },
+    });
+}
+
 function update(post) {
     return api.put('/post/update', { post });
 }
@@ -50,4 +62,5 @@ export default {
     update,
     deleteById,
     getCount,
+    updatePreview,
 };
