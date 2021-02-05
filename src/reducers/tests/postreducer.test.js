@@ -11,7 +11,8 @@ import {
     addFiles,
     addFile, 
     deleteFile, 
-    setTotal
+    setTotal,
+    setDir
 } from '../../actoins/post';
 
 const initPostState = {
@@ -25,6 +26,7 @@ const initPostState = {
         directoryId: 0,
         Tags: [],
     },
+    dir: {},
     files: [],
     array: [],
     total: 0,
@@ -33,6 +35,14 @@ const initPostState = {
 describe('Test for post reduser', () => {
     test('Should return init state', () => {
         expect(PostReducer(undefined, {})).toEqual(initPostState);
+    });
+
+    test('Should handle SET_DIR action', () => {
+        const dir = { id: 1, name: 'dirname' };
+        expect(PostReducer(initPostState, setDir(dir))).toEqual({
+            ...initPostState,
+            dir,
+        });
     });
 
     test('Should handle SET_TAGS action', () => {
@@ -66,6 +76,7 @@ describe('Test for post reduser', () => {
             array: [post],
         };
         const beginState = {
+            dir: {},
             selected: {...post},
             files: [],
             array: [post],

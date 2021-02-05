@@ -12,6 +12,7 @@ import {
     DELETE_FILE, 
     SET_TOTAL,
     SET_TAGS,
+    SET_DIR,
 } from '../actoins/post';
 
 const initPostState = {
@@ -25,6 +26,7 @@ const initPostState = {
         directoryId: 0,
         Tags: [],
     },
+    dir: {},
     files: [],
     array: [],
     total: 0,
@@ -37,6 +39,11 @@ const postReduser = (state = initPostState, action) => {
             return {
                 ...state,
                 selected: post ? {...post} : {...state.selected},
+            };
+        case SET_DIR: 
+            return {
+                ...state,
+                dir: {...action.dir},
             };
         case SET_TAGS:
             return {
