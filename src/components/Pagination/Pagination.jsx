@@ -4,7 +4,7 @@ import { PrimaryButton } from "../buttons";
 import { Row } from '../containers';
 import './pagination.scss';
 
-function Pagination({ totalItems, itemsPerPage, currentPage, changePage, visiblePageLinks = 3 }) {
+function Pagination({ totalItems, itemsPerPage, currentPage, changePage, visiblePageLinks = 3, page }) {
     const visiblePageLinksIndexInit = Math.floor((currentPage - 1) / visiblePageLinks);
     const [visiblePageLinksIndex, setVisiblePageLinksIndex] = useState(visiblePageLinksIndexInit);
 
@@ -33,7 +33,7 @@ function Pagination({ totalItems, itemsPerPage, currentPage, changePage, visible
                     pages.map((_, index) => (
                         <NavLink 
                             key={index} 
-                            to={`/admin/posts/${index + 1 + visiblePageLinksIndex * visiblePageLinks}`}
+                            to={`/admin/${page}/${index + 1 + visiblePageLinksIndex * visiblePageLinks}`}
                             onClick={() => changePage(index + visiblePageLinksIndex * visiblePageLinks)}
                             className={
                                 index + 1 + visiblePageLinksIndex * visiblePageLinks === currentPage 
