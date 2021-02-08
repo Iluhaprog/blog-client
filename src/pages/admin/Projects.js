@@ -21,7 +21,7 @@ const Projects = props => {
     const { pageNumber } = useParams();
     const history = useHistory();
     const [page, setPage] = useState(pageNumber ? pageNumber - 1 : 0);
-
+    const apiUrl = process.env.REACT_APP_FILES_URL;
 
     useEffect(() => {
         getAll(page, offset);
@@ -52,7 +52,7 @@ const Projects = props => {
                             projects.map(project => (
                                 <ProjectCard
                                     key={project.id}
-                                    img={project.preview}
+                                    img={project.preview ? apiUrl + project.preview : '' }
                                     title={project.title}
                                     description={project.description}
                                     gitLink={project.githubLink}
