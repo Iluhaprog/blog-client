@@ -7,7 +7,10 @@ import './projectCard.scss';
 export default props => (
     <article className='portfolio-card' onClick={props.onClick || (() => {})}>
         <div className="portfolio-card__bg">
-            <img src={props.img} alt="bg" />
+            {props.img 
+                ? <img src={props.img} alt={props.title} />
+                : ''
+            }
         </div>
         <div className="portfolio-card__description">
             <div className="column">

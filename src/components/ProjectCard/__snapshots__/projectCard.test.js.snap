@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test view of project card Should return view of project card 1`] = `
+exports[`Test view of project card Should return view of project card with img 1`] = `
 <DocumentFragment>
   <article
     class="portfolio-card"
@@ -9,10 +9,62 @@ exports[`Test view of project card Should return view of project card 1`] = `
       class="portfolio-card__bg"
     >
       <img
-        alt="bg"
+        alt="Title"
         src="http://localhost:3001/file/get/potw2034a1612682957687.jpg"
       />
     </div>
+    <div
+      class="portfolio-card__description"
+    >
+      <div
+        class="column"
+      >
+        <h2
+          class="portfolio-card__title"
+        >
+          Title
+        </h2>
+        <p
+          class="portfolio-card__text"
+        >
+          Description description description
+        </p>
+        <div
+          class="row"
+        >
+          <a
+            class="portfolio-card__link"
+            href="#"
+          >
+            <img
+              alt="github"
+              src="github.png"
+            />
+          </a>
+          <a
+            class="portfolio-card__link"
+            href="#"
+          >
+            <img
+              alt="link"
+              src="link.png"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+</DocumentFragment>
+`;
+
+exports[`Test view of project card Should return view of project card without img 1`] = `
+<DocumentFragment>
+  <article
+    class="portfolio-card"
+  >
+    <div
+      class="portfolio-card__bg"
+    />
     <div
       class="portfolio-card__description"
     >
