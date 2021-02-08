@@ -21,7 +21,7 @@ function Admin({ isAuth }) {
             <Switch>
                 <Route exact path='/admin/profile' component={Profile} />
                 <Route path='/admin/posts/:pageNumber' component={Posts} />
-                <Route path='/admin/projects' component={Projects} />
+                <Route path='/admin/projects/:pageNumber' component={Projects} />
                 <Route path='/admin/settings' component={Settings} />
                 <Route path='/admin/post/:id' component={Post} />
             </Switch>
