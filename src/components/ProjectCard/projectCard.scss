@@ -6,7 +6,11 @@
 	height: 300px;
     overflow: hidden;
     border-radius: 5px;
-	box-shadow: $shadow;
+    box-shadow: $shadow;
+    
+    &_can-clicked {
+        cursor: pointer;
+    }
     
     &__bg {
         position: absolute;

@@ -3,7 +3,7 @@
 exports[`Test view of project card Should return view of project card with img 1`] = `
 <DocumentFragment>
   <article
-    class="portfolio-card"
+    class="portfolio-card "
   >
     <div
       class="portfolio-card__bg"
@@ -57,10 +57,62 @@ exports[`Test view of project card Should return view of project card with img 1
 </DocumentFragment>
 `;
 
+exports[`Test view of project card Should return view of project card with prop canClicked 1`] = `
+<DocumentFragment>
+  <article
+    class="portfolio-card portfolio-card_can-clicked"
+  >
+    <div
+      class="portfolio-card__bg"
+    />
+    <div
+      class="portfolio-card__description"
+    >
+      <div
+        class="column"
+      >
+        <h2
+          class="portfolio-card__title"
+        >
+          Title
+        </h2>
+        <p
+          class="portfolio-card__text"
+        >
+          Description description description
+        </p>
+        <div
+          class="row"
+        >
+          <a
+            class="portfolio-card__link"
+            href="#"
+          >
+            <img
+              alt="github"
+              src="github.png"
+            />
+          </a>
+          <a
+            class="portfolio-card__link"
+            href="#"
+          >
+            <img
+              alt="link"
+              src="link.png"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+</DocumentFragment>
+`;
+
 exports[`Test view of project card Should return view of project card without img 1`] = `
 <DocumentFragment>
   <article
-    class="portfolio-card"
+    class="portfolio-card "
   >
     <div
       class="portfolio-card__bg"

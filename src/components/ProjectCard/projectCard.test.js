@@ -30,6 +30,21 @@ describe('Test view of project card', () => {
         );
         expect(asFragment()).toMatchSnapshot();
     });
+
+    test('Should return view of project card with prop canClicked', () => {
+        const { asFragment } = render(
+            <ProjectCard
+                img=''
+                title='Title'
+                description='Description description description'
+                gitLink='#'
+                prjLink='#'
+                canClicked={true}
+                onClick={() => alert('Prj')}
+            />
+        );
+        expect(asFragment()).toMatchSnapshot();
+    });
 });
 
 describe('Test view of project card', () => {
