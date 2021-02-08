@@ -61,8 +61,8 @@ export const deleteFetch = id => dispatch => (
         }
     }).catch(error => console.error(error))
 );
-export const getAllFetch = () => dispatch => (
-    ProjectApi.getAll().then(responce => {
+export const getAllFetch = (page, offset) => dispatch => (
+    ProjectApi.getAll(page, offset).then(responce => {
         const { status, data } = responce;
         if (status === 200) {
             dispatch(addProjects(data));

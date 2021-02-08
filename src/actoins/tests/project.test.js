@@ -114,11 +114,11 @@ describe('Test async action creators', () => {
 
     test('Should create ADD_PROJECTS action', () => {
         const project = {...initProjectState, title: 'New project'};
-        mock.onGet('/project/getAll').reply(200, [project]);
+        mock.onGet('/project/getAll/0/1').reply(200, [project]);
         const expectedActions = [{ type: 'ADD_PROJECTS', projects: [project] }]
         const store = mockStore({ project: {}});
 
-        return store.dispatch(getAllFetch()).then(() => {
+        return store.dispatch(getAllFetch(0, 1)).then(() => {
             expect(store.getActions()).toEqual(expectedActions);
         });
     });
