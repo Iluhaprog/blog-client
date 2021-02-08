@@ -6,6 +6,7 @@ import Posts from './Posts';
 import Settings from './Settings';
 import Projects from './Projects';
 import Post from './Post';
+import Project from './Project';
 
 import './styles.scss';
 
@@ -24,6 +25,7 @@ function Admin({ isAuth }) {
                 <Route path='/admin/projects/:pageNumber' component={Projects} />
                 <Route path='/admin/settings' component={Settings} />
                 <Route path='/admin/post/:id' component={Post} />
+                <Route path='/admin/project/:id' component={Project} />
             </Switch>
             </main>
         </div>
