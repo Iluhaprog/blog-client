@@ -81,6 +81,7 @@ const Posts = props => {
                     currentPage={+pageNumber}
                     changePage={setPage}
                     visiblePageLinks={5}
+                    page='posts'
                 />
             </div>
         </section>
