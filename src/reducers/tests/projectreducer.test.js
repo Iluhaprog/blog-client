@@ -1,5 +1,5 @@
 import projectReducer from '../ProjectReducer';
-import { selectProjectById, clearSelectedProject } from '../../actoins/project';
+import { selectProjectById, clearSelectedProject, setProjectsTotal } from '../../actoins/project';
 import { addProjects, addProject, clearProjects } from '../../actoins/project';
 import { updateProject, deleteProjectById } from '../../actoins/project';
 
@@ -12,6 +12,7 @@ const initProjectState = {
         githubLink: '',
     },
     array: [],
+    total: 0,
 };
 
 describe('Test project reducer', () => {
@@ -28,6 +29,14 @@ describe('Test project reducer', () => {
         expect(projectReducer(initState, selectProjectById(1))).toEqual({
             selected: {...project},
             array: [project],
+            total: 0,
+        });
+    });
+
+    test('Should handle SET_PROJECTS_TOTAL action', () => {
+        expect(projectReducer(initProjectState, setProjectsTotal(1))).toEqual({
+            ...initProjectState,
+            total: 1,
         });
     });
 
@@ -76,7 +85,7 @@ describe('Test project reducer', () => {
     });
 
     test('Should handle UPDATE_PROJECT action', () => {
-        const project = {...initProjectState, id: 1, title: 'Test project'};
+        const project = {...initProjectState.selected, id: 1, title: 'Test project'};
         const updatedProject = { ...project, title: 'Updated test project'};
         const initState = {
             selected: project,

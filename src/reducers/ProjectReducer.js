@@ -7,7 +7,8 @@ import {
     ADD_PROJECT,
     CLEAR_PROJECTS,
     UPDATE_PROJECT,
-    DELETE_PROJECT_FROM_ARRAY 
+    DELETE_PROJECT_FROM_ARRAY,
+    SET_PROJECTS_TOTAL,
 } from '../actoins/project';
 
 const initProjectState = {
@@ -19,6 +20,7 @@ const initProjectState = {
         githubLink: '',
     },
     array: [],
+    total: 0,
 };
 
 const projectReducer = (state = initProjectState, action) => {
@@ -28,6 +30,11 @@ const projectReducer = (state = initProjectState, action) => {
             return {
                 ...state,
                 selected: project,
+            };
+        case SET_PROJECTS_TOTAL:
+            return {
+                ...state,
+                total: action.total,
             };
         case CLEAR_SELECTED_PROJECT:
             return {
