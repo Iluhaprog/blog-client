@@ -60,6 +60,8 @@
         margin-bottom: 20px;
         opacity: 0;
         transition: .3s .3s ease;
+        max-height: 100px;
+        overflow-y: scroll;
     }
     &__link {
         margin-right: 10px;
