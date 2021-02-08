@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { 
     createFetch, 
     getAllFetch, 
+    selectProjectById, 
     setProjectsTotalFetch 
 } from "../../actoins/project";
 import { useEffect, useState } from "react";
@@ -14,7 +15,7 @@ import { Pagination } from '../../components/Pagination';
 
 const Projects = props => {
     const { projects, total, userId } = props;
-    const { getAll, getTotal, openModalForProjectCreation } = props;
+    const { getAll, getTotal, openModalForProjectCreation, selectProject } = props;
 
     const offset = process.env.REACT_APP_OFFSET;
     const { pageNumber } = useParams();
@@ -58,6 +59,7 @@ const Projects = props => {
                                     prjLink={project.projectLink}
                                     canClicked={true}
                                     onClick={() => {
+                                        selectProject(project.id);
                                         history.push(`/admin/project/${project.id}`)
                                     }}
                                 />
@@ -86,6 +88,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+    selectProject: id => {
+        dispatch(selectProjectById(id));
+    },
     openModalForProjectCreation: (userId, success) => {
         dispatch(setModal({
             text: 'Write unique title for new project:',
