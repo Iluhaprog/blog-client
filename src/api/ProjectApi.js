@@ -12,8 +12,8 @@ function getByUserId(userId) {
     });
 }
 
-function getAll() {
-    return api.get('/project/getAll');
+function getAll(page, limit) {
+    return api.get(`/project/getAll/${page}/${limit}`);
 }
 
 function create(project) {

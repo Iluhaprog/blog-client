@@ -20,8 +20,8 @@ describe('Test project api', () => {
     });
     
     test('GET /getAll', () => {
-        mock.onGet('/project/getAll').reply(200, [project]);
-        return projectapi.getAll().then(responce => {
+        mock.onGet('/project/getAll/0/1').reply(200, [project]);
+        return projectapi.getAll(0, 1).then(responce => {
             const { status, data } = responce;
             expect(status).toBe(200);
             expect(data).toEqual([project]);
