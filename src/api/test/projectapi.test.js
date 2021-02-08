@@ -40,6 +40,16 @@ describe('Test project api', () => {
             expect(data).toEqual(project);
         });
     });
+
+    test('GET /getCount', () => {
+        const result = { count: 0 };
+        mock.onGet('/project/getCount').reply(200, result);
+        return projectapi.getTotal().then(responce => {
+            const { status, data } = responce;
+            expect(status).toBe(200);
+            expect(data).toEqual(result);
+        });
+    });
     
     test('POST /create', () => {
         mock.onPost('/project/create', { project }).reply(200, project);

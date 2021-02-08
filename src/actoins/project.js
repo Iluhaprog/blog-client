@@ -7,6 +7,7 @@ export const ADD_PROJECT = 'ADD_PROJECT';
 export const CLEAR_PROJECTS = 'CLEAR_PROJECTS';
 export const UPDATE_PROJECT = 'UPDATE_PROJECT';
 export const DELETE_PROJECT_FROM_ARRAY = 'DELETE_PROJECT_FROM_ARRAY';
+export const SET_PROJECTS_TOTAL = 'SET_PROJECTS_TOTAL';
 
 export const selectProjectById = id => ({ 
     type: SELECT_PROJECT,
@@ -36,6 +37,20 @@ export const deleteProjectById = id => ({
     type: DELETE_PROJECT_FROM_ARRAY,
     id,
 });
+
+export const setProjectsTotal = total => ({
+    type: SET_PROJECTS_TOTAL,
+    total,
+});
+
+export const setProjectsTotalFetch = () => dispatch => (
+    ProjectApi.getTotal().then(responce => {
+        const { status, data } = responce;
+        if (status === 200) {
+            dispatch(setProjectsTotal(data.count));
+        } 
+    }).catch(error => console.error(error))
+)
 
 export const createFetch = project => dispatch => (
     ProjectApi.create(project).then(responce => {

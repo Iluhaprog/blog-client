@@ -30,6 +30,10 @@ function deleteById(id) {
     });
 }
 
+function getTotal() {
+    return api.get('/project/getCount');
+}
+
 export default {
     create,
     getById,
@@ -37,4 +41,5 @@ export default {
     getByUserId,
     update,
     deleteById,
+    getTotal,
 };

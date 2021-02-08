@@ -3,7 +3,7 @@ import thunk from 'redux-thunk'
 import MockAdapter from 'axios-mock-adapter';
 import api from '../../api/api';
 
-import { selectProjectById, clearSelectedProject } from '../project';
+import { selectProjectById, clearSelectedProject, setProjectsTotal, setProjectsTotalFetch } from '../project';
 import { addProjects, addProject, clearProjects } from '../project';
 import { updateProject, deleteProjectById } from '../project';
 import { createFetch, updateFetch, deleteFetch, getAllFetch } from '../project';
@@ -19,9 +19,17 @@ const initProjectState = {
         githubLink: '',
     },
     array: [],
+    total: 0,
 };
 
 describe('Test sync action creators', () => {
+    test('Should create SET_PROJECTS_TOTAL action', () => {
+        const expectedActions = [{ type: 'SET_PROJECTS_TOTAL', total: 1}];
+        const store = mockStore({ project: {} });
+        store.dispatch(setProjectsTotal(1));
+        expect(store.getActions()).toEqual(expectedActions);
+    });
+
     test('Should create SELECT_PROJECT action', () => {
         const expectedActions = [{ type: 'SELECT_PROJECT', id: 1}];
         const store = mockStore({ project: {} });
@@ -85,6 +93,16 @@ describe('Test async action creators', () => {
         const store = mockStore({ project: {}});
 
         return store.dispatch(createFetch(project)).then(() => {
+            expect(store.getActions()).toEqual(expectedActions);
+        });
+    });
+
+    test('Should create SET_PROJECTS_TOTAL action', () => {
+        const expectedActions = [{ type: 'SET_PROJECTS_TOTAL', total: 0 }];
+        const result = { count: 0 };
+        mock.onGet('/project/getCount').reply(200, result);
+        const store = mockStore({ project: {} });
+        return store.dispatch(setProjectsTotalFetch()).then(() => {
             expect(store.getActions()).toEqual(expectedActions);
         });
     });
