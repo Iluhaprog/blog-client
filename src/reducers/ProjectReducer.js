@@ -44,7 +44,7 @@ const projectReducer = (state = initProjectState, action) => {
         case ADD_PROJECTS:
             return {
                 ...state,
-                array: array.concat(state.array, action.projects),
+                array: action.projects,
             };
         case ADD_PROJECT:
             return {
