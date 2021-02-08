@@ -48,7 +48,7 @@ exports[`Test nav render 1`] = `
         </span>
       </a>
       <a
-        href="/admin/projects"
+        href="/admin/projects/1"
       >
         <img
           alt="projects"

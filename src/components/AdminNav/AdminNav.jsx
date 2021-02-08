@@ -20,7 +20,7 @@ export default props => (
                 <img src={posts} alt='posts'/>
                 <span>Posts</span>
             </NavLink>
-            <NavLink to='/admin/projects' activeClassName='selected'>
+            <NavLink to='/admin/projects/1' activeClassName='selected'>
                 <img src={posts} alt='projects'/>
                 <span>Projects</span>
             </NavLink>
