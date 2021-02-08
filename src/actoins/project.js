@@ -52,11 +52,12 @@ export const setProjectsTotalFetch = () => dispatch => (
     }).catch(error => console.error(error))
 )
 
-export const createFetch = project => dispatch => (
+export const createFetch = (project, success = () => {}) => dispatch => (
     ProjectApi.create(project).then(responce => {
         const { status, data } = responce;
         if (status === 200) {
             dispatch(addProject(data));
+            success();
         } 
     }).catch(error => console.error(error))
 );
