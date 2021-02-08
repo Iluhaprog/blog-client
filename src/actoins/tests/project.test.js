@@ -3,10 +3,22 @@ import thunk from 'redux-thunk'
 import MockAdapter from 'axios-mock-adapter';
 import api from '../../api/api';
 
-import { selectProjectById, clearSelectedProject, setProjectsTotal, setProjectsTotalFetch } from '../project';
-import { addProjects, addProject, clearProjects } from '../project';
-import { updateProject, deleteProjectById } from '../project';
-import { createFetch, updateFetch, deleteFetch, getAllFetch } from '../project';
+import {
+    selectProjectById, 
+    clearSelectedProject, 
+    setProjectsTotal, 
+    setProjectsTotalFetch ,
+    updatePreviewFetch,
+    addProjects,
+    addProject,
+    clearProjects,
+    updateProject, 
+    deleteProjectById,
+    createFetch, 
+    updateFetch, 
+    deleteFetch, 
+    getAllFetch
+} from '../project';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -96,6 +108,27 @@ describe('Test async action creators', () => {
             expect(store.getActions()).toEqual(expectedActions);
         });
     });
+
+    test('Should create UPDATE_PROJECT action (updatePreviewFetch)', () => {
+        const project = {...initProjectState.selected, preview: 'np.jpeg'};
+        const formData = new FormData();
+        const expectedActions = [{ type: 'UPDATE_PROJECT', project }]
+        const store = mockStore({ post: {}});
+        mock.onPut('/project/updatePreview').reply(config => {
+            const { headers, data, params } = config;
+            expect(params.projectId).toBe(1);
+            expect(params.dirname).toBe(process.env.REACT_APP_PREVIEWS_DIR);
+            expect(headers['Content-Type']).toBe('multipart/form-data');
+            expect(data).toEqual(formData);
+            return new Promise((resolve, reject) => {
+                resolve([200, project]);
+            });
+        });
+
+        return store.dispatch(updatePreviewFetch(1, formData)).then(() => {
+            expect(store.getActions()).toEqual(expectedActions);
+        });
+    })
 
     test('Should create SET_PROJECTS_TOTAL action', () => {
         const expectedActions = [{ type: 'SET_PROJECTS_TOTAL', total: 0 }];

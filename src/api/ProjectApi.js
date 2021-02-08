@@ -30,6 +30,18 @@ function deleteById(id) {
     });
 }
 
+function updatePreview(projectId, formData) {
+    return api.put('/project/updatePreview', formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+        params: {
+            projectId,
+           dirname: process.env.REACT_APP_PREVIEWS_DIR, 
+        },
+    });
+}
+
 function getTotal() {
     return api.get('/project/getCount');
 }
@@ -42,4 +54,5 @@ export default {
     update,
     deleteById,
     getTotal,
+    updatePreview,
 };

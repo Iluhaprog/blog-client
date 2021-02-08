@@ -1,6 +1,6 @@
 import api from '../api';
 import MockAdapter from 'axios-mock-adapter';
-import { project } from './MockData';
+import { project, file, formData } from './MockData';
 import projectapi from '../ProjectApi';
 
 describe('Test project api', () => {
@@ -40,6 +40,25 @@ describe('Test project api', () => {
             expect(data).toEqual(project);
         });
     });
+
+    test('PUT /updatePreview', () => {
+        mock.onPut('/project/updatePreview').reply(config => {
+            const { headers, data, params } = config;
+            expect(params.projectId).toBe(1);
+            expect(params.dirname).toBe(process.env.REACT_APP_PREVIEWS_DIR);
+            expect(headers['Content-Type']).toBe('multipart/form-data');
+            expect(data).toEqual(formData);
+            return new Promise((resolve, reject) => {
+                resolve([200, file]);
+            });
+        });
+        return projectapi.updatePreview(1, formData).then(responce => {
+            const { status, data } = responce;
+            expect(status).toBe(200);
+            expect(data).toEqual(file);
+        });
+    })
+
 
     test('GET /getCount', () => {
         const result = { count: 0 };

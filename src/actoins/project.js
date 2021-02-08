@@ -69,6 +69,16 @@ export const updateFetch = project => dispatch => (
         }
     }).catch(error => console.error(error))
 );
+
+export const updatePreviewFetch = (projectId, formData) => dispatch => (
+    ProjectApi.updatePreview(projectId, formData).then(responce => {
+        const { status, data } = responce;
+        if (status === 200) {
+            dispatch(updateProject(data));
+        }
+    }).catch(error => console.error(error))
+);
+
 export const deleteFetch = id => dispatch => (
     ProjectApi.deleteById(id).then(responce => {
         const { status } = responce;
