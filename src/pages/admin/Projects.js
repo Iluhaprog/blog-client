@@ -6,7 +6,8 @@ import {
     createFetch, 
     getAllFetch, 
     selectProjectById, 
-    setProjectsTotalFetch 
+    setProjectsTotalFetch,
+    deleteFetch,
 } from "../../actoins/project";
 import { useEffect, useState } from "react";
 import { useHistory, useParams } from 'react-router-dom';
@@ -14,7 +15,7 @@ import { setModal } from '../../actoins/modal';
 import { Pagination } from '../../components/Pagination';
 
 const Projects = props => {
-    const { projects, total, userId } = props;
+    const { projects, total, userId, openModalForProjectDeleting } = props;
     const { getAll, getTotal, openModalForProjectCreation, selectProject } = props;
 
     const offset = process.env.REACT_APP_OFFSET;
@@ -58,9 +59,15 @@ const Projects = props => {
                                     gitLink={project.githubLink}
                                     prjLink={project.projectLink}
                                     canEdit={true}
-                                    onClick={() => {
+                                    onEdit={() => {
                                         selectProject(project.id);
                                         history.push(`/admin/project/${project.id}`)
+                                    }}
+                                    onDelete={() => {
+                                        openModalForProjectDeleting(project, () => {
+                                            getAll(page, offset);
+                                            getTotal();
+                                        });
                                     }}
                                 />
                             ))
@@ -107,6 +114,15 @@ const mapDispatchToProps = dispatch => ({
                 }, success));
             }
         }));
+    },
+    openModalForProjectDeleting: (project, success) => {
+        dispatch(setModal({
+            text: `Do you really want to hit "${project.title}"`,
+            visible: true,
+            handleSuccess: (value, fail) => {
+                dispatch(deleteFetch(project.id, success));
+            }
+        }))
     },
     getAll: (page, limit) => {
         dispatch(getAllFetch(page, limit));
