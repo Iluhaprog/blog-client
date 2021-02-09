@@ -39,7 +39,7 @@ describe('Test view of project card', () => {
                 description='Description description description'
                 gitLink='#'
                 prjLink='#'
-                canClicked={true}
+                canEdit={true}
                 onClick={() => alert('Prj')}
             />
         );

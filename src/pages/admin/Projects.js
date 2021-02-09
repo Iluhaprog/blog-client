@@ -57,7 +57,7 @@ const Projects = props => {
                                     description={project.description}
                                     gitLink={project.githubLink}
                                     prjLink={project.projectLink}
-                                    canClicked={true}
+                                    canEdit={true}
                                     onClick={() => {
                                         selectProject(project.id);
                                         history.push(`/admin/project/${project.id}`)

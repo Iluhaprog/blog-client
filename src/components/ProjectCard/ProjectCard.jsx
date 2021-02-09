@@ -6,7 +6,7 @@ import './projectCard.scss';
 
 export default props => (
     <article 
-        className={`portfolio-card ${props.canClicked ? 'portfolio-card_can-clicked' : ''}`}
+        className={`portfolio-card ${props.canEdit ? 'portfolio-card_can-clicked' : ''}`}
         onClick={props.onClick || (() => {})}>
         <div className="portfolio-card__bg">
             {props.img 
