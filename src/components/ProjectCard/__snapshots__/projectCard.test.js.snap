@@ -30,26 +30,30 @@ exports[`Test view of project card Should return view of project card with img 1
           Description description description
         </p>
         <div
-          class="row"
+          class="row row_jc-sb  "
         >
-          <a
-            class="portfolio-card__link"
-            href="#"
+          <div
+            class="row   "
           >
-            <img
-              alt="github"
-              src="github.png"
-            />
-          </a>
-          <a
-            class="portfolio-card__link"
-            href="#"
-          >
-            <img
-              alt="link"
-              src="link.png"
-            />
-          </a>
+            <a
+              class="portfolio-card__link"
+              href="#"
+            >
+              <img
+                alt="github"
+                src="github.png"
+              />
+            </a>
+            <a
+              class="portfolio-card__link"
+              href="#"
+            >
+              <img
+                alt="link"
+                src="link.png"
+              />
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -82,26 +86,44 @@ exports[`Test view of project card Should return view of project card with prop 
           Description description description
         </p>
         <div
-          class="row"
+          class="row row_jc-sb  "
         >
-          <a
-            class="portfolio-card__link"
-            href="#"
+          <div
+            class="row   "
           >
-            <img
-              alt="github"
-              src="github.png"
-            />
-          </a>
-          <a
-            class="portfolio-card__link"
-            href="#"
+            <a
+              class="portfolio-card__link"
+              href="#"
+            >
+              <img
+                alt="github"
+                src="github.png"
+              />
+            </a>
+            <a
+              class="portfolio-card__link"
+              href="#"
+            >
+              <img
+                alt="link"
+                src="link.png"
+              />
+            </a>
+          </div>
+          <div
+            class="row   "
           >
-            <img
-              alt="link"
-              src="link.png"
-            />
-          </a>
+            <button
+              class="button default-button success-button"
+            >
+              Edit
+            </button>
+            <button
+              class="button default-button danger-button"
+            >
+              Delete
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -134,26 +156,30 @@ exports[`Test view of project card Should return view of project card without im
           Description description description
         </p>
         <div
-          class="row"
+          class="row row_jc-sb  "
         >
-          <a
-            class="portfolio-card__link"
-            href="#"
+          <div
+            class="row   "
           >
-            <img
-              alt="github"
-              src="github.png"
-            />
-          </a>
-          <a
-            class="portfolio-card__link"
-            href="#"
-          >
-            <img
-              alt="link"
-              src="link.png"
-            />
-          </a>
+            <a
+              class="portfolio-card__link"
+              href="#"
+            >
+              <img
+                alt="github"
+                src="github.png"
+              />
+            </a>
+            <a
+              class="portfolio-card__link"
+              href="#"
+            >
+              <img
+                alt="link"
+                src="link.png"
+              />
+            </a>
+          </div>
         </div>
       </div>
     </div>

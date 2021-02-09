@@ -1,13 +1,14 @@
 import React from 'react';
 import github from '../../assets/icons/github.png';
 import link from '../../assets/icons/link.png';
+import { SuccessButton, DangerButton } from '../buttons';
+import { Row } from '../containers';
 import './projectCard.scss';
 
 
 export default props => (
     <article 
-        className={`portfolio-card ${props.canEdit ? 'portfolio-card_can-clicked' : ''}`}
-        onClick={props.onClick || (() => {})}>
+        className={`portfolio-card ${props.canEdit ? 'portfolio-card_can-clicked' : ''}`}>
         <div className="portfolio-card__bg">
             {props.img 
                 ? <img src={props.img} alt={props.title} />
@@ -22,14 +23,30 @@ export default props => (
                 <p className="portfolio-card__text">
                     { props.description }
                 </p>
-                <div className="row">
-                    <a href={props.gitLink} className="portfolio-card__link">
-                        <img src={github} alt="github"/>
-                    </a>
-                    <a href={props.prjLink} className="portfolio-card__link">
-                        <img src={link} alt="link"/>
-                    </a>
-                </div>
+                <Row justifyContent='sb'>
+                    <Row>
+                        <a href={props.gitLink} className="portfolio-card__link">
+                            <img src={github} alt="github"/>
+                        </a>
+                        <a href={props.prjLink} className="portfolio-card__link">
+                            <img src={link} alt="link"/>
+                        </a>
+                    </Row>
+                    { props.canEdit 
+                        ? ( <Row>
+                                <SuccessButton
+                                    text='Edit'
+                                    onClick={props.onEdit || (() => {})}
+                                />
+                                <DangerButton 
+                                    text='Delete'
+                                    onClick={props.onDelete || (() => {})}
+                                />
+                            </Row>
+                         )
+                        : ''
+                    }
+                </Row>
             </div>
         </div>
     </article>

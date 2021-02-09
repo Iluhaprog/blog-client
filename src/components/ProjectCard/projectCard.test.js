@@ -47,8 +47,8 @@ describe('Test view of project card', () => {
     });
 });
 
-describe('Test view of project card', () => {
-    test('Should return view of project card', async () => {
+describe('Test events of project card', () => {
+    test('Should handle onEdit event of project card', async () => {
         const handleClick = jest.fn();
         const { container } = render(
             <ProjectCard
@@ -57,10 +57,29 @@ describe('Test view of project card', () => {
                 description='Description description description'
                 gitLink='#'
                 prjLink='#'
-                onClick={handleClick}
+                canEdit={true}
+                onEdit={handleClick}
             />
         );
-        fireEvent.click(container.querySelector('.portfolio-card'));
+        fireEvent.click(container.querySelector('.success-button'));
+        await waitFor(() => {
+            expect(handleClick).toHaveBeenCalledTimes(1);
+        });
+    });
+    test('Should handle onDelete event of project card', async () => {
+        const handleClick = jest.fn();
+        const { container } = render(
+            <ProjectCard
+                img='http://localhost:3001/file/get/potw2034a1612682957687.jpg'
+                title='Title'
+                description='Description description description'
+                gitLink='#'
+                prjLink='#'
+                canEdit={true}
+                onDelete={handleClick}
+            />
+        );
+        fireEvent.click(container.querySelector('.danger-button'));
         await waitFor(() => {
             expect(handleClick).toHaveBeenCalledTimes(1);
         });

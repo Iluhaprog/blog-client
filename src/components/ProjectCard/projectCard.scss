@@ -7,6 +7,7 @@
     overflow: hidden;
     border-radius: 5px;
     box-shadow: $shadow;
+    font-size: 14px;
     
     &_can-clicked {
         cursor: pointer;
@@ -62,8 +63,10 @@
         transition: .3s .3s ease;
         max-height: 100px;
         overflow-y: scroll;
+        overflow-x: hidden;
+        word-wrap: break-word;
     }
-    &__link {
+    &__link, .button {
         margin-right: 10px;
         opacity: 0;
         transition: .3s .5s ease;
@@ -75,6 +78,6 @@
 
 
 .portfolio-card__description:hover .column > .portfolio-card__text,
-.portfolio-card__description:hover .column .row > .portfolio-card__link {
+.portfolio-card__description:hover .column .row div > * {
 	opacity: 1;
 }
