@@ -79,11 +79,12 @@ export const updatePreviewFetch = (projectId, formData) => dispatch => (
     }).catch(error => console.error(error))
 );
 
-export const deleteFetch = id => dispatch => (
+export const deleteFetch = (id, success = () => {}) => dispatch => (
     ProjectApi.deleteById(id).then(responce => {
         const { status } = responce;
         if (status === 204) {
             dispatch(deleteProjectById(id));
+            success();
         }
     }).catch(error => console.error(error))
 );
