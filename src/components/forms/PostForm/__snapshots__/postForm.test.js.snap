@@ -65,10 +65,9 @@ exports[`Test view of post form 1`] = `
       class="row   "
     >
       <p
-        class="toggler-title 
-                            "
+        class="toggler-title "
       >
-        Visible:
+        Visible: 
       </p>
       <div
         class="toggler"
