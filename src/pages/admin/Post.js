@@ -18,9 +18,9 @@ const Post = props => {
     const { id } = useParams();
     const { dirname, files, getFiles } = props;
 
-    if (!props.selected.id) {
+    useEffect(() => {
         props.getPostById(id);
-    }
+    }, []);
 
     useEffect(() => {
         if (props.selected.directoryId) {
@@ -34,7 +34,7 @@ const Post = props => {
         if (tags.length) {
             props.setTags(id, tags);
         }
-        if (preview) {
+        if (preview.name) {
             props.updatePreview(id,  new File([preview], getUniqueName(preview.name)));
         }
         props.updatePost({
