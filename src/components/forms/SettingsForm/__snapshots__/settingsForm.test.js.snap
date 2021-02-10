@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test view of settings form Should return view of settings form 1`] = `
+<DocumentFragment>
+  <form
+    class="settings-form"
+  >
+    <div
+      class="settings-form__box"
+    >
+      <div
+        class="form__box row-reverse"
+      >
+        <input
+          name="title"
+          type="text"
+          value=""
+        />
+        <label
+          for="title"
+        >
+          Home page title
+        </label>
+      </div>
+    </div>
+    <div
+      class="settings-form__box"
+    >
+      <p
+        class="settings-form__title"
+      >
+        Home page image
+      </p>
+      <div
+        class="drop-zone "
+      >
+        <img
+          alt="empty"
+          class="empty"
+          src="picture.svg"
+        />
+        <input
+          type="file"
+        />
+      </div>
+    </div>
+    <div
+      class="settings-form__box"
+    >
+      <div
+        class="row   "
+      >
+        <p
+          class="toggler-title "
+        >
+          Dark theme: 
+        </p>
+        <div
+          class="toggler"
+        >
+          <div
+            class="toggler-box"
+          >
+            <div
+              class="toggler-box__item "
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="settings-form__box"
+    >
+      <button
+        class="button default-button primary-button"
+      >
+        Apply
+      </button>
+    </div>
+  </form>
+</DocumentFragment>
+`;
