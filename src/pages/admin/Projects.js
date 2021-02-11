@@ -15,7 +15,7 @@ import { setModal } from '../../actoins/modal';
 import { Pagination } from '../../components/Pagination';
 
 const Projects = props => {
-    const { projects, total, userId, openModalForProjectDeleting } = props;
+    const { projects = [], total, userId, openModalForProjectDeleting } = props;
     const { getAll, getTotal, openModalForProjectCreation, selectProject } = props;
 
     const offset = process.env.REACT_APP_OFFSET;
@@ -28,6 +28,13 @@ const Projects = props => {
         getAll(page, offset);
         getTotal();
     }, [page]);
+
+    useEffect(() => {
+        if (!projects.length && pageNumber > 1) {
+            history.push(`/admin/projects/${pageNumber - 1}`);
+            setPage(page - 1);
+        }
+    }, [projects.length]);
 
     return (
         <section className='admin-page'>

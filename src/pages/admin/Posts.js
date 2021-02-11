@@ -16,7 +16,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { Pagination } from '../../components/Pagination';
 
 const Posts = props => {
-    const { posts, getAllPosts, total, getTotal, userId, selectPost, getDir } = props;
+    const { posts = [], getAllPosts, total, getTotal, userId, selectPost, getDir } = props;
     const { openModalForPostCreation, openModalForPostDeleting } = props;
     const offset = process.env.REACT_APP_OFFSET;
     const { pageNumber } = useParams();
@@ -28,6 +28,13 @@ const Posts = props => {
         getAllPosts(page, offset);
         getTotal();
     }, [page]);
+
+    useEffect(() => {
+        if (!posts.length && pageNumber > 1) {
+            history.push(`/admin/posts/${pageNumber - 1}`);
+            setPage(page - 1);
+        }
+    }, [posts.length]);
 
     return (
         <section className='admin-page'>
