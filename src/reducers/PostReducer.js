@@ -50,7 +50,7 @@ const postReduser = (state = initPostState, action) => {
                 ...state,
                 selected: {
                     ...state.selected,
-                    Tags: action.Tags,
+                    Tags: [...state.selected.Tags, ...action.Tags],
                 },
             };
         case SET_TOTAL:
