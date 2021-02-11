@@ -16,7 +16,7 @@ import { getUniqueName } from '../../util/string/string'
 
 const Post = props => {
     const { id } = useParams();
-    const { dirname, files, getFiles } = props;
+    const { dirname, files = [], getFiles } = props;
 
     useEffect(() => {
         props.getPostById(id);
@@ -26,7 +26,7 @@ const Post = props => {
         if (props.selected.directoryId) {
             getFiles(props.selected.directoryId)
         }
-    }, [files])
+    }, [files.length]);
 
     const submit = values => {
         const tags = values.Tags || [];
