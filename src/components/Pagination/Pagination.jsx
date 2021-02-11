@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { NavLink } from "react-router-dom";
 import { PrimaryButton } from "../buttons";
 import { Row } from '../containers';
@@ -7,7 +7,9 @@ import './pagination.scss';
 function Pagination({ totalItems, itemsPerPage, currentPage, changePage, visiblePageLinks = 3, page }) {
     const visiblePageLinksIndexInit = Math.floor((currentPage - 1) / visiblePageLinks);
     const [visiblePageLinksIndex, setVisiblePageLinksIndex] = useState(visiblePageLinksIndexInit);
-
+    useEffect(() => {
+        setVisiblePageLinksIndex(visiblePageLinksIndexInit);
+    }, [currentPage])
     const totalPagesLength = Math.ceil(totalItems / itemsPerPage);
     const visiblePageLinksIndexTotal = Math.ceil(totalPagesLength / visiblePageLinks);
 
