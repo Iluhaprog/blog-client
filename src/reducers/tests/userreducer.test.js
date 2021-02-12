@@ -1,5 +1,11 @@
 import UserReducer from '../UserReducer';
-import { login, setUser, clearUser, loginError } from '../../actoins/user';
+import { 
+    login, 
+    setUser, 
+    clearUser, 
+    loginError, 
+    setFetch,
+} from '../../actoins/user';
 
 const initUserState = {
     avatarImage: '',
@@ -13,6 +19,7 @@ const initUserState = {
     confirmed: false,
     authorized: false,
     status: 0,
+    isFetch: false,
     errorData: {},
 }
 
@@ -47,6 +54,13 @@ describe('Test for user reduser', () => {
             ...initUserState,
             status: 403,
             errorData: {msg: ''},
+        });
+    });
+
+    test('Should handle SET_USER_FETCH', () => {
+        expect(UserReducer(initUserState, setFetch(true))).toEqual({
+            ...initUserState,
+            isFetch: true,
         });
     });
 });

@@ -1,4 +1,10 @@
-import { LOGIN, SET_USER, CLEAR, LOGIN_ERROR } from '../actoins/user';
+import { 
+    LOGIN, 
+    SET_USER, 
+    CLEAR, 
+    LOGIN_ERROR,
+    SET_USER_FETCH,
+} from '../actoins/user';
 
 const defaultUserState = {
     avatarImage: '',
@@ -12,6 +18,7 @@ const defaultUserState = {
     confirmed: false,
     authorized: false,
     status: 0,
+    isFetch: false,
     errorData: {},
 };
 
@@ -36,6 +43,11 @@ const userReduser = (state = defaultUserState, action) => {
                 ...state,
                 status: action.status,
                 errorData: action.errorData,
+            };
+        case SET_USER_FETCH:
+            return {
+                ...state,
+                isFetch: action.isFetch,
             };
         default:
             return state;
