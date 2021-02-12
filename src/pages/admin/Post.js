@@ -12,6 +12,7 @@ import {
 import { ImageLoaderForm, PostForm } from '../../components/forms';
 import { Row } from '../../components/containers';
 import FilesViewer from '../../components/FilesViewer/FilesViewer';
+import { Loader } from '../../components/Loader'
 import { getUniqueName } from '../../util/string/string'
 
 const Post = props => {
@@ -54,6 +55,12 @@ const Post = props => {
 
     return (
         <section className='admin-page'>
+            <div className='admin-page__header'>
+                <Row>
+                    <h1>{props.selected.title}</h1>
+                    <Loader visible={props.isFetch}/>
+                </Row>
+            </div>
             <Row>
                 <PostForm onSubmit={submit}/>
                 <div className='column column_ai-c' style={{width: '40%'}}>
@@ -69,6 +76,7 @@ const mapStateToProps = state => ({
     selected: state.post.selected,
     dirname: state.post.dir ? state.post.dir.name : '',
     files: state.post.files,
+    isFetch: state.post.isFetch,
 });
 
 const mapDispatchToProps = dispatch => ({
