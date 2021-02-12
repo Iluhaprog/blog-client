@@ -14,10 +14,11 @@ import { setModal } from '../../actoins/modal';
 import { PostCard } from '../../components/PostCard';
 import { useHistory, useParams } from 'react-router-dom';
 import { Pagination } from '../../components/Pagination';
+import { Loader } from '../../components/Loader';
 
 const Posts = props => {
     const { posts = [], getAllPosts, total, getTotal, userId, selectPost, getDir } = props;
-    const { openModalForPostCreation, openModalForPostDeleting } = props;
+    const { openModalForPostCreation, openModalForPostDeleting, isFetch } = props;
     const offset = process.env.REACT_APP_OFFSET;
     const { pageNumber } = useParams();
     const [page, setPage] = useState(pageNumber ? pageNumber - 1 : 0);
@@ -42,15 +43,18 @@ const Posts = props => {
                 <div className='admin-page__header'>
                     <Row justifyContent='sb' alignItems='c'>
                         <h1>Posts</h1>
-                        <LabeledButton 
-                            text='New'
-                            onClick={() => {
-                                openModalForPostCreation(userId, () => {
-                                    getAllPosts(page, offset);
-                                    getTotal();
-                                });
-                            }}
-                        />
+                        <Row>
+                            <Loader visible={isFetch} />
+                            <LabeledButton 
+                                text='New'
+                                onClick={() => {
+                                    openModalForPostCreation(userId, () => {
+                                        getAllPosts(page, offset);
+                                        getTotal();
+                                    });
+                                }}
+                            />
+                        </Row>
                     </Row>
                 </div>
                 <div className='admin-page__main'>
@@ -99,6 +103,7 @@ const mapStateToProps = state => ({
     posts: state.post.array,
     total: state.post.total,
     userId: state.user.id,
+    isFetch: state.post.isFetch,
 });
 
 
