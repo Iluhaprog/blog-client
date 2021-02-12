@@ -5,10 +5,11 @@ import { Row } from '../../containers';
 import { SendButton } from '../../buttons';
 import { DropZone, LabeledInput, Textarea } from '../../formElements';
 import { HintBox } from '../../boxes';
+import { Loader } from '../../Loader';
 import './profileForm.scss';
 
 function ProfileForm(props) {
-    const { handleSubmit } = props;
+    const { handleSubmit, isFetch } = props;
     return (
         <form onSubmit={handleSubmit} className='profile-form'>
             <h2>Account info</h2>
@@ -77,6 +78,9 @@ function ProfileForm(props) {
             </div>
             <Row justifyContent='fs'>
                 <SendButton text='Apply' />
+                <Loader
+                    visible={isFetch}
+                />
             </Row>
         </form>
     );
@@ -91,7 +95,8 @@ const mapStateToProps = state => ({
         email: state.user.email,
         bio: state.user.bio,
         skills: state.user.skills,
-    }
+    },
+    isFetch: state.user.isFetch,
 });
 
 export default connect(mapStateToProps)(reduxForm({

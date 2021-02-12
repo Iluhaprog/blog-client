@@ -17,7 +17,8 @@ const defaultUserState = {
         username: 'test un',
         bio: 'Test bio',
         email: 'test@test.test',
-        skills: 'test skills'
+        skills: 'test skills',
+        isFetch: false,
     },
 };
 
