@@ -4,10 +4,16 @@ export const LOGIN = 'LOGIN';
 export const SET_USER = 'SET_USER';
 export const CLEAR = 'CLEAR';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
+export const SET_USER_FETCH = 'SET_USER_FETCH';
 
 export const setUser = user => ({
     type: SET_USER,
     user,
+});
+
+export const setFetch = isFetch => ({
+    type: SET_USER_FETCH,
+    isFetch,
 });
 
 export const clearUser = () => ({ type: CLEAR });
@@ -52,23 +58,27 @@ export const createFetch = user => dispatch => (
         console.log(error);
     })
 );
-export const updateFetch = user => dispatch => (
-    UserApi.update(user).then(responce => {
+export const updateFetch = user => dispatch => {
+    dispatch(setFetch(true));
+    return UserApi.update(user).then(responce => {
         const { status, data } = responce;
         if (status === 200) {
             dispatch(setUser(data));
+            dispatch(setFetch(false));
         }
     }).catch(error => {
         console.log(error);
-    })
-);
+    });
+}
 
 export const updateAvatarFetch = formData => dispatch => {
     const avatarsDir = process.env.REACT_APP_AVATARS_DIR;
+    dispatch(setFetch(true));
     return UserApi.updateAvatar(avatarsDir, formData).then(responce => {
         const { status, data } = responce;
         if (status === 200) {
             dispatch(setUser(data));
+            dispatch(setFetch(false));
         }
     }).catch(error => console.error(error));
 }

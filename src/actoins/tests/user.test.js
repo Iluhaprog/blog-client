@@ -4,7 +4,7 @@ import MockAdapter from 'axios-mock-adapter';
 import api from '../../api/api';
 
 import { loginFetch, logoutFetch, createFetch, updateFetch, updateAvatarFetch } from '../user';
-import { login, setUser, clearUser, loginError } from '../user';
+import { login, setUser, clearUser, loginError, setFetch } from '../user';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -41,6 +41,17 @@ describe('Test sync action creators', () => {
         const store = mockStore({ user: {}});
     
         store.dispatch(login(true));
+        expect(store.getActions()).toEqual(expectedActions);
+    });
+
+    test('Should create SET_USER_FETCH action ', () => {
+        const isFetch = true;
+        const expectedActions = [
+            { type: 'SET_USER_FETCH', isFetch },
+        ];
+        const store = mockStore({ user: {}});
+    
+        store.dispatch(setFetch(isFetch));
         expect(store.getActions()).toEqual(expectedActions);
     });
 
@@ -120,7 +131,7 @@ describe('Test async action creators', () => {
         });
     });
 
-    test('Should create SET_USER action (createFetch)', () => {
+    test('Should create SET_USER action (updateFetch)', () => {
         const user = {
             ...initUserState,
             username: 'ilkass1',
@@ -129,7 +140,11 @@ describe('Test async action creators', () => {
 
         mock.onPut('/user/update', { user }).reply(200, user);
 
-        const expectedActions = [{ type: 'SET_USER', user }];
+        const expectedActions = [
+            { type: 'SET_USER_FETCH', isFetch: true },
+            { type: 'SET_USER', user },
+            { type: 'SET_USER_FETCH', isFetch: false },
+        ];
         const store = mockStore({ user: {} });
 
         return store.dispatch(updateFetch(user)).then(() => {
@@ -143,7 +158,11 @@ describe('Test async action creators', () => {
             avatarImage: 'new.ext'
         };
         const fd = new FormData();
-        const expectedActions = [{ type: 'SET_USER', user }];
+        const expectedActions = [
+            { type: 'SET_USER_FETCH', isFetch: true },
+            { type: 'SET_USER', user },
+            { type: 'SET_USER_FETCH', isFetch: false },
+        ];
 
         mock.onPut('/user/updateAvatar').reply(config => {
             const { headers, data, params } = config;
