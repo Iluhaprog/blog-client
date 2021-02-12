@@ -56,7 +56,7 @@ const Post = props => {
     return (
         <section className='admin-page'>
             <div className='admin-page__header'>
-                <Row>
+                <Row alignItems='c'>
                     <h1>{props.selected.title}</h1>
                     <Loader visible={props.isFetch}/>
                 </Row>
