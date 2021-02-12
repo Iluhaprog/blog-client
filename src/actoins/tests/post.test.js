@@ -3,11 +3,33 @@ import thunk from 'redux-thunk'
 import MockAdapter from 'axios-mock-adapter';
 import api from '../../api/api';
 
-import { selectPostById, clearSelectedPost, deletePostById, setTotal, setTotalFetch, setTagsFetch, updatePreviewFetch, setDir, getDirFetch } from '../post';
-import { addPosts, addPost, clearPosts, updatePost } from '../post';
-import { addFiles, addFile, deleteFile, setTags } from '../post';
-import { createFetch, updateFetch, deleteFetch, getAllFetch } from '../post'
-import { createFileFetch, getFilesFetch, deleteFileFetch } from '../post'
+import { 
+    selectPostById, 
+    clearSelectedPost, 
+    deletePostById, 
+    setTotal, 
+    setTotalFetch, 
+    setTagsFetch, 
+    updatePreviewFetch, 
+    setDir,
+    getDirFetch,
+    addPosts, 
+    addPost, 
+    clearPosts, 
+    updatePost,
+    addFiles,
+    addFile, 
+    deleteFile, 
+    setTags,
+    createFetch, 
+    updateFetch, 
+    deleteFetch, 
+    getAllFetch,
+    createFileFetch, 
+    getFilesFetch, 
+    deleteFileFetch,
+    setPostFetch,
+} from '../post';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -23,6 +45,7 @@ const initPostState = {
         directoryId: 0,
         Tags: [],
     },
+    isFetch: false,
     dir: {},
     files: [],
     array: [],
@@ -30,6 +53,13 @@ const initPostState = {
 };
 
 describe('Test for sync action creators', () => {
+    test('Should create SET_POST_FETCH action', () => {
+        const store = mockStore({ post: {}});
+        const expectedActions = [{type: 'SET_POST_FETCH', isFetch: true}];
+        store.dispatch(setPostFetch(true));
+        expect(store.getActions()).toEqual(expectedActions);
+    });
+
     test('Should create SET_DIR action', () =>  {
         const dir = { id: 1, name: 'dirname' };
         const expectedActions = [{type: 'SET_DIR', dir}];
@@ -172,7 +202,11 @@ describe('Test async action creators', () => {
     test('Should create ADD_POST action', () => {
         const post = {...initPostState, title: 'New post'};
         mock.onPost('/post/create', { post }).reply(200, post);
-        const expectedActions = [{ type: 'ADD_POST', post }]
+        const expectedActions = [
+            {type: 'SET_POST_FETCH', isFetch: true},
+            { type: 'ADD_POST', post },
+            {type: 'SET_POST_FETCH', isFetch: false},
+        ]
         const store = mockStore({ post: {}});
         
         return store.dispatch(createFetch(post)).then(() => {
@@ -183,7 +217,11 @@ describe('Test async action creators', () => {
     test('Should create UPDATE_POST action', () => {
         const post = {...initPostState, title: 'New post'};
         mock.onPut('/post/update', { post }).reply(200, post);
-        const expectedActions = [{ type: 'UPDATE_POST', post }]
+        const expectedActions = [
+            {type: 'SET_POST_FETCH', isFetch: true},
+            { type: 'UPDATE_POST', post },
+            {type: 'SET_POST_FETCH', isFetch: false},
+        ]
         const store = mockStore({ post: {}});
         
         return store.dispatch(updateFetch(post)).then(() => {
@@ -194,7 +232,11 @@ describe('Test async action creators', () => {
     test('Should create UPDATE_POST action (updatePreviewFetch)', () => {
         const post = {...initPostState, preview: 'np.jpeg'};
         const formData = new FormData();
-        const expectedActions = [{ type: 'UPDATE_POST', post }]
+        const expectedActions = [
+            {type: 'SET_POST_FETCH', isFetch: true},
+            { type: 'UPDATE_POST', post },
+            {type: 'SET_POST_FETCH', isFetch: false},
+        ]
         const store = mockStore({ post: {}});
         mock.onPut('/post/updatePreview').reply(config => {
             const { headers, data, params } = config;
@@ -217,7 +259,9 @@ describe('Test async action creators', () => {
             params: { id: 1 }
         }).reply(204);
         const expectedActions = [
+            {type: 'SET_POST_FETCH', isFetch: true},
             { type: 'DELETE_POST_FROM_ARRAY', id: 1},
+            {type: 'SET_POST_FETCH', isFetch: false}
         ];
         const store = mockStore({ post: {}});
         
@@ -251,7 +295,11 @@ describe('Test async action creators', () => {
                 resolve([200, file]);
             });
         });
-        const expectedActions = [{ type: 'ADD_FILE', file}];
+        const expectedActions = [
+            {type: 'SET_POST_FETCH', isFetch: true},
+            { type: 'ADD_FILE', file},
+            {type: 'SET_POST_FETCH', isFetch: false}
+        ];
         const store = mockStore({ post: {}});
         return store.dispatch(createFileFetch('test', fd)).then(() => {
             expect(store.getActions()).toEqual(expectedActions);

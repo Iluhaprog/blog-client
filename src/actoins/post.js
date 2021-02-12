@@ -15,6 +15,12 @@ export const DELETE_FILE = 'DELETE_FILE';
 export const SET_TOTAL = 'SET_TOTAL';
 export const SET_TAGS = 'SET_TAGS';
 export const SET_DIR = 'SET_DIR';
+export const SET_POST_FETCH = 'SET_POST_FETCH';
+
+export const setPostFetch = isFetch => ({
+    type: SET_POST_FETCH,
+    isFetch,
+});
 
 export const addFiles = files => ({
     type: ADD_FILES,
@@ -106,43 +112,51 @@ export const setTotalFetch = () => dispatch => (
     }).catch(error => console.error(error))
 )
 
-export const createFetch = (post, success = () => {}) => dispatch => (
-    PostApi.create(post).then(responce => {
+export const createFetch = (post, success = () => {}) => dispatch => {
+    dispatch(setPostFetch(true));
+    return PostApi.create(post).then(responce => {
         const { status, data } = responce;
         if (status === 200) {
             dispatch(addPost(data));
             success();
+            dispatch(setPostFetch(false));
         } 
     }).catch(error => console.error(error))
-);
+};
 
-export const updateFetch = post => dispatch => (
-    PostApi.update(post).then(responce => {
+export const updateFetch = post => dispatch => {
+    dispatch(setPostFetch(true));
+    return PostApi.update(post).then(responce => {
         const { status, data } = responce;
         if (status === 200) {
             dispatch(updatePost(data));
+            dispatch(setPostFetch(false));
         }
     }).catch(error => console.error(error))
-);
+};
 
-export const updatePreviewFetch = (postId, formData) => dispatch => (
-    PostApi.updatePreview(postId, formData).then(responce => {
+export const updatePreviewFetch = (postId, formData) => dispatch => {
+    dispatch(setPostFetch(true));
+    return PostApi.updatePreview(postId, formData).then(responce => {
         const { status, data } = responce;
         if (status === 200) {
             dispatch(updatePost(data));
+            dispatch(setPostFetch(false));
         }
     }).catch(error => console.error(error))
-);
+};
 
-export const deleteFetch = (id, success = () => {} ) => dispatch => (
-    PostApi.deleteById(id).then(responce => {
+export const deleteFetch = (id, success = () => {} ) => dispatch => {
+    dispatch(setPostFetch(true));
+    return PostApi.deleteById(id).then(responce => {
         const { status } = responce;
         if (status === 204) {
             dispatch(deletePostById(id));
             success();
+            dispatch(setPostFetch(false));
         }
     }).catch(error => console.error(error))
-);
+};
 
 export const getAllFetch = (page, limit) => dispatch => (
     PostApi.getAll(page, limit).then(responce => {
@@ -153,14 +167,16 @@ export const getAllFetch = (page, limit) => dispatch => (
     }).catch(error => console.error(error))
 );
 
-export const createFileFetch = (dirname, formData) => dispatch => (
-    FileApi.create(dirname, formData).then(responce => {
+export const createFileFetch = (dirname, formData) => dispatch => {
+    dispatch(setPostFetch(true));
+    return FileApi.create(dirname, formData).then(responce => {
         const { status, data } = responce;
         if (status === 200) {
             dispatch(addFile(data));
+            dispatch(setPostFetch(false));
         }
     }).catch(error => console.error(error))
-);
+};
 
 export const getFilesFetch = directoryId => dispatch => (
     FileApi.getByDirectoryId(directoryId).then(responce => {
