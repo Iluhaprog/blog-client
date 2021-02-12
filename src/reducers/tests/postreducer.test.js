@@ -12,7 +12,8 @@ import {
     addFile, 
     deleteFile, 
     setTotal,
-    setDir
+    setDir,
+    setPostFetch,
 } from '../../actoins/post';
 
 const initPostState = {
@@ -26,6 +27,7 @@ const initPostState = {
         directoryId: 0,
         Tags: [],
     },
+    isFetch: false,
     dir: {},
     files: [],
     array: [],
@@ -42,6 +44,13 @@ describe('Test for post reduser', () => {
         expect(PostReducer(initPostState, setDir(dir))).toEqual({
             ...initPostState,
             dir,
+        });
+    });
+
+    test('Should handle SET_POST_FETCH action', () => {
+        expect(PostReducer(initPostState, setPostFetch(true))).toEqual({
+            ...initPostState,
+            isFetch: true,
         });
     });
 
@@ -77,6 +86,7 @@ describe('Test for post reduser', () => {
         };
         const beginState = {
             dir: {},
+            isFetch: false,
             selected: {...post},
             files: [],
             array: [post],

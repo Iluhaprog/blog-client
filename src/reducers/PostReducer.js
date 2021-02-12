@@ -13,6 +13,7 @@ import {
     SET_TOTAL,
     SET_TAGS,
     SET_DIR,
+    SET_POST_FETCH,
 } from '../actoins/post';
 
 const initPostState = {
@@ -26,6 +27,7 @@ const initPostState = {
         directoryId: 0,
         Tags: [],
     },
+    isFetch: false,
     dir: {},
     files: [],
     array: [],
@@ -104,6 +106,11 @@ const postReduser = (state = initPostState, action) => {
             return {
                 ...state,
                 array: array.deleteEl(action.id, state.array),
+            };
+        case SET_POST_FETCH:
+            return {
+                ...state,
+                isFetch: action.isFetch,
             };
         default:
             return state;
