@@ -1,7 +1,15 @@
 import projectReducer from '../ProjectReducer';
-import { selectProjectById, clearSelectedProject, setProjectsTotal } from '../../actoins/project';
-import { addProjects, addProject, clearProjects } from '../../actoins/project';
-import { updateProject, deleteProjectById } from '../../actoins/project';
+import { 
+    selectProjectById, 
+    clearSelectedProject,
+    setProjectsTotal,
+    addProjects, 
+    addProject,
+    clearProjects,
+    updateProject, 
+    deleteProjectById,
+    setProjectFetch,
+} from '../../actoins/project';
 
 const initProjectState = {
     selected: {
@@ -13,11 +21,19 @@ const initProjectState = {
     },
     array: [],
     total: 0,
+    isFetch: false,
 };
 
 describe('Test project reducer', () => {
     test('Should return init state', () => {
         expect(projectReducer(undefined, {})).toEqual(initProjectState);
+    });
+    
+    test('Should handle SET_PROJECT_FETCH action', () => {
+        expect(projectReducer(initProjectState, setProjectFetch(true))).toEqual({
+            ...initProjectState,
+            isFetch: true,
+        });
     });
 
     test('Should handle SELECT_PROJECT action', () => {
@@ -27,6 +43,7 @@ describe('Test project reducer', () => {
             array: [project]
         };
         expect(projectReducer(initState, selectProjectById(1))).toEqual({
+            ...initProjectState,
             selected: {...project},
             array: [project],
             total: 0,

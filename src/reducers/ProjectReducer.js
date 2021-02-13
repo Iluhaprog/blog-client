@@ -9,6 +9,7 @@ import {
     UPDATE_PROJECT,
     DELETE_PROJECT_FROM_ARRAY,
     SET_PROJECTS_TOTAL,
+    SET_PROJECT_FETCH,
 } from '../actoins/project';
 
 const initProjectState = {
@@ -21,6 +22,7 @@ const initProjectState = {
     },
     array: [],
     total: 0,
+    isFetch: false,
 };
 
 const projectReducer = (state = initProjectState, action) => {
@@ -65,6 +67,11 @@ const projectReducer = (state = initProjectState, action) => {
             return {
                 ...state,
                 array: array.deleteEl(action.id, state.array),
+            };
+        case SET_PROJECT_FETCH:
+            return {
+                ...state,
+                isFetch: action.isFetch,
             };
         default:
             return state;
