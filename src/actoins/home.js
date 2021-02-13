@@ -30,7 +30,7 @@ export const update = home => dispatch => {
             dispatch(setHome(data));
             dispatch(setHomeFetch(false));
         }
-    }).catch(error => console.error(error))
+    });
 };
 
 export const updatePreview = formData => dispatch => {
@@ -41,5 +41,5 @@ export const updatePreview = formData => dispatch => {
             dispatch(setHome(data));
             dispatch(setHomeFetch(false));
         }
-    }).catch(error => console.error(error))
+    });
 };

@@ -91,7 +91,7 @@ export const getDirFetch = id => dispatch => (
         if (status === 200) {
             dispatch(setDir(data));
         }
-    }).catch(error => console.error(error))
+    })
 );
 
 export const setTagsFetch = (postId, tags) => dispatch => (
@@ -109,7 +109,7 @@ export const setTotalFetch = () => dispatch => (
         if (status === 200) {
             dispatch(setTotal(data.count));
         }
-    }).catch(error => console.error(error))
+    })
 )
 
 export const createFetch = (post, success = () => {}) => dispatch => {
@@ -121,7 +121,7 @@ export const createFetch = (post, success = () => {}) => dispatch => {
             success();
             dispatch(setPostFetch(false));
         } 
-    }).catch(error => console.error(error))
+    })
 };
 
 export const updateFetch = post => dispatch => {
@@ -132,7 +132,7 @@ export const updateFetch = post => dispatch => {
             dispatch(updatePost(data));
             dispatch(setPostFetch(false));
         }
-    }).catch(error => console.error(error))
+    })
 };
 
 export const updatePreviewFetch = (postId, formData) => dispatch => {
@@ -143,7 +143,7 @@ export const updatePreviewFetch = (postId, formData) => dispatch => {
             dispatch(updatePost(data));
             dispatch(setPostFetch(false));
         }
-    }).catch(error => console.error(error))
+    })
 };
 
 export const deleteFetch = (id, success = () => {} ) => dispatch => {
@@ -155,7 +155,7 @@ export const deleteFetch = (id, success = () => {} ) => dispatch => {
             success();
             dispatch(setPostFetch(false));
         }
-    }).catch(error => console.error(error))
+    })
 };
 
 export const getAllFetch = (page, limit) => dispatch => (
@@ -164,7 +164,7 @@ export const getAllFetch = (page, limit) => dispatch => (
         if (status === 200) {
             dispatch(addPosts(data));
         }
-    }).catch(error => console.error(error))
+    })
 );
 
 export const createFileFetch = (dirname, formData) => dispatch => {
@@ -175,7 +175,7 @@ export const createFileFetch = (dirname, formData) => dispatch => {
             dispatch(addFile(data));
             dispatch(setPostFetch(false));
         }
-    }).catch(error => console.error(error))
+    })
 };
 
 export const getFilesFetch = directoryId => dispatch => (
@@ -184,7 +184,7 @@ export const getFilesFetch = directoryId => dispatch => (
         if (status === 200) {
             dispatch(addFiles(data));
         }
-    }).catch(error => console.error(error))
+    })
 );
 
 export const deleteFileFetch = id => dispatch => (
@@ -193,5 +193,5 @@ export const deleteFileFetch = id => dispatch => (
         if (status === 204) {
             dispatch(deleteFile(id));
         }
-    }).catch(error => console.error(error))
+    })
 );

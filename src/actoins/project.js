@@ -54,7 +54,7 @@ export const setProjectsTotalFetch = () => dispatch => (
         if (status === 200) {
             dispatch(setProjectsTotal(data.count));
         } 
-    }).catch(error => console.error(error))
+    })
 )
 
 export const createFetch = (project, success = () => {}) => dispatch => {
@@ -66,7 +66,7 @@ export const createFetch = (project, success = () => {}) => dispatch => {
             success();
             dispatch(setProjectFetch(false));
         } 
-    }).catch(error => console.error(error))
+    })
 };
 export const updateFetch = project => dispatch => {
     dispatch(setProjectFetch(true));
@@ -76,7 +76,7 @@ export const updateFetch = project => dispatch => {
             dispatch(updateProject(data));
             dispatch(setProjectFetch(false));
         }
-    }).catch(error => console.error(error))
+    })
 };
 
 export const updatePreviewFetch = (projectId, formData) => dispatch => {
@@ -87,7 +87,7 @@ export const updatePreviewFetch = (projectId, formData) => dispatch => {
             dispatch(updateProject(data));
             dispatch(setProjectFetch(false));
         }
-    }).catch(error => console.error(error))
+    })
 };
 
 export const deleteFetch = (id, success = () => {}) => dispatch => {
@@ -99,7 +99,7 @@ export const deleteFetch = (id, success = () => {}) => dispatch => {
             success();
             dispatch(setProjectFetch(false));
         }
-    }).catch(error => console.error(error))
+    })
 };
 export const getAllFetch = (page, offset) => dispatch => (
     ProjectApi.getAll(page, offset).then(responce => {
@@ -107,5 +107,5 @@ export const getAllFetch = (page, offset) => dispatch => (
         if (status === 200) {
             dispatch(addProjects(data));
         }
-    }).catch(error => console.error(error))
+    })
 );

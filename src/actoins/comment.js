@@ -25,7 +25,7 @@ export const createCommentFetch = comment => dispatch => (
         if (status === 200) {
             dispatch(addComment(data));
         }
-    }).catch(error => console.error(error))
+    })
 );
 
 export const getCommentsByPostIdFetch = (postId, page, limit) => dispatch => (
@@ -34,7 +34,7 @@ export const getCommentsByPostIdFetch = (postId, page, limit) => dispatch => (
         if (status === 200) {
             dispatch(setComments(data));
         }
-    }).catch(error => console.error(error))
+    })
 );
 
 export const deleteCommentFetch = id => dispatch => (
@@ -43,5 +43,5 @@ export const deleteCommentFetch = id => dispatch => (
         if (status === 204) {
             dispatch(deleteComment(id));
         }
-    }).catch(error => console.error(error))
+    })
 );

@@ -19,7 +19,7 @@ export const addTagFetch = tag => dispatch => (
         if (status === 200) {
             dispatch(addTag(data));
         }
-    }).catch(error => console.error(error))
+    })
 );
 
 export const getAllFetch = () => dispatch => (
@@ -28,5 +28,5 @@ export const getAllFetch = () => dispatch => (
         if (status === 200) {
             dispatch(setTags(data));
         }
-    }).catch(error => console.error(error))
+    })
 );

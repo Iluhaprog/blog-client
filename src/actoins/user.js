@@ -54,8 +54,6 @@ export const createFetch = user => dispatch => (
         if (status === 200) {
             dispatch(setUser(data));
         }
-    }).catch(error => {
-        console.log(error);
     })
 );
 export const updateFetch = user => dispatch => {
@@ -66,9 +64,7 @@ export const updateFetch = user => dispatch => {
             dispatch(setUser(data));
             dispatch(setFetch(false));
         }
-    }).catch(error => {
-        console.log(error);
-    });
+    })
 }
 
 export const updateAvatarFetch = formData => dispatch => {
@@ -80,7 +76,7 @@ export const updateAvatarFetch = formData => dispatch => {
             dispatch(setUser(data));
             dispatch(setFetch(false));
         }
-    }).catch(error => console.error(error));
+    });
 }
 
 export const logoutFetch = (dispatch) => (
@@ -89,7 +85,5 @@ export const logoutFetch = (dispatch) => (
         if (status === 204) {
             dispatch(clearUser());
         }
-    }).catch(error => {
-        console.error(error);
     })
 );
