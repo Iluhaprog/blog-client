@@ -17,7 +17,8 @@ import {
     createFetch, 
     updateFetch, 
     deleteFetch, 
-    getAllFetch
+    getAllFetch,
+    setProjectFetch,
 } from '../project';
 
 const middlewares = [thunk];
@@ -32,6 +33,7 @@ const initProjectState = {
     },
     array: [],
     total: 0,
+    isFetch: false,
 };
 
 describe('Test sync action creators', () => {
@@ -39,6 +41,13 @@ describe('Test sync action creators', () => {
         const expectedActions = [{ type: 'SET_PROJECTS_TOTAL', total: 1}];
         const store = mockStore({ project: {} });
         store.dispatch(setProjectsTotal(1));
+        expect(store.getActions()).toEqual(expectedActions);
+    });
+
+    test('Should create SET_PROJECT_FETCH action', () => {
+        const expectedActions = [{ type: 'SET_PROJECT_FETCH', isFetch: true}];
+        const store = mockStore({ project: {} });
+        store.dispatch(setProjectFetch(true));
         expect(store.getActions()).toEqual(expectedActions);
     });
 
@@ -101,7 +110,11 @@ describe('Test async action creators', () => {
     test('Should create ADD_PROJECT action', () => {
         const project = {...initProjectState, title: 'New project'};
         mock.onPost('/project/create', { project }).reply(200, project);
-        const expectedActions = [{ type: 'ADD_PROJECT', project }]
+        const expectedActions = [
+            { type: 'SET_PROJECT_FETCH', isFetch: true},
+            { type: 'ADD_PROJECT', project },
+            { type: 'SET_PROJECT_FETCH', isFetch: false},
+        ];
         const store = mockStore({ project: {}});
 
         return store.dispatch(createFetch(project)).then(() => {
@@ -112,7 +125,11 @@ describe('Test async action creators', () => {
     test('Should create UPDATE_PROJECT action (updatePreviewFetch)', () => {
         const project = {...initProjectState.selected, preview: 'np.jpeg'};
         const formData = new FormData();
-        const expectedActions = [{ type: 'UPDATE_PROJECT', project }]
+        const expectedActions = [
+            { type: 'SET_PROJECT_FETCH', isFetch: true},
+            { type: 'UPDATE_PROJECT', project },
+            { type: 'SET_PROJECT_FETCH', isFetch: false},
+        ];
         const store = mockStore({ post: {}});
         mock.onPut('/project/updatePreview').reply(config => {
             const { headers, data, params } = config;
@@ -143,7 +160,11 @@ describe('Test async action creators', () => {
     test('Should create UPDATE_PROJECT action', () => {
         const project = {...initProjectState, title: 'Updated project'};
         mock.onPut('/project/update', { project }).reply(200, project);
-        const expectedActions = [{ type: 'UPDATE_PROJECT', project }]
+        const expectedActions = [
+            { type: 'SET_PROJECT_FETCH', isFetch: true},
+            { type: 'UPDATE_PROJECT', project },
+            { type: 'SET_PROJECT_FETCH', isFetch: false},
+        ];
         const store = mockStore({ project: {}});
 
         return store.dispatch(updateFetch(project)).then(() => {
@@ -155,7 +176,11 @@ describe('Test async action creators', () => {
         mock.onDelete('/project/deleteById', { 
             params: { id: 1 }  
         }).reply(204);
-        const expectedActions = [{ type: 'DELETE_PROJECT_FROM_ARRAY', id: 1 }]
+        const expectedActions = [
+            { type: 'SET_PROJECT_FETCH', isFetch: true},
+            { type: 'DELETE_PROJECT_FROM_ARRAY', id: 1 },
+            { type: 'SET_PROJECT_FETCH', isFetch: false},
+        ];
         const store = mockStore({ project: {}});
 
         return store.dispatch(deleteFetch(1)).then(() => {
