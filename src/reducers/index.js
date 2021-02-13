@@ -8,6 +8,7 @@ import commentReducer from './CommentReducer';
 import modalReducer from './ModalReducer';
 import homeReducer from './HomeReducer';
 import themeReducer from './ThemeReducer';
+import errorReducer from './ErrorReducer';
 
 export default combineReducers({
     user: userReduser,
@@ -18,5 +19,6 @@ export default combineReducers({
     tags: tagReducer,
     comment: commentReducer,
     modal: modalReducer,
+    error: errorReducer,
     form: formReducer,
 });
