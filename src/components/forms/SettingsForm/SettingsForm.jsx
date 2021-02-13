@@ -1,11 +1,17 @@
 import React from 'react';
 import { Field } from 'redux-form';
-import { DropZone, LabeledInput, LabeledToggler, Toggler } from '../../formElements';
-import './settingsForm.scss';
+import { 
+    DropZone, 
+    LabeledInput, 
+    LabeledToggler 
+} from '../../formElements';
 import { PrimaryButton } from '../../buttons';
+import { Loader } from '../../Loader';
+import { Row } from '../../containers';
+import './settingsForm.scss';
 
 export default props => {
-    const { handleSubmit } = props;
+    const { handleSubmit, isFetch } = props;
 
     return (
         <form onSubmit={handleSubmit} className='settings-form'>
@@ -32,9 +38,12 @@ export default props => {
                 />
             </div>
             <div className='settings-form__box'>
-                <PrimaryButton 
-                    text='Apply'
-                />
+                <Row>
+                    <PrimaryButton 
+                        text='Apply'
+                    />
+                    <Loader visible={isFetch} />
+                </Row>
             </div>
         </form>
     );

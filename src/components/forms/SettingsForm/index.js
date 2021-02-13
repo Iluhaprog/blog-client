@@ -8,6 +8,7 @@ const mapStateToProps = state => ({
         title: state.home.title,
     },
     theme: state.theme.theme,
+    isFetch: state.home.isFetch,
 });
 
 const mapDispatchToProps = dispatch => ({
