@@ -1,10 +1,16 @@
 import HomeApi from '../api/HomeApi';
 
 export const SET_HOME = 'SET_HOME';
+export const SET_HOME_FETCH = 'SET_HOME_FETCH';
 
 export const setHome = home => ({
     type: SET_HOME,
     home,
+});
+
+export const setHomeFetch = isFetch => ({
+    type: SET_HOME_FETCH,
+    isFetch,
 });
 
 export const getHomeFetch = () => dispatch => (
@@ -16,20 +22,24 @@ export const getHomeFetch = () => dispatch => (
     }).catch(error => console.error(error))
 );
 
-export const update = home => dispatch => (
-    HomeApi.update(home).then(response => {
+export const update = home => dispatch => {
+    dispatch(setHomeFetch(true));
+    return HomeApi.update(home).then(response => {
         const { status, data } = response;
         if (status === 200) {
             dispatch(setHome(data));
+            dispatch(setHomeFetch(false));
         }
     }).catch(error => console.error(error))
-);
+};
 
-export const updatePreview = formData => dispatch => (
-    HomeApi.updatePreview(formData).then(response => {
+export const updatePreview = formData => dispatch => {
+    dispatch(setHomeFetch(true));
+    return HomeApi.updatePreview(formData).then(response => {
         const { status, data } = response;
         if (status === 200) {
             dispatch(setHome(data));
+            dispatch(setHomeFetch(false));
         }
     }).catch(error => console.error(error))
-);
+};

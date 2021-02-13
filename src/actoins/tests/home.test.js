@@ -8,6 +8,7 @@ import {
     getHomeFetch,
     update,
     updatePreview,
+    setHomeFetch,
 } from '../home';
 
 const middlewares = [thunk];
@@ -16,6 +17,7 @@ const home = {
     id: 1,
     title: 'Test',
     preview: '',
+    isFetch: false,
 };
 
 describe('Test sync action creators', () => {
@@ -26,13 +28,19 @@ describe('Test sync action creators', () => {
         store.dispatch(setHome(home));
         expect(store.getActions()).toEqual(expectedActions);
     });
+    test('Should create SET_HOME_FETCH action', () => {
+        const store = mockStore();
+        const expectedActions = [{ type: 'SET_HOME_FETCH', isFetch: true }];
+        store.dispatch(setHomeFetch(true));
+        expect(store.getActions()).toEqual(expectedActions);
+    });
 });
 
 
 describe('Test async action creators', () => {
     const mock = new MockAdapter(api);
 
-    test('Should create SET_HOME action', () => {
+    test('Should create SET_HOME action (get)', () => {
         mock.onGet('/home/get').reply(200, {...home});
         const expectedActions = [{ type: 'SET_HOME', home }];
         const store = mockStore();
@@ -41,17 +49,21 @@ describe('Test async action creators', () => {
         });
     });
     
-    test('Should create SET_HOME action', () => {
+    test('Should create SET_HOME action (update)', () => {
         const updatedHome = {...home, title: 'updated'}
         mock.onPut('/home/update', { home: updatedHome }).reply(200, updatedHome);
-        const expectedActions = [{ type: 'SET_HOME', home: updatedHome }];
+        const expectedActions = [
+            { type: 'SET_HOME_FETCH', isFetch: true },
+            { type: 'SET_HOME', home: updatedHome },
+            { type: 'SET_HOME_FETCH', isFetch: false },
+        ];
         const store = mockStore({});
         return store.dispatch(update(updatedHome)).then(() => {
             expect(store.getActions()).toEqual(expectedActions);
         });
     });
 
-    test('Should create SET_HOME action', () => {
+    test('Should create SET_HOME action (updatePreview)', () => {
         const formData = new FormData();
         const updatedHome = { ...home, preview: 'new preview'};
         mock.onPut('/home/updatePreview').reply(config => {
@@ -63,7 +75,11 @@ describe('Test async action creators', () => {
                 resolve([200, updatedHome]);
             });
         });
-        const expectedActions = [{ type: 'SET_HOME', home: updatedHome }];
+        const expectedActions = [
+            { type: 'SET_HOME_FETCH', isFetch: true },
+            { type: 'SET_HOME', home: updatedHome },
+            { type: 'SET_HOME_FETCH', isFetch: false },
+        ];
         const store = mockStore({});
         return store.dispatch(updatePreview(formData)).then(() => {
             expect(store.getActions()).toEqual(expectedActions);
