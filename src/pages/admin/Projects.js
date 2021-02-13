@@ -13,9 +13,10 @@ import { useEffect, useState } from "react";
 import { useHistory, useParams } from 'react-router-dom';
 import { setModal } from '../../actoins/modal';
 import { Pagination } from '../../components/Pagination';
+import { Loader } from '../../components/Loader';
 
 const Projects = props => {
-    const { projects = [], total, userId, openModalForProjectDeleting } = props;
+    const { projects = [], total, userId, openModalForProjectDeleting, isFetch } = props;
     const { getAll, getTotal, openModalForProjectCreation, selectProject } = props;
 
     const offset = process.env.REACT_APP_OFFSET;
@@ -42,15 +43,18 @@ const Projects = props => {
                 <div className='admin-page__header'>
                     <Row justifyContent='sb' alignItems='c'>
                         <h1>Projects</h1>
-                        <LabeledButton 
-                            text='New'
-                            onClick={() => {
-                                openModalForProjectCreation(userId, () => {
-                                    getAll(page, offset);
-                                    getTotal();
-                                });
-                            }}
-                        />
+                        <Row>
+                            <Loader visible={isFetch}/>
+                            <LabeledButton 
+                                text='New'
+                                onClick={() => {
+                                    openModalForProjectCreation(userId, () => {
+                                        getAll(page, offset);
+                                        getTotal();
+                                    });
+                                }}
+                            />
+                        </Row>
                     </Row>
                 </div>
                 <div className='admin-page__main'>
@@ -99,6 +103,7 @@ const mapStateToProps = state => ({
     projects: state.project.array,
     total: state.project.total,
     userId: state.user.id,
+    isFetch: state.project.isFetch,
 });
 
 const mapDispatchToProps = dispatch => ({
