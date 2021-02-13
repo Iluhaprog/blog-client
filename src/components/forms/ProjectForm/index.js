@@ -9,6 +9,7 @@ const mapStateToProps = state => ({
         githubLink: state.project.selected.githubLink,
         projectLink: state.project.selected.projectLink,
     },
+    isFetch: state.project.isFetch,
 });
 
 const mapDispatchToProps = dispatch => ({});

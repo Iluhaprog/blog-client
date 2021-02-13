@@ -8,9 +8,10 @@ import {
 } from '../../formElements';
 import './projectForm.scss';
 import { PrimaryButton } from '../../buttons';
+import { Loader } from '../../Loader';
 
 export default props => {
-    const { handleSubmit } = props;
+    const { handleSubmit, isFetch } = props;
 
     return (
         <form onSubmit={handleSubmit} className='project-form'>
@@ -47,9 +48,12 @@ export default props => {
                         label='Project'
                     />
                 </Row>
-                <PrimaryButton 
-                    text='Save'
-                />
+                <Row>
+                    <PrimaryButton 
+                        text='Save'
+                    />
+                    <Loader visible={isFetch} />
+                </Row>
             </div>
         </form>
     );

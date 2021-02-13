@@ -79,11 +79,22 @@ exports[`Test view of project form Should return view of project form 1`] = `
           </label>
         </div>
       </div>
-      <button
-        class="button default-button primary-button"
+      <div
+        class="row   "
       >
-        Save
-      </button>
+        <button
+          class="button default-button primary-button"
+        >
+          Save
+        </button>
+        <img
+          alt="loading..."
+          class="loader "
+          height="30"
+          src="loader.svg"
+          width="30"
+        />
+      </div>
     </div>
   </form>
 </DocumentFragment>
