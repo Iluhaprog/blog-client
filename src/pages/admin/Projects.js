@@ -8,6 +8,7 @@ import {
     selectProjectById, 
     setProjectsTotalFetch,
     deleteFetch,
+    setProjectFetch,
 } from "../../actoins/project";
 import { useEffect, useState } from "react";
 import { useHistory, useParams } from 'react-router-dom';
@@ -127,7 +128,10 @@ const mapDispatchToProps = dispatch => ({
                         githubLink: '',
                         userId,
                     }, success)),
-                    e => dispatch(addError(e))
+                    e => {
+                        dispatch(addError(e));
+                        dispatch(setProjectFetch(false));
+                    }
                 );
             }
         }));
@@ -139,7 +143,10 @@ const mapDispatchToProps = dispatch => ({
             handleSuccess: (value, fail) => {
                 setErrorCatch(
                     dispatch(deleteFetch(project.id, success)),
-                    e => dispatch(addError(e))
+                    e => {
+                        dispatch(addError(e));
+                        dispatch(setProjectFetch(false));
+                    }
                 );
             }
         }))

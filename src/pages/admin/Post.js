@@ -7,7 +7,8 @@ import {
     selectPostById, 
     setTagsFetch,
     updateFetch,
-    updatePreviewFetch
+    updatePreviewFetch,
+    setPostFetch,
 } from '../../actoins/post';
 import { ImageLoaderForm, PostForm } from '../../components/forms';
 import { Row } from '../../components/containers';
@@ -88,7 +89,10 @@ const mapDispatchToProps = dispatch => ({
     setTags: (postId, tags) => {
         setErrorCatch(
             dispatch(setTagsFetch(postId, tags || [])),
-            e => dispatch(addError(e))
+            e => {
+                dispatch(addError(e));
+                dispatch(setPostFetch(false));
+            }
         );
     },
     updatePreview: (postId, file) => {
@@ -96,13 +100,19 @@ const mapDispatchToProps = dispatch => ({
         fd.append('preview', file);
         setErrorCatch(
             dispatch(updatePreviewFetch(postId, fd)),
-            e => dispatch(addError(e))
+            e => {
+                dispatch(addError(e));
+                dispatch(setPostFetch(false));
+            }
         );
     },
     updatePost: post => {
         setErrorCatch(
             dispatch(updateFetch(post)),
-            e => dispatch(addError(e))
+            e => {
+                dispatch(addError(e));
+                dispatch(setPostFetch(false));
+            }
         );
     },
     upload: (dirname, file) => {
@@ -111,7 +121,10 @@ const mapDispatchToProps = dispatch => ({
             fd.append('file', new File([file], getUniqueName(file.name)));
             setErrorCatch(
                 dispatch(createFileFetch(dirname, fd)),
-                e => dispatch(addError(e))
+                e => {
+                    dispatch(addError(e));
+                    dispatch(setPostFetch(false));
+                }
             );
         }
     },

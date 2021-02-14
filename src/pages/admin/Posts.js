@@ -8,7 +8,8 @@ import {
     deleteFetch, 
     setTotalFetch, 
     createFetch, 
-    getDirFetch
+    getDirFetch,
+    setPostFetch,
 } from '../../actoins/post';
 import { setModal } from '../../actoins/modal';
 import { PostCard } from '../../components/PostCard';
@@ -140,7 +141,10 @@ const mapDispatchToProps = dispatch => ({
                         visible: false,
                         userId,
                     }, success)),
-                    e => dispatch(addError(e))
+                    e => {
+                        dispatch(addError(e));
+                        dispatch(setPostFetch(false));
+                    }
                 );
             }
         }));
@@ -152,7 +156,10 @@ const mapDispatchToProps = dispatch => ({
             handleSuccess: (value, fail) => {
                 setErrorCatch(
                     dispatch(deleteFetch(post.id, success)),
-                    e => dispatch(addError(e))
+                    e => {
+                        dispatch(addError(e));
+                        dispatch(setPostFetch(false));
+                    }
                 );
             }
         }))

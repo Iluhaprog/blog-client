@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { ProjectForm } from '../../components/forms/';
-import { updateFetch, updatePreviewFetch } from '../../actoins/project';
+import { updateFetch, updatePreviewFetch, setProjectFetch } from '../../actoins/project';
 import { getUniqueName } from '../../util/string/string';
 import { useParams } from 'react-router-dom';
 import { addError } from '../../actoins/error';
@@ -40,13 +40,19 @@ const mapDispatchToProps = dispatch => ({
         fd.append('file', new File([file], getUniqueName(file.name)));
         setErrorCatch(
             dispatch(updatePreviewFetch(projectId, fd)),
-            e => dispatch(addError(e))
+            e => {
+                dispatch(addError(e));
+                dispatch(setProjectFetch(false));
+            }
         );
     },
     update: project => {
         setErrorCatch(
             dispatch(updateFetch(project)),
-            e => dispatch(addError(e))
+            e => {
+                dispatch(addError(e));
+                dispatch(setProjectFetch(false));
+            }
         );
     }
 });

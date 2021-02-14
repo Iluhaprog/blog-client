@@ -1,6 +1,11 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { update, updatePreview, getHomeFetch } from '../../actoins/home';
+import { 
+    update, 
+    updatePreview, 
+    getHomeFetch, 
+    setHomeFetch 
+} from '../../actoins/home';
 import { SettingsForm } from "../../components/forms/SettingsForm";
 import { getUniqueName } from '../../util/string/string';
 import { addError } from '../../actoins/error';
@@ -44,7 +49,10 @@ const mapDispatchToProps = dispatch => ({
     update: home => {
         setErrorCatch(
             dispatch(update(home)),
-            e => dispatch(addError(e))
+            e => {
+                dispatch(addError(e));
+                dispatch(setHomeFetch(false));
+            }
         );
     },
     updatePreview: file => {
@@ -52,7 +60,10 @@ const mapDispatchToProps = dispatch => ({
         fd.append('file', new File([file], getUniqueName(file.name)));
         setErrorCatch(
             dispatch(updatePreview(fd)),
-            e => dispatch(addError(e))
+            e => {
+                dispatch(addError(e));
+                dispatch(setHomeFetch(false));
+            }
         );
     },
 });
