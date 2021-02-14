@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test view of messages box 1`] = `
+<DocumentFragment>
+  <section
+    class="messages-box"
+  >
+    child
+  </section>
+</DocumentFragment>
+`;
