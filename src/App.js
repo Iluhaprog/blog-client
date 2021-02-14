@@ -5,6 +5,7 @@ import Registration from './pages/Registration';
 import NotFound from './pages/NotFound';
 import './App.scss';
 import { Modal } from './components/modals/Modal';
+import { Message } from './components/Message';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route component={NotFound} />
         </Switch>
         <Modal />
+        <Message />
       </div>
     </BrowserRouter>
   );
