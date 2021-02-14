@@ -5,11 +5,20 @@ exports[`Test view of error message 1`] = `
   <div
     class="error-box"
   >
-    <p
-      class="error-box__message"
+    <div
+      class="row   "
     >
-      test
-    </p>
+      <p
+        class="error-box__message"
+      >
+        test
+      </p>
+      <button
+        class="button default-button close-button"
+      >
+        X
+      </button>
+    </div>
   </div>
 </DocumentFragment>
 `;
