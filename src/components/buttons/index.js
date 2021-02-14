@@ -3,6 +3,7 @@ import { DangerButton } from './DangerButton';
 import { PrimaryButton } from './PrimaryButton';
 import { LabeledButton } from './LabeledButton';
 import { SuccessButton } from './SuccessButton';
+import { CloseButton } from './CloseButton';
 
 export {
     SendButton,
@@ -10,4 +11,5 @@ export {
     PrimaryButton,
     LabeledButton,
     SuccessButton,
+    CloseButton,
 };
