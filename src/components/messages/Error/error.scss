@@ -1,0 +1,15 @@
+@import '../../../vars.scss';
+
+.error-box {
+    width: 100%;
+    padding: 10px;
+    background-color: $error-bg;
+    border-radius: 5px;
+    border: 1px solid $error;
+    box-shadow: $shadow-2;
+
+    &__message {
+        margin: 0;
+        color: $error;
+    }
+}

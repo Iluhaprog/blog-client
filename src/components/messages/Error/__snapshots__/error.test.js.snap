@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test view of error message 1`] = `
+<DocumentFragment>
+  <div
+    class="error-box"
+  >
+    <p
+      class="error-box__message"
+    >
+      test
+    </p>
+  </div>
+</DocumentFragment>
+`;
