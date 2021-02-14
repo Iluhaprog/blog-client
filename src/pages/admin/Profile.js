@@ -1,5 +1,7 @@
 import { connect } from "react-redux";
 import { updateAvatarFetch, updateFetch } from "../../actoins/user";
+import { addError } from '../../actoins/error';
+import { setErrorCatch } from '../../util/SettingErrorCatch';
 import { ProfileForm } from "../../components/forms/ProfileForm";
 
 const Profile = props => {
@@ -27,8 +29,18 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    update: user => dispatch(updateFetch(user)),
-    updateAvatar: avatar => dispatch(updateAvatarFetch(avatar)),
+    update: user => {
+        setErrorCatch(
+            dispatch(updateFetch(user)),
+            e => dispatch(addError(e))
+        );
+    },
+    updateAvatar: avatar => {
+        setErrorCatch(
+            dispatch(updateAvatarFetch(avatar)),
+            e => dispatch(addError(e))
+        );
+    },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

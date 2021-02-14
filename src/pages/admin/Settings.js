@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { update, updatePreview, getHomeFetch } from '../../actoins/home';
 import { SettingsForm } from "../../components/forms/SettingsForm";
 import { getUniqueName } from '../../util/string/string';
+import { addError } from '../../actoins/error';
+import { setErrorCatch } from '../../util/SettingErrorCatch';
 
 const Settings = props => {
 
@@ -11,7 +13,6 @@ const Settings = props => {
     }, []);
 
     const submit = values => {
-        console.log(values);
         if (values.title) {
             props.update({...props.home, title: values.title});
         }
@@ -41,12 +42,18 @@ const mapDispatchToProps = dispatch => ({
         dispatch(getHomeFetch());
     },
     update: home => {
-        dispatch(update(home));
+        setErrorCatch(
+            dispatch(update(home)),
+            e => dispatch(addError(e))
+        );
     },
     updatePreview: file => {
         const fd = new FormData();
         fd.append('file', new File([file], getUniqueName(file.name)));
-        dispatch(updatePreview(fd));
+        setErrorCatch(
+            dispatch(updatePreview(fd)),
+            e => dispatch(addError(e))
+        );
     },
 });
 

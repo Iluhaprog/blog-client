@@ -15,6 +15,8 @@ import { PostCard } from '../../components/PostCard';
 import { useHistory, useParams } from 'react-router-dom';
 import { Pagination } from '../../components/Pagination';
 import { Loader } from '../../components/Loader';
+import { addError } from '../../actoins/error';
+import { setErrorCatch } from '../../util/SettingErrorCatch';
 
 const Posts = props => {
     const { posts = [], getAllPosts, total, getTotal, userId, selectPost, getDir } = props;
@@ -129,14 +131,17 @@ const mapDispatchToProps = dispatch => ({
             visible: true,
             withInput: true,
             handleSuccess: (value, fail) => {
-                dispatch(createFetch({
-                    title: value,
-                    description: '',
-                    preview: '',
-                    text: '',
-                    visible: false,
-                    userId,
-                }, success));
+                setErrorCatch(
+                    dispatch(createFetch({
+                        title: value,
+                        description: '',
+                        preview: '',
+                        text: '',
+                        visible: false,
+                        userId,
+                    }, success)),
+                    e => dispatch(addError(e))
+                );
             }
         }));
     },
@@ -145,7 +150,10 @@ const mapDispatchToProps = dispatch => ({
             text: `Do you really want to hit "${post.title}"`,
             visible: true,
             handleSuccess: (value, fail) => {
-                dispatch(deleteFetch(post.id, success));
+                setErrorCatch(
+                    dispatch(deleteFetch(post.id, success)),
+                    e => dispatch(addError(e))
+                );
             }
         }))
     }

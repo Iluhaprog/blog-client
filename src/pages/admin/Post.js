@@ -12,8 +12,10 @@ import {
 import { ImageLoaderForm, PostForm } from '../../components/forms';
 import { Row } from '../../components/containers';
 import FilesViewer from '../../components/FilesViewer/FilesViewer';
-import { Loader } from '../../components/Loader'
-import { getUniqueName } from '../../util/string/string'
+import { Loader } from '../../components/Loader';
+import { getUniqueName } from '../../util/string/string';
+import { addError } from '../../actoins/error';
+import { setErrorCatch } from '../../util/SettingErrorCatch';
 
 const Post = props => {
     const { id } = useParams();
@@ -84,22 +86,33 @@ const mapDispatchToProps = dispatch => ({
         selectPostById(id);
     },
     setTags: (postId, tags) => {
-        dispatch(setTagsFetch(postId, tags || []));
+        setErrorCatch(
+            dispatch(setTagsFetch(postId, tags || [])),
+            e => dispatch(addError(e))
+        );
     },
     updatePreview: (postId, file) => {
         const fd = new FormData();
         fd.append('preview', file);
-        dispatch(updatePreviewFetch(postId, fd));
+        setErrorCatch(
+            dispatch(updatePreviewFetch(postId, fd)),
+            e => dispatch(addError(e))
+        );
     },
     updatePost: post => {
-        dispatch(updateFetch(post));
+        setErrorCatch(
+            dispatch(updateFetch(post)),
+            e => dispatch(addError(e))
+        );
     },
     upload: (dirname, file) => {
         if (file) {
             const fd = new FormData();
             fd.append('file', new File([file], getUniqueName(file.name)));
-            console.log(dirname);
-            dispatch(createFileFetch(dirname, fd));
+            setErrorCatch(
+                dispatch(createFileFetch(dirname, fd)),
+                e => dispatch(addError(e))
+            );
         }
     },
     getFiles: dirId => {

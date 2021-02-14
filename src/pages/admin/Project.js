@@ -2,8 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { ProjectForm } from '../../components/forms/';
 import { updateFetch, updatePreviewFetch } from '../../actoins/project';
-import { getUniqueName } from '../../util/string/string'
+import { getUniqueName } from '../../util/string/string';
 import { useParams } from 'react-router-dom';
+import { addError } from '../../actoins/error';
+import { setErrorCatch } from '../../util/SettingErrorCatch';
 
 const Project = props => {
     const { update, updatePreview } = props;
@@ -36,10 +38,16 @@ const mapDispatchToProps = dispatch => ({
     updatePreview: (projectId, file) => {
         const fd = new FormData();
         fd.append('file', new File([file], getUniqueName(file.name)));
-        dispatch(updatePreviewFetch(projectId, fd));
+        setErrorCatch(
+            dispatch(updatePreviewFetch(projectId, fd)),
+            e => dispatch(addError(e))
+        );
     },
     update: project => {
-        dispatch(updateFetch(project));
+        setErrorCatch(
+            dispatch(updateFetch(project)),
+            e => dispatch(addError(e))
+        );
     }
 });
 

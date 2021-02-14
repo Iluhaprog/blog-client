@@ -14,6 +14,8 @@ import { useHistory, useParams } from 'react-router-dom';
 import { setModal } from '../../actoins/modal';
 import { Pagination } from '../../components/Pagination';
 import { Loader } from '../../components/Loader';
+import { addError } from '../../actoins/error';
+import { setErrorCatch } from '../../util/SettingErrorCatch';
 
 const Projects = props => {
     const { projects = [], total, userId, openModalForProjectDeleting, isFetch } = props;
@@ -116,14 +118,17 @@ const mapDispatchToProps = dispatch => ({
             visible: true,
             withInput: true,
             handleSuccess: (value, fail) => {
-                dispatch(createFetch({
-                    title: value,
-                    preview: '',
-                    description: '',
-                    projectLink: '',
-                    githubLink: '',
-                    userId,
-                }, success));
+                setErrorCatch(
+                    dispatch(createFetch({
+                        title: value,
+                        preview: '',
+                        description: '',
+                        projectLink: '',
+                        githubLink: '',
+                        userId,
+                    }, success)),
+                    e => dispatch(addError(e))
+                );
             }
         }));
     },
@@ -132,7 +137,10 @@ const mapDispatchToProps = dispatch => ({
             text: `Do you really want to hit "${project.title}"`,
             visible: true,
             handleSuccess: (value, fail) => {
-                dispatch(deleteFetch(project.id, success));
+                setErrorCatch(
+                    dispatch(deleteFetch(project.id, success)),
+                    e => dispatch(addError(e))
+                );
             }
         }))
     },
