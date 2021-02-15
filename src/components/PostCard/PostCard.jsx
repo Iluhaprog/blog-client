@@ -27,10 +27,28 @@ function PostCard(props) {
                     </ul>
                     <div className="post-card__bottom">
                         <Row justifyContent='sb' alignItems='c' wrap='w'>
-                            <Row>
-                                <PrimaryButton text='Change' onClick={props.onClick} />
-                                <DangerButton text='Delete' onClick={props.onDelete} />
-                            </Row>
+                                {
+                                    props.canEdit 
+                                        ? (
+                                            <Row>
+                                                <PrimaryButton
+                                                    text='Change'
+                                                    onClick={props.onClick} 
+                                                />
+                                                <DangerButton 
+                                                    text='Delete' 
+                                                    onClick={props.onDelete} 
+                                                />
+                                            </Row>
+                                        )
+                                        : (
+                                            <PrimaryButton
+                                                text='Read'
+                                                onClick={props.onClick} 
+                                            />
+                                        )
+
+                                }
                             <time className="date">
                                 {props.date && props.date.split('T')[0]}
                             </time>
@@ -44,6 +62,7 @@ function PostCard(props) {
 
 PostCard.defaultProps = {
     tags: [],
+    canEdit: false,
     onClick: () => {},
     onDelete: () => {},
 };
@@ -53,6 +72,7 @@ PostCard.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
     tags: PropTypes.array,
+    canEdit: PropTypes.bool,
     onClick: PropTypes.func,
     onDelete: PropTypes.func,
     date: PropTypes.string,

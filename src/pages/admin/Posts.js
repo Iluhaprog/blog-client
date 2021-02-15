@@ -72,6 +72,7 @@ const Posts = props => {
                                         description={post.description}
                                         tags={post.Tags}
                                         date={post.date}
+                                        canEdit={true}
                                         onClick={() => {
                                             history.push(`/admin/post/${post.id}`);
                                             selectPost(post.id);
