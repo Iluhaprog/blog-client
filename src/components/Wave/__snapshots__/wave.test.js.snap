@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should return view of wave component 1`] = `
+<DocumentFragment>
+  <div
+    class="wave-box"
+  >
+    <div
+      class="wave-box__bg"
+    />
+    <div
+      class="wave-box__effect"
+    >
+      <div
+        class="wave-box__item"
+      >
+        <img
+          alt="wave1"
+          src="wave1.png"
+        />
+      </div>
+      <div
+        class="wave-box__item"
+      >
+        <img
+          alt="wave2"
+          src="wave2.png"
+        />
+      </div>
+      <div
+        class="wave-box__item"
+      >
+        <img
+          alt="wave3"
+          src="wave1.png"
+        />
+      </div>
+      <div
+        class="wave-box__item"
+      >
+        <img
+          alt="wave4"
+          src="wave2.png"
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -1,0 +1,39 @@
+@import '../../vars.scss';
+
+.wave-box {
+	position: relative;
+	min-height: 200px;
+	width: 100%;
+    overflow: hidden;
+    border-radius: 5px;
+    
+    &__bg {
+        position: absolute;
+        background-color: $nav-bg;
+        width: 100%;
+        height: 100%;
+    }
+
+    &__item {
+        position: absolute;
+        width: 632px;
+        top: 100%;
+        transition: .3s ease-in-out;
+
+        &:nth-child(1) {
+            animation: move 8s linear  infinite;
+        }
+        &:nth-child(2) {
+            opacity: .7;
+            animation: move2 5s linear infinite;
+        }
+        &:nth-child(3) {
+            opacity: .5;
+            animation: move 10s 1s linear infinite;
+        }
+        &:nth-child(4) {
+            opacity: .8;
+            animation: move2 4s linear infinite;
+        }
+    }
+}
