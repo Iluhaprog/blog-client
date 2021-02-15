@@ -2,12 +2,21 @@ import api from '../api';
 import MockAdapter from 'axios-mock-adapter';
 import { comment } from './MockData';
 import commentapi from '../CommentApi';
+import {
+    CREATE_COMMENT,
+    GET_COMMENT_BY_ID,
+    GET_ALL_COMMENTS,
+    GET_COMMENTS_BY_POST_ID,
+    GET_COMMENT_BY_USER_ID,
+    UPDATE_COMMENT,
+    DELETE_COMMENT_BY_ID,
+} from '../CommentApi';
 
 describe('Test comment api', () => {
     const mock = new MockAdapter(api);
 
     test('GET /getById', () => {
-        mock.onGet('/comment/getById', {
+        mock.onGet(GET_COMMENT_BY_ID, {
             params: {
                 id: 1,
             },
@@ -20,7 +29,7 @@ describe('Test comment api', () => {
     });
 
     test('GET /getByPostId', () => {
-        mock.onGet('/comment/getByPostId/0/1', {
+        mock.onGet(GET_COMMENTS_BY_POST_ID + '/0/1', {
             params: {
                 postId: 1,
             },
@@ -33,7 +42,7 @@ describe('Test comment api', () => {
     });
 
     test('GET /getByUserId', () => {
-        mock.onGet('/comment/getByUserId/0/1', {
+        mock.onGet(GET_COMMENT_BY_USER_ID + '/0/1', {
             params: {
                 userId: 1,
             },
@@ -46,7 +55,7 @@ describe('Test comment api', () => {
     });
 
     test('POST /create', () => {
-        mock.onPost('/comment/create', { comment }).reply(200, comment);
+        mock.onPost(CREATE_COMMENT, { comment }).reply(200, comment);
         return commentapi.create(comment).then(responce => { 
             const { status, data } = responce;
             expect(status).toBe(200);
@@ -56,7 +65,7 @@ describe('Test comment api', () => {
 
     test('PUT /update', () => {
         const updatedCommnet = {...comment, text: 'new text'};
-        mock.onPut('/comment/update', { 
+        mock.onPut(UPDATE_COMMENT, { 
             comment: updatedCommnet
         }).reply(200, updatedCommnet);
         return commentapi.update(updatedCommnet).then(responce => {
@@ -67,7 +76,7 @@ describe('Test comment api', () => {
     })
 
     test('DELETE /deleteById', () => {
-        mock.onDelete('/comment/deleteById', {
+        mock.onDelete(DELETE_COMMENT_BY_ID, {
             params: {
                 id: 1,
             },

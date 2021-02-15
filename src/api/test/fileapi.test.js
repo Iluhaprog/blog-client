@@ -2,12 +2,19 @@ import api from '../api';
 import MockAdapter from 'axios-mock-adapter';
 import { file, formData } from './MockData';
 import fileapi from '../FileApi';
+import {
+    GET_FILE_BY_ID,
+    CREATE_FILE,
+    GET_FILE_BY_DIRECTORY_ID,
+    UPDATE_FILE,
+    DELETE_FILE_BY_ID,
+} from '../FileApi';
 
 describe('Test file api', () => {
     const mock = new MockAdapter(api);
 
     test('GET /getById', () => {
-        mock.onGet('/file/getById', {
+        mock.onGet(GET_FILE_BY_ID, {
             params: {
                 id: 1,
             },
@@ -20,7 +27,7 @@ describe('Test file api', () => {
     });
 
     test('POST /create', () => {
-        mock.onPost('/file/create').reply(config => {
+        mock.onPost(CREATE_FILE).reply(config => {
             const { headers, data, params } = config;
             expect(params.dirname).toBe('uploads');
             expect(headers['Content-Type']).toBe('multipart/form-data');
@@ -38,7 +45,7 @@ describe('Test file api', () => {
 
     test('PUT /update', () => {
         const updatedFile = {...file, name: 'newFileName.jpg'};
-        mock.onPut('/file/update', { 
+        mock.onPut(UPDATE_FILE, { 
             file: updatedFile
         }).reply(200, updatedFile);
         return fileapi.update(updatedFile).then(responce => {
@@ -50,7 +57,7 @@ describe('Test file api', () => {
 
     test('GET /getByDirectoryId', () => {
         const fileData = {...file};
-        mock.onGet('/file/getByDirectoryId', { 
+        mock.onGet(GET_FILE_BY_DIRECTORY_ID, { 
             params: { directoryId: 1 }
         }).reply(200, [fileData]);
         return fileapi.getByDirectoryId(1).then(responce => {
@@ -61,7 +68,7 @@ describe('Test file api', () => {
     });
 
     test('DELETE /deleteById', () => {
-        mock.onDelete('/file/deleteById', {
+        mock.onDelete(DELETE_FILE_BY_ID, {
             params: {
                 id: 1,
             },

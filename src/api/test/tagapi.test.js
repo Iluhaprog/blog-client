@@ -3,12 +3,19 @@ import MockAdapter from 'axios-mock-adapter';
 import { tag } from './MockData';
 import tagapi from '../TagApi';
 import TagApi from '../TagApi';
+import {
+    CREATE_TAG,
+    GET_TAG_BY_ID,
+    GET_TAGS_BY_POST_ID,
+    GET_ALL_TAGS,
+    DELETE_TAGS_BY_ID,
+} from '../TagApi';
 
 describe('Test tag api', () => {
     const mock = new MockAdapter(api);
 
     test('POST /create', () => {
-        mock.onPost('/tag/create', {
+        mock.onPost(CREATE_TAG, {
             tag,
         }).reply(200, tag);
         return tagapi.create(tag).then(responce => {
@@ -19,7 +26,7 @@ describe('Test tag api', () => {
     });
 
     test('GET /getById', () => {
-        mock.onGet('/tag/getById', {
+        mock.onGet(GET_TAG_BY_ID, {
             params: { 
                 id: 1 
             },
@@ -32,7 +39,7 @@ describe('Test tag api', () => {
     });
 
     test('GET /getByPostId', () => {
-        mock.onGet('/tag/getByPostId', {
+        mock.onGet(GET_TAGS_BY_POST_ID, {
             params: { 
                 postId: 1 
             },
@@ -45,7 +52,7 @@ describe('Test tag api', () => {
     });
 
     test('GET /getAll', () => {
-        mock.onGet('/tag/getAll').reply(200, [tag]);
+        mock.onGet(GET_ALL_TAGS).reply(200, [tag]);
         return TagApi.getAll().then(responce => {
             const { status, data } = responce;
             expect(status).toBe(200);
@@ -54,7 +61,7 @@ describe('Test tag api', () => {
     });
 
     test('DELETE /deleteById', () => {
-        mock.onDelete('/tag/deleteById', {
+        mock.onDelete(DELETE_TAGS_BY_ID, {
             params: {
                 id: 1,
             },

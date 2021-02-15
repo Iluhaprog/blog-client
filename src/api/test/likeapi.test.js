@@ -2,6 +2,14 @@ import api from '../api';
 import MockAdapter from 'axios-mock-adapter';
 import { like } from './MockData';
 import likeapi from '../LikeApi';
+import {
+    GET_LIKE_BY_ID,
+    GET_LIKES_BY_POST_ID,
+    GET_LIKES_BY_USER_ID,
+    GET_ALL_LIKES,
+    CREATE_LIKE,
+    DELETE_LIKE_BY_ID,
+} from '../LikeApi';
 
 describe('Test post api', () => {
     const mock = new MockAdapter(api);

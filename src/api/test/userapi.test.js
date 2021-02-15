@@ -1,8 +1,22 @@
+import MockAdapter from 'axios-mock-adapter';
 import api from '../api';
 import userapi from '../UserApi';
-import MockAdapter from 'axios-mock-adapter';
 import { base64Encode } from '../../util/base64';
 import { user, formData, file } from './MockData';
+import {
+    LOGIN,
+    LOGOUT,
+    GET_USER_BY_ID,
+    GET_ALL_USERS,
+    GET_USER_BY_EMAIL,
+    GET_USER_BY_USERNAME,
+    CREATE_USER,
+    VERIFY,
+    UPDATE_USER,
+    UPDATE_AVATAR,
+    REMOVE_USER,
+    DELETE_USER_BY_ID,
+} from '../UserApi';
 
 describe('Test user api', () => {
     const mock = new MockAdapter(api);
@@ -10,7 +24,7 @@ describe('Test user api', () => {
     test('POST /login', () => {
         const username = 'username', password = 'password'
         const token = base64Encode(`${username}:${password}`);
-        mock.onPost('/user/login', {}, expect.objectContaining({
+        mock.onPost(LOGIN, {}, expect.objectContaining({
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         })).reply(200, user);
@@ -23,7 +37,7 @@ describe('Test user api', () => {
     });
     
     test('POST /logout', () => {
-        mock.onPost('/user/logout').reply(204);
+        mock.onPost(LOGOUT).reply(204);
         return userapi.logout().then(responce => {
             const { status } = responce;
             expect(status).toBe(204);
@@ -31,7 +45,7 @@ describe('Test user api', () => {
     });
     
     test('GET /getById', () => {
-        mock.onGet('/user/getById', {
+        mock.onGet(GET_USER_BY_ID, {
             params: {
                 id: 1,
             },
@@ -44,7 +58,7 @@ describe('Test user api', () => {
     });
     
     test('GET /getAll', () => {
-        mock.onGet('/user/getAll').reply(200, [user]);
+        mock.onGet(GET_ALL_USERS).reply(200, [user]);
         return userapi.getAll().then(responce => {
             const { status, data } = responce;
             expect(status).toBe(200);
@@ -53,7 +67,7 @@ describe('Test user api', () => {
     });
     
     test('GET /getByEmail', () => {
-        mock.onGet('/user/getByEmail', {
+        mock.onGet(GET_USER_BY_EMAIL, {
             params: {
                 email: user.email,
             },
@@ -66,7 +80,7 @@ describe('Test user api', () => {
     });
     
     test('GET /getByUsername', () => {
-        mock.onGet('/user/getByUsername', {
+        mock.onGet(GET_USER_BY_USERNAME, {
             params: {
                 username: user.username,
             },
@@ -79,7 +93,7 @@ describe('Test user api', () => {
     });
     
     test('GET /verify/:code', () => {
-        mock.onGet('/user/verify/123456', {}).reply(200);
+        mock.onGet(VERIFY + '/123456', {}).reply(200);
         return userapi.verify('123456').then(responce => {
             const { status } = responce;
             expect(status).toBe(200);
@@ -87,7 +101,7 @@ describe('Test user api', () => {
     });
     
     test('POST /create', () => {
-        mock.onPost('/user/create', { user }).reply(200, user);
+        mock.onPost(CREATE_USER, { user }).reply(200, user);
         return userapi.create(user).then(responce => {
             const { status, data } = responce;
             expect(status).toBe(200);
@@ -97,7 +111,7 @@ describe('Test user api', () => {
     
     test('PUT /update', () => {
         const updatedUser = {...user, username: 'NewUsername'};
-        mock.onPut('/user/update', { user: updatedUser }).reply(200, updatedUser);
+        mock.onPut(UPDATE_USER, { user: updatedUser }).reply(200, updatedUser);
         return userapi.update(updatedUser).then(responce => {
             const { status, data } = responce;
             expect(status).toBe(200);
@@ -106,7 +120,7 @@ describe('Test user api', () => {
     });
 
     test('PUT /updateAvatar', () => {
-        mock.onPut('/user/updateAvatar').reply(config => {
+        mock.onPut(UPDATE_AVATAR).reply(config => {
             const { headers, data, params } = config;
             expect(params.dirname).toBe('avatars');
             expect(headers['Content-Type']).toBe('multipart/form-data');
@@ -123,7 +137,7 @@ describe('Test user api', () => {
     });
     
     test('DELETE /remove', () => {
-        mock.onDelete('/user/remove').reply(204);
+        mock.onDelete(REMOVE_USER).reply(204);
         return userapi.remove().then(responce => {
             const { status } = responce;
             expect(status).toBe(204);
@@ -131,7 +145,7 @@ describe('Test user api', () => {
     });
     
     test('DELETE /deleteById', () => {
-        mock.onDelete('/user/deleteById', {
+        mock.onDelete(DELETE_USER_BY_ID, {
             params: {
                 id: 1,
             },

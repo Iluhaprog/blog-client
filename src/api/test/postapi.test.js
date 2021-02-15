@@ -2,12 +2,22 @@ import api from '../api';
 import MockAdapter from 'axios-mock-adapter';
 import { post, file, formData } from './MockData';
 import postapi from '../PostApi';
+import {
+    GET_POST_BY_ID,
+    GET_POST_COUNT,
+    GET_ALL_POSTS,
+    GET_POSTS_BY_USER_ID,
+    CREATE_POST,
+    UPDATE_POST,
+    UPDATE_POST_PREVIEW,
+    DELETE_POST_BY_ID,
+} from '../PostApi'
 
 describe('Test post api', () => {
     const mock = new MockAdapter(api);
 
     test('GET /getById', () => {
-        mock.onGet('/post/getById', {
+        mock.onGet(GET_POST_BY_ID, {
             params: {
                 id: 1,
             },
@@ -20,7 +30,7 @@ describe('Test post api', () => {
     });
     
     test('GET /getCount', () => {
-        mock.onGet('/post/getCount').reply(200, { count: 1 });
+        mock.onGet(GET_POST_COUNT).reply(200, { count: 1 });
         return postapi.getCount().then(responce => {
             const { status, data } = responce;
             expect(status).toBe(200);
@@ -29,7 +39,7 @@ describe('Test post api', () => {
     });
 
     test('GET /getAll', () => {
-        mock.onGet('/post/getAll/0/1').reply(200, [post]);
+        mock.onGet(GET_ALL_POSTS + '/0/1').reply(200, [post]);
         return postapi.getAll(0, 1).then(responce => {
             const { status, data } = responce;
             expect(status).toBe(200);
@@ -38,7 +48,7 @@ describe('Test post api', () => {
     });
     
     test('GET /getByUserId', () => {
-        mock.onGet('/post/getByUserId', {
+        mock.onGet(GET_POSTS_BY_USER_ID, {
             params: {
                 userId: post.userId,
             },
@@ -51,7 +61,7 @@ describe('Test post api', () => {
     });
     
     test('POST /create', () => {
-        mock.onPost('/post/create', { post }).reply(200, post);
+        mock.onPost(CREATE_POST, { post }).reply(200, post);
         return postapi.create(post).then(responce => {
             const { status, data } = responce;
             expect(status).toBe(200);
@@ -61,7 +71,7 @@ describe('Test post api', () => {
     
     test('PUT /update', () => {
         const updatedPost = {...post, title: 'New Title'};
-        mock.onPut('/post/update', { post: updatedPost }).reply(200, updatedPost);
+        mock.onPut(UPDATE_POST, { post: updatedPost }).reply(200, updatedPost);
         return postapi.update(updatedPost).then(responce => {
             const { status, data } = responce;
             expect(status).toBe(200);
@@ -70,7 +80,7 @@ describe('Test post api', () => {
     });
 
     test('PUT /updatePreview', () => {
-        mock.onPut('/post/updatePreview').reply(config => {
+        mock.onPut(UPDATE_POST_PREVIEW).reply(config => {
             const { headers, data, params } = config;
             expect(params.postId).toBe(1);
             expect(params.dirname).toBe(process.env.REACT_APP_PREVIEWS_DIR);
@@ -88,7 +98,7 @@ describe('Test post api', () => {
     })
 
     test('DELETE /deleteById', () => {
-        mock.onDelete('/post/deleteById', {
+        mock.onDelete(DELETE_POST_BY_ID, {
             params: {
                 id: 1,
             },

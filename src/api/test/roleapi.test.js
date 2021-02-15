@@ -3,11 +3,17 @@ import MockAdapter from 'axios-mock-adapter';
 import { role } from './MockData';
 import roleapi from '../RoleApi';
 
+import {
+    CREATE_ROLE,
+    GET_ROLE_BY_ID,
+    DELETE_ROLE_BY_ID,
+} from '../RoleApi';
+
 describe('Test role api', () => {
     const mock = new MockAdapter(api);
 
     test('POST /create', () => {
-        mock.onPost('/role/create', {
+        mock.onPost(CREATE_ROLE, {
             role,
         }).reply(200, role);
         return roleapi.create(role).then(responce => {
@@ -18,7 +24,7 @@ describe('Test role api', () => {
     });
 
     test('GET /getById', () => {
-        mock.onGet('/role/getById', {
+        mock.onGet(GET_ROLE_BY_ID, {
             params: { 
                 id: 1 
             },
@@ -31,7 +37,7 @@ describe('Test role api', () => {
     });
 
     test('DELETE /deleteById', () => {
-        mock.onDelete('/role/deleteById', {
+        mock.onDelete(DELETE_ROLE_BY_ID, {
             params: {
                 id: 1,
             },

@@ -2,6 +2,11 @@ import api from '../api';
 import MockAdapter from 'axios-mock-adapter';
 import { file, formData } from './MockData';
 import homeapi from '../HomeApi';
+import {
+    GET_HOME,
+    UPDATE_HOME,
+    UPDATE_HOME_PREVIEW
+} from '../HomeApi';
 
 const home = {
     id: 1,
@@ -13,7 +18,7 @@ describe('Test home api', () => {
     const mock = new MockAdapter(api);
 
     test('GET /get', () => {
-        mock.onGet('/home/get').reply(200, {...home});
+        mock.onGet(GET_HOME).reply(200, {...home});
         return homeapi.get().then(responce => {
             const { status, data } = responce;
             expect(status).toBe(200);
@@ -23,7 +28,7 @@ describe('Test home api', () => {
 
     test('PUT /update', () => {
         const updatedHome = {...home, title: 'updated'}
-        mock.onPut('/home/update', { home }).reply(200, updatedHome);
+        mock.onPut(UPDATE_HOME, { home }).reply(200, updatedHome);
         return homeapi.update(home).then(responce => {
             const { status, data } = responce;
             expect(status).toBe(200);
@@ -32,7 +37,7 @@ describe('Test home api', () => {
     });
 
     test('PUT /updatePreview', () => {
-        mock.onPut('/home/updatePreview').reply(config => {
+        mock.onPut(UPDATE_HOME_PREVIEW).reply(config => {
             const { headers, data, params } = config;
             expect(params.dirname).toBe(process.env.REACT_APP_HOME_DIR);
             expect(headers['Content-Type']).toBe('multipart/form-data');
