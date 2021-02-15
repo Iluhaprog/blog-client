@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import marked from '../../../util/setting/marked';
 import { Textarea } from '../Textarea';
-import './markdownRedactor.scss';
 import { SuccessButton, DangerButton } from '../../buttons';
+import './markdownRedactor.scss';
 
-export default props => {
+function MarkdownRedactor(props) {
     const [view, setView] = useState(false);
-    const html = marked(props.value || '');
+    const html = marked(props.value);
     return (
         <div className={`markdown-redactor ${view ? 'markdown-redactor_big' : ''}`}>
             <div className='markdown-redactor__write-zone'>
@@ -35,5 +36,17 @@ export default props => {
             >
             </div>
         </div>
-    )
+    );
 }
+
+MarkdownRedactor.defaultProps = {
+    value: '',
+};
+
+MarkdownRedactor.propTypes = {
+    value: PropTypes.string,
+    name: PropTypes.string,
+    placeholder: PropTypes.string,
+};
+
+export default MarkdownRedactor;

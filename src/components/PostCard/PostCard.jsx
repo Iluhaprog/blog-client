@@ -1,13 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Row } from '../containers';
 import { TagBox } from '../boxes';
+import { DangerButton, PrimaryButton } from '../buttons';
 import wave1 from '../../assets/post_card/wave1.png';
 import wave2 from '../../assets/post_card/wave2.png';
 import './postCard.scss';
-import { DangerButton, PrimaryButton } from '../buttons';
 
-export default props => {
-
+function PostCard(props) {
     return (
         <article className='post-card column'>
             <div className="wave-box">
@@ -38,7 +38,7 @@ export default props => {
                     <ul className='tags'>
                         <Row justifyContent='fs' alignItems='c' wrap='w'>
                             { 
-                                props.tags && props.tags.map(tag => (
+                                props.tags.map(tag => (
                                     <TagBox key={tag.id} title={tag.title} />
                                 ))
                             }
@@ -60,3 +60,21 @@ export default props => {
         </article>
     );
 }
+
+PostCard.defaultProps = {
+    tags: [],
+    onClick: () => {},
+    onDelete: () => {},
+};
+
+PostCard.propTypes = {
+    img: PropTypes.string,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    tags: PropTypes.array,
+    onClick: PropTypes.func,
+    onDelete: PropTypes.func,
+    date: PropTypes.string,
+};
+
+export default PostCard;

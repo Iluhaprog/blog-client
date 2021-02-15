@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Row } from '../../containers';
 import { Toggler } from '../';
 import './labeledToggler.scss';
 
-export default props => {
+function LabeledToggler(props) {
     return (
         <Row>
             <p className={`toggler-title ${ props.value ? 'toggler-title__visible' : ''}`}>
@@ -14,5 +15,18 @@ export default props => {
                 onChange={props.handleChange}
             />
         </Row>
-    )
+    );
 }
+
+LabeledToggler.defaltProps = {
+    value: false,
+    handleChange: () => {},
+};
+
+LabeledToggler.propTypes = {
+    value: PropTypes.bool,
+    label: PropTypes.string.isRequired,
+    handleChange: PropTypes.func,
+};
+
+export default LabeledToggler;

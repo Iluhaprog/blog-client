@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { TagBox } from '../../boxes';
 import { Row } from '../../containers';
 import './multipleSelect.scss';
@@ -35,7 +36,7 @@ class MultipleSelect extends React.Component {
     }
     
     render() {
-        const { values = [], options = [] } = this.props;
+        const { options } = this.props;
 
         return (
             <div 
@@ -73,5 +74,15 @@ class MultipleSelect extends React.Component {
         );
     }
 }
+
+MultipleSelect.defaultProp = {
+    options: [],
+    values: [],
+};
+
+MultipleSelect.propTypes = {
+    options: PropTypes.array,
+    values: PropTypes.array,
+};
 
 export default MultipleSelect;

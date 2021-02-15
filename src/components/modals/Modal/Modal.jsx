@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { DangerButton, SuccessButton } from '../../buttons';
 import { Row } from '../../containers';
 import './modal.scss';
@@ -53,5 +54,24 @@ function Modal(props) {
         </div>
     );
 }
+
+Modal.defaultProps = {
+    setFail: () => {},
+};
+
+Modal.propTypes = {
+    close: PropTypes.func.isRequired,
+    modal: PropTypes.shape({
+        text: PropTypes.string.isRequired,
+        handleSuccess: PropTypes.func.isRequired,
+        fail: PropTypes.shape({
+            message: PropTypes.string.isRequired,
+        }),
+        withInput: PropTypes.bool.isRequired,
+        visible: PropTypes.bool.isRequired,
+    }),
+    setFail: PropTypes.func,
+};
+
 
 export default Modal;

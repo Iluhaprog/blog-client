@@ -4,7 +4,8 @@ import { RoundBox } from '../boxes/RoundBox';
 import './userShortInfo.scss';
 import empty from '../../assets/default.png';
 
-const UserShortInfo = ({ avatar, firstName, lastName}) => {
+const UserShortInfo = (props) => {
+    const { avatar, firstName, lastName} = props;
     const url = process.env.REACT_APP_FILES_URL;
     const img = avatar ? `${url}${avatar}` : empty;
     return (

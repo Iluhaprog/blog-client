@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types'; 
 import './toggler.scss';
 
-export default props => {
+function Toggler(props) {
     const [value, setValue] = useState(false);
 
     useEffect(() => {
@@ -25,3 +26,9 @@ export default props => {
         </div>
     );
 }
+
+Toggler.propTypes = {
+    value: PropTypes.bool,
+};
+
+export default Toggler;

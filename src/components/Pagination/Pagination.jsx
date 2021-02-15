@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react"
 import { NavLink } from "react-router-dom";
+import PropTypes from 'prop-types';
 import { PrimaryButton } from "../buttons";
 import { Row } from '../containers';
 import './pagination.scss';
 
-function Pagination({ totalItems, itemsPerPage, currentPage, changePage, visiblePageLinks = 3, page }) {
+function Pagination(props) {
+    const { totalItems, itemsPerPage, currentPage, changePage, visiblePageLinks, page } = props;
     const visiblePageLinksIndexInit = Math.floor((currentPage - 1) / visiblePageLinks);
     const [visiblePageLinksIndex, setVisiblePageLinksIndex] = useState(visiblePageLinksIndexInit);
     useEffect(() => {
@@ -59,5 +61,19 @@ function Pagination({ totalItems, itemsPerPage, currentPage, changePage, visible
         </div>
     )
 }
+
+Pagination.defaultProps = {
+    visiblePageLinks: 3,
+    changePage: () => {},
+};
+
+Pagination.propTypes = {
+    totalItems: PropTypes.number,
+    itemsPerPage: PropTypes.number,
+    currentPage: PropTypes.number,
+    changePage: PropTypes.func,
+    visiblePageLinks: PropTypes.number,
+    page: PropTypes.string,
+};
 
 export default Pagination;

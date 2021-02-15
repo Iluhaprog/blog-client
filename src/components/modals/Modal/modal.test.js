@@ -8,7 +8,7 @@ const getProps = (props = {}) => ({
         withInput: props.withInput || false,
         handleSuccess: props.handleSuccess || (() => {}),
         visible: props.visible || false,
-        fail: props.fail || {},
+        fail: props.fail || { message: '' },
     },
     close: props.close || (() => {}),
     setFail: () => {},
