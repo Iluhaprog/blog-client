@@ -1,0 +1,50 @@
+@import '../../vars.scss';
+
+.main-nav {
+    padding: 20px 15px;
+    box-shadow: $shadow-2;
+    font-size: 14px;
+    background-color: #fff;
+
+    .user-short-info {
+        margin: 0;
+        padding: 0;
+
+        .row {
+            flex-direction: row-reverse;
+        }
+
+        p {
+            color: #000;
+            margin: 0;
+            margin-right: 15px;
+        }
+        .round-box {
+            width: 35px;
+            height: 35px;
+        }
+    }
+
+    nav {
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            li {
+                margin: 0 15px;  
+
+                a {
+                    font-size: 16px;
+                    text-decoration: none;
+                    color: $text-color-6;
+                    font-weight: 300;
+
+                    &.selected {
+                        color: $nav-bg;
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+}
