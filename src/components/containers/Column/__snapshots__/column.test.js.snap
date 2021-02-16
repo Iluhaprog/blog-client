@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test column row component (default view) 1`] = `
+<DocumentFragment>
+  <div
+    class="column   "
+  />
+</DocumentFragment>
+`;
+
+exports[`Test of column component  (view witn jystify-content and align-items) 1`] = `
+<DocumentFragment>
+  <div
+    class="column column_jc-c column_ai-c column_w-w"
+  />
+</DocumentFragment>
+`;
