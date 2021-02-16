@@ -1,23 +1,79 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Test user short info view (row) 1`] = `
+<DocumentFragment>
+  <div
+    class="user-short-info"
+  >
+    <div
+      class="row  row_ai-c "
+    >
+      <div
+        class="round-box"
+      >
+        <img
+          alt="Test firstname-Test lastname"
+          height="65"
+          src="default.png"
+          width="65"
+        />
+      </div>
+      <p>
+        Test firstname Test lastname
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Test user short info view (width, height) 1`] = `
+<DocumentFragment>
+  <div
+    class="user-short-info"
+  >
+    <div
+      class="row  row_ai-c "
+    >
+      <div
+        class="round-box"
+      >
+        <img
+          alt="Test firstname-Test lastname"
+          height="30"
+          src="default.png"
+          width="30"
+        />
+      </div>
+      <p>
+        Test firstname Test lastname
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
 exports[`Test user short info view 1`] = `
 <DocumentFragment>
   <div
-    class="user-short-info column column_ai-c"
+    class="user-short-info"
   >
     <div
-      class="round-box"
+      class="column  column_ai-c "
     >
-      <img
-        alt="Test firstname-Test lastname"
-        height="65"
-        src="default.png"
-        width="65"
-      />
+      <div
+        class="round-box"
+      >
+        <img
+          alt="Test firstname-Test lastname"
+          height="65"
+          src="default.png"
+          width="65"
+        />
+      </div>
+      <p>
+        Test firstname Test lastname
+      </p>
     </div>
-    <p>
-      Test firstname Test lastname
-    </p>
   </div>
 </DocumentFragment>
 `;

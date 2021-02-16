@@ -21,3 +21,38 @@ test('Test user short info view', () => {
 
     expect(asFragment()).toMatchSnapshot();
 });
+
+
+test('Test user short info view (row)', () => {
+    const store = mockStore({
+        user: {
+            firstName: 'Test firstname',
+            lastName: 'Test lastname'
+        }
+    });
+    
+    const { asFragment } = render(
+        <Provider store={store}>
+            <UserShortInfo row={true} />
+        </Provider>
+    );
+
+    expect(asFragment()).toMatchSnapshot();
+});
+
+test('Test user short info view (width, height)', () => {
+    const store = mockStore({
+        user: {
+            firstName: 'Test firstname',
+            lastName: 'Test lastname'
+        }
+    });
+    
+    const { asFragment } = render(
+        <Provider store={store}>
+            <UserShortInfo row={true} width={30} height={30} />
+        </Provider>
+    );
+
+    expect(asFragment()).toMatchSnapshot();
+});
