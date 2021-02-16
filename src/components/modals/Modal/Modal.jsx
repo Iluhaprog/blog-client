@@ -63,9 +63,9 @@ Modal.propTypes = {
     close: PropTypes.func.isRequired,
     modal: PropTypes.shape({
         text: PropTypes.string.isRequired,
-        handleSuccess: PropTypes.func.isRequired,
+        handleSuccess: PropTypes.func,
         fail: PropTypes.shape({
-            message: PropTypes.string.isRequired,
+            message: PropTypes.string,
         }),
         withInput: PropTypes.bool.isRequired,
         visible: PropTypes.bool.isRequired,

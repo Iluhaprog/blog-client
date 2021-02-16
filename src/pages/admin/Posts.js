@@ -92,7 +92,7 @@ const Posts = props => {
                 </div>
                 <Pagination
                     totalItems={total}
-                    itemsPerPage={offset}
+                    itemsPerPage={+offset}
                     currentPage={+pageNumber}
                     changePage={setPage}
                     visiblePageLinks={5}
