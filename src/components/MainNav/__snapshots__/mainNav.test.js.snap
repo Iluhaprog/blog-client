@@ -8,7 +8,16 @@ exports[`Should return view (isAuth=false) 1`] = `
     <div
       class="row row_jc-sb row_ai-c "
     >
-      <nav>
+      <div
+        class="burger-button "
+      >
+        <span />
+        <span />
+        <span />
+      </div>
+      <nav
+        class=""
+      >
         <ul
           class="row"
         >
@@ -53,7 +62,16 @@ exports[`Should return view (isAuth=true) 1`] = `
     <div
       class="row row_jc-sb row_ai-c "
     >
-      <nav>
+      <div
+        class="burger-button "
+      >
+        <span />
+        <span />
+        <span />
+      </div>
+      <nav
+        class=""
+      >
         <ul
           class="row"
         >

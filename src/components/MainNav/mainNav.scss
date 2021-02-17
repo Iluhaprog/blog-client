@@ -6,6 +6,10 @@
     font-size: 14px;
     background-color: #fff;
 
+    .burger-button {
+        display: none,
+    }
+
     .user-short-info {
         margin: 0;
         padding: 0;
@@ -43,6 +47,77 @@
                         color: $nav-bg;
                         text-decoration: underline;
                     }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 412px) {
+        position: relative;
+        padding: 5px;
+
+        .burger-button {
+            display: block;
+            position: relative;
+            width: 30px;
+            height: 25px;
+
+            span {
+                position: absolute;
+                top: 0;
+                display: block;
+                width: 100%;
+                border: $border-1;
+                transition: .3s ease-in-out;
+
+                &:nth-child(2) {
+                    top: 50%;
+                }
+
+                &:last-child {
+                    top: 100%;
+                }
+            }
+
+            &_visible {
+                span:first-child {
+                    top: 50%;
+                    transform: rotate(45deg);
+                }
+                span:nth-child(2) {
+                    opacity: 0;
+                }
+                span:last-child { 
+                    top: 50%;
+                    transform: rotate(-45deg);
+                }
+            }
+        }
+
+        nav {
+            position: absolute;
+            width: 100vw;
+            height: calc(100vh - 45px);
+            top: 45px;
+            left: -100vw;
+            background-color: rgba(255, 255, 255, .3);
+            transition: .3s ease-in-out;
+            z-index: 1;
+
+            &.visible {
+                left: 0;
+            }
+            
+            ul {
+                margin: 0 auto;
+                max-width: 150px;
+                flex-wrap: wrap;
+                padding-top: 100px;
+
+                li {
+                    width: 100%;
+                    margin: 20px;
+                    text-align: center;
                 }
             }
         }
