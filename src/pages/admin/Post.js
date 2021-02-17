@@ -13,7 +13,7 @@ import {
 import { ImageLoaderForm, PostForm } from '../../components/forms';
 import { Row } from '../../components/containers';
 import FilesViewer from '../../components/FilesViewer/FilesViewer';
-import { Loader } from '../../components/Loader';
+import { Loader } from '../../components/loaders/Loader';
 import { getUniqueName } from '../../util/string/string';
 import { addError } from '../../actoins/error';
 import { setErrorCatch } from '../../util/SettingErrorCatch';

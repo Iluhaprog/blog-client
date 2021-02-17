@@ -15,7 +15,7 @@ import { setModal } from '../../actoins/modal';
 import { PostCard } from '../../components/PostCard';
 import { useHistory, useParams } from 'react-router-dom';
 import { Pagination } from '../../components/Pagination';
-import { Loader } from '../../components/Loader';
+import { Loader } from '../../components/loaders/Loader';
 import { addError } from '../../actoins/error';
 import { setErrorCatch } from '../../util/SettingErrorCatch';
 

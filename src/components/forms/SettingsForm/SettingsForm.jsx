@@ -6,7 +6,7 @@ import {
     LabeledToggler 
 } from '../../formElements';
 import { PrimaryButton } from '../../buttons';
-import { Loader } from '../../Loader';
+import { Loader } from '../../loaders/Loader';
 import { Row } from '../../containers';
 import './settingsForm.scss';
 

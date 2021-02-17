@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import loader from '../../assets/loader.svg';
+import loader from '../../../assets/loader.svg';
 import './loader.scss';
 
 function Loader(props){
