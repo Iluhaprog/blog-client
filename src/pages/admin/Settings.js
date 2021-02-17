@@ -40,7 +40,9 @@ const Settings = props => {
     );
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+    home: state.home,
+});
 
 const mapDispatchToProps = dispatch => ({
     get: () => {
