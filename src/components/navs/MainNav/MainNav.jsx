@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { PrimaryButton } from '../buttons';
-import { Row } from '../containers';
-import { UserShortInfo } from '../UserShortInfo';
+import { PrimaryButton } from '../../buttons';
+import { Row } from '../../containers';
+import { UserShortInfo } from '../../UserShortInfo';
 import './mainNav.scss';
 
 function MainNav(props) {

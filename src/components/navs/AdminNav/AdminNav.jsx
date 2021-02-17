@@ -1,12 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import profile from './../../assets/icons/profile.svg';
-import posts from './../../assets/icons/posts.svg';
-import settings from './../../assets/icons/settings.svg';
+import profile from './../../../assets/icons/profile.svg';
+import posts from './../../../assets/icons/posts.svg';
+import settings from './../../../assets/icons/settings.svg';
 
 import './nav.scss';
-import { UserShortInfo } from '../UserShortInfo';
+import { UserShortInfo } from '../../UserShortInfo';
 
 export default props => (
     <nav className='nav'>

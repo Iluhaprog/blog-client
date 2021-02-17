@@ -1,6 +1,6 @@
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import AdminNav from '../../components/AdminNav';
+import AdminNav from '../../components/navs/AdminNav';
 import Profile from './Profile';
 import Posts from './Posts';
 import Settings from './Settings';
