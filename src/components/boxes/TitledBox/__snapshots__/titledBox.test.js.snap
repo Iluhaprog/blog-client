@@ -17,7 +17,7 @@ exports[`Should render titled box 1`] = `
         class="container"
       >
         <div
-          class="row row_jc-c row_ai-fs row_w-w"
+          class="row row_jc-c row_ai-st row_w-w"
         >
           <div
             class="item"

@@ -14,7 +14,7 @@ function TitledBox(props) {
                     <Row 
                         wrap='w' 
                         justifyContent='c'
-                        alignItems='fs'
+                        alignItems='st'
                     >
                         { props.children }
                     </Row>
