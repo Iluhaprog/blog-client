@@ -3,6 +3,7 @@ import { RoundBox } from './RoundBox';
 import { HintBox } from './HintBox';
 import { TagBox } from './TagBox';
 import { MessagesBox } from './MessagesBox';
+import { TitledBox } from './TitledBox';
 
 export {
     FormBox,
@@ -10,4 +11,5 @@ export {
     HintBox,
     TagBox,
     MessagesBox,
+    TitledBox,
 };
