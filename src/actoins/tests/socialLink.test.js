@@ -100,7 +100,7 @@ describe('Test async action creators', () => {
     test('Should create UPDATE_SOCIAL_LINK', () => {
         const store = mockStore();
         const expectedActions = [{ type: 'UPDATE_SOCIAL_LINK', socialLink: {} }];
-        mock.onPut(UPDATE_SOCIAL_LINK, { socialLink: {} }).reply(200, {});
+        mock.onPut(UPDATE_SOCIAL_LINK, { updatedSocialLink: {} }).reply(200, {});
         return store.dispatch(updateSocialLinkFetch({})).then(() => {
             expect(store.getActions()).toEqual(expectedActions);
         });
