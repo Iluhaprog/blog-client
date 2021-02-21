@@ -13,6 +13,12 @@ export const user = {
     "roleId": 1
 };
 
+export const social = {
+    "title": "github",
+    "preview": "",
+    "link": "test link",
+}
+
 export const tag = {
     "id": 1,
     "title": "React",
