@@ -3,6 +3,7 @@ import { PostForm } from './PostForm';
 import { ImageLoaderForm } from './ImageLoaderForm';
 import { ProjectForm } from './ProjectForm';
 import { SettingsForm } from './SettingsForm';
+import { SocialLinkForm } from './SocialLinkForm';
 
 export {
     LoginForm,
@@ -10,4 +11,5 @@ export {
     ImageLoaderForm,
     ProjectForm,
     SettingsForm,
+    SocialLinkForm,
 };
