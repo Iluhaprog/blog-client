@@ -3,6 +3,7 @@ import { updateAvatarFetch, updateFetch, setFetch } from "../../actoins/user";
 import { addError } from '../../actoins/error';
 import { setErrorCatch } from '../../util/SettingErrorCatch';
 import { ProfileForm } from "../../components/forms/ProfileForm";
+import { SocialLinks } from '../../components/SocialLinks';
 
 const Profile = props => {
     const submit = values => {
@@ -20,6 +21,7 @@ const Profile = props => {
     return (
         <div className='admin-page'>
             <ProfileForm onSubmit={submit}/>
+            <SocialLinks />
         </div>
     );
 };
