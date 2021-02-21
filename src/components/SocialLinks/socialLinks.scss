@@ -1,0 +1,17 @@
+@import '../../vars.scss';
+
+.social-links {
+    max-width: 650px;
+
+    .drop-zone {
+        width: 60px;
+        height: 60px;
+        background-color: $text-color-6;
+
+        img.empty {
+            width: 40px;
+            height: auto;
+            margin-top: 12px;
+        }
+    }
+}
