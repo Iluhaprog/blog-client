@@ -9,6 +9,7 @@ import modalReducer from './ModalReducer';
 import homeReducer from './HomeReducer';
 import themeReducer from './ThemeReducer';
 import errorReducer from './ErrorReducer';
+import socialLinkReducer from './SocialLinkReducer';
 
 export default combineReducers({
     user: userReduser,
@@ -20,5 +21,6 @@ export default combineReducers({
     comment: commentReducer,
     modal: modalReducer,
     error: errorReducer,
+    socialLink: socialLinkReducer,
     form: formReducer,
 });
