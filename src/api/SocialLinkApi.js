@@ -24,7 +24,7 @@ function create(socialLink) {
 }
 
 function update(socialLink) {
-    return api.put(UPDATE_SOCIAL_LINK, { socialLink });
+    return api.put(UPDATE_SOCIAL_LINK, { updatedSocialLink: socialLink });
 }
 
 function updatePreview(socialLinkId, formData) {

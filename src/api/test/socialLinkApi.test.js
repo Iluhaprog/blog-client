@@ -48,7 +48,7 @@ describe('Test social link api', () => {
 
     test('PUT /update', () => {
         const updated = {...social, title: 'updated'};
-        mock.onPut(UPDATE_SOCIAL_LINK, { socialLink: social }).reply(200, updated);
+        mock.onPut(UPDATE_SOCIAL_LINK, { updatedSocialLink: social }).reply(200, updated);
         return socialapi.update(social).then(responce => {
             const { status, data } = responce;
             expect(status).toBe(200);
