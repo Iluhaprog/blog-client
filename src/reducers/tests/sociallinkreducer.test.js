@@ -1,6 +1,7 @@
 import SocialLinkReducer from '../SocialLinkReducer';
 
 import { 
+    setSocialFetch,
     createSocialLink,
     setSocialLinks,
     setFooterSocialLinks,
@@ -11,11 +12,19 @@ import {
 const initSocialLinkState = {
     socialLinks: [],
     footerLinks: [],
+    isFetch: false,
 };
 
 describe('Test SocialLinkReducer', () => {
     test('Should return init state', () => {
         expect(SocialLinkReducer(undefined, {})).toEqual(initSocialLinkState);
+    });
+
+    test('Should handle SET_SOCIAL_FETCH action', () => {
+        expect(SocialLinkReducer(initSocialLinkState, setSocialFetch(true))).toEqual({
+            ...initSocialLinkState,
+            isFetch: true,
+        });
     });
 
     test('Should handle CREATE_SOCIAL_LINK', () => {

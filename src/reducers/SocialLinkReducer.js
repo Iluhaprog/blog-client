@@ -1,4 +1,5 @@
 import { 
+    SET_SOCIAL_FETCH,
     CREATE_SOCIAL_LINK,
     SET_SOCIAL_LINKS,
     SET_FOOTER_SOCIAL_LINKS,
@@ -10,10 +11,16 @@ import { replace, deleteEl } from '../util/array'
 const initSocialLinkState = {
     socialLinks: [],
     footerLinks: [],
+    isFetch: false,
 };
 
 const socialLinkReducer = (state = initSocialLinkState, action) => {
     switch (action.type) {
+        case SET_SOCIAL_FETCH:
+            return {
+                ...state,
+                isFetch: action.isFetch,
+            };
         case CREATE_SOCIAL_LINK:
             return {
                 ...state,
