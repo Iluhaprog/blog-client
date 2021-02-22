@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render footer nav component 1`] = `
+<DocumentFragment>
+  <nav
+    class="footer-nav"
+  >
+    <ul>
+      <li>
+        <a
+          href="/home"
+        >
+          Home
+        </a>
+      </li>
+      <li>
+        <a
+          href="/search"
+        >
+          Search
+        </a>
+      </li>
+      <li>
+        <a
+          href="/about"
+        >
+          About
+        </a>
+      </li>
+    </ul>
+  </nav>
+</DocumentFragment>
+`;
