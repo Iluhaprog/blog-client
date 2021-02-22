@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render footer comonent 1`] = `
+<DocumentFragment>
+  <footer
+    class="footer"
+  >
+    <div
+      class="socials"
+    >
+      <div
+        class="row row_jc-c row_ai-c "
+      />
+    </div>
+  </footer>
+</DocumentFragment>
+`;
