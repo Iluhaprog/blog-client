@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { LabeledButton } from '../buttons';
 import { Row, Column } from '../containers';
@@ -7,6 +7,11 @@ import './socialLinks.scss';
 
 function SocialLinks(props) {
     const { create, update, updatePreview } = props;
+
+    useEffect(() => {
+        props.getSocials(props.userId);
+    }, [])
+
     return (
         <div className='social-links'>
             <Column>
@@ -56,10 +61,12 @@ function SocialLinks(props) {
 
 SocialLinks.defaultProps = {
     socials: [],
+    getSocials: () => {},
 };
 
 SocialLinks.propTypes = {
     socials: PropTypes.array,
+    getSocials: PropTypes.func,
 };
 
 export default SocialLinks;
