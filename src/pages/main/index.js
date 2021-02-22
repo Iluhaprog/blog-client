@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { MainNav } from '../../components/navs/MainNav';
+import { Footer } from '../../components/Footer';
 import Home from './Home';
 import Search from './Search';
 import About from './About';
@@ -22,6 +23,7 @@ function Main(props) {
                     <Route path='/about' component={About} />
                 </Switch>
             </main>
+            <Footer />
         </div>
     );
 }
