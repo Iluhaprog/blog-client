@@ -21,12 +21,20 @@ import {
     updateSocialLinkFetch,
     updateSocialLinkPreviewFetch,
     deleteSocialLinkFetch,
+    setSocialFetch,
 } from '../socialLink';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
 describe('Test sync action creators', () => {
+    test('Should create SET_SOCIAL_FETCH actoin', () => {
+        const store = mockStore();
+        const expectedActions = [{ type: 'SET_SOCIAL_FETCH', isFetch: true}];
+        store.dispatch(setSocialFetch(true));
+        expect(store.getActions()).toEqual(expectedActions);
+    });
+
     test('Should create CREATE_SOCIAL_LINK', () => {
         const store = mockStore();
         const expectedActions = [{ type: 'CREATE_SOCIAL_LINK', socialLink: {} }];
@@ -99,7 +107,11 @@ describe('Test async action creators', () => {
 
     test('Should create UPDATE_SOCIAL_LINK', () => {
         const store = mockStore();
-        const expectedActions = [{ type: 'UPDATE_SOCIAL_LINK', socialLink: {} }];
+        const expectedActions = [
+            { type: 'SET_SOCIAL_FETCH', isFetch: true},
+            { type: 'UPDATE_SOCIAL_LINK', socialLink: {} },
+            { type: 'SET_SOCIAL_FETCH', isFetch: false},
+        ];
         mock.onPut(UPDATE_SOCIAL_LINK, { updatedSocialLink: {} }).reply(200, {});
         return store.dispatch(updateSocialLinkFetch({})).then(() => {
             expect(store.getActions()).toEqual(expectedActions);
@@ -109,7 +121,11 @@ describe('Test async action creators', () => {
     test('Should create UPDATE_SOCIAL_LINK (preview)', () => {
         const store = mockStore();
         const fd = new FormData();
-        const expectedActions = [{ type: 'UPDATE_SOCIAL_LINK', socialLink: {} }];
+        const expectedActions = [
+            { type: 'SET_SOCIAL_FETCH', isFetch: true},
+            { type: 'UPDATE_SOCIAL_LINK', socialLink: {} },
+            { type: 'SET_SOCIAL_FETCH', isFetch: false},
+        ];
         mock.onPut(UPDATE_SOCIAL_LINK_PREVIEW).reply(config => {
             const { headers, data, params } = config;
             expect(params.socialLinkId).toBe(1);
@@ -127,7 +143,11 @@ describe('Test async action creators', () => {
 
     test('Should create DELETE_SOCIAL_LINK action', () => {
         const store = mockStore();
-        const expectedActions = [{ type: 'DELETE_SOCIAL_LINK', id: 1 }];
+        const expectedActions = [
+            { type: 'SET_SOCIAL_FETCH', isFetch: true},
+            { type: 'DELETE_SOCIAL_LINK', id: 1 },
+            { type: 'SET_SOCIAL_FETCH', isFetch: false}
+        ];
         mock.onDelete(DELETE_SOCIAL_LINK, { 
             params: { id: 1 }
         }).reply(204);
