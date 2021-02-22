@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { LabeledButton } from '../buttons';
 import { Row, Column } from '../containers';
 import { SocialLinkForm } from '../forms';
+import { Loader } from '../loaders/Loader';
 import './socialLinks.scss';
 
 function SocialLinks(props) {
@@ -19,16 +20,19 @@ function SocialLinks(props) {
                     <h3>
                         Socials
                     </h3>
-                    <LabeledButton
-                        text='Add'
-                        onClick={() => {
-                            create({ 
-                                title: '',
-                                preview: '',
-                                link: '',
-                            });
-                        }} 
-                    />
+                    <Row justifyContent='fe'>
+                        <Loader visible={props.isFetch}/>
+                        <LabeledButton
+                            text='Add'
+                            onClick={() => {
+                                create({ 
+                                    title: '',
+                                    preview: '',
+                                    link: '',
+                                });
+                            }} 
+                        />
+                    </Row>
                 </Row>
                 {
                     props.socials.map(social => (

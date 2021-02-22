@@ -13,6 +13,7 @@ import { setErrorCatch } from '../../util/SettingErrorCatch';
 const mapStateToProps = state => ({
     socials: state.socialLink.socialLinks,
     userId: state.user.id,
+    isFetch: state.socialLink.isFetch,
 });
 
 const mapDispatchToProps = dispatch => ({

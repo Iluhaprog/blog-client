@@ -14,21 +14,32 @@ exports[`test view of social links components 1`] = `
         <h3>
           Socials
         </h3>
-        <button
-          class="button default-button labeled-button"
+        <div
+          class="row row_jc-fe  "
         >
-          <div
-            class="row   "
+          <img
+            alt="loading..."
+            class="loader "
+            height="30"
+            src="loader.svg"
+            width="30"
+          />
+          <button
+            class="button default-button labeled-button"
           >
-            <p>
-              <span />
-              <span />
-            </p>
-            <p>
-              Add
-            </p>
-          </div>
-        </button>
+            <div
+              class="row   "
+            >
+              <p>
+                <span />
+                <span />
+              </p>
+              <p>
+                Add
+              </p>
+            </div>
+          </button>
+        </div>
       </div>
     </div>
   </div>
