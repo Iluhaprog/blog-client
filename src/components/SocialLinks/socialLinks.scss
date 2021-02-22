@@ -3,6 +3,11 @@
 .social-links {
     max-width: 650px;
 
+    &__title {
+        color: $nav-bg;
+        font-weight: 300;
+    }
+
     .drop-zone {
         width: 60px;
         height: 60px;

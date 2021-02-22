@@ -17,7 +17,7 @@ function SocialLinks(props) {
         <div className='social-links'>
             <Column>
                 <Row justifyContent='sb' alignItems='c'>
-                    <h3>
+                    <h3 className='social-links__title'>
                         Socials
                     </h3>
                     <Row justifyContent='fe'>
