@@ -4,11 +4,6 @@
     box-sizing: border-box;
 }
 
-.container {
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
 @mixin direction($direction) {
     .#{$direction} {
         display: flex;
