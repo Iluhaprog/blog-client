@@ -6,6 +6,7 @@ import { getAllFetch } from  '../../actoins/post';
 import { ImageBox } from '../../components/boxes/ImageBox';
 import { TitledBox } from '../../components/boxes'
 import { PostCard } from '../../components/PostCard';
+import { getHomeFetch } from '../../actoins/home';
 
 function Home(props) {
     const files = process.env.REACT_APP_FILES_URL;
@@ -13,6 +14,7 @@ function Home(props) {
 
     useEffect(() => {
         props.getPosts();
+        props.getHome();
     }, []);
     
     return (
@@ -63,6 +65,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     getPosts: () => {
         dispatch(getAllFetch(0, 8));
+    },
+    getHome: () => {
+        dispatch(getHomeFetch());
     },
 });
 
