@@ -8,3 +8,10 @@ test('Test view of tag box', () => {
     );
     expect(asFragment()).toMatchSnapshot();    
 });
+
+test('Test view of tag box with mode', () => {
+    const { asFragment } = render(
+        <TagBox title='Test title' mode='test' />
+    );
+    expect(asFragment()).toMatchSnapshot();    
+});

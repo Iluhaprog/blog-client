@@ -3,7 +3,17 @@
 exports[`Test view of tag box 1`] = `
 <DocumentFragment>
   <li
-    class="tag"
+    class="tag "
+  >
+    Test title
+  </li>
+</DocumentFragment>
+`;
+
+exports[`Test view of tag box with mode 1`] = `
+<DocumentFragment>
+  <li
+    class="tag test"
   >
     Test title
   </li>
