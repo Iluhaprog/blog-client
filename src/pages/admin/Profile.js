@@ -4,6 +4,7 @@ import { addError } from '../../actoins/error';
 import { setErrorCatch } from '../../util/SettingErrorCatch';
 import { ProfileForm } from "../../components/forms/ProfileForm";
 import { SocialLinks } from '../../components/SocialLinks';
+import { getUniqueName } from '../../util/string/string';
 
 const Profile = props => {
     const submit = values => {
@@ -13,7 +14,7 @@ const Profile = props => {
         
         if (avatar !== props.avatar) {
             const formData = new FormData();
-            formData.append('avatar', avatar);
+            formData.append('avatar', new File([avatar], getUniqueName(avatar.name)));
             props.updateAvatar(formData);
         }
         props.update(user);
