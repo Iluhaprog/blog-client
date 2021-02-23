@@ -24,7 +24,7 @@ function About(props) {
     useEffect(() => {
         props.getProjects();
         props.getAdminInfo();
-    });
+    }, []);
 
     return (
         <section className='main-page main-page__padding'>
