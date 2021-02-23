@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render Skills component 1`] = `
+<DocumentFragment>
+  <ul
+    class="row row_w-w skills"
+  >
+    <li
+      class="skills-title"
+    >
+      Skills:
+    </li>
+    <li
+      class="tag tag__violet"
+    >
+      test
+    </li>
+  </ul>
+</DocumentFragment>
+`;

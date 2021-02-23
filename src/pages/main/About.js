@@ -6,7 +6,6 @@ import { getAdminInfoFetch } from '../../actoins/user';
 import { 
     RoundBox,
     DescriptionBox,
-    TagBox,
     TitledBox,
 } from '../../components/boxes'
 import { 
@@ -15,6 +14,7 @@ import {
     Container 
 } from '../../components/containers';
 import ProjectCard from '../../components/ProjectCard/ProjectCard';
+import { Skills } from '../../components/Skills';
 import './styles.scss';
 
 function About(props) {
@@ -38,20 +38,7 @@ function About(props) {
                             title={`${props.firstName} ${props.lastName}`}
                             description={props.bio}
                         >
-                            <ul className='row'>
-                                <li className='skills-title'>
-                                    Skills: 
-                                </li>
-                                {
-                                    skills.map(skill => (
-                                        <TagBox 
-                                            key={skill}
-                                            title={skill}
-                                            mode='violet'
-                                        />
-                                    ))
-                                }
-                            </ul>
+                            <Skills skills={skills}/>
                         </DescriptionBox>
                     </Row>
                     <TitledBox title='Projects'>
