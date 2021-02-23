@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getAllFetch } from '../../actoins/project';
+import { getAdminInfoFetch } from '../../actoins/user';
 import { 
     RoundBox,
     DescriptionBox,
@@ -22,6 +23,7 @@ function About(props) {
 
     useEffect(() => {
         props.getProjects();
+        props.getAdminInfo();
     });
 
     return (
@@ -88,18 +90,21 @@ About.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    avatar: state.user.avatarImage,
-    firstName: state.user.firstName,
-    lastName: state.user.lastName,
-    bio: state.user.bio,
-    skills: state.user.skills,
+    avatar: state.user.adminInfo?.avatarImage,
+    firstName: state.user.adminInfo?.firstName,
+    lastName: state.user.adminInfo?.lastName,
+    bio: state.user.adminInfo?.bio,
+    skills: state.user.adminInfo?.skills,
     projects: state.project.array,
 });
 
 const mapDispatchToProps = dispatch => ({
     getProjects: () => {
         dispatch(getAllFetch(0, 10));
-    }
+    },
+    getAdminInfo: () => {
+        dispatch(getAdminInfoFetch());
+    },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(About);
