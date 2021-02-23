@@ -4,6 +4,7 @@ import {
     CLEAR, 
     LOGIN_ERROR,
     SET_USER_FETCH,
+    SET_ADMIN_INFO,
 } from '../actoins/user';
 
 const defaultUserState = {
@@ -20,10 +21,16 @@ const defaultUserState = {
     status: 0,
     isFetch: false,
     errorData: {},
+    adminInfo: {},
 };
 
 const userReduser = (state = defaultUserState, action) => {
     switch(action.type) {
+        case SET_ADMIN_INFO:
+            return {
+                ...state,
+                adminInfo: action.info,
+            };
         case SET_USER:
             return {
                 ...state,

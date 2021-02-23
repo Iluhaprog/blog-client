@@ -5,6 +5,7 @@ import {
     clearUser, 
     loginError, 
     setFetch,
+    setAdminInfo,
 } from '../../actoins/user';
 
 const initUserState = {
@@ -21,11 +22,21 @@ const initUserState = {
     status: 0,
     isFetch: false,
     errorData: {},
+    adminInfo: {},
 }
 
 describe('Test for user reduser', () => {
     test('Should return init state', () => {
         expect(UserReducer(undefined, {})).toEqual(initUserState);
+    });
+
+    test('Should handle SET_ADMIN_INFO action', () => {
+        expect(UserReducer(initUserState, setAdminInfo({ id: 1 }))).toEqual({
+            ...initUserState,
+            adminInfo: {
+                id: 1,
+            },
+        })
     });
 
     test('Should handle SET_USER', () => {

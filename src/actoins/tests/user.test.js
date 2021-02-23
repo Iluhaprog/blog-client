@@ -3,8 +3,20 @@ import thunk from 'redux-thunk'
 import MockAdapter from 'axios-mock-adapter';
 import api from '../../api/api';
 
-import { loginFetch, logoutFetch, createFetch, updateFetch, updateAvatarFetch } from '../user';
-import { login, setUser, clearUser, loginError, setFetch } from '../user';
+import { 
+    loginFetch, 
+    logoutFetch, 
+    createFetch, 
+    updateFetch, 
+    updateAvatarFetch,
+    getAdminInfoFetch,
+    login, 
+    setUser, 
+    clearUser, 
+    loginError, 
+    setFetch, 
+    setAdminInfo 
+} from '../user';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -23,6 +35,15 @@ const initUserState = {
 }
 
 describe('Test sync action creators', () => {
+
+    test('Should create SET_ADMIN_INFO action', () => {
+        const expectedActions = [
+            { type: 'SET_ADMIN_INFO', info: {} },
+        ];
+        const store = mockStore();
+        store.dispatch(setAdminInfo({}));
+        expect(store.getActions()).toEqual(expectedActions)
+    });
 
     test('Should create login error action ', () => {
         const expectedActions = [
@@ -79,6 +100,19 @@ describe('Test sync action creators', () => {
 
 describe('Test async action creators', () => {
     const mock = new MockAdapter(api);
+
+    test('Should create SET_ADMIN_INFO action', () => {
+        mock.onGet('/user/getById', { 
+            params: { id: process.env.REACT_APP_ADMIN_ID }
+        }).reply(200, {})
+        const expectedActions = [
+            { type: 'SET_ADMIN_INFO', info: {} },
+        ];
+        const store = mockStore();
+        return store.dispatch(getAdminInfoFetch()).then(() => {
+            expect(store.getActions()).toEqual(expectedActions);
+        });
+    });
 
     test('Should create login, set user action ', () => {
         const user = { data: 'user_data' };
