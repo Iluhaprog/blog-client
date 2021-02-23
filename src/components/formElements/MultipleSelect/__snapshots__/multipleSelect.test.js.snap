@@ -13,7 +13,7 @@ exports[`Test view of multiple select With values and options 1`] = `
         class="row row_jc-fs row_ai-c row_w-w"
       >
         <li
-          class="tag"
+          class="tag tag__"
         >
           11
         </li>

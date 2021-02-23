@@ -51,7 +51,7 @@ class MultipleSelect extends React.Component {
                             this.state.tags.map(value => (
                                 <TagBox 
                                     key={value.id}
-                                    title={value.title} 
+                                    title={value.title + ''} 
                                 />
                             ))
                         }

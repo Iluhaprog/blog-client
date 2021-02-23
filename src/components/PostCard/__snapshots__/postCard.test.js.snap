@@ -71,17 +71,17 @@ exports[`Test post card view Should view post card (canEdit is false) 1`] = `
             class="row row_jc-fs row_ai-c row_w-w"
           >
             <li
-              class="tag"
+              class="tag tag__"
             >
               React
             </li>
             <li
-              class="tag"
+              class="tag tag__"
             >
               JS
             </li>
             <li
-              class="tag"
+              class="tag tag__"
             >
               NODEJS
             </li>
@@ -182,17 +182,17 @@ exports[`Test post card view Should view post card (canEdit is true) 1`] = `
             class="row row_jc-fs row_ai-c row_w-w"
           >
             <li
-              class="tag"
+              class="tag tag__"
             >
               React
             </li>
             <li
-              class="tag"
+              class="tag tag__"
             >
               JS
             </li>
             <li
-              class="tag"
+              class="tag tag__"
             >
               NODEJS
             </li>
