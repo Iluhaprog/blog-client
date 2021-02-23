@@ -1,0 +1,40 @@
+@import '../../../vars.scss';
+
+.description-box {
+    max-width: 600px;
+    margin: 40px;
+    padding: 20px;
+    background-color: $description-bg;
+    border-radius: 10px;
+    box-shadow: $shadow-2;
+    font-family: $main-font;
+    border: $border-2;
+
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    &__title {
+        font-size: 36px;
+        font-weight: 300;
+        color: $text-color-8;
+    }
+
+    &__description {
+        max-height: 150px;
+        overflow-y: scroll;
+        font-size: 18px;
+        word-spacing: 1px;
+        line-height: 26px;
+        color: $text-color-6;
+        padding: 10px;
+        border-radius: 5px;
+        border: $border-2;
+
+        @media screen and (max-width: 414px) {
+            max-height: 300px;
+        }
+    }
+}

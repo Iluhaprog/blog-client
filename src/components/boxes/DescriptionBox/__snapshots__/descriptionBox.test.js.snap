@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render a description box 1`] = `
+<DocumentFragment>
+  <div
+    class="description-box"
+  >
+    <div
+      class="column   "
+    >
+      <h1
+        class="description-box__title"
+      >
+        test title
+      </h1>
+      <p
+        class="description-box__description"
+      >
+        test description
+      </p>
+      <div>
+        <p>
+          test children
+        </p>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
