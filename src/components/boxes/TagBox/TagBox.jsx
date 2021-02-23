@@ -4,7 +4,7 @@ import './tagBox.scss';
 
 function TagBox(props) {
     return (
-        <li className={`tag ${props.mode}`}>
+        <li className={`tag tag__${props.mode}`}>
             { props.title }
         </li>
     );
