@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { LabeledButton } from '../buttons';
 import { Row, Column } from '../containers';
 import { SocialLinkForm } from '../forms';
-import { Loader } from '../loaders/Loader';
+import { UploadLoader } from '../loaders/UploadLoader';
 import './socialLinks.scss';
 
 function SocialLinks(props) {
@@ -21,7 +21,7 @@ function SocialLinks(props) {
                         Socials
                     </h3>
                     <Row justifyContent='fe'>
-                        <Loader visible={props.isFetch}/>
+                        <UploadLoader visible={props.isFetch}/>
                         <LabeledButton
                             text='Add'
                             onClick={() => {

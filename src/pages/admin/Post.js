@@ -13,7 +13,7 @@ import {
 import { ImageLoaderForm, PostForm } from '../../components/forms';
 import { Row } from '../../components/containers';
 import FilesViewer from '../../components/FilesViewer/FilesViewer';
-import { Loader } from '../../components/loaders/Loader';
+import { UploadLoader } from '../../components/loaders/UploadLoader';
 import { getUniqueName } from '../../util/string/string';
 import { addError } from '../../actoins/error';
 import { setErrorCatch } from '../../util/SettingErrorCatch';
@@ -61,7 +61,7 @@ const Post = props => {
             <div className='admin-page__header'>
                 <Row alignItems='c'>
                     <h1>{props.selected.title}</h1>
-                    <Loader visible={props.isFetch}/>
+                    <UploadLoader visible={props.isFetch}/>
                 </Row>
             </div>
             <Row>

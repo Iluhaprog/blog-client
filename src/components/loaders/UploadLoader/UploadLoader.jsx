@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import loader from '../../../assets/loader.svg';
-import './loader.scss';
+import './uploadLoader.scss';
 
-function Loader(props){
+function UploadLoader(props){
     return (
         <>
             <img 
@@ -17,16 +17,16 @@ function Loader(props){
     );
 }
 
-Loader.defaultProps = {
+UploadLoader.defaultProps = {
     width: 30,
     height: 30,
     visible: false,
 };
 
-Loader.propTypes = {
+UploadLoader.propTypes = {
     width: PropTypes.number,
     height: PropTypes.number,
     visible: PropTypes.bool,
 };
 
-export default Loader;
+export default UploadLoader;

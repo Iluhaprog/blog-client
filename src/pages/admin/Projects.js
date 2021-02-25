@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 import { useHistory, useParams } from 'react-router-dom';
 import { setModal } from '../../actoins/modal';
 import { Pagination } from '../../components/Pagination';
-import { Loader } from '../../components/loaders/Loader';
+import { UploadLoader } from '../../components/loaders/UploadLoader';
 import { addError } from '../../actoins/error';
 import { setErrorCatch } from '../../util/SettingErrorCatch';
 
@@ -47,7 +47,7 @@ const Projects = props => {
                     <Row justifyContent='sb' alignItems='c'>
                         <h1>Projects</h1>
                         <Row>
-                            <Loader visible={isFetch}/>
+                            <UploadLoader visible={isFetch}/>
                             <LabeledButton 
                                 text='New'
                                 onClick={() => {

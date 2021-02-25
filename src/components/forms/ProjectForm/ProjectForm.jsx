@@ -8,7 +8,7 @@ import {
 } from '../../formElements';
 import './projectForm.scss';
 import { PrimaryButton } from '../../buttons';
-import { Loader } from '../../loaders/Loader';
+import { UploadLoader } from '../../loaders/UploadLoader';
 
 export default props => {
     const { handleSubmit, isFetch } = props;
@@ -52,7 +52,7 @@ export default props => {
                     <PrimaryButton 
                         text='Save'
                     />
-                    <Loader visible={isFetch} />
+                    <UploadLoader visible={isFetch} />
                 </Row>
             </div>
         </form>

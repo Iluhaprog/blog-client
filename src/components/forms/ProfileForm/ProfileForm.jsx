@@ -5,7 +5,7 @@ import { Row } from '../../containers';
 import { SendButton } from '../../buttons';
 import { DropZone, LabeledInput, Textarea } from '../../formElements';
 import { HintBox } from '../../boxes';
-import { Loader } from '../../loaders/Loader';
+import { UploadLoader } from '../../loaders/UploadLoader';
 import './profileForm.scss';
 
 function ProfileForm(props) {
@@ -78,7 +78,7 @@ function ProfileForm(props) {
             </div>
             <Row justifyContent='fs'>
                 <SendButton text='Apply' />
-                <Loader
+                <UploadLoader
                     visible={isFetch}
                 />
             </Row>

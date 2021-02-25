@@ -6,7 +6,7 @@ import {
     LabeledToggler 
 } from '../../formElements';
 import { PrimaryButton } from '../../buttons';
-import { Loader } from '../../loaders/Loader';
+import { UploadLoader } from '../../loaders/UploadLoader';
 import { Row } from '../../containers';
 import './settingsForm.scss';
 
@@ -42,7 +42,7 @@ export default props => {
                     <PrimaryButton 
                         text='Apply'
                     />
-                    <Loader visible={isFetch} />
+                    <UploadLoader visible={isFetch} />
                 </Row>
             </div>
         </form>
