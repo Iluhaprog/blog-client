@@ -2,13 +2,16 @@
 
 exports[`Should return loader view (visible false) 1`] = `
 <DocumentFragment>
-  <img
-    alt="loading..."
+  <div
     class="loader "
-    height="30"
-    src="loader.svg"
-    width="30"
-  />
+  >
+    <img
+      alt="loading..."
+      height="30"
+      src="loader.svg"
+      width="30"
+    />
+  </div>
 </DocumentFragment>
 `;
 

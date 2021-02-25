@@ -1,9 +1,4 @@
 .loader {
-    opacity: 0;
-    transition: .01s ease-in-out;
     margin: 5px 15px;
-
-    &_visible {
-        opacity: 1;
-    }
+    transition-duration: .01s;
 }
