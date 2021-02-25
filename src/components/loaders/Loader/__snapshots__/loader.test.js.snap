@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render loader component (visible false) 1`] = `
+<DocumentFragment>
+  <div
+    class="loader "
+  >
+    Loading...
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Should render loader component (visible true) 1`] = `
+<DocumentFragment>
+  <div
+    class="loader loader_visible"
+  >
+    Loading...
+  </div>
+</DocumentFragment>
+`;
