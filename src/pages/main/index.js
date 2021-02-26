@@ -12,7 +12,7 @@ import './styles.scss';
 function Main(props) {
     return (
         <div className='main'>
-            <header className='main__box main__box_stiky'>
+            <header className='main__box main__box_sticky'>
                 <MainNav isAuth={props.isAuth}/>
             </header>
             <main className='main__box'>
