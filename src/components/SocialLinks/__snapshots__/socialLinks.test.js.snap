@@ -19,13 +19,16 @@ exports[`test view of social links components 1`] = `
         <div
           class="row row_jc-fe  "
         >
-          <img
-            alt="loading..."
+          <div
             class="loader "
-            height="30"
-            src="loader.svg"
-            width="30"
-          />
+          >
+            <img
+              alt="loading..."
+              height="30"
+              src="loader.svg"
+              width="30"
+            />
+          </div>
           <button
             class="button default-button labeled-button"
           >

@@ -79,13 +79,16 @@ exports[`Test view of settings form Should return view of settings form 1`] = `
         >
           Apply
         </button>
-        <img
-          alt="loading..."
+        <div
           class="loader "
-          height="30"
-          src="loader.svg"
-          width="30"
-        />
+        >
+          <img
+            alt="loading..."
+            height="30"
+            src="loader.svg"
+            width="30"
+          />
+        </div>
       </div>
     </div>
   </form>

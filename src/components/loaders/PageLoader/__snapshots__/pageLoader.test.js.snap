@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render PageLoader component 1`] = `
+<DocumentFragment>
+  <div
+    class="loader "
+  >
+    <div
+      class="page-loader"
+    >
+      <h2
+        class="page-loader__title"
+      >
+        Hello!
+      </h2>
+      <h3
+        class="page-loader__subtitle"
+      >
+        Welcome to my blog!
+      </h3>
+      <div
+        class="page-loader__animation"
+      >
+        <span />
+        <span />
+        <span />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

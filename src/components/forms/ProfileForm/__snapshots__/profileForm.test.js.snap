@@ -165,13 +165,16 @@ exports[`Test for profile form view Should have values from inital state 1`] = `
       >
         Apply
       </button>
-      <img
-        alt="loading..."
+      <div
         class="loader "
-        height="30"
-        src="loader.svg"
-        width="30"
-      />
+      >
+        <img
+          alt="loading..."
+          height="30"
+          src="loader.svg"
+          width="30"
+        />
+      </div>
     </div>
   </form>
 </DocumentFragment>
