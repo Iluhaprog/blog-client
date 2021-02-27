@@ -17,8 +17,11 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    height: 100vh;
     background-color: #fff;
+
+    &__big {
+        height: 100vh;
+    }
 }
 
 .page-loader {

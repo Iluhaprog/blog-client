@@ -5,7 +5,7 @@ import './loader.scss';
 function Loader(props) {
     const isVisible = props.visible ? 'loader_visible' : '';
     return (
-        <div className={`loader ${isVisible}`}>
+        <div className={`loader ${isVisible} ${props.className}`}>
             {props.children}
         </div>
     );

@@ -5,7 +5,7 @@ import './pageLoader.scss';
 
 function PageLoader(props) {
     return (
-        <Loader visible={props.visible}>
+        <Loader visible={props.visible} className='loader__big'>
             <div className='page-loader'>
                 <h2 className='page-loader__title'>Hello!</h2>
                 <h3 className='page-loader__subtitle'>
