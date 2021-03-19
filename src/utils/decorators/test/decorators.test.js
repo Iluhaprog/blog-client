@@ -92,3 +92,20 @@ test('createFetchToggler', () => {
     type: TEST_ACTION,
   });
 });
+
+test('createDeclarator', async () => {
+  const funcs = {
+    toggleFetch: () => {},
+    request: (dispatch, id) => Promise.resolve(id),
+    handleError: (err) => {},
+  };
+  const result = decorators.createDeclarator(
+      funcs.toggleFetch,
+      funcs.handleError,
+  );
+  const request = jest.fn().mockResolvedValueOnce(Promise.resolve());
+
+  await result(request)()(() => {});
+
+  expect(request).toHaveBeenCalled();
+});

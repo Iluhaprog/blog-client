@@ -36,6 +36,19 @@ export function declareAyncActionCreator(toggleFetch, request, errorHandler) {
 }
 
 /**
+ * @param {Function} toggleFetch
+ * @param {Function} errorHandler
+ * @return {Function} Return action creator
+ */
+export function createDeclarator(toggleFetch, errorHandler) {
+  return (request) => declareAyncActionCreator(
+      toggleFetch,
+      request,
+      errorHandler,
+  );
+}
+
+/**
  * @param {string} type
  * @return {function(): {type: *}}
  */
