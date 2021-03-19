@@ -16,8 +16,68 @@ test('requestWithToken', () => {
   const answer = decorators.requestWithToken(obj.func);
 
   expect(localStorage.getItem).toBeCalled();
-  expect(localStorage.getItem).toBeCalledWith(process.env.REACT_APP_ACCESS_TOKEN_KEY);
+  expect(localStorage.getItem)
+      .toBeCalledWith(process.env.REACT_APP_ACCESS_TOKEN_KEY);
   expect(obj.func).toBeCalled();
   expect(obj.func).toBeCalledWith(returnValue);
   expect(answer).toEqual(returnValue);
+});
+
+test('declarateActionCreator (success)', async () => {
+  const funcs = {
+    toggleFetch: () => {},
+    request: (dispatch, id) => Promise.resolve(id),
+    handleError: (err) => {},
+    dispatch: () => {},
+  };
+
+  const id = 1;
+  jest.spyOn(funcs, 'toggleFetch').mockReturnValue(undefined);
+  jest.spyOn(funcs, 'request').mockResolvedValueOnce(id);
+  jest.spyOn(funcs, 'dispatch');
+
+  const actionCreator = decorators.declarateActionCreator(
+      funcs.toggleFetch,
+      funcs.request,
+      funcs.handleError,
+  );
+  const dispatchedActionCreator = actionCreator(id);
+  const promiseResult = await dispatchedActionCreator(funcs.dispatch);
+
+  expect(promiseResult).toBe(id);
+  expect(funcs.toggleFetch).toBeCalledTimes(2);
+  expect(funcs.dispatch).toBeCalledTimes(2);
+  expect(funcs.request).toBeCalledTimes(1);
+  expect(funcs.request).toBeCalledWith(funcs.dispatch, id);
+});
+
+
+test('declarateActionCreator (fail)', async () => {
+  const funcs = {
+    toggleFetch: () => {},
+    request: (dispatch, id) => Promise.resolve(id),
+    handleError: (err) => {},
+    dispatch: () => {},
+  };
+
+  const id = 1;
+  const error = new Error('error');
+  jest.spyOn(funcs, 'toggleFetch').mockReturnValue(undefined);
+  jest.spyOn(funcs, 'request').mockRejectedValueOnce(error);
+  jest.spyOn(funcs, 'handleError');
+  jest.spyOn(funcs, 'dispatch');
+
+  const actionCreator = decorators.declarateActionCreator(
+      funcs.toggleFetch,
+      funcs.request,
+      funcs.handleError,
+  );
+  const dispatchedActionCreator = actionCreator(id);
+  await dispatchedActionCreator(funcs.dispatch);
+
+  expect(funcs.toggleFetch).toBeCalledTimes(2);
+  expect(funcs.dispatch).toBeCalledTimes(3);
+  expect(funcs.request).toBeCalledTimes(1);
+  expect(funcs.handleError).toBeCalledTimes(1);
+  expect(funcs.handleError).toBeCalledWith(error);
 });

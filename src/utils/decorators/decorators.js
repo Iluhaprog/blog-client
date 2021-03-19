@@ -11,3 +11,26 @@ export function requestWithToken(func) {
   };
   return func(headers);
 }
+
+/**
+ * @param {Function} toggleFetch
+ * @param {Function} request
+ * @param {Function} errorHandler
+ * @return {Function} Return action creator
+ */
+export function declarateActionCreator(toggleFetch, request, errorHandler) {
+  return (...args) => (dispatch) => {
+    dispatch(toggleFetch());
+    return request(dispatch, ...args)
+        .then(
+            (data) => {
+              dispatch(toggleFetch());
+              return data;
+            },
+            (err) => {
+              dispatch(toggleFetch());
+              dispatch(errorHandler(err));
+            },
+        );
+  };
+}
