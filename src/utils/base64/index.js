@@ -1,4 +1,4 @@
-import { base64Encode} from "./base64";
+import {base64Encode} from './base64';
 export {
-    base64Encode,
+  base64Encode,
 };

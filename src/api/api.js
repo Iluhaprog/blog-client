@@ -1,6 +1,8 @@
-import axios from "axios";
+import axios from 'axios';
+
+const {REACT_APP_API_URL, REACT_APP_TIMEOUT} = process.env;
 
 export const api = axios.create({
-    baseURL: process.env.REACT_APP_API_URL,
-    timeout: process.env.REACT_APP_TIMEOUT,
+  baseURL: REACT_APP_API_URL,
+  timeout: REACT_APP_TIMEOUT,
 });
