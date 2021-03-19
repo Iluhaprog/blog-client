@@ -36,7 +36,7 @@ test('declarateActionCreator (success)', async () => {
   jest.spyOn(funcs, 'request').mockResolvedValueOnce(id);
   jest.spyOn(funcs, 'dispatch');
 
-  const actionCreator = decorators.declarateActionCreator(
+  const actionCreator = decorators.declareAyncActionCreator(
       funcs.toggleFetch,
       funcs.request,
       funcs.handleError,
@@ -67,7 +67,7 @@ test('declarateActionCreator (fail)', async () => {
   jest.spyOn(funcs, 'handleError');
   jest.spyOn(funcs, 'dispatch');
 
-  const actionCreator = decorators.declarateActionCreator(
+  const actionCreator = decorators.declareAyncActionCreator(
       funcs.toggleFetch,
       funcs.request,
       funcs.handleError,

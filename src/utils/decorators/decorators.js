@@ -18,7 +18,7 @@ export function requestWithToken(func) {
  * @param {Function} errorHandler
  * @return {Function} Return action creator
  */
-export function declarateActionCreator(toggleFetch, request, errorHandler) {
+export function declareAyncActionCreator(toggleFetch, request, errorHandler) {
   return (...args) => (dispatch) => {
     dispatch(toggleFetch());
     return request(dispatch, ...args)
