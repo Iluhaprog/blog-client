@@ -34,3 +34,11 @@ export function declareAyncActionCreator(toggleFetch, request, errorHandler) {
         );
   };
 }
+
+/**
+ * @param {string} type
+ * @return {function(): {type: *}}
+ */
+export function createFetchToggler(type) {
+  return () => ({type});
+}

@@ -1,4 +1,5 @@
 import {decorators} from '..';
+import {createFetchToggler} from '../decorators';
 
 test('requestWithToken', () => {
   const obj = {
@@ -80,4 +81,14 @@ test('declarateActionCreator (fail)', async () => {
   expect(funcs.request).toBeCalledTimes(1);
   expect(funcs.handleError).toBeCalledTimes(1);
   expect(funcs.handleError).toBeCalledWith(error);
+});
+
+test('createFetchToggler', () => {
+  const TEST_ACTION = 'TEST_ACTION';
+  const toggleFetch = createFetchToggler(TEST_ACTION);
+  const result = toggleFetch();
+
+  expect(result).toEqual({
+    type: TEST_ACTION,
+  });
 });
