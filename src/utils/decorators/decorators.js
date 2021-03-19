@@ -18,7 +18,7 @@ export function requestWithToken(func) {
  * @param {Function} errorHandler
  * @return {Function} Return action creator
  */
-export function declareAyncActionCreator(toggleFetch, request, errorHandler) {
+export function declareAsyncActionCreator(toggleFetch, request, errorHandler) {
   return (...args) => (dispatch) => {
     dispatch(toggleFetch());
     return request(dispatch, ...args)
@@ -41,7 +41,7 @@ export function declareAyncActionCreator(toggleFetch, request, errorHandler) {
  * @return {Function} Return action creator
  */
 export function createDeclarator(toggleFetch, errorHandler) {
-  return (request) => declareAyncActionCreator(
+  return (request) => declareAsyncActionCreator(
       toggleFetch,
       request,
       errorHandler,
