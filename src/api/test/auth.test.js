@@ -53,7 +53,7 @@ describe('Auth api module', () => {
       return [HttpStatus.OK];
     });
 
-    const {status} = await auth.refreshToken();
+    const {status} = await auth.logout();
 
     expect(status).toBe(HttpStatus.OK);
   });
@@ -66,7 +66,7 @@ describe('Auth api module', () => {
       return [HttpStatus.OK];
     });
 
-    const {status} = await auth.refreshToken();
+    const {status} = await auth.logoutAll();
 
     expect(status).toBe(HttpStatus.OK);
   });
