@@ -1,4 +1,5 @@
 import * as dir from './directoryActions';
+import {removeLast} from '../../utils/array';
 
 export const initialState = {
   directories: [],
@@ -18,15 +19,10 @@ export const dirReducer = (state = initialState, action) => {
         ...state,
         directories: [
           action.dir,
-          ...(() => {
-            const maxLen = process.env.REACT_APP_PAGINATION_LIMIT;
-            if (state.directories.length < maxLen) {
-              return [...state.directories];
-            }
-            return [
-              ...state.directories.slice(0, state.directories.length - 1),
-            ];
-          })(),
+          ...removeLast(state.directories, (arr) => {
+            const maxLength = process.env.REACT_APP_PAGINATION_LIMIT;
+            return arr.length >= maxLength;
+          }),
         ],
       };
     case dir.FILL_DIRS_ARRAY:
