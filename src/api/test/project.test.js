@@ -23,15 +23,17 @@ describe('Project api module', () => {
 
   test('/project (POST)', async () => {
     const newProject = {title: 'TEST_PROJECT_TITLE'};
+    const projectResult = {id: 1, ...newProject};
     mock.onPost('/project').reply((config) => {
       const {headers, data} = config;
       expect(headers['Authorization']).toBe(`Bearer ${token}`);
       expect(data).toBe(JSON.stringify(newProject));
-      return [HttpStatus.CREATED];
+      return [HttpStatus.CREATED, projectResult];
     });
 
-    const {status} = await project.create(newProject);
+    const {status, data} = await project.create(newProject);
 
+    expect(data).toEqual(projectResult);
     expect(status).toBe(HttpStatus.CREATED);
   });
 

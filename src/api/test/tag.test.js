@@ -22,15 +22,17 @@ describe('Tag api module', () => {
 
   test('/tag (POST)', async () => {
     const newTag = {title: 'TEST_TAG_TITLE'};
+    const tagResult = {id: 1, ...newTag};
     mock.onPost('/tag').reply((config) => {
       const {headers, data} = config;
       expect(headers['Authorization']).toBe(`Bearer ${token}`);
       expect(data).toBe(JSON.stringify(newTag));
-      return [HttpStatus.CREATED];
+      return [HttpStatus.CREATED, tagResult];
     });
 
-    const {status} = await tag.create(newTag);
+    const {status, data} = await tag.create(newTag);
 
+    expect(data).toEqual(tagResult);
     expect(status).toBe(HttpStatus.CREATED);
   });
 

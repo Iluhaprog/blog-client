@@ -32,15 +32,17 @@ describe('File api module', () => {
       type: 'text/plain',
     });
     fd.append('file', newFile);
+    const fileResult = {id: 1, name: 'test.txt'};
     mock.onPost('/file').reply((config) => {
       const {headers, data} = config;
       expect(headers['Authorization']).toBe(`Bearer ${token}`);
       expect(data).toEqual(fd);
-      return [HttpStatus.CREATED];
+      return [HttpStatus.CREATED, fileResult];
     });
 
-    const {status} = await file.create(fd, dirId);
+    const {status, data} = await file.create(fd, dirId);
 
+    expect(data).toEqual(fileResult);
     expect(status).toBe(HttpStatus.CREATED);
   });
 

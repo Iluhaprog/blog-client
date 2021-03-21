@@ -23,15 +23,17 @@ describe('Social api module', () => {
 
   test('/social (POST)', async () => {
     const newSocial = {title: 'TEST_SOCIAL_TITLE'};
+    const socialResult = {id: 1, ...newSocial};
     mock.onPost('/social').reply((config) => {
       const {headers, data} = config;
       expect(headers['Authorization']).toBe(`Bearer ${token}`);
       expect(data).toBe(JSON.stringify(newSocial));
-      return [HttpStatus.CREATED];
+      return [HttpStatus.CREATED, socialResult];
     });
 
-    const {status} = await social.create(newSocial);
+    const {status, data} = await social.create(newSocial);
 
+    expect(data).toEqual(socialResult);
     expect(status).toBe(HttpStatus.CREATED);
   });
 

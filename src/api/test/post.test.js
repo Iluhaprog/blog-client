@@ -67,15 +67,17 @@ describe('Post api module', () => {
 
   test('/post (POST)', async () => {
     const newPost = {title: 'TEST_POST_TITLE'};
+    const postResult = {id: 1, ...newPost};
     mock.onPost('/post').reply((config) => {
       const {headers, data} = config;
       expect(headers['Authorization']).toBe(`Bearer ${token}`);
       expect(data).toBe(JSON.stringify(newPost));
-      return [HttpStatus.CREATED];
+      return [HttpStatus.CREATED, postResult];
     });
 
-    const {status} = await post.create(newPost);
+    const {status, data} = await post.create(newPost);
 
+    expect(data).toEqual(postResult);
     expect(status).toBe(HttpStatus.CREATED);
   });
 

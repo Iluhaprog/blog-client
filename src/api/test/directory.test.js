@@ -27,15 +27,17 @@ describe('File api module', () => {
 
   test('/directory (POST)', async () => {
     const dirData = {name: 'TEST_DIR_NAME'};
+    const dirResult = {id: 1, ...dirData};
     mock.onPost('/directory').reply((config) => {
       const {headers, data} = config;
       expect(headers['Authorization']).toBe(`Bearer ${token}`);
       expect(data).toBe(JSON.stringify(dirData));
-      return [HttpStatus.CREATED];
+      return [HttpStatus.CREATED, dirResult];
     });
 
-    const {status} = await dir.create(dirData);
+    const {status, data} = await dir.create(dirData);
 
+    expect(data).toEqual(dirResult);
     expect(status).toBe(HttpStatus.CREATED);
   });
 
