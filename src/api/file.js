@@ -21,6 +21,20 @@ export function getAll(
 }
 
 /**
+ * @param {number} dirId
+ * @param {string} order
+ * @return {Promise<AxiosResponse<any>>}
+ */
+export function getByDirId(dirId, order = Filter.DESC) {
+  return api.get(`${FILE_URL}/by-dir`, {
+    params: {
+      dirId,
+      order,
+    },
+  });
+}
+
+/**
  * @param {FormData} formData
  * @param {number} dirId
  * @return {Promise<AxiosResponse<any>>}

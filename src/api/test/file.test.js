@@ -16,14 +16,35 @@ describe('File api module', () => {
     const fileData = {name: 'TEST_FILE_NAME'};
     const page = 1;
     const limit = process.env.REACT_APP_PAGINATION_LIMIT;
+    const response = {
+      data: [fileData],
+      total: 1,
+    };
     mock.onGet('/file', {
       params: {page, limit, order: Filter.DESC},
-    }).reply(HttpStatus.OK, [fileData]);
+    }).reply(HttpStatus.OK, response);
 
     const {status, data} = await file.getAll(page);
 
     expect(status).toBe(HttpStatus.OK);
-    expect(data).toEqual([fileData]);
+    expect(data).toEqual(response);
+  });
+
+  test('/file/by-dir/{dirId}/{order} (GET)', async () => {
+    const fileData = {name: 'TEST_FILE_NAME'};
+    const dirId = 1;
+    const response = {
+      data: [fileData],
+      total: 1,
+    };
+    mock.onGet('/file/by-dir', {
+      params: {dirId, order: Filter.DESC},
+    }).reply(HttpStatus.OK, response);
+
+    const {status, data} = await file.getByDirId(dirId);
+
+    expect(status).toBe(HttpStatus.OK);
+    expect(data).toEqual(response);
   });
 
   test('/file (POST)', async () => {
