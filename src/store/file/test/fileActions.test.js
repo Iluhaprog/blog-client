@@ -75,6 +75,29 @@ describe('File action creators', () => {
     });
   });
 
+  test('Should create FILL_FILES_ARRAY action (async getByDirId)', () => {
+    const fileData = {name: 'TEST_FILE_NAME'};
+    const data = {
+      data: [fileData],
+      total: 1,
+    };
+    const dirId = 1;
+    mock.onGet('/file/by-dir', {
+      params: {dirId, order: Filter.DESC},
+    }).reply(HttpStatus.OK, data);
+    const expectedActions = [
+      {type: file.TOGGLE_FILE_FETCH},
+      {type: file.FILL_FILES_ARRAY, files: data},
+      {type: file.TOGGLE_FILE_FETCH},
+    ];
+    const store = mockStore({});
+
+    return store.dispatch(file.getByDirId(dirId)).then(() => {
+      const actions = store.getActions();
+      expect(actions).toEqual(expectedActions);
+    });
+  });
+
   test('Should create ADD_FILE action (async create)', () => {
     const dirId = 1;
     const newFile = new File(['foo'], 'test.txt', {

@@ -41,6 +41,15 @@ export const getAll = fileAsynActionCreator(
     },
 );
 
+export const getByDirId = fileAsynActionCreator(
+    (dispatch, dirId) => {
+      return file.getByDirId(dirId).then((response) => {
+        const {data} = response;
+        dispatch(fillFilesArray(data));
+      });
+    },
+);
+
 export const create = fileAsynActionCreator(
     (dispatch, formData, dirId) => {
       return file.create(formData, dirId).then((response) => {
