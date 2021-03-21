@@ -68,10 +68,11 @@ describe('Directory action creators', () => {
   test('Should create ADD_DIR action (async create)', () => {
     const store = mockStore({});
     const dirData = {name: 'TEST_DIR'};
+    const resultData = {id: 1, ...dirData};
     const token = 'TEST_TOKEN';
     const expectedActions = [
       {type: dir.TOGGLE_DIR_FETCH},
-      {type: dir.ADD_DIR, dir: dirData},
+      {type: dir.ADD_DIR, dir: resultData},
       {type: dir.TOGGLE_DIR_FETCH},
     ];
 
@@ -80,7 +81,7 @@ describe('Directory action creators', () => {
       const {headers, data} = config;
       expect(headers['Authorization']).toBe(`Bearer ${token}`);
       expect(data).toBe(JSON.stringify(dirData));
-      return [HttpStatus.CREATED];
+      return [HttpStatus.CREATED, resultData];
     });
 
     return store.dispatch(dir.create(dirData)).then(() => {

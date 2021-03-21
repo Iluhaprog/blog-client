@@ -43,8 +43,9 @@ export const getAll = dirAsyncActionCreator(
 
 export const create = dirAsyncActionCreator(
     (dispatch, dir) => {
-      return directory.create(dir).then((_) => {
-        dispatch(addDir(dir));
+      return directory.create(dir).then((response) => {
+        const {data} = response;
+        dispatch(addDir(data));
       });
     },
 );
