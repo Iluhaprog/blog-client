@@ -37,11 +37,16 @@ describe('directoryReducer', () => {
   test('Should handle FILL_DIRS_ARRAY action', () => {
     const testDir = {name: 'TEST_DIR'};
     const dirs = Array(10).fill(testDir);
-    const result = dirReducer(initialState, dir.fillDirsArray(dirs));
+    const data = {
+      data: dirs,
+      total: 10,
+    };
+    const result = dirReducer(initialState, dir.fillDirsArray(data));
 
     expect(result).toEqual({
       ...initialState,
       directories: dirs,
+      total: 10,
     });
   });
 

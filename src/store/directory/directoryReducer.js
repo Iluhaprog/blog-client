@@ -28,7 +28,8 @@ export const dirReducer = (state = initialState, action) => {
     case dir.FILL_DIRS_ARRAY:
       return {
         ...state,
-        directories: action.dirs,
+        directories: action.dirs?.data || [],
+        total: action.dirs?.total || 0,
       };
     case dir.REMOVE_DIR:
       return {
