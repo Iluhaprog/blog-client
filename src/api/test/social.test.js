@@ -2,6 +2,7 @@ import MockAdapter from 'axios-mock-adapter';
 import {api} from '../api';
 import * as social from '../social';
 import {HttpStatus} from '../status';
+import {Filter} from '../filters';
 
 describe('Social api module', () => {
   const mock = new MockAdapter(api);
@@ -13,7 +14,11 @@ describe('Social api module', () => {
 
   test('/social (GET)', async () => {
     const socialData = {title: 'TEST_SOCIAL_TITLE'};
-    mock.onGet('/social').reply(HttpStatus.OK, [socialData]);
+    mock.onGet('/social', {
+      params: {
+        order: Filter.DESC,
+      },
+    }).reply(HttpStatus.OK, [socialData]);
 
     const {status, data} = await social.getAll();
 

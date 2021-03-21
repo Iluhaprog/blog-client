@@ -2,6 +2,7 @@ import MockAdapter from 'axios-mock-adapter';
 import {api} from '../api';
 import {HttpStatus} from '../status';
 import * as file from '../file';
+import {Filter} from '../filters';
 
 describe('File api module', () => {
   const mock = new MockAdapter(api);
@@ -11,12 +12,12 @@ describe('File api module', () => {
     jest.spyOn(localStorage, 'getItem').mockReturnValue(token);
   });
 
-  test('/file/{page}/{limit} (GET)', async () => {
+  test('/file/{page}/{limit}/{order} (GET)', async () => {
     const fileData = {name: 'TEST_FILE_NAME'};
     const page = 1;
     const limit = process.env.REACT_APP_PAGINATION_LIMIT;
     mock.onGet('/file', {
-      params: {page, limit},
+      params: {page, limit, order: Filter.DESC},
     }).reply(HttpStatus.OK, [fileData]);
 
     const {status, data} = await file.getAll(page);

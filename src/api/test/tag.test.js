@@ -2,6 +2,7 @@ import MockAdapter from 'axios-mock-adapter';
 import {api} from '../api';
 import {HttpStatus} from '../status';
 import * as tag from '../tag';
+import {Filter} from '../filters';
 
 describe('Tag api module', () => {
   const mock = new MockAdapter(api);
@@ -13,7 +14,11 @@ describe('Tag api module', () => {
 
   test('/tag (GET)', async () => {
     const tagData = {title: 'TEST_TAG_TITLE'};
-    mock.onGet('/tag').reply(HttpStatus.OK, [tagData]);
+    mock.onGet('/tag', {
+      params: {
+        order: Filter.DESC,
+      },
+    }).reply(HttpStatus.OK, [tagData]);
     const {status, data} = await tag.getAll();
 
     expect(status).toBe(HttpStatus.OK);

@@ -1,5 +1,6 @@
 import {api} from './api';
 import {requestWithToken} from '../utils/decorators/decorators';
+import {Filter} from './filters';
 
 const POST_URL = '/post';
 
@@ -17,13 +18,18 @@ export function getByTags(tags) {
 }
 
 /**
+ * @param {string} order
  * @param {number} page
  * @param {number} limit
  * @return {Promise<AxiosResponse<any>>}
  */
-export function getAll(page, limit = process.env.REACT_APP_PAGINATION_LIMIT) {
+export function getAll(
+    page,
+    limit = process.env.REACT_APP_PAGINATION_LIMIT,
+    order = Filter.DESC,
+) {
   return api.get(POST_URL, {
-    params: {page, limit},
+    params: {page, limit, order},
   });
 }
 

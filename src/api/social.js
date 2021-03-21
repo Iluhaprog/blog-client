@@ -1,13 +1,19 @@
 import {api} from './api';
 import {requestWithToken} from '../utils/decorators/decorators';
+import {Filter} from './filters';
 
 const SOCIAL_URL = '/social';
 
 /**
+ * @param {string} order
  * @return {Promise<AxiosResponse<any>>}
  */
-export function getAll() {
-  return api.get(SOCIAL_URL);
+export function getAll(order = Filter.DESC) {
+  return api.get(SOCIAL_URL, {
+    params: {
+      order,
+    },
+  });
 }
 
 /**

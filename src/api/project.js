@@ -1,13 +1,19 @@
 import {api} from './api';
 import {requestWithToken} from '../utils/decorators/decorators';
+import {Filter} from './filters';
 
 const PROJECT_URL = '/project';
 
 /**
+ * @param {string} order
  * @return {Promise<AxiosResponse<any>>}
  */
-export function getAll() {
-  return api.get(PROJECT_URL);
+export function getAll(order = Filter.DESC) {
+  return api.get(PROJECT_URL, {
+    params: {
+      order,
+    },
+  });
 }
 
 /**

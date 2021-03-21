@@ -4,6 +4,7 @@ import {api} from '../../../api/api';
 import thunk from 'redux-thunk';
 import configureStore from 'redux-mock-store';
 import {HttpStatus} from '../../../api/status';
+import {Filter} from '../../../api/filters';
 
 const mockStore = configureStore([thunk]);
 
@@ -59,7 +60,7 @@ describe('File action creators', () => {
     const page = 1;
     const limit = process.env.REACT_APP_PAGINATION_LIMIT;
     mock.onGet('/file', {
-      params: {page, limit},
+      params: {page, limit, order: Filter.DESC},
     }).reply(HttpStatus.OK, data);
     const expectedActions = [
       {type: file.TOGGLE_FILE_FETCH},

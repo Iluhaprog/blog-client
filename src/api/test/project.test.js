@@ -2,6 +2,7 @@ import MockAdapter from 'axios-mock-adapter';
 import {api} from '../api';
 import * as project from '../project';
 import {HttpStatus} from '../status';
+import {Filter} from '../filters';
 
 describe('Project api module', () => {
   const mock = new MockAdapter(api);
@@ -13,7 +14,11 @@ describe('Project api module', () => {
 
   test('/project (GET)', async () => {
     const projectData = {title: 'TEST_PROJECT_TITLE'};
-    mock.onGet('/project').reply(HttpStatus.OK, [projectData]);
+    mock.onGet('/project', {
+      params: {
+        order: Filter.DESC,
+      },
+    }).reply(HttpStatus.OK, [projectData]);
 
     const {status, data} = await project.getAll();
 
