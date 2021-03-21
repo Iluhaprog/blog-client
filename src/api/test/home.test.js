@@ -37,12 +37,13 @@ describe('Home api module', () => {
       const {headers, data} = config;
       expect(headers['Authorization']).toBe(`Bearer ${token}`);
       expect(data).toBe(JSON.stringify(newHome));
-      return [HttpStatus.CREATED];
+      return [HttpStatus.CREATED, newHome];
     });
 
-    const {status} = await home.create(newHome);
+    const {status, data} = await home.create(newHome);
 
     expect(status).toBe(HttpStatus.CREATED);
+    expect(data).toEqual(newHome);
   });
 
   test('/home (PUT)', async () => {
