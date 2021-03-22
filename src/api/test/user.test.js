@@ -40,10 +40,11 @@ describe('User api module', () => {
     mock.onPost('/user', newUser, {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-    }).reply(HttpStatus.CREATED);
+    }).reply(HttpStatus.CREATED, newUser);
 
-    const {status} = await user.create(newUser);
+    const {status, data} = await user.create(newUser);
 
+    expect(data).toEqual(newUser);
     expect(status).toBe(HttpStatus.CREATED);
   });
 
