@@ -4,11 +4,22 @@ import {HttpStatus} from '../status';
 import * as user from '../user';
 
 describe('User api module', () => {
-  const mock = new MockAdapter(api);
+  let mock;
   const token = 'TEST_TOKEN';
 
   beforeEach(() => {
+    mock = new MockAdapter(api);
     jest.spyOn(localStorage, 'getItem').mockReturnValue(token);
+  });
+
+  test('/user (GET)', async () => {
+    const userData = {id: 1};
+    mock.onGet(`/user`).reply(HttpStatus.OK, [userData]);
+
+    const {status, data} = await user.getAll();
+
+    expect(status).toBe(HttpStatus.OK);
+    expect(data).toEqual([userData]);
   });
 
   test('/user/{id} (GET)', async () => {

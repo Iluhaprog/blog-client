@@ -4,6 +4,13 @@ import {requestWithToken} from '../utils/decorators/decorators';
 const USER_URL = '/user';
 
 /**
+ * @return {Promise<AxiosResponse<any>>}
+ */
+export function getAll() {
+  return api.get(USER_URL);
+}
+
+/**
  * @param {number} id
  * @return {Promise<AxiosResponse<any>>}
  */
