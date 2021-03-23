@@ -1,10 +1,17 @@
+import * as uuid from 'uuid';
 import * as tag from '../tagActions';
+import * as message from '../../message/messageActions';
 import MockAdapter from 'axios-mock-adapter';
 import {api} from '../../../api/api';
 import thunk from 'redux-thunk';
 import configureStore from 'redux-mock-store';
 import {Filter} from '../../../api/filters';
 import {HttpStatus} from '../../../api/status';
+import {MessageTypes} from '../../message/MessageTypes';
+
+jest.mock('uuid', () => ({
+  v4: jest.fn(),
+}));
 
 const mockStore = configureStore([thunk]);
 
@@ -12,7 +19,22 @@ describe('Tag action creator', () => {
   const mock = new MockAdapter(api);
   const token = 'TEST_TOKEN';
 
+  const messageId = 'TEST_MESSAGE_ID';
+  const expectedActionsMock = [
+    {type: tag.TOGGLE_TAG_FETCH},
+    {
+      type: message.ADD_MESSAGE,
+      message: {
+        id: messageId,
+        type: MessageTypes.SUCCESS,
+        data: {},
+      },
+    },
+    {type: tag.TOGGLE_TAG_FETCH},
+  ];
+
   beforeEach(() => {
+    uuid.v4.mockImplementationOnce(() => messageId);
     jest.spyOn(localStorage, 'getItem').mockReturnValue(token);
   });
 
@@ -60,14 +82,13 @@ describe('Tag action creator', () => {
     }).reply(HttpStatus.OK, [tagData]);
     const store = mockStore({});
     const expectedActions = [
-      {type: tag.TOGGLE_TAG_FETCH},
+      ...expectedActionsMock,
       {type: tag.FILL_TAGS_ARRAY, tags: [tagData]},
-      {type: tag.TOGGLE_TAG_FETCH},
     ];
 
     return store.dispatch(tag.getAll()).then(() => {
       const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
   });
 
@@ -80,15 +101,14 @@ describe('Tag action creator', () => {
       expect(data).toBe(JSON.stringify(newTag));
       return [HttpStatus.CREATED, tagResult];
     });
-    const store = mockStore({});
     const expectedActions = [
-      {type: tag.TOGGLE_TAG_FETCH},
+      ...expectedActionsMock,
       {type: tag.ADD_TAG, tag: tagResult},
-      {type: tag.TOGGLE_TAG_FETCH},
     ];
+    const store = mockStore({});
     return store.dispatch(tag.create(newTag)).then(() => {
       const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
   });
 
@@ -102,13 +122,12 @@ describe('Tag action creator', () => {
     });
     const store = mockStore({});
     const expectedActions = [
-      {type: tag.TOGGLE_TAG_FETCH},
+      ...expectedActionsMock,
       {type: tag.REMOVE_TAG, id},
-      {type: tag.TOGGLE_TAG_FETCH},
     ];
     return store.dispatch(tag.remove(id)).then(() => {
       const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
   });
 });

@@ -1,9 +1,16 @@
+import * as uuid from 'uuid';
+import * as home from '../homeActions';
+import * as message from '../../message/messageActions';
 import MockAdapter from 'axios-mock-adapter';
 import {api} from '../../../api/api';
-import * as home from '../homeActions';
 import thunk from 'redux-thunk';
 import configureStore from 'redux-mock-store';
 import {HttpStatus} from '../../../api/status';
+import {MessageTypes} from '../../message/MessageTypes';
+
+jest.mock('uuid', () => ({
+  v4: jest.fn(),
+}));
 
 const mockStore = configureStore([thunk]);
 
@@ -11,7 +18,22 @@ describe('Home action creator', () => {
   const mock = new MockAdapter(api);
   const token = 'TEST_TOKEN';
 
+  const messageId = 'TEST_MESSAGE_ID';
+  const expectedActionsMock = [
+    {type: home.TOGGLE_HOME_FETCH},
+    {
+      type: message.ADD_MESSAGE,
+      message: {
+        id: messageId,
+        type: MessageTypes.SUCCESS,
+        data: {},
+      },
+    },
+    {type: home.TOGGLE_HOME_FETCH},
+  ];
+
   beforeEach(() => {
+    uuid.v4.mockImplementationOnce(() => messageId);
     jest.spyOn(localStorage, 'getItem').mockReturnValue(token);
   });
 
@@ -73,14 +95,13 @@ describe('Home action creator', () => {
     mock.onGet('/home').reply(HttpStatus.OK, [homeData]);
     const store = mockStore();
     const expectedActions = [
-      {type: home.TOGGLE_HOME_FETCH},
+      ...expectedActionsMock,
       {type: home.FILL_HOMES_ARRAY, homes: [homeData]},
-      {type: home.TOGGLE_HOME_FETCH},
     ];
 
     return store.dispatch(home.getAll()).then(() => {
       const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
   });
 
@@ -89,14 +110,13 @@ describe('Home action creator', () => {
     mock.onGet('/home/one').reply(HttpStatus.OK, homeData);
     const store = mockStore();
     const expectedActions = [
-      {type: home.TOGGLE_HOME_FETCH},
+      ...expectedActionsMock,
       {type: home.SELECT_HOME, home: homeData},
-      {type: home.TOGGLE_HOME_FETCH},
     ];
 
     return store.dispatch(home.getOne()).then(() => {
       const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
   });
 
@@ -110,14 +130,13 @@ describe('Home action creator', () => {
     });
     const store = mockStore();
     const expectedActions = [
-      {type: home.TOGGLE_HOME_FETCH},
+      ...expectedActionsMock,
       {type: home.ADD_HOME, home: newHome},
-      {type: home.TOGGLE_HOME_FETCH},
     ];
 
     return store.dispatch(home.create(newHome)).then(() => {
       const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
   });
 
@@ -131,14 +150,13 @@ describe('Home action creator', () => {
     });
     const store = mockStore();
     const expectedActions = [
-      {type: home.TOGGLE_HOME_FETCH},
+      ...expectedActionsMock,
       {type: home.UPDATE_HOME, home: updatedHome},
-      {type: home.TOGGLE_HOME_FETCH},
     ];
 
     return store.dispatch(home.update(updatedHome)).then(() => {
       const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
   });
 
@@ -152,14 +170,13 @@ describe('Home action creator', () => {
     });
     const store = mockStore();
     const expectedActions = [
-      {type: home.TOGGLE_HOME_FETCH},
+      ...expectedActionsMock,
       {type: home.REMOVE_HOME, id},
-      {type: home.TOGGLE_HOME_FETCH},
     ];
 
     return store.dispatch(home.remove(id)).then(() => {
       const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
   });
 });

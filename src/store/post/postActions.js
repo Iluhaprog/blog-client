@@ -1,5 +1,5 @@
 import * as post from '../../api/post';
-import * as error from '../error/errorActions';
+import * as message from '../message/messageActions';
 import {
   createDeclarator,
   createFetchToggler,
@@ -47,7 +47,7 @@ export const removePost = (id) => ({
 
 const postAsyncActionCreator = createDeclarator(
     toggleFetch,
-    error.addError,
+    message.addMessage,
 );
 
 export const getByTags = postAsyncActionCreator(

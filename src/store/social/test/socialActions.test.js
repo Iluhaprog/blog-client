@@ -1,10 +1,17 @@
+import * as uuid from 'uuid';
 import * as social from '../socialActions';
+import * as message from '../../message/messageActions';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import MockAdapter from 'axios-mock-adapter';
 import {api} from '../../../api/api';
 import {Filter} from '../../../api/filters';
 import {HttpStatus} from '../../../api/status';
+import {MessageTypes} from '../../message/MessageTypes';
+
+jest.mock('uuid', () => ({
+  v4: jest.fn(),
+}));
 
 const mockStore = configureStore([thunk]);
 
@@ -12,7 +19,22 @@ describe('Social actions creators', () => {
   const mock = new MockAdapter(api);
   const token = 'TEST_TOKEN';
 
+  const messageId = 'TEST_MESSAGE_ID';
+  const expectedActionsMock = [
+    {type: social.TOGGLE_SOCIAL_FETCH},
+    {
+      type: message.ADD_MESSAGE,
+      message: {
+        id: messageId,
+        type: MessageTypes.SUCCESS,
+        data: {},
+      },
+    },
+    {type: social.TOGGLE_SOCIAL_FETCH},
+  ];
+
   beforeEach(() => {
+    uuid.v4.mockImplementationOnce(() => messageId);
     jest.spyOn(localStorage, 'getItem').mockReturnValue(token);
   });
 
@@ -74,14 +96,13 @@ describe('Social actions creators', () => {
       },
     }).reply(HttpStatus.OK, [socialData]);
     const expectedActions = [
-      {type: social.TOGGLE_SOCIAL_FETCH},
+      ...expectedActionsMock,
       {type: social.FILL_SOCIALS_ARRAY, socials: [socialData]},
-      {type: social.TOGGLE_SOCIAL_FETCH},
     ];
     const store = mockStore({});
     return store.dispatch(social.getAll()).then(() => {
       const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
   });
 
@@ -95,14 +116,13 @@ describe('Social actions creators', () => {
       return [HttpStatus.CREATED, socialResult];
     });
     const expectedActions = [
-      {type: social.TOGGLE_SOCIAL_FETCH},
+      ...expectedActionsMock,
       {type: social.ADD_SOCIAL, social: socialResult},
-      {type: social.TOGGLE_SOCIAL_FETCH},
     ];
     const store = mockStore({});
     return store.dispatch(social.create(newSocial)).then(() => {
       const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
   });
 
@@ -115,14 +135,13 @@ describe('Social actions creators', () => {
       return [HttpStatus.NO_CONTENT];
     });
     const expectedActions = [
-      {type: social.TOGGLE_SOCIAL_FETCH},
+      ...expectedActionsMock,
       {type: social.UPDATE_SOCIAL, social: updatedSocial},
-      {type: social.TOGGLE_SOCIAL_FETCH},
     ];
     const store = mockStore({});
     return store.dispatch(social.update(updatedSocial)).then(() => {
       const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
   });
 
@@ -135,14 +154,13 @@ describe('Social actions creators', () => {
       return [HttpStatus.NO_CONTENT];
     });
     const expectedActions = [
-      {type: social.TOGGLE_SOCIAL_FETCH},
+      ...expectedActionsMock,
       {type: social.REMOVE_SOCIAL, id},
-      {type: social.TOGGLE_SOCIAL_FETCH},
     ];
     const store = mockStore({});
     return store.dispatch(social.remove(id)).then(() => {
       const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
   });
 });

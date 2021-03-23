@@ -1,9 +1,16 @@
+import * as uuid from 'uuid';
 import * as user from '../userActions';
+import * as message from '../../message/messageActions';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import MockAdapter from 'axios-mock-adapter';
 import {api} from '../../../api/api';
 import {HttpStatus} from '../../../api/status';
+import {MessageTypes} from '../../message/MessageTypes';
+
+jest.mock('uuid', () => ({
+  v4: jest.fn(),
+}));
 
 const mockStore = configureStore([thunk]);
 
@@ -11,8 +18,23 @@ describe('User actions creators', () => {
   let mock;
   const token = 'TEST_TOKEN';
 
+  const messageId = 'TEST_MESSAGE_ID';
+  const expectedActionsMock = [
+    {type: user.TOGGLE_USER_FETCH},
+    {
+      type: message.ADD_MESSAGE,
+      message: {
+        id: messageId,
+        type: MessageTypes.SUCCESS,
+        data: {},
+      },
+    },
+    {type: user.TOGGLE_USER_FETCH},
+  ];
+
   beforeEach(() => {
     mock = new MockAdapter(api);
+    uuid.v4.mockImplementationOnce(() => messageId);
     jest.spyOn(localStorage, 'getItem').mockReturnValue(token);
   });
 
@@ -67,14 +89,13 @@ describe('User actions creators', () => {
       'Content-Type': 'application/json',
     }).reply(HttpStatus.CREATED, newUser);
     const expectedActions = [
-      {type: user.TOGGLE_USER_FETCH},
+      ...expectedActionsMock,
       {type: user.ADD_USER, user: newUser},
-      {type: user.TOGGLE_USER_FETCH},
     ];
     const store = mockStore();
     return store.dispatch(user.create(newUser)).then(() => {
       const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
   });
 
@@ -85,14 +106,13 @@ describe('User actions creators', () => {
       params: {id},
     }).reply(HttpStatus.OK, userData);
     const expectedActions = [
-      {type: user.TOGGLE_USER_FETCH},
+      ...expectedActionsMock,
       {type: user.SET_USER_DATA, user: userData},
-      {type: user.TOGGLE_USER_FETCH},
     ];
     const store = mockStore();
     return store.dispatch(user.getById(id)).then(() => {
       const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
   });
 
@@ -100,14 +120,13 @@ describe('User actions creators', () => {
     const userData = {id: 1};
     mock.onGet(`/user`).reply(HttpStatus.OK, [userData]);
     const expectedActions = [
-      {type: user.TOGGLE_USER_FETCH},
+      ...expectedActionsMock,
       {type: user.FILL_USERS_ARRAY, users: [userData]},
-      {type: user.TOGGLE_USER_FETCH},
     ];
     const store = mockStore();
     return store.dispatch(user.getAll()).then(() => {
       const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
   });
 
@@ -122,14 +141,13 @@ describe('User actions creators', () => {
       return [HttpStatus.NO_CONTENT];
     });
     const expectedActions = [
-      {type: user.TOGGLE_USER_FETCH},
+      ...expectedActionsMock,
       {type: user.UPDATE_USER, user: updatedUser},
-      {type: user.TOGGLE_USER_FETCH},
     ];
     const store = mockStore();
     return store.dispatch(user.update(updatedUser)).then(() => {
       const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
   });
 
@@ -143,14 +161,11 @@ describe('User actions creators', () => {
       expect(data).toEqual(JSON.stringify(creds));
       return [HttpStatus.NO_CONTENT];
     });
-    const expectedActions = [
-      {type: user.TOGGLE_USER_FETCH},
-      {type: user.TOGGLE_USER_FETCH},
-    ];
+    const expectedActions = [...expectedActionsMock];
     const store = mockStore();
     return store.dispatch(user.updatePassword(creds)).then(() => {
       const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
   });
 });

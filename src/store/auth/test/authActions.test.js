@@ -1,15 +1,39 @@
+import * as uuid from 'uuid';
 import configureStore from 'redux-mock-store';
 import * as auth from '../authActions';
+import * as message from '../../message/messageActions';
 import thunk from 'redux-thunk';
 import {base64Encode} from '../../../utils/base64';
 import {HttpStatus} from '../../../api/status';
 import MockAdapter from 'axios-mock-adapter';
 import {api} from '../../../api/api';
+import {MessageTypes} from '../../message/MessageTypes';
+
+jest.mock('uuid', () => ({
+  v4: jest.fn(),
+}));
 
 const mockStore = configureStore([thunk]);
 
 describe('Auth action creators', () => {
   const mock = new MockAdapter(api);
+  const messageId = 'TEST_MESSAGE_ID';
+  const expectedActionsMock = [
+    {type: auth.TOGGLE_AUTH_FETCH},
+    {
+      type: message.ADD_MESSAGE,
+      message: {
+        id: messageId,
+        type: MessageTypes.SUCCESS,
+        data: {},
+      },
+    },
+    {type: auth.TOGGLE_AUTH_FETCH},
+  ];
+
+  beforeEach(() => {
+    uuid.v4.mockImplementationOnce(() => messageId);
+  });
 
   test('Should create TOGGLE_AUTH_FETCH action (toggleFetch)', () => {
     const store = mockStore();
@@ -48,9 +72,8 @@ describe('Auth action creators', () => {
     const username = 'TEST_USERNAME';
     const password = 'TEST_PASSWORD';
     const expectedActions = [
-      {type: auth.TOGGLE_AUTH_FETCH},
+      ...expectedActionsMock,
       {type: auth.MAKE_AUTH, auth: authData},
-      {type: auth.TOGGLE_AUTH_FETCH},
     ];
     const token = base64Encode(`${username}:${password}`);
     mock.onPost('/auth/login').reply((config) => {
@@ -59,7 +82,8 @@ describe('Auth action creators', () => {
     });
 
     return store.dispatch(auth.login(username, password)).then(() => {
-      expect(store.getActions()).toEqual(expectedActions);
+      expect(store.getActions())
+          .toEqual(expect.arrayContaining(expectedActions));
     });
   });
 
@@ -75,14 +99,14 @@ describe('Auth action creators', () => {
       return [HttpStatus.OK, answer];
     });
     const expectedActions = [
-      {type: auth.TOGGLE_AUTH_FETCH},
+      ...expectedActionsMock,
       {type: auth.MAKE_AUTH, auth: answer},
-      {type: auth.TOGGLE_AUTH_FETCH},
     ];
     const store = mockStore();
 
     return store.dispatch(auth.refreshToken()).then(() => {
-      expect(store.getActions()).toEqual(expectedActions);
+      expect(store.getActions())
+          .toEqual(expect.arrayContaining(expectedActions));
     });
   });
 
@@ -95,13 +119,13 @@ describe('Auth action creators', () => {
     });
     const store = mockStore();
     const expectedActions = [
-      {type: auth.TOGGLE_AUTH_FETCH},
+      ...expectedActionsMock,
       {type: auth.CLEAR_AUTH},
-      {type: auth.TOGGLE_AUTH_FETCH},
     ];
 
     return store.dispatch(auth.logout()).then(() => {
-      expect(store.getActions()).toEqual(expectedActions);
+      expect(store.getActions())
+          .toEqual(expect.arrayContaining(expectedActions));
     });
   });
 
@@ -114,13 +138,13 @@ describe('Auth action creators', () => {
     });
     const store = mockStore();
     const expectedActions = [
-      {type: auth.TOGGLE_AUTH_FETCH},
+      ...expectedActionsMock,
       {type: auth.CLEAR_AUTH},
-      {type: auth.TOGGLE_AUTH_FETCH},
     ];
 
     return store.dispatch(auth.logoutAll()).then(() => {
-      expect(store.getActions()).toEqual(expectedActions);
+      expect(store.getActions())
+          .toEqual(expect.arrayContaining(expectedActions));
     });
   });
 });

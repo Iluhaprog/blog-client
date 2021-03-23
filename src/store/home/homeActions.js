@@ -1,5 +1,5 @@
 import * as home from '../../api/home';
-import * as error from '../error/errorActions';
+import * as message from '../message/messageActions';
 import {
   createDeclarator,
   createFetchToggler,
@@ -41,7 +41,7 @@ export const removeHome = (id) => ({
 
 const homeAsyncActionCreator = createDeclarator(
     toggleFetch,
-    error.addError,
+    message.addMessage,
 );
 
 export const getAll = homeAsyncActionCreator(

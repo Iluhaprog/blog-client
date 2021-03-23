@@ -1,16 +1,41 @@
+import * as uuid from 'uuid';
 import * as file from '../fileActions';
+import * as message from '../../message/messageActions';
 import MockAdapter from 'axios-mock-adapter';
 import {api} from '../../../api/api';
 import thunk from 'redux-thunk';
 import configureStore from 'redux-mock-store';
 import {HttpStatus} from '../../../api/status';
 import {Filter} from '../../../api/filters';
+import {MessageTypes} from '../../message/MessageTypes';
+
+jest.mock('uuid', () => ({
+  v4: jest.fn(),
+}));
 
 const mockStore = configureStore([thunk]);
 
 describe('File action creators', () => {
   const mock = new MockAdapter(api);
   const token = 'TEST_TOKEN';
+
+  const messageId = 'TEST_MESSAGE_ID';
+  const expectedActionsMock = [
+    {type: file.TOGGLE_FILE_FETCH},
+    {
+      type: message.ADD_MESSAGE,
+      message: {
+        id: messageId,
+        type: MessageTypes.SUCCESS,
+        data: {},
+      },
+    },
+    {type: file.TOGGLE_FILE_FETCH},
+  ];
+
+  beforeEach(() => {
+    uuid.v4.mockImplementationOnce(() => messageId);
+  });
 
   test('Should create TOGGLE_FILE_FETCH action', () => {
     const expectedActions = [{type: file.TOGGLE_FILE_FETCH}];
@@ -63,15 +88,14 @@ describe('File action creators', () => {
       params: {page, limit, order: Filter.DESC},
     }).reply(HttpStatus.OK, data);
     const expectedActions = [
-      {type: file.TOGGLE_FILE_FETCH},
+      ...expectedActionsMock,
       {type: file.FILL_FILES_ARRAY, files: data},
-      {type: file.TOGGLE_FILE_FETCH},
     ];
     const store = mockStore({});
 
     return store.dispatch(file.getAll(page, limit)).then(() => {
       const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
   });
 
@@ -86,15 +110,14 @@ describe('File action creators', () => {
       params: {dirId, order: Filter.DESC},
     }).reply(HttpStatus.OK, data);
     const expectedActions = [
-      {type: file.TOGGLE_FILE_FETCH},
+      ...expectedActionsMock,
       {type: file.FILL_FILES_ARRAY, files: data},
-      {type: file.TOGGLE_FILE_FETCH},
     ];
     const store = mockStore({});
 
     return store.dispatch(file.getByDirId(dirId)).then(() => {
       const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
   });
 
@@ -117,14 +140,13 @@ describe('File action creators', () => {
 
     const store = mockStore({});
     const expectedActions = [
-      {type: file.TOGGLE_FILE_FETCH},
+      ...expectedActionsMock,
       {type: file.ADD_FILE, file: fileResult},
-      {type: file.TOGGLE_FILE_FETCH},
     ];
 
     return store.dispatch(file.create(fd, dirId)).then(() => {
       const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
   });
 
@@ -140,14 +162,13 @@ describe('File action creators', () => {
 
     const store = mockStore({});
     const expectedActions = [
-      {type: file.TOGGLE_FILE_FETCH},
+      ...expectedActionsMock,
       {type: file.REMOVE_FILE, id},
-      {type: file.TOGGLE_FILE_FETCH},
     ];
 
     return store.dispatch(file.remove(id)).then(() => {
       const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
   });
 });

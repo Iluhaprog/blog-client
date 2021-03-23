@@ -1,10 +1,17 @@
+import * as uuid from 'uuid';
 import * as post from '../postActions';
+import * as message from '../../message/messageActions';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import MockAdapter from 'axios-mock-adapter';
 import {api} from '../../../api/api';
 import {HttpStatus} from '../../../api/status';
 import {Filter} from '../../../api/filters';
+import {MessageTypes} from '../../message/MessageTypes';
+
+jest.mock('uuid', () => ({
+  v4: jest.fn(),
+}));
 
 const mockStore = configureStore([thunk]);
 
@@ -12,8 +19,23 @@ describe('Post actions creators', () => {
   let mock;
   const token = 'TEST_TOKEN';
 
+  const messageId = 'TEST_MESSAGE_ID';
+  const expectedActionsMock = [
+    {type: post.TOGGLE_POST_FETCH},
+    {
+      type: message.ADD_MESSAGE,
+      message: {
+        id: messageId,
+        type: MessageTypes.SUCCESS,
+        data: {},
+      },
+    },
+    {type: post.TOGGLE_POST_FETCH},
+  ];
+
   beforeEach(() => {
     mock = new MockAdapter(api);
+    uuid.v4.mockImplementationOnce(() => messageId);
     jest.spyOn(localStorage, 'getItem').mockReturnValue(token);
   });
 
@@ -91,13 +113,12 @@ describe('Post actions creators', () => {
     );
     const store = mockStore({});
     const expectedActions = [
-      {type: post.TOGGLE_POST_FETCH},
+      ...expectedActionsMock,
       {type: post.FILL_POSTS_ARRAY, posts: [postData]},
-      {type: post.TOGGLE_POST_FETCH},
     ];
     return store.dispatch(post.getByTags(tags)).then(() => {
       const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
   });
 
@@ -113,14 +134,13 @@ describe('Post actions creators', () => {
     }).reply(HttpStatus.OK, postData);
     const store = mockStore({});
     const expectedActions = [
-      {type: post.TOGGLE_POST_FETCH},
+      ...expectedActionsMock,
       {type: post.FILL_POSTS_ARRAY, posts: postData.data},
       {type: post.SET_POST_TOTAL, total: 1},
-      {type: post.TOGGLE_POST_FETCH},
     ];
     return store.dispatch(post.getAll(page, limit)).then(() => {
       const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
   });
 
@@ -129,13 +149,12 @@ describe('Post actions creators', () => {
     mock.onGet('/post').reply(HttpStatus.OK, postData);
     const store = mockStore({});
     const expectedActions = [
-      {type: post.TOGGLE_POST_FETCH},
+      ...expectedActionsMock,
       {type: post.FILL_POSTS_ARRAY, posts: postData},
-      {type: post.TOGGLE_POST_FETCH},
     ];
     return store.dispatch(post.getLast()).then(() => {
       const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
   });
 
@@ -146,14 +165,13 @@ describe('Post actions creators', () => {
       params: {id},
     }).reply(HttpStatus.OK, postData);
     const expectedActions = [
-      {type: post.TOGGLE_POST_FETCH},
+      ...expectedActionsMock,
       {type: post.SELECT_POST, post: postData},
-      {type: post.TOGGLE_POST_FETCH},
     ];
     const store = mockStore();
     return store.dispatch(post.getById(id)).then(() => {
       const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
   });
 
@@ -167,14 +185,13 @@ describe('Post actions creators', () => {
       return [HttpStatus.CREATED, postResult];
     });
     const expectedActions = [
-      {type: post.TOGGLE_POST_FETCH},
+      ...expectedActionsMock,
       {type: post.ADD_POST, post: postResult},
-      {type: post.TOGGLE_POST_FETCH},
     ];
     const store = mockStore();
     return store.dispatch(post.create(newPost)).then(() => {
       const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
   });
 
@@ -187,14 +204,13 @@ describe('Post actions creators', () => {
       return [HttpStatus.NO_CONTENT];
     });
     const expectedActions = [
-      {type: post.TOGGLE_POST_FETCH},
+      ...expectedActionsMock,
       {type: post.UPDATE_POST, post: updatedPost},
-      {type: post.TOGGLE_POST_FETCH},
     ];
     const store = mockStore();
     return store.dispatch(post.update(updatedPost)).then(() => {
       const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
   });
 
@@ -207,14 +223,13 @@ describe('Post actions creators', () => {
       return [HttpStatus.NO_CONTENT];
     });
     const expectedActions = [
-      {type: post.TOGGLE_POST_FETCH},
+      ...expectedActionsMock,
       {type: post.REMOVE_POST, id},
-      {type: post.TOGGLE_POST_FETCH},
     ];
     const store = mockStore();
     return store.dispatch(post.remove(id)).then(() => {
       const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
   });
 });

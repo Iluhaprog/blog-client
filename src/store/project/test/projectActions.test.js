@@ -1,10 +1,17 @@
+import * as uuid from 'uuid';
 import * as project from '../projectActions';
+import * as message from '../../message/messageActions';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import MockAdapter from 'axios-mock-adapter';
 import {api} from '../../../api/api';
 import {Filter} from '../../../api/filters';
 import {HttpStatus} from '../../../api/status';
+import {MessageTypes} from '../../message/MessageTypes';
+
+jest.mock('uuid', () => ({
+  v4: jest.fn(),
+}));
 
 const mockStore = configureStore([thunk]);
 
@@ -12,7 +19,22 @@ describe('Project actions creators', () => {
   const mock = new MockAdapter(api);
   const token = 'TEST_TOKEN';
 
+  const messageId = 'TEST_MESSAGE_ID';
+  const expectedActionsMock = [
+    {type: project.TOGGLE_PROJECT_FETCH},
+    {
+      type: message.ADD_MESSAGE,
+      message: {
+        id: messageId,
+        type: MessageTypes.SUCCESS,
+        data: {},
+      },
+    },
+    {type: project.TOGGLE_PROJECT_FETCH},
+  ];
+
   beforeEach(() => {
+    uuid.v4.mockImplementationOnce(() => messageId);
     jest.spyOn(localStorage, 'getItem').mockReturnValue(token);
   });
 
@@ -71,13 +93,12 @@ describe('Project actions creators', () => {
     }).reply(HttpStatus.OK, [projectData]);
     const store = mockStore();
     const expectedActions = [
-      {type: project.TOGGLE_PROJECT_FETCH},
+      ...expectedActionsMock,
       {type: project.FILL_PROJECTS_ARRAY, projects: [projectData]},
-      {type: project.TOGGLE_PROJECT_FETCH},
     ];
     return store.dispatch(project.getAll()).then(() => {
       const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
   });
 
@@ -92,13 +113,12 @@ describe('Project actions creators', () => {
     });
     const store = mockStore();
     const expectedActions = [
-      {type: project.TOGGLE_PROJECT_FETCH},
+      ...expectedActionsMock,
       {type: project.ADD_PROJECT, project: projectResult},
-      {type: project.TOGGLE_PROJECT_FETCH},
     ];
     return store.dispatch(project.create(newProject)).then(() => {
       const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
   });
 
@@ -112,13 +132,12 @@ describe('Project actions creators', () => {
     });
     const store = mockStore();
     const expectedActions = [
-      {type: project.TOGGLE_PROJECT_FETCH},
+      ...expectedActionsMock,
       {type: project.UPDATE_PROJECT, project: updatedProject},
-      {type: project.TOGGLE_PROJECT_FETCH},
     ];
     return store.dispatch(project.update(updatedProject)).then(() => {
       const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
   });
 
@@ -132,13 +151,12 @@ describe('Project actions creators', () => {
     });
     const store = mockStore();
     const expectedActions = [
-      {type: project.TOGGLE_PROJECT_FETCH},
+      ...expectedActionsMock,
       {type: project.REMOVE_PROJECT, id},
-      {type: project.TOGGLE_PROJECT_FETCH},
     ];
     return store.dispatch(project.remove(id)).then(() => {
       const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
   });
 });

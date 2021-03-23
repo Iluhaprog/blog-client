@@ -1,5 +1,5 @@
 import * as auth from '../../api/auth';
-import * as error from '../error/errorActions';
+import * as message from '../message/messageActions';
 import {
   createDeclarator,
   createFetchToggler,
@@ -20,7 +20,7 @@ export const clearAuth = () => ({type: CLEAR_AUTH});
 
 export const authAsyncActionCreator = createDeclarator(
     toggleFetch,
-    error.addError,
+    message.addMessage,
 );
 
 export const login = authAsyncActionCreator(

@@ -1,5 +1,5 @@
 import * as directory from '../../api/directory';
-import * as error from '../error/errorActions';
+import * as message from '../message/messageActions';
 import {
   createDeclarator,
   createFetchToggler,
@@ -29,7 +29,7 @@ export const removeDir = (id) => ({
 
 const dirAsyncActionCreator = createDeclarator(
     toggleFetch,
-    error.addError,
+    message.addMessage,
 );
 
 export const getAll = dirAsyncActionCreator(

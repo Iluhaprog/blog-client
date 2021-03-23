@@ -1,5 +1,5 @@
 import * as tag from '../../api/tag';
-import * as error from '../error/errorActions';
+import * as message from '../message/messageActions';
 import {
   createDeclarator,
   createFetchToggler,
@@ -29,7 +29,7 @@ export const removeTag = (id) => ({
 
 const tagAsyncActionCreator = createDeclarator(
     toggleFetch,
-    error.addError,
+    message.addMessage,
 );
 
 export const getAll = tagAsyncActionCreator(

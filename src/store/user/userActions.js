@@ -1,5 +1,5 @@
 import * as user from '../../api/user';
-import * as error from '../error/errorActions';
+import * as message from '../message/messageActions';
 import {
   createDeclarator,
   createFetchToggler,
@@ -35,7 +35,7 @@ export const updateUser = (user) => ({
 
 const userAsyncActionCreator = createDeclarator(
     toggleFetch,
-    error.addError,
+    message.addMessage,
 );
 
 export const getAll = userAsyncActionCreator(

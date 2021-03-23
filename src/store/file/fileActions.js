@@ -1,5 +1,5 @@
 import * as file from '../../api/file';
-import * as error from '../error/errorActions';
+import * as message from '../message/messageActions';
 import {
   createDeclarator,
   createFetchToggler,
@@ -29,7 +29,7 @@ export const removeFile = (id) => ({
 
 const fileAsynActionCreator = createDeclarator(
     toggleFetch,
-    error.addError,
+    message.addMessage,
 );
 
 export const getAll = fileAsynActionCreator(

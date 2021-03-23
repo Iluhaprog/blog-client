@@ -1,14 +1,39 @@
+import * as uuid from 'uuid';
+import * as message from '../../message/messageActions';
 import * as dir from '../directoryActions';
 import MockAdapter from 'axios-mock-adapter';
 import {api} from '../../../api/api';
 import configureStore from 'redux-mock-store';
 import {HttpStatus} from '../../../api/status';
 import thunk from 'redux-thunk';
+import {MessageTypes} from '../../message/MessageTypes';
+
+jest.mock('uuid', () => ({
+  v4: jest.fn(),
+}));
 
 const mockStore = configureStore([thunk]);
 
 describe('Directory action creators', () => {
   const mock = new MockAdapter(api);
+
+  const messageId = 'TEST_MESSAGE_ID';
+  const expectedActionsMock = [
+    {type: dir.TOGGLE_DIR_FETCH},
+    {
+      type: message.ADD_MESSAGE,
+      message: {
+        id: messageId,
+        type: MessageTypes.SUCCESS,
+        data: {},
+      },
+    },
+    {type: dir.TOGGLE_DIR_FETCH},
+  ];
+
+  beforeEach(() => {
+    uuid.v4.mockImplementationOnce(() => messageId);
+  });
 
   test('Should create TOGGLE_DIR_FETCH action', () => {
     const store = mockStore({});
@@ -49,9 +74,8 @@ describe('Directory action creators', () => {
     const store = mockStore({});
     const dirData = {name: 'TEST_DIR'};
     const expectedActions = [
-      {type: dir.TOGGLE_DIR_FETCH},
+      ...expectedActionsMock,
       {type: dir.FILL_DIRS_ARRAY, dirs: [dirData]},
-      {type: dir.TOGGLE_DIR_FETCH},
     ];
     const page = 0;
     const limit = 10;
@@ -61,7 +85,7 @@ describe('Directory action creators', () => {
 
     return store.dispatch(dir.getAll(page, limit)).then(() => {
       const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
   });
 
@@ -71,9 +95,8 @@ describe('Directory action creators', () => {
     const resultData = {id: 1, ...dirData};
     const token = 'TEST_TOKEN';
     const expectedActions = [
-      {type: dir.TOGGLE_DIR_FETCH},
+      ...expectedActionsMock,
       {type: dir.ADD_DIR, dir: resultData},
-      {type: dir.TOGGLE_DIR_FETCH},
     ];
 
     jest.spyOn(localStorage, 'getItem').mockReturnValue(token);
@@ -86,7 +109,7 @@ describe('Directory action creators', () => {
 
     return store.dispatch(dir.create(dirData)).then(() => {
       const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
   });
 
@@ -94,9 +117,8 @@ describe('Directory action creators', () => {
     const store = mockStore({});
     const id = 1;
     const expectedActions = [
-      {type: dir.TOGGLE_DIR_FETCH},
+      ...expectedActionsMock,
       {type: dir.REMOVE_DIR, id},
-      {type: dir.TOGGLE_DIR_FETCH},
     ];
     const token = 'TEST_TOKEN';
 
@@ -110,7 +132,7 @@ describe('Directory action creators', () => {
 
     return store.dispatch(dir.remove(id)).then(() => {
       const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
   });
 });

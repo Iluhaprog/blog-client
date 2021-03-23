@@ -1,5 +1,5 @@
 import * as social from '../../api/social';
-import * as error from '../error/errorActions';
+import * as message from '../message/messageActions';
 import {
   createDeclarator,
   createFetchToggler,
@@ -35,7 +35,7 @@ export const removeSocial = (id) => ({
 
 const socialAsyncActionCreator = createDeclarator(
     toggleFetch,
-    error.addError,
+    message.addMessage,
 );
 
 export const getAll = socialAsyncActionCreator(

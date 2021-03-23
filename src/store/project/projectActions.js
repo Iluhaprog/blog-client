@@ -1,5 +1,5 @@
 import * as project from '../../api/project';
-import * as error from '../error/errorActions';
+import * as message from '../message/messageActions';
 import {
   createDeclarator,
   createFetchToggler,
@@ -35,7 +35,7 @@ export const removeProject = (id) => ({
 
 const projectAsyncActoinCreator = createDeclarator(
     toggleFetch,
-    error.addError,
+    message.addMessage,
 );
 
 export const getAll = projectAsyncActoinCreator(
