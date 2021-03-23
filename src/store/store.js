@@ -1,7 +1,6 @@
 import {applyMiddleware, combineReducers, createStore} from 'redux';
 import {loadState, saveState} from '../utils/stateSaver';
 import thunk from 'redux-thunk';
-import {errorReducer} from './error/errorReducer';
 import {authReducer} from './auth/authReducer';
 import {dirReducer} from './directory/directoryReducer';
 import {fileReduser} from './file/fileReducer';
@@ -15,7 +14,6 @@ import {tagReducer} from './tag/tagReduser';
 import {userReducer} from './user/userReduser';
 
 const rootReducer = combineReducers({
-  error: errorReducer,
   auth: authReducer,
   dir: dirReducer,
   file: fileReduser,
@@ -42,4 +40,4 @@ store.subscribe(() => {
   });
 });
 
-export default store;
+export {store};

@@ -1,9 +1,9 @@
+import {MessageTypes} from '../../store/message/MessageTypes';
+
 /**
  * @param {Function} func
  * @return {*}
  */
-import {MessageTypes} from '../../store/message/MessageTypes';
-
 export function requestWithToken(func) {
   const accessTokenKey = process.env.REACT_APP_ACCESS_TOKEN_KEY;
   const accessToken = localStorage.getItem(accessTokenKey);

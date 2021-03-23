@@ -18,9 +18,9 @@ export function getByTags(tags) {
 }
 
 /**
- * @param {string} order
  * @param {number} page
  * @param {number} limit
+ * @param {string} order
  * @return {Promise<AxiosResponse<any>>}
  */
 export function getAll(
