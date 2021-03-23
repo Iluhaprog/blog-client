@@ -4,11 +4,29 @@ import thunk from 'redux-thunk';
 import {errorReducer} from './error/errorReducer';
 import {authReducer} from './auth/authReducer';
 import {dirReducer} from './directory/directoryReducer';
+import {fileReduser} from './file/fileReducer';
+import {homeReduser} from './home/homeReduser';
+import {messageReduser} from './message/messageReduser';
+import {modalReduser} from './modal/modalReduser';
+import {postReducer} from './post/postReduser';
+import {projectReducer} from './project/projectReduser';
+import {socialReduser} from './social/socialReduser';
+import {tagReducer} from './tag/tagReduser';
+import {userReducer} from './user/userReduser';
 
 const rootReducer = combineReducers({
   error: errorReducer,
   auth: authReducer,
   dir: dirReducer,
+  file: fileReduser,
+  home: homeReduser,
+  message: messageReduser,
+  modal: modalReduser,
+  post: postReducer,
+  project: projectReducer,
+  social: socialReduser,
+  tag: tagReducer,
+  user: userReducer,
 });
 const initialState = loadState();
 
