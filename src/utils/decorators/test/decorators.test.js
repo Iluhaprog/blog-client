@@ -1,5 +1,6 @@
 import {decorators} from '..';
 import {createFetchToggler} from '../decorators';
+import {MessageTypes} from '../../../store/message/MessageTypes';
 
 test('requestWithToken', () => {
   const obj = {
@@ -48,6 +49,7 @@ test('declarateActionCreator (success)', async () => {
 
   expect(promiseResult).toBe(id);
   expect(funcs.handleMessage).toBeCalledTimes(1);
+  expect(funcs.handleMessage).toBeCalledWith(MessageTypes.SUCCESS);
   expect(funcs.toggleFetch).toBeCalledTimes(2);
   expect(funcs.dispatch).toBeCalledTimes(3);
   expect(funcs.request).toBeCalledTimes(1);
@@ -82,7 +84,7 @@ test('declarateActionCreator (fail)', async () => {
   expect(funcs.dispatch).toBeCalledTimes(3);
   expect(funcs.request).toBeCalledTimes(1);
   expect(funcs.handleMessage).toBeCalledTimes(1);
-  expect(funcs.handleMessage).toBeCalledWith(error);
+  expect(funcs.handleMessage).toBeCalledWith(MessageTypes.ERROR, error);
 });
 
 test('createFetchToggler', () => {

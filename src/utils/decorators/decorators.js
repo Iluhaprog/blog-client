@@ -2,6 +2,8 @@
  * @param {Function} func
  * @return {*}
  */
+import {MessageTypes} from '../../store/message/MessageTypes';
+
 export function requestWithToken(func) {
   const accessTokenKey = process.env.REACT_APP_ACCESS_TOKEN_KEY;
   const accessToken = localStorage.getItem(accessTokenKey);
@@ -29,12 +31,12 @@ export function declareAsyncActionCreator(
         .then(
             (data) => {
               dispatch(toggleFetch());
-              dispatch(messageHandler());
+              dispatch(messageHandler(MessageTypes.SUCCESS));
               return data;
             },
             (err) => {
               dispatch(toggleFetch());
-              dispatch(messageHandler(err));
+              dispatch(messageHandler(MessageTypes.ERROR, err));
             },
         );
   };
