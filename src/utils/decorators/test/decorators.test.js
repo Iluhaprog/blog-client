@@ -28,7 +28,7 @@ test('declarateActionCreator (success)', async () => {
   const funcs = {
     toggleFetch: () => {},
     request: (dispatch, id) => Promise.resolve(id),
-    handleError: (err) => {},
+    handleMessage: (message) => {},
     dispatch: () => {},
   };
 
@@ -36,18 +36,20 @@ test('declarateActionCreator (success)', async () => {
   jest.spyOn(funcs, 'toggleFetch').mockReturnValue(undefined);
   jest.spyOn(funcs, 'request').mockResolvedValueOnce(id);
   jest.spyOn(funcs, 'dispatch');
+  jest.spyOn(funcs, 'handleMessage');
 
   const actionCreator = decorators.declareAsyncActionCreator(
       funcs.toggleFetch,
       funcs.request,
-      funcs.handleError,
+      funcs.handleMessage,
   );
   const dispatchedActionCreator = actionCreator(id);
   const promiseResult = await dispatchedActionCreator(funcs.dispatch);
 
   expect(promiseResult).toBe(id);
+  expect(funcs.handleMessage).toBeCalledTimes(1);
   expect(funcs.toggleFetch).toBeCalledTimes(2);
-  expect(funcs.dispatch).toBeCalledTimes(2);
+  expect(funcs.dispatch).toBeCalledTimes(3);
   expect(funcs.request).toBeCalledTimes(1);
   expect(funcs.request).toBeCalledWith(funcs.dispatch, id);
 });
@@ -57,7 +59,7 @@ test('declarateActionCreator (fail)', async () => {
   const funcs = {
     toggleFetch: () => {},
     request: (dispatch, id) => Promise.resolve(id),
-    handleError: (err) => {},
+    handleMessage: (err) => {},
     dispatch: () => {},
   };
 
@@ -65,13 +67,13 @@ test('declarateActionCreator (fail)', async () => {
   const error = new Error('error');
   jest.spyOn(funcs, 'toggleFetch').mockReturnValue(undefined);
   jest.spyOn(funcs, 'request').mockRejectedValueOnce(error);
-  jest.spyOn(funcs, 'handleError');
+  jest.spyOn(funcs, 'handleMessage');
   jest.spyOn(funcs, 'dispatch');
 
   const actionCreator = decorators.declareAsyncActionCreator(
       funcs.toggleFetch,
       funcs.request,
-      funcs.handleError,
+      funcs.handleMessage,
   );
   const dispatchedActionCreator = actionCreator(id);
   await dispatchedActionCreator(funcs.dispatch);
@@ -79,8 +81,8 @@ test('declarateActionCreator (fail)', async () => {
   expect(funcs.toggleFetch).toBeCalledTimes(2);
   expect(funcs.dispatch).toBeCalledTimes(3);
   expect(funcs.request).toBeCalledTimes(1);
-  expect(funcs.handleError).toBeCalledTimes(1);
-  expect(funcs.handleError).toBeCalledWith(error);
+  expect(funcs.handleMessage).toBeCalledTimes(1);
+  expect(funcs.handleMessage).toBeCalledWith(error);
 });
 
 test('createFetchToggler', () => {

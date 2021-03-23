@@ -15,21 +15,26 @@ export function requestWithToken(func) {
 /**
  * @param {Function} toggleFetch
  * @param {Function} request
- * @param {Function} errorHandler
+ * @param {Function} messageHandler
  * @return {Function} Return action creator
  */
-export function declareAsyncActionCreator(toggleFetch, request, errorHandler) {
+export function declareAsyncActionCreator(
+    toggleFetch,
+    request,
+    messageHandler,
+) {
   return (...args) => (dispatch) => {
     dispatch(toggleFetch());
     return request(dispatch, ...args)
         .then(
             (data) => {
               dispatch(toggleFetch());
+              dispatch(messageHandler());
               return data;
             },
             (err) => {
               dispatch(toggleFetch());
-              dispatch(errorHandler(err));
+              dispatch(messageHandler(err));
             },
         );
   };
