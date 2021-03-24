@@ -1,6 +1,6 @@
 import * as modal from '../modalActions';
 import configureStore from 'redux-mock-store';
-import {FormTypes} from '../ModalFormTypes';
+import {ModalScreenTypes} from '../ModalFormTypes';
 
 const mockStore = configureStore();
 
@@ -23,10 +23,10 @@ describe('Modal actions creators', () => {
     const expectedActions = [
       {
         type: modal.SET_FORM_TYPE,
-        formType: FormTypes.ONE_INPUT,
+        formType: ModalScreenTypes.ONE_INPUT,
       },
     ];
-    store.dispatch(modal.setFormType(FormTypes.ONE_INPUT));
+    store.dispatch(modal.setFormType(ModalScreenTypes.ONE_INPUT));
     const actions = store.getActions();
     expect(actions).toEqual(expectedActions);
   });

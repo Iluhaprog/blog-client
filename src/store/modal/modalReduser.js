@@ -1,12 +1,12 @@
-import {FormTypes} from './ModalFormTypes';
+import {ModalScreenTypes} from './ModalFormTypes';
 import * as modal from './modalActions';
 
 export const initialState = {
   successHandler: () => {},
   title: '',
   description: '',
-  formType: FormTypes.NONE,
-  isVisible: false,
+  formType: ModalScreenTypes.NONE,
+  isVisible: true,
 };
 
 export const modalReduser = (state = initialState, action) => {

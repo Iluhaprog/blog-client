@@ -8,6 +8,7 @@ import {
 import {Admin} from './pages/admin';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import {Modal} from './components/Modal/Modal';
 
 function App(props) {
   const {lang, theme} = props;
@@ -19,6 +20,7 @@ function App(props) {
             <Admin lang={lang} theme={theme}/>
           </Route>
         </Switch>
+        <Modal />
       </div>
     </Router>
   );

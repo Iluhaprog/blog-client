@@ -1,4 +1,4 @@
-import {FormTypes} from './ModalFormTypes';
+import {ModalScreenTypes} from './ModalFormTypes';
 
 export const INIT_MODAL = 'INIT_MODAL';
 export const SET_FORM_TYPE = 'SET_FORM_TYPE';
@@ -16,7 +16,7 @@ export const initModal = ({
   successHandler,
 });
 
-export const setFormType = (formType = FormTypes.NONE) => ({
+export const setFormType = (formType = ModalScreenTypes.NONE) => ({
   type: SET_FORM_TYPE,
   formType,
 });

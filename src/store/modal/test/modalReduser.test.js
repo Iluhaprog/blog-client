@@ -3,7 +3,7 @@ import {
   modalReduser,
 } from '../modalReduser';
 import * as modal from '../modalActions';
-import {FormTypes} from '../ModalFormTypes';
+import {ModalScreenTypes} from '../ModalFormTypes';
 
 describe('modalReduser', () => {
   test('Should handle INIT_MODAL action', () => {
@@ -24,7 +24,7 @@ describe('modalReduser', () => {
   });
 
   test('Should handle SET_FORM_TYPE action', () => {
-    const formType = FormTypes.ONE_INPUT;
+    const formType = ModalScreenTypes.ONE_INPUT;
     const result = modalReduser(initialState, modal.setFormType(formType));
     expect(result).toEqual({
       ...initialState,
