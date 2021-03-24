@@ -14,11 +14,9 @@ describe('Project api module', () => {
 
   test('/project (GET)', async () => {
     const projectData = {title: 'TEST_PROJECT_TITLE'};
-    mock.onGet('/project', {
-      params: {
-        order: Filter.DESC,
-      },
-    }).reply(HttpStatus.OK, [projectData]);
+    const order = Filter.DESC;
+    mock.onGet(`/project/${order}`)
+        .reply(HttpStatus.OK, [projectData]);
 
     const {status, data} = await project.getAll();
 

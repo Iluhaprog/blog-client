@@ -79,9 +79,8 @@ describe('Directory action creators', () => {
     ];
     const page = 0;
     const limit = 10;
-    mock.onGet('/directory', {
-      params: {page, limit},
-    }).reply(HttpStatus.OK, [dirData]);
+    mock.onGet(`/directory/${page}/${limit}`)
+        .reply(HttpStatus.OK, [dirData]);
 
     return store.dispatch(dir.getAll(page, limit)).then(() => {
       const actions = store.getActions();

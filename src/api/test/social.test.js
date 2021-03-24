@@ -14,11 +14,9 @@ describe('Social api module', () => {
 
   test('/social (GET)', async () => {
     const socialData = {title: 'TEST_SOCIAL_TITLE'};
-    mock.onGet('/social', {
-      params: {
-        order: Filter.DESC,
-      },
-    }).reply(HttpStatus.OK, [socialData]);
+    const order = Filter.DESC;
+    mock.onGet(`/social/${order}`)
+        .reply(HttpStatus.OK, [socialData]);
 
     const {status, data} = await social.getAll();
 

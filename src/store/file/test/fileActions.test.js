@@ -84,9 +84,9 @@ describe('File action creators', () => {
     };
     const page = 1;
     const limit = process.env.REACT_APP_PAGINATION_LIMIT;
-    mock.onGet('/file', {
-      params: {page, limit, order: Filter.DESC},
-    }).reply(HttpStatus.OK, data);
+    const order = Filter.DESC;
+    mock.onGet(`/file/${page}/${limit}/${order}`)
+        .reply(HttpStatus.OK, data);
     const expectedActions = [
       ...expectedActionsMock,
       {type: file.FILL_FILES_ARRAY, files: data},

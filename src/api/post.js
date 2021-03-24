@@ -28,9 +28,7 @@ export function getAll(
     limit = process.env.REACT_APP_PAGINATION_LIMIT,
     order = Filter.DESC,
 ) {
-  return api.get(POST_URL, {
-    params: {page, limit, order},
-  });
+  return api.get(`${POST_URL}/${page}/${limit}/${order}`);
 }
 
 /**

@@ -129,9 +129,9 @@ describe('Post actions creators', () => {
     };
     const page = 1;
     const limit = process.env.REACT_APP_PAGINATION_LIMIT;
-    mock.onGet('/post', {
-      params: {page, limit, order: Filter.DESC},
-    }).reply(HttpStatus.OK, postData);
+    const order = Filter.DESC;
+    mock.onGet(`/post/${page}/${limit}/${order}`)
+        .reply(HttpStatus.OK, postData);
     const store = mockStore({});
     const expectedActions = [
       ...expectedActionsMock,

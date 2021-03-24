@@ -9,11 +9,7 @@ const SOCIAL_URL = '/social';
  * @return {Promise<AxiosResponse<any>>}
  */
 export function getAll(order = Filter.DESC) {
-  return api.get(SOCIAL_URL, {
-    params: {
-      order,
-    },
-  });
+  return api.get(`${SOCIAL_URL}/${order}`);
 }
 
 /**

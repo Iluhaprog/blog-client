@@ -9,11 +9,7 @@ const TAG_URL = '/tag';
  * @return {Promise<AxiosResponse<any>>}
  */
 export function getAll(order = Filter.DESC) {
-  return api.get(TAG_URL, {
-    params: {
-      order,
-    },
-  });
+  return api.get(`${TAG_URL}/${order}`);
 }
 
 /**

@@ -33,9 +33,9 @@ describe('Post api module', () => {
     const postData = {title: 'TEST_POST_TITLE'};
     const page = 1;
     const limit = process.env.REACT_APP_PAGINATION_LIMIT;
-    mock.onGet('/post', {
-      params: {page, limit, order: Filter.DESC},
-    }).reply(HttpStatus.OK, [postData]);
+    const order = Filter.DESC;
+    mock.onGet(`/post/${page}/${limit}/${order}`)
+        .reply(HttpStatus.OK, [postData]);
 
     const {status, data} = await post.getAll(page);
 

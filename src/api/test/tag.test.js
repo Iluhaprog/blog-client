@@ -14,11 +14,8 @@ describe('Tag api module', () => {
 
   test('/tag (GET)', async () => {
     const tagData = {title: 'TEST_TAG_TITLE'};
-    mock.onGet('/tag', {
-      params: {
-        order: Filter.DESC,
-      },
-    }).reply(HttpStatus.OK, [tagData]);
+    const order = Filter.DESC;
+    mock.onGet(`/tag/${order}`).reply(HttpStatus.OK, [tagData]);
     const {status, data} = await tag.getAll();
 
     expect(status).toBe(HttpStatus.OK);

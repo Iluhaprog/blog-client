@@ -90,11 +90,9 @@ describe('Social actions creators', () => {
 
   test('Should create FILL_SOCIALS_ARRAY action (async getAll)', () => {
     const socialData = {title: 'TEST_SOCIAL_TITLE'};
-    mock.onGet('/social', {
-      params: {
-        order: Filter.DESC,
-      },
-    }).reply(HttpStatus.OK, [socialData]);
+    const order = Filter.DESC;
+    mock.onGet(`/social/${order}`)
+        .reply(HttpStatus.OK, [socialData]);
     const expectedActions = [
       ...expectedActionsMock,
       {type: social.FILL_SOCIALS_ARRAY, socials: [socialData]},

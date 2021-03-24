@@ -9,11 +9,7 @@ const PROJECT_URL = '/project';
  * @return {Promise<AxiosResponse<any>>}
  */
 export function getAll(order = Filter.DESC) {
-  return api.get(PROJECT_URL, {
-    params: {
-      order,
-    },
-  });
+  return api.get(`${PROJECT_URL}/${order}`);
 }
 
 /**

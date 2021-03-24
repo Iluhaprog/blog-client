@@ -75,11 +75,8 @@ describe('Tag action creator', () => {
 
   test('Should create FILL_TAGS_ARRAY action (async getAll)', () => {
     const tagData = {title: 'TEST_TAG_TITLE'};
-    mock.onGet('/tag', {
-      params: {
-        order: Filter.DESC,
-      },
-    }).reply(HttpStatus.OK, [tagData]);
+    const order = Filter.DESC;
+    mock.onGet(`/tag/${order}`).reply(HttpStatus.OK, [tagData]);
     const store = mockStore({});
     const expectedActions = [
       ...expectedActionsMock,

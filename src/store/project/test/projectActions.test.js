@@ -86,11 +86,9 @@ describe('Project actions creators', () => {
 
   test('Should create FILL_PROJECTS_ARRAY action (async getAll)', () => {
     const projectData = {title: 'TEST_PROJECT_TITLE'};
-    mock.onGet('/project', {
-      params: {
-        order: Filter.DESC,
-      },
-    }).reply(HttpStatus.OK, [projectData]);
+    const order = Filter.DESC;
+    mock.onGet(`/project/${order}`)
+        .reply(HttpStatus.OK, [projectData]);
     const store = mockStore();
     const expectedActions = [
       ...expectedActionsMock,

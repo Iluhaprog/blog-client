@@ -15,9 +15,8 @@ describe('File api module', () => {
     const dirData = {name: 'TEST_DIR_NAME'};
     const page = 1;
     const limit = process.env.REACT_APP_PAGINATION_LIMIT;
-    mock.onGet('/directory', {
-      params: {page, limit},
-    }).reply(HttpStatus.OK, [dirData]);
+    mock.onGet(`/directory/${page}/${limit}`)
+        .reply(HttpStatus.OK, [dirData]);
 
     const {status, data} = await dir.getAll(page);
 

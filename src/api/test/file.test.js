@@ -16,13 +16,13 @@ describe('File api module', () => {
     const fileData = {name: 'TEST_FILE_NAME'};
     const page = 1;
     const limit = process.env.REACT_APP_PAGINATION_LIMIT;
+    const order = Filter.DESC;
     const response = {
       data: [fileData],
       total: 1,
     };
-    mock.onGet('/file', {
-      params: {page, limit, order: Filter.DESC},
-    }).reply(HttpStatus.OK, response);
+    mock.onGet(`/file/${page}/${limit}/${order}`)
+        .reply(HttpStatus.OK, response);
 
     const {status, data} = await file.getAll(page);
 
