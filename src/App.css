@@ -1,1 +1,31 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
+
+:root {
+    --scroll-track: #e7e7e7;
+    --scroll-thumb: #d0d0d0;
+}
+
+.App.dark {
+    background-color: #52555c;
+    min-height: 100vh;
+    color: #fff;
+
+    --scroll-track: #464e55;
+    --scroll-thumb: #373e44;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background-color: var(--scroll-track);
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background-color: var(--scroll-thumb);
+    border-radius: 10px;
+}

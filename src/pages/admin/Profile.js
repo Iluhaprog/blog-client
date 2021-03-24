@@ -1,10 +1,11 @@
 import React from 'react';
+import {FileSelect} from '../../components/FileSelect';
 
 function Profile() {
   return (
-    <>
-      Profile
-    </>
+    <section>
+      <FileSelect />
+    </section>
   );
 }
 

@@ -13,7 +13,7 @@ function App(props) {
   const {lang, theme} = props;
   return (
     <Router>
-      <div className="App">
+      <div className={`App ${theme}`}>
         <Switch>
           <Route path='/admin'>
             <Admin lang={lang} theme={theme}/>

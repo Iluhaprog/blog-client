@@ -6,6 +6,9 @@ const en = {
     PROJECTS: 'Projects',
     DIRS: 'Dirs',
   },
+  button: {
+    SELECT: 'Select',
+  },
 };
 
 const ru = {
@@ -15,6 +18,9 @@ const ru = {
     POSTS: 'Посты',
     PROJECTS: 'Проекты',
     DIRS: 'Файлы',
+  },
+  button: {
+    SELECT: 'Выбрать',
   },
 };
 

@@ -9,9 +9,7 @@ const DIR_URL = '/directory';
  * @return {Promise<AxiosResponse<any>>}
  */
 export function getAll(page, limit = process.env.REACT_APP_PAGINATION_LIMIT) {
-  return api.get(DIR_URL, {
-    params: {page, limit},
-  });
+  return api.get(`${DIR_URL}/${page}/${limit}`);
 }
 
 /**
