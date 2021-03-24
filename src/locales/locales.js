@@ -1,4 +1,5 @@
 const en = {
+  title: 'en',
   adminNav: {
     PROFILE: 'Profile',
     POSTS: 'Posts',
@@ -7,6 +8,17 @@ const en = {
   },
 };
 
+const ru = {
+  title: 'ru',
+  adminNav: {
+    PROFILE: 'Аккаунт',
+    POSTS: 'Посты',
+    PROJECTS: 'Проекты',
+    DIRS: 'Файлы',
+  },
+};
+
 export const locales = {
   'en': en,
+  'ru': ru,
 };
