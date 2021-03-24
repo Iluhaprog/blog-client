@@ -12,6 +12,7 @@ import {projectReducer} from './project/projectReduser';
 import {socialReduser} from './social/socialReduser';
 import {tagReducer} from './tag/tagReduser';
 import {userReducer} from './user/userReduser';
+import {settingsReduser} from './settings/settingsReduser';
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   modal: modalReduser,
   post: postReducer,
   project: projectReducer,
+  settings: settingsReduser,
   social: socialReduser,
   tag: tagReducer,
   user: userReducer,
