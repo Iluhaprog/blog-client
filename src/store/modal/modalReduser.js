@@ -5,8 +5,8 @@ export const initialState = {
   successHandler: () => {},
   title: '',
   description: '',
-  formType: ModalScreenTypes.NONE,
-  isVisible: true,
+  formType: ModalScreenTypes.FILE_SELECT,
+  isVisible: false,
 };
 
 export const modalReduser = (state = initialState, action) => {
