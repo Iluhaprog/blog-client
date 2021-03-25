@@ -7,13 +7,16 @@ import {
   setVidible,
 } from '../../../store/modal/modalActions';
 import {ModalScreenTypes} from '../../../store/modal/ModalFormTypes';
-import {Col, Container, Row} from 'react-bootstrap';
+import {Button, Col, Container, Row} from 'react-bootstrap';
 import {Field, Form, Formik} from 'formik';
 import PropTypes from 'prop-types';
 import {FileField} from '../../Field/File/File';
 import {InputField} from '../../Field/Input';
+import {TextareaField} from '../../Field/Textarea';
 
 let UserUpdateForm = (props) => {
+  const {lang} = props;
+
   const submit = (values, actions) => {
     console.log(values);
   };
@@ -26,7 +29,7 @@ let UserUpdateForm = (props) => {
       >
         <Form>
           <Row className='align-items-center justify-content-center'>
-            <Col md={3}>
+            <Col md={4}>
               <Field
                 name='avatar'
                 showFileModal={props.showFileModal}
@@ -38,39 +41,52 @@ let UserUpdateForm = (props) => {
               <Field
                 name='firstName'
                 type='text'
-                label={'First Name:'}
+                label={`${lang.label.FIRST_NAME}:`}
                 component={InputField}
-                placeholder='First Name'
+                placeholder={`${lang.label.FIRST_NAME}...`}
               />
               <Field
                 name='lastName'
                 type='text'
-                label={'Last Name:'}
+                label={`${lang.label.LAST_NAME}:`}
                 component={InputField}
-                placeholder='Last Name'
+                placeholder={`${lang.label.LAST_NAME}...`}
               />
             </Col>
-            <Col md={5}>
+            <Col md={4}>
               <Field
                 name='login'
                 type='text'
-                label={'Login:'}
+                label={`${lang.label.LOGIN}:`}
                 component={InputField}
-                placeholder='Login'
+                placeholder={`${lang.label.LOGIN}...`}
               />
               <Field
                 name='email'
                 type='email'
-                label={'Email:'}
+                label={`${lang.label.EMAIL}:`}
                 component={InputField}
-                placeholder='Email'
+                placeholder={`${lang.label.EMAIL}...`}
               />
             </Col>
           </Row>
           <hr/>
-          <Row>
+          <Row className='justify-content-center'>
+            <Col md={12}>
+              <Field
+                name='about'
+                label={`${lang.label.ABOUT_ME}:`}
+                component={TextareaField}
+                placeholder={`${lang.label.ABOUT_ME}...`}
+              />
+            </Col>
           </Row>
-          <button type='submit'>Send</button>
+          <Button
+            variant={'success'}
+            type='submit'
+          >
+            {lang.button.SEND}
+          </Button>
         </Form>
       </Formik>
     </Container>

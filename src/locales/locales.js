@@ -9,6 +9,14 @@ const en = {
   button: {
     SELECT: 'Select',
     SELECT_PICTURE: 'Select picture',
+    SEND: 'Send',
+  },
+  label: {
+    FIRST_NAME: 'First name',
+    LAST_NAME: 'Last name',
+    LOGIN: 'Login',
+    EMAIL: 'Email',
+    ABOUT_ME: 'About me',
   },
 };
 
@@ -23,6 +31,14 @@ const ru = {
   button: {
     SELECT: 'Выбрать',
     SELECT_PICTURE: 'Выбрать изображение',
+    SEND: 'Отправить',
+  },
+  label: {
+    FIRST_NAME: 'Имя',
+    LAST_NAME: 'Фамилия',
+    LOGIN: 'Логин',
+    EMAIL: 'Емайл',
+    ABOUT_ME: 'Обо мне',
   },
 };
 

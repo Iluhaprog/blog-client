@@ -32,6 +32,12 @@ let FieldWrapper = styled.div`
     border-radius: .25rem;
     padding: 10px;
   }
+  
+  
+  & textarea {
+    resize: none;
+    min-height: 200px;
+  }
 `;
 
 FieldWrapper.propTypes = {
