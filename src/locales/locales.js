@@ -17,6 +17,7 @@ const en = {
     LOGIN: 'Login',
     EMAIL: 'Email',
     ABOUT_ME: 'About me',
+    PASSWORD: 'Password',
     OLD_PASSWORD: 'Old password',
     NEW_PASSWORD: 'New password',
     NEW_REPEAT_PASSWORD: 'Repeat new password',
@@ -24,6 +25,7 @@ const en = {
   text: {
     CHANGE_PASSWORD: 'Change password',
     EDIT_PROFILE: 'Edit profile',
+    SIGN_IN: 'Sign In',
   },
 };
 
@@ -46,6 +48,7 @@ const ru = {
     LOGIN: 'Логин',
     EMAIL: 'Емайл',
     ABOUT_ME: 'Обо мне',
+    PASSWORD: 'Пароль',
     OLD_PASSWORD: 'Старый пароль',
     NEW_PASSWORD: 'Новый пароль',
     NEW_REPEAT_PASSWORD: 'Повторите новый пароль',
@@ -53,6 +56,7 @@ const ru = {
   text: {
     CHANGE_PASSWORD: 'Смена пароля',
     EDIT_PROFILE: 'Редактировать профиль',
+    SIGN_IN: 'Войти',
   },
 };
 

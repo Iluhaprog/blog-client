@@ -1,6 +1,5 @@
 import {api} from './api';
 import {requestWithToken} from '../utils/decorators/decorators';
-import {base64Encode} from '../utils/base64';
 
 /**
  * @param {string} username
@@ -13,7 +12,10 @@ export function login(username, password) {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${base64Encode(`${username}:${password}`)}`,
+    },
+    auth: {
+      username,
+      password,
     },
   });
 }

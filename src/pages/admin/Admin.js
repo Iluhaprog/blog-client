@@ -9,9 +9,13 @@ import {Profile} from './Profile';
 import {Projects} from './Projects';
 import {Dirs} from './Dirs';
 import {Route, Switch} from 'react-router-dom';
+import {Login} from './Login';
 
-const Admin = ({lang, theme}) => {
+const Admin = ({lang, theme, isAuthorized}) => {
   const links = ['profile', 'posts', 'projects', 'dirs'];
+
+  if (!isAuthorized) return <Login />;
+
   return (
     <>
       <Navbar
@@ -67,6 +71,7 @@ const Admin = ({lang, theme}) => {
 Admin.propTypes = {
   lang: PropTypes.object,
   theme: PropTypes.string,
+  isAuthorized: PropTypes.bool,
 };
 
 export {Admin};
