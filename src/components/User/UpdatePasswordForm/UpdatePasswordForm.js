@@ -18,7 +18,7 @@ let UserUpdatePasswordForm = (props) => {
     >
       <Form style={{paddingBottom: '20px'}}>
         <Container>
-          <h3 style={{textAlign: 'center'}}>
+          <h3>
             <Badge variant={'secondary'}>{lang.text.CHANGE_PASSWORD}</Badge>
           </h3>
           <Row>

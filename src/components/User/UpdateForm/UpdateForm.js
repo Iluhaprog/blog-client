@@ -28,7 +28,7 @@ let UserUpdateForm = (props) => {
     >
       <Form style={{paddingTop: '20px'}}>
         <Container>
-          <h3 style={{textAlign: 'center'}}>
+          <h3>
             <Badge variant={'secondary'}>{lang.text.EDIT_PROFILE}</Badge>
           </h3>
           <Row className='align-items-center justify-content-center'>

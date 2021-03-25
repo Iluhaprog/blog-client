@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const FileFieldWrapper = styled.div`
-  padding: 10px;
+  padding: 10px 0;
   max-width: ${({maxWidth}) => maxWidth}px;
   display: flex;
   flex-direction: column;
@@ -10,7 +10,7 @@ const FileFieldWrapper = styled.div`
 `;
 
 FileFieldWrapper.defaultProps = {
-  maxWidth: 220,
+  maxWidth: 200,
 };
 
 FileFieldWrapper.propTypes = {
