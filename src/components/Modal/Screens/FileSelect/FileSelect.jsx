@@ -13,6 +13,7 @@ const FileSelectScreen = ({theme, onClose, onSuccess}) => {
           <p>Files</p>
           <Button
             variant={'danger'}
+            onClick={() => onClose()}
           >
             <XSquare/>
           </Button>

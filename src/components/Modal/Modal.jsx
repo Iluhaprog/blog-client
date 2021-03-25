@@ -17,7 +17,11 @@ let Modal = ({modal, theme, close}) => {
 
   return (
     <ModalWrapper isVisible={modal.isVisible}>
-      <Screen theme={theme} onClose={close} onSuccess={modal.successHandler}/>
+      <Screen
+        theme={theme}
+        onClose={close}
+        onSuccess={modal.successHandler}
+      />
     </ModalWrapper>
   );
 };

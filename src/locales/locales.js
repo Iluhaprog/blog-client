@@ -8,6 +8,7 @@ const en = {
   },
   button: {
     SELECT: 'Select',
+    SELECT_PICTURE: 'Select picture',
   },
 };
 
@@ -21,6 +22,7 @@ const ru = {
   },
   button: {
     SELECT: 'Выбрать',
+    SELECT_PICTURE: 'Выбрать изображение',
   },
 };
 
