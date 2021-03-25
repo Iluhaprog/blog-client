@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {themes} from '../../../store/settings/settingsReduser';
 
-let InputFieldWrapper = styled.div`
+let FieldWrapper = styled.div`
   margin: 10px 0;
-  max-width: ${({maxWidth}) => maxWidth ? `${maxWidth}px` : '100%'};
+  max-width: ${({maxWidth}) => maxWidth ? `${maxWidth}px` : '100vw'};
+  width: 100%;
   & label {
     font-size: 20px;
     color: ${({theme}) => {
@@ -13,7 +14,8 @@ let InputFieldWrapper = styled.div`
   }};
   }
   
-  & input {
+  & input,
+  & textarea {
     display: block;
     width: 100%;
     color: ${({theme}) => {
@@ -32,7 +34,7 @@ let InputFieldWrapper = styled.div`
   }
 `;
 
-InputFieldWrapper.propTypes = {
+FieldWrapper.propTypes = {
   maxWidth: PropTypes.number,
   theme: PropTypes.string,
 };
@@ -43,9 +45,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = () => ({});
 
-InputFieldWrapper = connect(
+FieldWrapper = connect(
     mapStateToProps,
     mapDispatchToProps,
-)(InputFieldWrapper);
+)(FieldWrapper);
 
-export {InputFieldWrapper};
+export {FieldWrapper};

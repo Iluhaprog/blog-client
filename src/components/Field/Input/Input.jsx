@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {InputFieldWrapper} from './InputFieldWrapper';
+import {FieldWrapper} from '../Styled/FieldWrapper';
 
 const InputField = ({
   field,
@@ -10,14 +10,14 @@ const InputField = ({
   ...props
 }) => {
   return (
-    <InputFieldWrapper>
+    <FieldWrapper>
       <label>{label}</label>
       <input
         {...field}
         onChange={field.onChange}
         value={field.value || ''}
         {...props}/>
-    </InputFieldWrapper>
+    </FieldWrapper>
   );
 };
 
