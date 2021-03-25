@@ -17,6 +17,13 @@ const en = {
     LOGIN: 'Login',
     EMAIL: 'Email',
     ABOUT_ME: 'About me',
+    OLD_PASSWORD: 'Old password',
+    NEW_PASSWORD: 'New password',
+    NEW_REPEAT_PASSWORD: 'Repeat new password',
+  },
+  text: {
+    CHANGE_PASSWORD: 'Change password',
+    EDIT_PROFILE: 'Edit profile',
   },
 };
 
@@ -39,6 +46,13 @@ const ru = {
     LOGIN: 'Логин',
     EMAIL: 'Емайл',
     ABOUT_ME: 'Обо мне',
+    OLD_PASSWORD: 'Старый пароль',
+    NEW_PASSWORD: 'Новый пароль',
+    NEW_REPEAT_PASSWORD: 'Повторите новый пароль',
+  },
+  text: {
+    CHANGE_PASSWORD: 'Смена пароля',
+    EDIT_PROFILE: 'Редактировать профиль',
   },
 };
 

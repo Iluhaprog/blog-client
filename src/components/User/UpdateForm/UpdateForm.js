@@ -7,7 +7,7 @@ import {
   setVidible,
 } from '../../../store/modal/modalActions';
 import {ModalScreenTypes} from '../../../store/modal/ModalFormTypes';
-import {Button, Col, Container, Row} from 'react-bootstrap';
+import {Badge, Button, Col, Container, Row} from 'react-bootstrap';
 import {Field, Form, Formik} from 'formik';
 import PropTypes from 'prop-types';
 import {FileField} from '../../Field/File/File';
@@ -22,12 +22,15 @@ let UserUpdateForm = (props) => {
   };
 
   return (
-    <Container>
-      <Formik
-        initialValues={props.initialValues}
-        onSubmit={submit}
-      >
-        <Form>
+    <Formik
+      initialValues={props.initialValues}
+      onSubmit={submit}
+    >
+      <Form style={{paddingTop: '20px'}}>
+        <Container>
+          <h3 style={{textAlign: 'center'}}>
+            <Badge variant={'secondary'}>{lang.text.EDIT_PROFILE}</Badge>
+          </h3>
           <Row className='align-items-center justify-content-center'>
             <Col md={4}>
               <Field
@@ -87,9 +90,9 @@ let UserUpdateForm = (props) => {
           >
             {lang.button.SEND}
           </Button>
-        </Form>
-      </Formik>
-    </Container>
+        </Container>
+      </Form>
+    </Formik>
   );
 };
 
