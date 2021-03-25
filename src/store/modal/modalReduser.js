@@ -5,7 +5,7 @@ export const initialState = {
   successHandler: () => {},
   title: '',
   description: '',
-  formType: ModalScreenTypes.FILE_SELECT,
+  formType: ModalScreenTypes.NONE,
   isVisible: false,
 };
 
