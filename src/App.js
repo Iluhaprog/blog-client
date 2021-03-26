@@ -9,6 +9,7 @@ import {Admin} from './pages/admin';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Modal} from './components/Modal/Modal';
+import {Message} from './components/Message';
 
 function App(props) {
   const {lang, theme, isAuthorized} = props;
@@ -21,6 +22,7 @@ function App(props) {
           </Route>
         </Switch>
         <Modal />
+        <Message />
       </div>
     </Router>
   );

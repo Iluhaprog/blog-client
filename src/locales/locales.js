@@ -26,6 +26,7 @@ const en = {
     CHANGE_PASSWORD: 'Change password',
     EDIT_PROFILE: 'Edit profile',
     SIGN_IN: 'Sign In',
+    SUCCESS: 'Success',
   },
 };
 
@@ -57,6 +58,7 @@ const ru = {
     CHANGE_PASSWORD: 'Смена пароля',
     EDIT_PROFILE: 'Редактировать профиль',
     SIGN_IN: 'Войти',
+    SUCCESS: 'Успешно',
   },
 };
 

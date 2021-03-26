@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {update} from '../../../api/user';
+import {update} from '../../../store/user/userActions';
 import {
   initModal,
   setFormType,
