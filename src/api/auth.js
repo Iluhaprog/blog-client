@@ -17,12 +17,12 @@ export function login(username, password) {
       username,
       password,
     },
-  }).then((data) => {
+  }).then((response) => {
     const accessTokenKey = process.env.REACT_APP_ACCESS_TOKEN_KEY;
     const refreshTokenKey = process.env.REACT_APP_REFRESH_TOKEN_KEY;
-    localStorage.setItem(refreshTokenKey, data.refreshToken);
-    localStorage.setItem(accessTokenKey, data.accessToken);
-    return data;
+    localStorage.setItem(refreshTokenKey, response.data.refreshToken);
+    localStorage.setItem(accessTokenKey, response.data.accessToken);
+    return response;
   });
 }
 
