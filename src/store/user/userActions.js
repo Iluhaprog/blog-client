@@ -47,6 +47,15 @@ export const getAll = userAsyncActionCreator(
     },
 );
 
+export const getCurrent = userAsyncActionCreator(
+    (dispatch) => {
+      return user.getCurrent().then((response) => {
+        const {data} = response;
+        dispatch(setUserData(data));
+      });
+    },
+);
+
 export const getById = userAsyncActionCreator(
     (dispatch, id) => {
       return user.getById(id).then((response) => {

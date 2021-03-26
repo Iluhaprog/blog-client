@@ -99,6 +99,26 @@ describe('User actions creators', () => {
     });
   });
 
+  test('Should create SET_USER_DATA action (async getCurrent)', () => {
+    const userData = {id: 1};
+    mock.onGet(`/user/current`).reply(
+        (config) => {
+          const {headers} = config;
+          expect(headers['Authorization']).toBe(`Bearer ${token}`);
+          return [HttpStatus.OK, userData];
+        },
+    );
+    const expectedActions = [
+      ...expectedActionsMock,
+      {type: user.SET_USER_DATA, user: userData},
+    ];
+    const store = mockStore();
+    return store.dispatch(user.getCurrent()).then(() => {
+      const actions = store.getActions();
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
+    });
+  });
+
   test('Should create SET_USER_DATA action (async getById)', () => {
     const id = 1;
     const userData = {id: 1};
