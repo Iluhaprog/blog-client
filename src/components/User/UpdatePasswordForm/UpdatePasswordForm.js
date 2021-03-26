@@ -9,7 +9,11 @@ import {connect} from 'react-redux';
 let UserUpdatePasswordForm = (props) => {
   const {lang} = props;
   const submit = (values, actions) => {
-    console.log(values);
+    const creds = {
+      id: props.userId,
+      ...values,
+    };
+    props.update(creds);
   };
   return (
     <Formik
@@ -42,7 +46,7 @@ let UserUpdatePasswordForm = (props) => {
             </Col>
             <Col md={4}>
               <Field
-                name='newRepeatPassword'
+                name='newPasswordRepeat'
                 type='password'
                 label={`${lang.label.NEW_REPEAT_PASSWORD}:`}
                 component={InputField}
