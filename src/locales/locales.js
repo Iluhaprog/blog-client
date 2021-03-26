@@ -21,6 +21,7 @@ const en = {
     OLD_PASSWORD: 'Old password',
     NEW_PASSWORD: 'New password',
     NEW_REPEAT_PASSWORD: 'Repeat new password',
+    SKILLS: 'Skills',
   },
   text: {
     CHANGE_PASSWORD: 'Change password',
@@ -53,6 +54,7 @@ const ru = {
     OLD_PASSWORD: 'Старый пароль',
     NEW_PASSWORD: 'Новый пароль',
     NEW_REPEAT_PASSWORD: 'Повторите новый пароль',
+    SKILLS: 'Умения',
   },
   text: {
     CHANGE_PASSWORD: 'Смена пароля',

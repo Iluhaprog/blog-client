@@ -84,6 +84,16 @@ let UserUpdateForm = (props) => {
               />
             </Col>
           </Row>
+          <Row>
+            <Col md={12}>
+              <Field
+                name='skills'
+                label={`${lang.label.SKILLS}:`}
+                component={InputField}
+                placeholder={`${lang.label.SKILLS}...`}
+              />
+            </Col>
+          </Row>
           <Button
             variant={'success'}
             type='submit'
