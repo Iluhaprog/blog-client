@@ -18,7 +18,7 @@ let UserUpdateForm = (props) => {
   const {lang} = props;
 
   const submit = (values, actions) => {
-    console.log(values);
+    props.update({...values, id: props.initialValues.id});
   };
 
   return (
