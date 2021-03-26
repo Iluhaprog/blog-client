@@ -33,6 +33,13 @@ export function create(user) {
   });
 }
 
+export function getCurrent() {
+  return requestWithToken(
+      (headers) => api.get(`${USER_URL}/current`, {
+        headers,
+      }),
+  );
+}
 
 /**
  * @param {Object} user

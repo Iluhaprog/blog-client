@@ -35,6 +35,22 @@ describe('User api module', () => {
     expect(data).toEqual(userData);
   });
 
+  test('/user/current (GET)', async () => {
+    const userData = {id: 1};
+    mock.onGet(`/user/current`).reply(
+        (config) => {
+          const {headers} = config;
+          expect(headers['Authorization']).toBe(`Bearer ${token}`);
+          return [HttpStatus.OK, userData];
+        },
+    );
+
+    const {status, data} = await user.getCurrent();
+
+    expect(status).toBe(HttpStatus.OK);
+    expect(data).toEqual(userData);
+  });
+
   test('/user (POST)', async () => {
     const newUser = {login: 'test'};
     mock.onPost('/user', newUser, {
