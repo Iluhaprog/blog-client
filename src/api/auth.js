@@ -17,6 +17,12 @@ export function login(username, password) {
       username,
       password,
     },
+  }).then((data) => {
+    const accessTokenKey = process.env.REACT_APP_ACCESS_TOKEN_KEY;
+    const refreshTokenKey = process.env.REACT_APP_REFRESH_TOKEN_KEY;
+    localStorage.setItem(refreshTokenKey, data.refreshToken);
+    localStorage.setItem(accessTokenKey, data.accessToken);
+    return data;
   });
 }
 

@@ -1,7 +1,6 @@
 import MockAdapter from 'axios-mock-adapter';
 import {api} from '../api';
 import * as auth from '../auth';
-import {base64Encode} from '../../utils/base64';
 import {HttpStatus} from '../status';
 
 describe('Auth api module', () => {
@@ -15,14 +14,14 @@ describe('Auth api module', () => {
     };
     const username = 'TEST_USERNAME';
     const password = 'TEST_PASSWORD';
-    const token = base64Encode(`${username}:${password}`);
+    jest.spyOn(localStorage, 'setItem').mockImplementation(() => {});
     mock.onPost(`${API_URL}/auth/login`).reply((config) => {
-      expect(config.headers['Authorization']).toBe(`Bearer ${token}`);
       return [HttpStatus.OK, answer];
     });
 
     const {status, data} = await auth.login(username, password);
 
+    expect(localStorage.setItem).toHaveBeenCalledTimes(2);
     expect(status).toBe(HttpStatus.OK);
     expect(data).toEqual(answer);
   });

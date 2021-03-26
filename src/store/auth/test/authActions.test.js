@@ -3,7 +3,6 @@ import configureStore from 'redux-mock-store';
 import * as auth from '../authActions';
 import * as message from '../../message/messageActions';
 import thunk from 'redux-thunk';
-import {base64Encode} from '../../../utils/base64';
 import {HttpStatus} from '../../../api/status';
 import MockAdapter from 'axios-mock-adapter';
 import {api} from '../../../api/api';
@@ -75,9 +74,7 @@ describe('Auth action creators', () => {
       ...expectedActionsMock,
       {type: auth.MAKE_AUTH, auth: authData},
     ];
-    const token = base64Encode(`${username}:${password}`);
     mock.onPost('/auth/login').reply((config) => {
-      expect(config.headers['Authorization']).toBe(`Bearer ${token}`);
       return [HttpStatus.OK, authData];
     });
 
