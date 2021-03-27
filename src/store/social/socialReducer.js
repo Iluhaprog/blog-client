@@ -39,7 +39,7 @@ export const socialReducer = (state = initialState, action) => {
       };
     default:
       return {
-        ...social,
+        ...state,
       };
   }
 };
