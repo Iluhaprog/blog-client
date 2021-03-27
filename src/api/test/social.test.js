@@ -56,10 +56,9 @@ describe('Social api module', () => {
 
   test('/social (DELETE)', async () => {
     const id = 1;
-    mock.onDelete('/social').reply((config) => {
-      const {headers, params} = config;
+    mock.onDelete('/social/'+id).reply((config) => {
+      const {headers} = config;
       expect(headers['Authorization']).toBe(`Bearer ${token}`);
-      expect(params.id).toBe(id);
       return [HttpStatus.NO_CONTENT];
     });
 

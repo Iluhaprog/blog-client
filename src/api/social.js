@@ -50,8 +50,7 @@ export function update(social) {
  */
 export function remove(id) {
   return requestWithToken(
-      (headers) => api.delete(SOCIAL_URL, {
-        params: {id},
+      (headers) => api.delete(`${SOCIAL_URL}/${id}`, {
         headers,
       }),
   );
