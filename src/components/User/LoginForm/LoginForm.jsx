@@ -6,12 +6,15 @@ import {LoginFormBox} from './LoginFormBox';
 import {connect} from 'react-redux';
 import {login} from '../../../store/auth/authActions';
 import {InputField} from '../../Field/Input';
+import {Redirect} from 'react-router-dom';
 
-let LoginForm = ({lang, login}) => {
+let LoginForm = ({lang, login, isAuthorized}) => {
   const submit = (values, actions) => {
     const {username, password} = values;
     login(username, password);
   };
+
+  if (isAuthorized) return <Redirect to='/admin/profile'/>;
 
   return (
     <LoginFormBox>
@@ -66,10 +69,12 @@ let LoginForm = ({lang, login}) => {
 LoginForm.propTypes = {
   login: PropTypes.func,
   lang: PropTypes.object,
+  isAuthorized: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => ({
   lang: state.settings.lang,
+  isAuthorized: state.auth.isAuthorized,
 });
 
 const mapDispatchToProps = (dispatch) => ({

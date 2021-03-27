@@ -10,6 +10,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Modal} from './components/Modal/Modal';
 import {Message} from './components/Message';
+import {Login} from './pages/admin/Login';
 
 function App(props) {
   const {lang, theme, isAuthorized} = props;
@@ -19,6 +20,9 @@ function App(props) {
         <Switch>
           <Route path='/admin'>
             <Admin lang={lang} theme={theme} isAuthorized={isAuthorized}/>
+          </Route>
+          <Route path='/login'>
+            <Login />
           </Route>
         </Switch>
         <Modal />

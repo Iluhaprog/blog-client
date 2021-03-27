@@ -8,13 +8,12 @@ import {Posts} from './Posts';
 import {Profile} from './Profile';
 import {Projects} from './Projects';
 import {Dirs} from './Dirs';
-import {Route, Switch} from 'react-router-dom';
-import {Login} from './Login';
+import {Route, Switch, Redirect} from 'react-router-dom';
 
 const Admin = ({lang, theme, isAuthorized}) => {
   const links = ['profile', 'posts', 'projects', 'dirs'];
 
-  if (!isAuthorized) return <Login />;
+  if (!isAuthorized) return <Redirect to='/login' />;
 
   return (
     <>
