@@ -10,8 +10,11 @@ export const SET_USER_DATA = 'SET_USER_DATA';
 export const ADD_USER = 'ADD_USER';
 export const FILL_USERS_ARRAY = 'FILL_USERS_ARRAY';
 export const UPDATE_USER = 'UPDATE_USER';
+export const TOGGLE_PASS_FETCH = 'SET_PASS_FETCH';
 
 export const toggleFetch = createFetchToggler(TOGGLE_USER_FETCH);
+
+export const togglePassFetch = createFetchToggler(TOGGLE_PASS_FETCH);
 
 export const setUserData = (user) => ({
   type: SET_USER_DATA,
@@ -35,6 +38,11 @@ export const updateUser = (user) => ({
 
 const userAsyncActionCreator = createDeclarator(
     toggleFetch,
+    message.addMessage,
+);
+
+const passAsyncActionCreator = createDeclarator(
+    togglePassFetch,
     message.addMessage,
 );
 
@@ -82,7 +90,7 @@ export const update = userAsyncActionCreator(
     },
 );
 
-export const updatePassword = userAsyncActionCreator(
+export const updatePassword = passAsyncActionCreator(
     (dispatch, creds) => {
       return user.updatePassword(creds);
     },

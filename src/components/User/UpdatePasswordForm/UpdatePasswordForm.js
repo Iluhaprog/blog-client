@@ -1,13 +1,13 @@
 import React from 'react';
 import {Formik, Form, Field} from 'formik';
-import {Badge, Button, Col, Container, Row} from 'react-bootstrap';
+import {Badge, Button, Col, Container, Row, Spinner} from 'react-bootstrap';
 import {InputField} from '../../Field/Input';
 import {updatePassword} from '../../../store/user/userActions';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 let UserUpdatePasswordForm = (props) => {
-  const {lang} = props;
+  const {lang, isFetch} = props;
   const submit = (values, actions) => {
     const creds = {
       id: props.userId,
@@ -60,6 +60,12 @@ let UserUpdatePasswordForm = (props) => {
           >
             {lang.button.SEND}
           </Button>
+          <Spinner
+            style={{marginLeft: '10px', opacity: +isFetch}}
+            size='sm'
+            animation='border'
+            variant='light'
+          />
         </Container>
       </Form>
     </Formik>
@@ -75,7 +81,7 @@ UserUpdatePasswordForm.propTypes = {
 
 const mapStateToProps = (state) => ({
   userId: state.user.data.id,
-  isFetch: state.user.isFetch,
+  isFetch: state.user.passIsFetch,
   lang: state.settings.lang,
 });
 

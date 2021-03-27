@@ -46,6 +46,14 @@ describe('User actions creators', () => {
     expect(actions).toEqual(expectedActions);
   });
 
+  test('Should create TOGGLE_PASS_FETCH action', () => {
+    const expectedActions = [{type: user.TOGGLE_PASS_FETCH}];
+    const store = mockStore();
+    store.dispatch(user.togglePassFetch());
+    const actions = store.getActions();
+    expect(actions).toEqual(expectedActions);
+  });
+
   test('Should create SET_USER_DATA action', () => {
     const userData = {name: 'TEST_USER_NAME'};
     const expectedActions = [{type: user.SET_USER_DATA, user: userData}];
@@ -181,7 +189,10 @@ describe('User actions creators', () => {
       expect(data).toEqual(JSON.stringify(creds));
       return [HttpStatus.NO_CONTENT];
     });
-    const expectedActions = [...expectedActionsMock];
+    const expectedActions = [
+      {type: user.TOGGLE_PASS_FETCH},
+      {type: user.TOGGLE_PASS_FETCH},
+    ];
     const store = mockStore();
     return store.dispatch(user.updatePassword(creds)).then(() => {
       const actions = store.getActions();

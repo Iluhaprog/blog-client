@@ -7,7 +7,7 @@ import {
   setVidible,
 } from '../../../store/modal/modalActions';
 import {ModalScreenTypes} from '../../../store/modal/ModalFormTypes';
-import {Badge, Button, Col, Container, Row} from 'react-bootstrap';
+import {Badge, Button, Col, Container, Row, Spinner} from 'react-bootstrap';
 import {Field, Form, Formik} from 'formik';
 import PropTypes from 'prop-types';
 import {FileField} from '../../Field/File/File';
@@ -15,7 +15,7 @@ import {InputField} from '../../Field/Input';
 import {TextareaField} from '../../Field/Textarea';
 
 let UserUpdateForm = (props) => {
-  const {lang} = props;
+  const {lang, isFetch} = props;
 
   const submit = (values, actions) => {
     props.update({...values, id: props.initialValues.id});
@@ -100,6 +100,12 @@ let UserUpdateForm = (props) => {
           >
             {lang.button.SEND}
           </Button>
+          <Spinner
+            style={{marginLeft: '10px', opacity: +isFetch}}
+            size='sm'
+            animation='border'
+            variant='light'
+          />
         </Container>
       </Form>
     </Formik>

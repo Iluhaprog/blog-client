@@ -13,6 +13,14 @@ describe('userReduser', () => {
     });
   });
 
+  test('Should handle TOGGLE_PASS_FETCH action', () => {
+    const result = userReducer(initialState, user.togglePassFetch());
+    expect(result).toEqual({
+      ...initialState,
+      passIsFetch: true,
+    });
+  });
+
   test('Should handle SET_USER_DATA action', () => {
     const userData = {id: 1};
     const result = userReducer(initialState, user.setUserData(userData));

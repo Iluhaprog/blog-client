@@ -4,6 +4,7 @@ export const initialState = {
   data: {},
   users: [],
   isFetch: false,
+  passIsFetch: false,
 };
 
 export const userReducer = (state = initialState, action) => {
@@ -12,6 +13,11 @@ export const userReducer = (state = initialState, action) => {
       return {
         ...state,
         isFetch: !state.isFetch,
+      };
+    case user.TOGGLE_PASS_FETCH:
+      return {
+        ...state,
+        passIsFetch: !state.passIsFetch,
       };
     case user.SET_USER_DATA:
       return {
