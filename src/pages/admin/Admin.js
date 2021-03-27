@@ -9,6 +9,7 @@ import {Profile} from './Profile';
 import {Projects} from './Projects';
 import {Dirs} from './Dirs';
 import {Route, Switch, Redirect} from 'react-router-dom';
+import {LogoutButton} from '../../components/LogoutButton';
 
 const Admin = ({lang, theme, isAuthorized}) => {
   const links = ['profile', 'posts', 'projects', 'dirs'];
@@ -44,6 +45,7 @@ const Admin = ({lang, theme, isAuthorized}) => {
             </Nav>
             <LangSelector />
             <ThemeToggler />
+            <LogoutButton />
           </Navbar.Collapse>
         </Container>
       </Navbar>

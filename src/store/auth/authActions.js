@@ -45,6 +45,7 @@ export const logout = authAsyncActionCreator(
     (dispatch) => {
       return auth.logout().then(() => {
         dispatch(clearAuth());
+        localStorage.clear();
       });
     },
 );
@@ -53,6 +54,7 @@ export const logoutAll = authAsyncActionCreator(
     (dispatch) => {
       return auth.logoutAll().then(() => {
         dispatch(clearAuth());
+        localStorage.clear();
       });
     },
 );

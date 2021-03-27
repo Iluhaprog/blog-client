@@ -110,6 +110,7 @@ describe('Auth action creators', () => {
   test('Should create action CLEAR_AUTH (async)', () => {
     const token = 'TEST_ACCESS_TOKEN';
     jest.spyOn(localStorage, 'getItem').mockReturnValue(token);
+    jest.spyOn(localStorage, 'clear').mockImplementation(() => {});
     mock.onGet('/auth/logout').reply((config) => {
       expect(config.headers['Authorization']).toBe(`Bearer ${token}`);
       return [HttpStatus.OK];
@@ -121,6 +122,7 @@ describe('Auth action creators', () => {
     ];
 
     return store.dispatch(auth.logout()).then(() => {
+      expect(localStorage.clear).toHaveBeenCalled();
       expect(store.getActions())
           .toEqual(expect.arrayContaining(expectedActions));
     });
@@ -129,6 +131,7 @@ describe('Auth action creators', () => {
   test('Should create action CLEAR_AUTH (async logoutAll)', () => {
     const token = 'TEST_ACCESS_TOKEN';
     jest.spyOn(localStorage, 'getItem').mockReturnValue(token);
+    jest.spyOn(localStorage, 'clear').mockImplementation(() => {});
     mock.onGet('/auth/logoutAll').reply((config) => {
       expect(config.headers['Authorization']).toBe(`Bearer ${token}`);
       return [HttpStatus.OK];
@@ -140,6 +143,7 @@ describe('Auth action creators', () => {
     ];
 
     return store.dispatch(auth.logoutAll()).then(() => {
+      expect(localStorage.clear).toHaveBeenCalled();
       expect(store.getActions())
           .toEqual(expect.arrayContaining(expectedActions));
     });
