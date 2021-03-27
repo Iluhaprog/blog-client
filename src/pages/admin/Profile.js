@@ -6,6 +6,7 @@ import {
 import {getCurrent} from '../../store/user/userActions';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import {SocialFormList} from '../../components/Social/FormList';
 
 let Profile = ({getUserData}) => {
   useEffect(() => {
@@ -17,6 +18,8 @@ let Profile = ({getUserData}) => {
       <UserUpdateForm />
       <hr/>
       <UserUpdatePasswordForm />
+      <hr/>
+      <SocialFormList />
     </section>
   );
 };

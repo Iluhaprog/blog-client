@@ -10,6 +10,7 @@ const en = {
     SELECT: 'Select',
     SELECT_PICTURE: 'Select picture',
     SEND: 'Send',
+    DELETE: 'Delete',
   },
   label: {
     FIRST_NAME: 'First name',
@@ -22,12 +23,15 @@ const en = {
     NEW_PASSWORD: 'New password',
     NEW_REPEAT_PASSWORD: 'Repeat new password',
     SKILLS: 'Skills',
+    TITLE: 'Title',
+    LINK: 'Link',
   },
   text: {
     CHANGE_PASSWORD: 'Change password',
     EDIT_PROFILE: 'Edit profile',
     SIGN_IN: 'Sign In',
     SUCCESS: 'Success',
+    SOCIALS: 'Socials',
   },
 };
 
@@ -43,6 +47,7 @@ const ru = {
     SELECT: 'Выбрать',
     SELECT_PICTURE: 'Выбрать изображение',
     SEND: 'Отправить',
+    DELETE: 'Удалить',
   },
   label: {
     FIRST_NAME: 'Имя',
@@ -55,12 +60,15 @@ const ru = {
     NEW_PASSWORD: 'Новый пароль',
     NEW_REPEAT_PASSWORD: 'Повторите новый пароль',
     SKILLS: 'Умения',
+    TITLE: 'Заголовок',
+    LINK: 'Ссылка',
   },
   text: {
     CHANGE_PASSWORD: 'Смена пароля',
     EDIT_PROFILE: 'Редактировать профиль',
     SIGN_IN: 'Войти',
     SUCCESS: 'Успешно',
+    SOCIALS: 'Соц. сети',
   },
 };
 
