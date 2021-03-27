@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {themes} from '../../store/settings/settingsReduser';
+import {themes} from '../../store/settings/settingsReducer';
 import {connect} from 'react-redux';
 
 let DropdownWrapper = styled.div`

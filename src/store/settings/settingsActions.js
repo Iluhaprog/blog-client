@@ -1,4 +1,4 @@
-import {themes} from './settingsReduser';
+import {themes} from './settingsReducer';
 import {locales} from '../../locales/locales';
 
 export const SET_LANG = 'SET_LANG';

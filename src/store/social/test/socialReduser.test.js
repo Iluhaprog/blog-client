@@ -1,12 +1,12 @@
 import {
   initialState,
-  socialReduser,
-} from '../socialReduser';
+  socialReducer,
+} from '../socialReducer';
 import * as social from '../socialActions';
 
 describe('socialReduser', () => {
   test('Should handle TOGGLE_SOCIAL_FETCH action', () => {
-    const result = socialReduser(initialState, social.toggleFetch());
+    const result = socialReducer(initialState, social.toggleFetch());
     expect(result).toEqual({
       ...initialState,
       isFetch: true,
@@ -15,7 +15,7 @@ describe('socialReduser', () => {
 
   test('Should handle ADD_SOCIAL action', () => {
     const socialData = {title: 'TEST_SOCIAL_TITLE'};
-    const result = socialReduser(initialState, social.addSocial(socialData));
+    const result = socialReducer(initialState, social.addSocial(socialData));
     expect(result).toEqual({
       ...initialState,
       socials: [socialData],
@@ -30,7 +30,7 @@ describe('socialReduser', () => {
       ...initialState,
       socials: [socialData],
     };
-    const result = socialReduser(state, social.updateSocial(updatedData));
+    const result = socialReducer(state, social.updateSocial(updatedData));
     expect(result).toEqual({
       ...state,
       socials: [updatedData],
@@ -39,7 +39,7 @@ describe('socialReduser', () => {
 
   test('Should handle FILL_SOCIALS_ARRAY action', () => {
     const socialData = {title: 'TEST_SOCIAL_TITLE'};
-    const result = socialReduser(
+    const result = socialReducer(
         initialState,
         social.fillSocialsArray([socialData]),
     );
@@ -56,7 +56,7 @@ describe('socialReduser', () => {
       ...initialState,
       socials: [socialData],
     };
-    const result = socialReduser(state, social.removeSocial(id));
+    const result = socialReducer(state, social.removeSocial(id));
     expect(result).toEqual(initialState);
   });
 });

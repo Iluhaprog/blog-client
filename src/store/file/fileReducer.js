@@ -6,7 +6,7 @@ export const initialState = {
   isFetch: false,
 };
 
-export const fileReduser = (state = initialState, action) => {
+export const fileReducer = (state = initialState, action) => {
   switch (action.type) {
     case file.TOGGLE_FILE_FETCH:
       return {

@@ -1,7 +1,7 @@
 import {
   initialState,
-  messageReduser,
-} from '../messageReduser';
+  messageReducer,
+} from '../messageReducer';
 import * as message from '../messageActions';
 import * as uuid from 'uuid';
 import {MessageTypes} from '../MessageTypes';
@@ -18,7 +18,7 @@ describe('messageReduser', () => {
   });
 
   test('Should handle ADD_MESSAGE action', () => {
-    const result = messageReduser(initialState, message.addMessage());
+    const result = messageReducer(initialState, message.addMessage());
     expect(result).toEqual({
       ...initialState,
       messages: [
@@ -42,7 +42,7 @@ describe('messageReduser', () => {
         },
       ],
     };
-    const result = messageReduser(state, message.removeMessage(messageId));
+    const result = messageReducer(state, message.removeMessage(messageId));
     expect(result).toEqual(initialState);
   });
 });

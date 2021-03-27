@@ -1,7 +1,7 @@
 import {
   initialState,
   projectReducer,
-} from '../projectReduser';
+} from '../projectReducer';
 import * as project from '../projectActions';
 
 describe('projectReduser', () => {

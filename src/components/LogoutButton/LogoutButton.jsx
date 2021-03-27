@@ -4,7 +4,7 @@ import {DoorOpen} from 'react-bootstrap-icons';
 import {logout} from '../../store/auth/authActions';
 import {connect} from 'react-redux';
 import * as PropTypes from 'prop-types';
-import {themes} from '../../store/settings/settingsReduser';
+import {themes} from '../../store/settings/settingsReducer';
 
 let LogoutButton = ({theme, logout}) => {
   return (

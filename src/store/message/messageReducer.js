@@ -5,7 +5,7 @@ export const initialState = {
   messageLiveTime: process.env.REACT_APP_MESSAGE_LIVETIME || 2000,
 };
 
-export const messageReduser = (state = initialState, action) => {
+export const messageReducer = (state = initialState, action) => {
   switch (action.type) {
     case message.ADD_MESSAGE:
       return {

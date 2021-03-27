@@ -11,7 +11,7 @@ export const initialState = {
   theme: themes.LIGHT,
 };
 
-export const settingsReduser = (state = initialState, action) => {
+export const settingsReducer = (state = initialState, action) => {
   switch (action.type) {
     case settings.SET_LANG:
       return {

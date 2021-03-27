@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Button} from 'react-bootstrap';
 import {BrightnessHigh, Moon} from 'react-bootstrap-icons';
 import * as PropTypes from 'prop-types';
-import {themes} from '../../store/settings/settingsReduser';
+import {themes} from '../../store/settings/settingsReducer';
 
 function ThemeToggler({theme, setDarkTheme, setLightTheme}) {
   const [isLight, setIsLight] = useState(theme === themes.LIGHT);

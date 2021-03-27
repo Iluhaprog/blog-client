@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import {themes} from '../../../store/settings/settingsReduser';
+import {themes} from '../../../store/settings/settingsReducer';
 import {connect} from 'react-redux';
 
 let FilePreviewWrapper = styled.div`

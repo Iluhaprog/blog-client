@@ -9,7 +9,7 @@ export const initialState = {
   isVisible: false,
 };
 
-export const modalReduser = (state = initialState, action) => {
+export const modalReducer = (state = initialState, action) => {
   switch (action.type) {
     case modal.INIT_MODAL:
       return {

@@ -1,7 +1,7 @@
 import React from 'react';
 import {render, waitFor, fireEvent} from '@testing-library/react';
 import {ThemeToggler} from './ThemeToggler';
-import {themes} from '../../store/settings/settingsReduser';
+import {themes} from '../../store/settings/settingsReducer';
 
 test('Should call functions', async () => {
   const setDarkTheme = jest.fn();

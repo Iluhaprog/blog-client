@@ -1,7 +1,7 @@
 import React from 'react';
 import {render, waitFor, fireEvent} from '@testing-library/react';
 import {LangSelector} from './LangSelector';
-import {themes} from '../../store/settings/settingsReduser';
+import {themes} from '../../store/settings/settingsReducer';
 import {locales} from '../../locales/locales';
 
 test('Should render LangSelector', async () => {

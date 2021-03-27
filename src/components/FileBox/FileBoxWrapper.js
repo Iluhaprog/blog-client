@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {connect} from 'react-redux';
-import {themes} from '../../store/settings/settingsReduser';
+import {themes} from '../../store/settings/settingsReducer';
 
 let FileBoxWrapper = styled.div`
   width: auto;

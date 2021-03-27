@@ -5,7 +5,7 @@ export const initialState = {
   isFetch: false,
 };
 
-export const socialReduser = (state = initialState, action) => {
+export const socialReducer = (state = initialState, action) => {
   switch (action.type) {
     case social.TOGGLE_SOCIAL_FETCH:
       return {

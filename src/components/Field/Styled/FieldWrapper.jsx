@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {themes} from '../../../store/settings/settingsReduser';
+import {themes} from '../../../store/settings/settingsReducer';
 
 let FieldWrapper = styled.div`
   margin: 10px 0;

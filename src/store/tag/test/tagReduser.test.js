@@ -1,7 +1,7 @@
 import {
   initialState,
   tagReducer,
-} from '../tagReduser';
+} from '../tagReducer';
 import * as tag from '../tagActions';
 
 describe('tagReducer', () => {

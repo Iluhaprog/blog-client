@@ -1,7 +1,7 @@
 import * as settings from '../settingsActions';
 import configureStore from 'redux-mock-store';
 import {locales} from '../../../locales/locales';
-import {themes} from '../settingsReduser';
+import {themes} from '../settingsReducer';
 
 const mockStore = configureStore();
 

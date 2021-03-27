@@ -1,13 +1,13 @@
 import {
   initialState,
-  fileReduser,
+  fileReducer,
 } from '../fileReducer';
 
 import * as file from '../fileActions';
 
 describe('fileReducer', () => {
   test('Should handle TOGGLE_FILE_FETCH action', () => {
-    const result = fileReduser(initialState, file.toggleFetch());
+    const result = fileReducer(initialState, file.toggleFetch());
     expect(result).toEqual({
       ...initialState,
       isFetch: true,
@@ -21,7 +21,7 @@ describe('fileReducer', () => {
       data: files,
       total,
     };
-    const result = fileReduser(initialState, file.fillFilesArray(data));
+    const result = fileReducer(initialState, file.fillFilesArray(data));
     expect(result).toEqual({
       ...initialState,
       files,
@@ -31,7 +31,7 @@ describe('fileReducer', () => {
 
   test('Should handle ADD_FILE action', () => {
     const fileData = {name: 'TEST_FILE_NAME'};
-    const result = fileReduser(initialState, file.addFile(fileData));
+    const result = fileReducer(initialState, file.addFile(fileData));
     expect(result).toEqual({
       ...initialState,
       files: [fileData],
@@ -44,7 +44,7 @@ describe('fileReducer', () => {
       ...initialState,
       files: [fileData],
     };
-    const result = fileReduser(state, file.removeFile(fileData.id));
+    const result = fileReducer(state, file.removeFile(fileData.id));
     expect(result).toEqual(initialState);
   });
 });

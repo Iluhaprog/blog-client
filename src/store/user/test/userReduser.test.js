@@ -1,7 +1,7 @@
 import {
   initialState,
   userReducer,
-} from '../userReduser';
+} from '../userReducer';
 import * as user from '../userActions';
 
 describe('userReduser', () => {

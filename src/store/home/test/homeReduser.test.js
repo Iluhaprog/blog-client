@@ -1,12 +1,12 @@
 import {
   initialState,
-  homeReduser,
-} from '../homeReduser';
+  homeReducer,
+} from '../homeReducer';
 import * as home from '../homeActions';
 
 describe('homeReducer', () => {
   test('Should handle TOGGLE_HOME_FETCH action', () => {
-    const result = homeReduser(initialState, home.toggleFetch());
+    const result = homeReducer(initialState, home.toggleFetch());
     expect(result).toEqual({
       ...initialState,
       isFetch: true,
@@ -15,7 +15,7 @@ describe('homeReducer', () => {
 
   test('Should handle SELECT_HOME action', () => {
     const homeData = {title: 'TEST_HOME_TITLE'};
-    const result = homeReduser(initialState, home.selectHome(homeData));
+    const result = homeReducer(initialState, home.selectHome(homeData));
     expect(result).toEqual({
       ...initialState,
       selected: homeData,
@@ -24,7 +24,7 @@ describe('homeReducer', () => {
 
   test('Should handle ADD_HOME action', () => {
     const homeData = {title: 'TEST_HOME_TITLE'};
-    const result = homeReduser(initialState, home.addHome(homeData));
+    const result = homeReducer(initialState, home.addHome(homeData));
     expect(result).toEqual({
       ...initialState,
       homes: [homeData],
@@ -38,7 +38,7 @@ describe('homeReducer', () => {
       ...initialState,
       homes: [homeData],
     };
-    const result = homeReduser(state, home.updateHome(updatedHome));
+    const result = homeReducer(state, home.updateHome(updatedHome));
     expect(result).toEqual({
       ...initialState,
       homes: [updatedHome],
@@ -51,7 +51,7 @@ describe('homeReducer', () => {
       ...initialState,
       homes: [homeData],
     };
-    const result = homeReduser(state, home.removeHome(homeData.id));
+    const result = homeReducer(state, home.removeHome(homeData.id));
     expect(result).toEqual(initialState);
   });
 });

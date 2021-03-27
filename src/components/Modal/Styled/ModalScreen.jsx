@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {themes} from '../../../store/settings/settingsReduser';
+import {themes} from '../../../store/settings/settingsReducer';
 import PropTypes from 'prop-types';
 
 const ModalScreen = styled.div`

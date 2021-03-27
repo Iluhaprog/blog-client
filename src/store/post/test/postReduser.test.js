@@ -1,7 +1,7 @@
 import {
   initialState,
   postReducer,
-} from '../postReduser';
+} from '../postReducer';
 import * as post from '../postActions';
 
 describe('postReduser', () => {

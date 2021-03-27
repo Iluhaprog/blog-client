@@ -6,7 +6,7 @@ export const initialState = {
   isFetch: false,
 };
 
-export const homeReduser = (state = initialState, action) => {
+export const homeReducer = (state = initialState, action) => {
   switch (action.type) {
     case home.TOGGLE_HOME_FETCH:
       return {

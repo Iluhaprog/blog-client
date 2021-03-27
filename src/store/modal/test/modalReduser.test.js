@@ -1,7 +1,7 @@
 import {
   initialState,
-  modalReduser,
-} from '../modalReduser';
+  modalReducer,
+} from '../modalReducer';
 import * as modal from '../modalActions';
 import {ModalScreenTypes} from '../ModalFormTypes';
 
@@ -10,7 +10,7 @@ describe('modalReduser', () => {
     const title = 'TEST_MODAL_TITLE';
     const description = 'TEST_MODAL_DESCRIPTION';
     const successHandler = jest.fn();
-    const result = modalReduser(initialState, modal.initModal({
+    const result = modalReducer(initialState, modal.initModal({
       title,
       description,
       successHandler,
@@ -25,7 +25,7 @@ describe('modalReduser', () => {
 
   test('Should handle SET_FORM_TYPE action', () => {
     const formType = ModalScreenTypes.ONE_INPUT;
-    const result = modalReduser(initialState, modal.setFormType(formType));
+    const result = modalReducer(initialState, modal.setFormType(formType));
     expect(result).toEqual({
       ...initialState,
       formType,
@@ -34,7 +34,7 @@ describe('modalReduser', () => {
 
   test('Should handle SET_VISIBLE action', () => {
     const isVisible = true;
-    const result = modalReduser(initialState, modal.setVidible(isVisible));
+    const result = modalReducer(initialState, modal.setVidible(isVisible));
     expect(result).toEqual({
       ...initialState,
       isVisible,
@@ -47,7 +47,7 @@ describe('modalReduser', () => {
       title: 'TEST_MODAL_TITLE',
       description: 'TEST_MODAL_DESCRIPTION',
     };
-    const result = modalReduser(store, modal.clearModal());
+    const result = modalReducer(store, modal.clearModal());
     expect(result).toEqual(initialState);
   });
 });
