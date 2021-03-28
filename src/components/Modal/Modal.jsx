@@ -6,10 +6,12 @@ import PropTypes from 'prop-types';
 import {ModalScreenTypes} from '../../store/modal/ModalFormTypes';
 import {DefaultScreen} from './Screens/Default';
 import {FileSelectScreen} from './Screens/FileSelect';
+import {InputScreen} from './Screens/Input';
 
 const ModalScreens = {
   [ModalScreenTypes.NONE]: DefaultScreen,
   [ModalScreenTypes.FILE_SELECT]: FileSelectScreen,
+  [ModalScreenTypes.INPUT]: InputScreen,
 };
 
 let Modal = ({modal, theme, close}) => {
@@ -18,6 +20,7 @@ let Modal = ({modal, theme, close}) => {
   return (
     <ModalWrapper isVisible={modal.isVisible}>
       <Screen
+        modal={modal}
         theme={theme}
         onClose={close}
         onSuccess={modal.successHandler}

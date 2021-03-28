@@ -6,6 +6,7 @@ const ModalScreen = styled.div`
   max-width: ${({maxWidth}) => maxWidth}px;
   max-height: ${({maxHeight}) => maxHeight}px;
   overflow-y: scroll;
+  overflow-x: hidden;
   width: 100%;
   height: 100vh;
   margin: 0 auto;

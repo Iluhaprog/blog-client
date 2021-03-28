@@ -11,6 +11,7 @@ const en = {
     SELECT_PICTURE: 'Select picture',
     SEND: 'Send',
     DELETE: 'Delete',
+    CLOSE: 'Close',
   },
   label: {
     FIRST_NAME: 'First name',
@@ -32,6 +33,8 @@ const en = {
     SIGN_IN: 'Sign In',
     SUCCESS: 'Success',
     SOCIALS: 'Socials',
+    POST_CREATE_TITLE: 'Enter your post title',
+    POST_CREATE_DESCRIPTION: 'You must enter a unique title for your new post.',
   },
 };
 
@@ -48,6 +51,7 @@ const ru = {
     SELECT_PICTURE: 'Выбрать изображение',
     SEND: 'Отправить',
     DELETE: 'Удалить',
+    CLOSE: 'Закрыть',
   },
   label: {
     FIRST_NAME: 'Имя',
@@ -69,6 +73,9 @@ const ru = {
     SIGN_IN: 'Войти',
     SUCCESS: 'Успешно',
     SOCIALS: 'Соц. сети',
+    POST_CREATE_TITLE: 'Введите заголовок поста',
+    POST_CREATE_DESCRIPTION:
+      'Вы должны ввести уникальный заголовк для нового поста.',
   },
 };
 
