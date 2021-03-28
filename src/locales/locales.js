@@ -12,6 +12,7 @@ const en = {
     SEND: 'Send',
     DELETE: 'Delete',
     CLOSE: 'Close',
+    READ: 'Read',
   },
   label: {
     FIRST_NAME: 'First name',
@@ -35,6 +36,7 @@ const en = {
     SOCIALS: 'Socials',
     POST_CREATE_TITLE: 'Enter your post title',
     POST_CREATE_DESCRIPTION: 'You must enter a unique title for your new post.',
+    CONFIRM_POST_DELETE: 'Are you sure you want to delete the post',
   },
 };
 
@@ -52,6 +54,7 @@ const ru = {
     SEND: 'Отправить',
     DELETE: 'Удалить',
     CLOSE: 'Закрыть',
+    READ: 'Читать',
   },
   label: {
     FIRST_NAME: 'Имя',
@@ -76,6 +79,7 @@ const ru = {
     POST_CREATE_TITLE: 'Введите заголовок поста',
     POST_CREATE_DESCRIPTION:
       'Вы должны ввести уникальный заголовк для нового поста.',
+    CONFIRM_POST_DELETE: 'Вы действительно хотите удалить пост',
   },
 };
 
