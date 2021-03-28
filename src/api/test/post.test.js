@@ -98,10 +98,9 @@ describe('Post api module', () => {
 
   test('/post (DELETE)', async () => {
     const id = 1;
-    mock.onDelete('/post').reply((config) => {
-      const {headers, params} = config;
+    mock.onDelete('/post/'+id).reply((config) => {
+      const {headers} = config;
       expect(headers['Authorization']).toBe(`Bearer ${token}`);
-      expect(params.id).toBe(id);
       return [HttpStatus.NO_CONTENT];
     });
 

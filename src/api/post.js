@@ -86,8 +86,7 @@ export function update(post) {
  */
 export function remove(id) {
   return requestWithToken(
-      (headers) => api.delete(POST_URL, {
-        params: {id},
+      (headers) => api.delete(`${POST_URL}/${id}`, {
         headers,
       }),
   );
