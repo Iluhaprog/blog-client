@@ -36,9 +36,7 @@ export function getAll(
  * @return {Promise<AxiosResponse<any>>}
  */
 export function getById(id) {
-  return api.get(POST_URL, {
-    params: {id},
-  });
+  return api.get(`${POST_URL}/${id}`);
 }
 
 /**

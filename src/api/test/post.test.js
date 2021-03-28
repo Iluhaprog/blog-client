@@ -46,9 +46,7 @@ describe('Post api module', () => {
   test('/post/{id} (GET)', async () => {
     const id = 1;
     const postData = {title: 'TEST_POST_TITLE'};
-    mock.onGet('/post', {
-      params: {id},
-    }).reply(HttpStatus.OK, postData);
+    mock.onGet('/post/' + id).reply(HttpStatus.OK, postData);
 
     const {status, data} = await post.getById(id);
 
