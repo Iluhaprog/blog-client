@@ -7,11 +7,13 @@ import {ModalScreenTypes} from '../../store/modal/ModalFormTypes';
 import {DefaultScreen} from './Screens/Default';
 import {FileSelectScreen} from './Screens/FileSelect';
 import {InputScreen} from './Screens/Input';
+import {ConfirmScreen} from './Screens/Confirm';
 
 const ModalScreens = {
   [ModalScreenTypes.NONE]: DefaultScreen,
   [ModalScreenTypes.FILE_SELECT]: FileSelectScreen,
   [ModalScreenTypes.INPUT]: InputScreen,
+  [ModalScreenTypes.CONFIRM]: ConfirmScreen,
 };
 
 let Modal = ({modal, theme, close}) => {

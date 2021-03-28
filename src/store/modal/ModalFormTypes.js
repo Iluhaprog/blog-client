@@ -3,4 +3,5 @@ export const ModalScreenTypes = {
   ONE_INPUT: 'ONE_INPUT',
   FILE_SELECT: 'FILE_SELECT',
   INPUT: 'INPUT',
+  CONFIRM: 'CONFIRM',
 };
