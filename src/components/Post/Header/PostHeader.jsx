@@ -55,6 +55,7 @@ const mapDispatchToProps = (dispatch) => ({
       title,
       text: '',
       preview: '',
+      description: '',
       tags: [],
     }));
   },
