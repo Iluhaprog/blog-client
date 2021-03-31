@@ -11,6 +11,8 @@ const MdRedactorField = ({
   showFileModal,
   lang,
 }) => {
+  const API_URL = process.env.REACT_APP_API_URL;
+
   return (
     <Tabs defaultActiveKey={'md'} variant={'pills'}>
       <Tab eventKey={'md'} title={'Markdown'}>
@@ -20,7 +22,10 @@ const MdRedactorField = ({
           meta={meta}
           label={''}
         />
-        <Button variant={'primary'} onClick={() => showFileModal()}>
+        <Button variant={'primary'} onClick={() => showFileModal((name) => {
+          const img = `![${name}](${API_URL}/${name})`;
+          form.setFieldValue(field.name, field.value + '\n' + img);
+        })}>
           {lang.button.SELECT_PICTURE}
         </Button>
       </Tab>

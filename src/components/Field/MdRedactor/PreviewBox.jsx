@@ -10,6 +10,7 @@ const Box = styled.div`
   width: 100%;
   height: 200px;
   overflow-y: scroll;
+  overflow-x: hidden;
   padding: 20px;
   
   img {
