@@ -25,6 +25,7 @@ let UserUpdateForm = (props) => {
     <Formik
       initialValues={props.initialValues}
       onSubmit={submit}
+      enableReinitialize
     >
       <Form style={{paddingTop: '20px'}}>
         <Container>
