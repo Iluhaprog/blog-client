@@ -15,6 +15,7 @@ import {InputField} from '../../Field/Input';
 import {TextareaField} from '../../Field/Textarea';
 import {TagSelectField} from '../../Field/TagSelect';
 import {getAll} from '../../../store/tag/tagActions';
+import {MdRedactorField} from '../../Field/MdRedactor';
 
 let PostUpdateForm = (props) => {
   const {tags, getAllTags, selected, lang, showFileModal, update} = props;
@@ -73,6 +74,20 @@ let PostUpdateForm = (props) => {
             />
           </Col>
         </Row>
+        <hr />
+        <Row>
+          <Col md={12}>
+            <Field
+              name='text'
+              label={`${lang.label.DESCRIPTION}:`}
+              lang={lang}
+              showFileModal={showFileModal}
+              component={MdRedactorField}
+              placeholder={`${lang.label.DESCRIPTION}...`}
+            />
+          </Col>
+        </Row>
+        <hr />
         <Button variant={'success'} type={'submit'}>
           {lang.button.SEND}
         </Button>
