@@ -27,6 +27,8 @@ const en = {
     SKILLS: 'Skills',
     TITLE: 'Title',
     LINK: 'Link',
+    DESCRIPTION: 'Description',
+    SELECT_TAGS: 'Select tags',
   },
   text: {
     CHANGE_PASSWORD: 'Change password',
@@ -69,6 +71,8 @@ const ru = {
     SKILLS: 'Умения',
     TITLE: 'Заголовок',
     LINK: 'Ссылка',
+    DESCRIPTION: 'Описание',
+    SELECT_TAGS: 'Выберете теги',
   },
   text: {
     CHANGE_PASSWORD: 'Смена пароля',

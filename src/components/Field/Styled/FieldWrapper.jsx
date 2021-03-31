@@ -15,7 +15,8 @@ let FieldWrapper = styled.div`
   }
   
   & input,
-  & textarea {
+  & textarea,
+  & .field-box { 
     display: block;
     width: 100%;
     color: ${({theme}) => {
