@@ -1,8 +1,8 @@
-import {ThemeToggler as TT} from './ThemeToggler';
+import {ThemeToggle as TT} from './ThemeToggle';
 import {
   setDarkTheme,
   setLightTheme,
-} from '../../store/settings/settingsActions';
+} from '../../../store/settings/settingsActions';
 import {connect} from 'react-redux';
 
 const mapStateToProps = (state) => ({
@@ -14,6 +14,6 @@ const mapDispatchToProps = (dispatch) => ({
   setLightTheme: () => dispatch(setLightTheme()),
 });
 
-const ThemeToggler = connect(mapStateToProps, mapDispatchToProps)(TT);
+const ThemeToggle = connect(mapStateToProps, mapDispatchToProps)(TT);
 
-export {ThemeToggler};
+export {ThemeToggle};

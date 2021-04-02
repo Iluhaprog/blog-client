@@ -3,7 +3,7 @@ import {Container, Nav, Navbar} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
 import PropTypes from 'prop-types';
 import {LangSelector} from '../../components/LangSelector';
-import {ThemeToggler} from '../../components/ThemeToggler';
+import {ThemeToggle} from '../../components/Toggle/Theme';
 import {Posts} from './Posts';
 import {Profile} from './Profile';
 import {Projects} from './Projects';
@@ -45,7 +45,7 @@ const Admin = ({lang, theme, isAuthorized}) => {
               }
             </Nav>
             <LangSelector />
-            <ThemeToggler />
+            <ThemeToggle />
             <LogoutButton />
           </Navbar.Collapse>
         </Container>
