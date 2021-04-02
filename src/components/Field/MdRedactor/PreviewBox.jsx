@@ -19,7 +19,7 @@ const Box = styled.div`
   }
 `;
 const PreviewBox = ({md}) => {
-  const html = mdIt.render(md);
+  const html = mdIt.render(md || '');
   return (
     <Box dangerouslySetInnerHTML={{__html: html}}>
     </Box>
