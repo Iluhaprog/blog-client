@@ -143,12 +143,11 @@ describe('Social actions creators', () => {
     });
   });
 
-  test('Should create REMOVE_SOCIAL action (async update)', () => {
+  test('Should create REMOVE_SOCIAL action (async remove)', () => {
     const id = 1;
-    mock.onDelete('/social').reply((config) => {
-      const {headers, params} = config;
+    mock.onDelete('/social/'+id).reply((config) => {
+      const {headers} = config;
       expect(headers['Authorization']).toBe(`Bearer ${token}`);
-      expect(params.id).toBe(id);
       return [HttpStatus.NO_CONTENT];
     });
     const expectedActions = [

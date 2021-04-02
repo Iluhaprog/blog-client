@@ -161,9 +161,7 @@ describe('Post actions creators', () => {
   test('Should create SELECT_POST action (async getById)', () => {
     const id = 1;
     const postData = {title: 'TEST_POST_TITLE'};
-    mock.onGet('/post', {
-      params: {id},
-    }).reply(HttpStatus.OK, postData);
+    mock.onGet('/post/' + id).reply(HttpStatus.OK, postData);
     const expectedActions = [
       ...expectedActionsMock,
       {type: post.SELECT_POST, post: postData},
@@ -216,10 +214,9 @@ describe('Post actions creators', () => {
 
   test('Should create REMOVE_POST action (async remove)', () => {
     const id = 1;
-    mock.onDelete('/post').reply((config) => {
-      const {headers, params} = config;
+    mock.onDelete('/post/'+id).reply((config) => {
+      const {headers} = config;
       expect(headers['Authorization']).toBe(`Bearer ${token}`);
-      expect(params.id).toBe(id);
       return [HttpStatus.NO_CONTENT];
     });
     const expectedActions = [
