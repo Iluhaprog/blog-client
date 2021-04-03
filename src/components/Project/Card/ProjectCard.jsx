@@ -77,13 +77,13 @@ const ProjectCard = (props) => {
             <Button
               variant={theme}
               style={{marginRight: '10px'}}
-              onClick={() => window.location.href = projectLink}
+              onClick={() => window.open(projectLink, '_blank')}
             >
               <ShareFill />
             </Button>
             <Button
               variant={theme}
-              onClick={() => window.location.href = githubLink}
+              onClick={() => window.open(githubLink, '_blank')}
             >
               <Github />
             </Button>
