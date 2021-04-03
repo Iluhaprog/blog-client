@@ -11,6 +11,7 @@ import {Dirs} from './Dirs';
 import {Route, Switch, Redirect} from 'react-router-dom';
 import {LogoutButton} from '../../components/LogoutButton';
 import {Post} from './Post';
+import {Project} from './Project';
 
 const Admin = ({lang, theme, isAuthorized}) => {
   const links = ['profile', 'posts', 'projects', 'dirs'];
@@ -66,6 +67,9 @@ const Admin = ({lang, theme, isAuthorized}) => {
           </Route>
           <Route path='/admin/post/:id'>
             <Post />
+          </Route>
+          <Route path='/admin/project/:id'>
+            <Project />
           </Route>
         </Switch>
       </Container>
