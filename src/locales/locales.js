@@ -45,6 +45,8 @@ const en = {
     PROJECT_CREATE_TITLE: 'Enter your project title',
     PROJECT_CREATE_DESCRIPTION:
       'You must enter a unique title for your new project.',
+    DIR_CREATE_TITLE: 'Enter dirname',
+    DIR_CREATE_DESCRIPTION: 'You must enter a unique dirname.',
   },
 };
 
@@ -96,6 +98,8 @@ const ru = {
     PROJECT_CREATE_TITLE: 'Введите заголовок проекта',
     PROJECT_CREATE_DESCRIPTION:
       'Вы должны ввести уникальный заголовк для нового проекта.',
+    DIR_CREATE_TITLE: 'Введите имя директории',
+    DIR_CREATE_DESCRIPTION: 'Вы должи ввести уникальное имя директории.',
   },
 };
 
