@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {update} from '../../../store/post/postActions';
 import {connect} from 'react-redux';
@@ -16,10 +16,11 @@ import {TextareaField} from '../../Field/Textarea';
 import {TagSelectField} from '../../Field/TagSelect';
 import {getAll} from '../../../store/tag/tagActions';
 import {MdRedactorField} from '../../Field/MdRedactor';
+import {VisibilityToggle} from '../../Toggle/Visibility';
 
 let PostUpdateForm = (props) => {
   const {tags, getAllTags, selected, lang, showFileModal, update} = props;
-
+  const [isVisible] = useState(selected.isVisible);
   const submit = (values) => {
     update({
       ...selected,
@@ -33,12 +34,12 @@ let PostUpdateForm = (props) => {
 
   return (
     <Formik
-      initialValues={selected}
-      onSubmit={submit}
       enableReinitialize
+      initialValues={{...selected}}
+      onSubmit={submit}
     >
       <Form>
-        <Row>
+        <Row className='align-items-center'>
           <Col md={3}>
             <Field
               name='preview'
@@ -87,6 +88,20 @@ let PostUpdateForm = (props) => {
             />
           </Col>
         </Row>
+        <hr />
+        <Field name='isVisible'>
+          {
+            ({form, field}) => {
+              return (
+                <VisibilityToggle
+                  isVisible={isVisible}
+                  show={() => form.setFieldValue(field.name, true)}
+                  hide={() => form.setFieldValue(field.name, false)}
+                />
+              );
+            }
+          }
+        </Field>
         <hr />
         <Button variant={'success'} type={'submit'}>
           {lang.button.SEND}
