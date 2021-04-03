@@ -2,6 +2,7 @@ import * as project from './projectActions';
 
 export const initialState = {
   projects: [],
+  selected: {},
   isFetch: false,
 };
 
@@ -11,6 +12,11 @@ export const projectReducer = (state = initialState, action) => {
       return {
         ...state,
         isFetch: !state.isFetch,
+      };
+    case project.SELECT_PROJECT:
+      return {
+        ...state,
+        selected: state.projects.find(project => project.id === action.id),
       };
     case project.ADD_PROJECT:
       return {

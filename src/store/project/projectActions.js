@@ -7,6 +7,7 @@ import {
 
 export const TOGGLE_PROJECT_FETCH = 'TOGGLE_PROJECT_FETCH';
 export const ADD_PROJECT = 'ADD_PROJECT';
+export const SELECT_PROJECT = 'SELECT_PROJECT';
 export const UPDATE_PROJECT = 'UPDATE_PROJECT';
 export const FILL_PROJECTS_ARRAY = 'FILL_PROJECTS_ARRAY';
 export const REMOVE_PROJECT = 'REMOVE_PROJECT';
@@ -16,6 +17,11 @@ export const toggleFetch = createFetchToggler(TOGGLE_PROJECT_FETCH);
 export const addProject = (project) => ({
   type: ADD_PROJECT,
   project,
+});
+
+export const selectProject = (id) => ({
+  type: SELECT_PROJECT,
+  id,
 });
 
 export const updateProject = (project) => ({

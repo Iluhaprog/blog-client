@@ -25,6 +25,22 @@ describe('projectReduser', () => {
     });
   });
 
+  test('Should handle SELECT_PROJECT action', () => {
+    const projectData = {id: 1, title: 'TEST_PROJECT_TITLE'};
+    const state = {
+      ...initialState,
+      projects: [projectData],
+    };
+    const result = projectReducer(
+      state,
+      project.selectProject(projectData.id),
+    );
+    expect(result).toEqual({
+      ...state,
+      selected: projectData,
+    });
+  });
+
   test('Should handle UPDATE_PROJECT action', () => {
     const id = 1;
     const projectData = {id, title: 'TEST_PROJECT_TITLE'};

@@ -46,6 +46,15 @@ describe('Project actions creators', () => {
     expect(actions).toEqual(expectedActions);
   });
 
+  test('Should create SELECT_PROJECT action', () => {
+    const id = 1;
+    const expectedActions = [{type: project.SELECT_PROJECT, id}];
+    const store = mockStore();
+    store.dispatch(project.selectProject(id));
+    const actions = store.getActions();
+    expect(actions).toEqual(expectedActions);
+  });
+
   test('Should create ADD_PROJECT action', () => {
     const prjData = {title: 'TEST_PROJECT_TITLE'};
     const expectedActions = [{type: project.ADD_PROJECT, project: prjData}];
