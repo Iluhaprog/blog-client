@@ -16,7 +16,7 @@ export const projectReducer = (state = initialState, action) => {
     case project.SELECT_PROJECT:
       return {
         ...state,
-        selected: state.projects.find(project => project.id === action.id),
+        selected: state.projects.find((project) => project.id === action.id),
       };
     case project.ADD_PROJECT:
       return {
