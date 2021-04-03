@@ -39,6 +39,9 @@ const en = {
     POST_CREATE_TITLE: 'Enter your post title',
     POST_CREATE_DESCRIPTION: 'You must enter a unique title for your new post.',
     CONFIRM_POST_DELETE: 'Are you sure you want to delete the post',
+    PROJECT_CREATE_TITLE: 'Enter your project title',
+    PROJECT_CREATE_DESCRIPTION:
+      'You must enter a unique title for your new project.',
   },
 };
 
@@ -84,6 +87,9 @@ const ru = {
     POST_CREATE_DESCRIPTION:
       'Вы должны ввести уникальный заголовк для нового поста.',
     CONFIRM_POST_DELETE: 'Вы действительно хотите удалить пост',
+    PROJECT_CREATE_TITLE: 'Введите заголовок проекта',
+    PROJECT_CREATE_DESCRIPTION:
+      'Вы должны ввести уникальный заголовк для нового проекта.',
   },
 };
 
