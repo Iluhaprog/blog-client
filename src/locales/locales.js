@@ -30,6 +30,8 @@ const en = {
     LINK: 'Link',
     DESCRIPTION: 'Description',
     SELECT_TAGS: 'Select tags',
+    PROJECT_LINK: 'Project link',
+    GITHUB_LINK: 'Github link',
   },
   text: {
     CHANGE_PASSWORD: 'Change password',
@@ -78,6 +80,8 @@ const ru = {
     LINK: 'Ссылка',
     DESCRIPTION: 'Описание',
     SELECT_TAGS: 'Выберете теги',
+    PROJECT_LINK: 'Ссылка на проект',
+    GITHUB_LINK: 'Ссылка на Github',
   },
   text: {
     CHANGE_PASSWORD: 'Смена пароля',
