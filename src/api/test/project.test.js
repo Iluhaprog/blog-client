@@ -56,10 +56,9 @@ describe('Project api module', () => {
 
   test('/project (DELETE)', async () => {
     const id = 1;
-    mock.onDelete('/project').reply((config) => {
-      const {headers, params} = config;
+    mock.onDelete('/project/'+id).reply((config) => {
+      const {headers} = config;
       expect(headers['Authorization']).toBe(`Bearer ${token}`);
-      expect(params.id).toBe(id);
       return [HttpStatus.NO_CONTENT];
     });
 

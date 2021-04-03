@@ -50,8 +50,7 @@ export function update(project) {
  */
 export function remove(id) {
   return requestWithToken(
-      (headers) => api.delete(PROJECT_URL, {
-        params: {id},
+      (headers) => api.delete(`${PROJECT_URL}/${id}`, {
         headers,
       }),
   );
