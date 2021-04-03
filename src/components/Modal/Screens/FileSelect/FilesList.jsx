@@ -27,7 +27,7 @@ let FileList = ({directories, total, theme, getDirectories, onSelect}) => {
             title={'/' + dir.name}
           >
             {
-              dir.files.map((file) => (
+              dir.files?.map((file) => (
                 <FileBox
                   key={file.id}
                   fileName={file.name}
