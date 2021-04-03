@@ -13,6 +13,7 @@ const en = {
     DELETE: 'Delete',
     CLOSE: 'Close',
     READ: 'Read',
+    EDIT: 'Edit',
   },
   label: {
     FIRST_NAME: 'First name',
@@ -60,6 +61,7 @@ const ru = {
     DELETE: 'Удалить',
     CLOSE: 'Закрыть',
     READ: 'Читать',
+    EDIT: 'Редактировать',
   },
   label: {
     FIRST_NAME: 'Имя',
