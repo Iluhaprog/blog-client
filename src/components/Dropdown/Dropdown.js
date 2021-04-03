@@ -7,10 +7,12 @@ import PropTypes from 'prop-types';
 
 function Dropdown(props) {
   const [visible, setVisible] = useState(false);
+  const {header: Header} = props;
+
   return (
     <DropdownWrapper>
       <DropdownTitle onClick={() => setVisible(!visible)}>
-        {props.title}
+        {Header ? <Header /> : props.title}
       </DropdownTitle>
       <DropdownBody visible={visible}>
         {props.children}
@@ -21,6 +23,7 @@ function Dropdown(props) {
 
 Dropdown.propTypes = {
   title: PropTypes.string,
+  header: PropTypes.node,
   children: PropTypes.node,
 };
 
