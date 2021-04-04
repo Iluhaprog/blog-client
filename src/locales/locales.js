@@ -5,6 +5,7 @@ const en = {
     POSTS: 'Posts',
     PROJECTS: 'Projects',
     DIRS: 'Dirs',
+    HOMES: 'Homes',
   },
   button: {
     SELECT: 'Select',
@@ -57,6 +58,7 @@ const ru = {
     POSTS: 'Посты',
     PROJECTS: 'Проекты',
     DIRS: 'Файлы',
+    HOMES: 'Главные',
   },
   button: {
     SELECT: 'Выбрать',

@@ -12,9 +12,10 @@ import {Route, Switch, Redirect} from 'react-router-dom';
 import {LogoutButton} from '../../components/LogoutButton';
 import {Post} from './Post';
 import {Project} from './Project';
+import {Homes} from './Home';
 
 const Admin = ({lang, theme, isAuthorized}) => {
-  const links = ['profile', 'posts', 'projects', 'dirs'];
+  const links = ['profile', 'posts', 'projects', 'dirs', 'homes'];
 
   if (!isAuthorized) return <Redirect to='/login' />;
 
@@ -70,6 +71,9 @@ const Admin = ({lang, theme, isAuthorized}) => {
           </Route>
           <Route path='/admin/project/:id'>
             <Project />
+          </Route>
+          <Route path='/admin/homes'>
+            <Homes />
           </Route>
         </Switch>
       </Container>
