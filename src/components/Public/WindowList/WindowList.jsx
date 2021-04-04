@@ -20,7 +20,7 @@ let WindowList = ({windowList, onClose}) => {
           return (
             <Window
               key={win.id}
-              title={'About me'}
+              title={win.title}
               onClose={() => onClose(win.id)}
             >
               {Content && <Content data={win.content}/>}

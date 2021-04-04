@@ -38,6 +38,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(addWindow({
       id: uuid.v4(),
       content: user,
+      title: 'About Me',
       component: AboutContent,
     }));
   },
