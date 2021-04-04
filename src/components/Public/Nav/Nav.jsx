@@ -32,7 +32,7 @@ const Nav = () => {
         <Computer width={40} height={50}/>
         <span>Projects</span>
       </NavItem>
-      <NavItem path={'/Bookmarks'}>
+      <NavItem path={'/bookmarks'}>
         <Floppy width={40} height={40}/>
         <span>Bookmarks</span>
       </NavItem>
