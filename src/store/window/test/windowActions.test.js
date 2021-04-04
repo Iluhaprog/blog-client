@@ -1,6 +1,6 @@
 import configureStore from 'redux-mock-store';
 import * as uuid from 'uuid';
-import * as window from '../windowActions';
+import * as win from '../windowActions';
 
 jest.mock('uuid', () => ({
   v4: jest.fn(),
@@ -17,18 +17,18 @@ describe('windowActions', () => {
 
   test('Should create ADD_WINDOW action', () => {
     const windowData = {id: uuid.v4(), content: {}};
-    const expectedActions = [{type: window.ADD_WINDOW, windowData}]
+    const expectedActions = [{type: win.ADD_WINDOW, windowData}]
     const store = mockStore();
-    store.dispatch(window.addWindow(windowData));
+    store.dispatch(win.addWindow(windowData));
     const actions = store.getActions();
     expect(actions).toEqual(expectedActions);
   });
 
   test('Should create ADD_WINDOW action', () => {
     const id = 1;
-    const expectedActions = [{type: window.REMOVE_WINDOW, id}]
+    const expectedActions = [{type: win.REMOVE_WINDOW, id}]
     const store = mockStore();
-    store.dispatch(window.removeWindow(id));
+    store.dispatch(win.removeWindow(id));
     const actions = store.getActions();
     expect(actions).toEqual(expectedActions);
   });

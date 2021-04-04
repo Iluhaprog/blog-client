@@ -2,13 +2,13 @@ import {
   initialState,
   windowReducer,
 } from '../windowReducer';
-import * as window from '../windowActions';
+import * as win from '../windowActions';
 import * as uuid from 'uuid';
 
 describe('windowReducer', () => {
   test('Should handle ADD_WINDOW action', () => {
     const windowData = {id: uuid.v4(), content: {}};
-    const result = windowReducer(initialState, window.addWindow(windowData));
+    const result = windowReducer(initialState, win.addWindow(windowData));
     expect(result).toEqual({
       ...initialState,
       windowList: [windowData],
@@ -20,7 +20,7 @@ describe('windowReducer', () => {
     const state = {
       windowList: [windowData],
     };
-    const result = windowReducer(state, window.removeWindow(windowData.id));
+    const result = windowReducer(state, win.removeWindow(windowData.id));
     expect(result).toEqual(initialState);
   });
 });

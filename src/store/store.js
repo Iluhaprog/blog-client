@@ -13,6 +13,7 @@ import * as settings from './settings/settingsReducer';
 import * as social from './social/socialReducer';
 import * as tag from './tag/tagReducer';
 import * as user from './user/userReducer';
+import * as win from './window/windowReducer';
 
 const rootReducer = combineReducers({
   auth: auth.authReducer,
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   social: social.socialReducer,
   tag: tag.tagReducer,
   user: user.userReducer,
+  window: win.windowReducer,
 });
 
 const initialState = loadState();

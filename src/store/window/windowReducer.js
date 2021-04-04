@@ -1,4 +1,4 @@
-import * as window from './windowActions';
+import * as win from './windowActions';
 
 export const initialState = {
   windowList: [],
@@ -6,13 +6,13 @@ export const initialState = {
 
 export const windowReducer = (state = initialState, action) => {
   switch (action.type) {
-    case window.ADD_WINDOW:
+    case win.ADD_WINDOW:
       return {
         windowList: [...state.windowList, action.windowData],
       };
-    case window.REMOVE_WINDOW:
+    case win.REMOVE_WINDOW:
       return {
-        windowList: state.windowList.filter((window) => window.id !== action.id),
+        windowList: state.windowList.filter((win) => win.id !== action.id),
       };
     default:
       return {
