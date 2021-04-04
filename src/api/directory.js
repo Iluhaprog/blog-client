@@ -34,8 +34,7 @@ export function create(dir) {
  */
 export function remove(id) {
   return requestWithToken(
-      (headers) => api.delete(DIR_URL, {
-        params: {id},
+      (headers) => api.delete(`${DIR_URL}/${id}`, {
         headers,
       }),
   );

@@ -122,10 +122,9 @@ describe('Directory action creators', () => {
     const token = 'TEST_TOKEN';
 
     jest.spyOn(localStorage, 'getItem').mockReturnValue(token);
-    mock.onDelete('/directory').reply((config) => {
+    mock.onDelete('/directory/'+id).reply((config) => {
       const {headers, params} = config;
       expect(headers['Authorization']).toBe(`Bearer ${token}`);
-      expect(params.id).toEqual(id);
       return [HttpStatus.NO_CONTENT];
     });
 
