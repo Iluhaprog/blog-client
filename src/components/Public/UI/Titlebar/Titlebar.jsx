@@ -17,7 +17,9 @@ const TitlebarBox = styled.div`
   padding: 0 15px;
   font-family: var(--public-font);
   color: #000;
-  
+  border: 1px solid #000;
+  box-shadow: 1px 1px 0px 1px #000000;
+
   p {
     margin: 0;
   }
