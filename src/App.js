@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 import {Modal} from './components/Admin/Modal/Modal';
 import {Message} from './components/Admin/Message';
 import {Login} from './pages/admin/Login';
+import {Home} from './pages/public';
 
 function App(props) {
   const {lang, theme, isAuthorized} = props;
@@ -23,6 +24,9 @@ function App(props) {
           </Route>
           <Route path='/login'>
             <Login />
+          </Route>
+          <Route path='/'>
+            <Home />
           </Route>
         </Switch>
         <Modal />
