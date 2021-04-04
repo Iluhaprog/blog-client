@@ -39,9 +39,15 @@ TitlebarItem.propTypes = {
   isActive: PropTypes.bool,
 };
 
-const Titlebar = ({title, isActive, onClose}) => {
+const Titlebar = ({title, isActive, onClose, onMouseDown, onMouseUp}) => {
+  const titlebarRef = React.createRef();
+
   return (
-    <TitlebarBox>
+    <TitlebarBox
+      ref={titlebarRef}
+      onMouseDown={onMouseDown}
+      onMouseUp={onMouseUp}
+    >
       <TitlebarItem isActive={isActive}>
         <DefaultButton onClick={onClose}>
           <Close width={20} height={20} />
@@ -58,6 +64,8 @@ Titlebar.propTypes = {
   title: PropTypes.string,
   isActive: PropTypes.bool,
   onClose: PropTypes.func,
+  onMouseDown: PropTypes.func,
+  onMouseUp: PropTypes.func,
 };
 
 export {Titlebar};
