@@ -1,7 +1,7 @@
 import React from 'react';
 import {Container} from 'react-bootstrap';
-import {PostHeader} from '../../components/Post/Header';
-import {PostCardList} from '../../components/Post/CardList';
+import {PostHeader} from '../../components/Admin/Post/Header';
+import {PostCardList} from '../../components/Admin/Post/CardList';
 
 function Posts() {
   return (

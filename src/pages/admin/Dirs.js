@@ -1,7 +1,7 @@
 import React from 'react';
 import {Container} from 'react-bootstrap';
-import {DirHeader} from '../../components/Dir/Header';
-import {DirList} from '../../components/Dir/List';
+import {DirHeader} from '../../components/Admin/Dir/Header';
+import {DirList} from '../../components/Admin/Dir/List';
 
 function Dirs() {
   return (

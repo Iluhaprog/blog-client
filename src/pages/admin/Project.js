@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {selectProject} from '../../store/project/projectActions';
 import PropTypes from 'prop-types';
 import {Badge, Container, Row} from 'react-bootstrap';
-import {ProjectUpdateForm} from '../../components/Project/UpdateForm';
+import {ProjectUpdateForm} from '../../components/Admin/Project/UpdateForm';
 
 let Project = ({select}) => {
   const {id} = useParams();

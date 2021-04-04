@@ -1,12 +1,14 @@
 import React, {useEffect} from 'react';
-import {UserUpdateForm} from '../../components/User/UpdateForm/UpdateForm';
+import {
+  UserUpdateForm,
+} from '../../components/Admin/User/UpdateForm/UpdateForm';
 import {
   UserUpdatePasswordForm,
-} from '../../components/User/UpdatePasswordForm/UpdatePasswordForm';
+} from '../../components/Admin/User/UpdatePasswordForm/UpdatePasswordForm';
 import {getCurrent} from '../../store/user/userActions';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {SocialFormList} from '../../components/Social/FormList';
+import {SocialFormList} from '../../components/Admin/Social/FormList';
 
 let Profile = ({getUserData}) => {
   useEffect(() => {

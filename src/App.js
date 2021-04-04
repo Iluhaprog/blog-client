@@ -8,8 +8,8 @@ import {
 import {Admin} from './pages/admin';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {Modal} from './components/Modal/Modal';
-import {Message} from './components/Message';
+import {Modal} from './components/Admin/Modal/Modal';
+import {Message} from './components/Admin/Message';
 import {Login} from './pages/admin/Login';
 
 function App(props) {

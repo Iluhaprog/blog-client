@@ -1,7 +1,7 @@
 import React from 'react';
-import {HomeHeader} from '../../components/Home/Header';
+import {HomeHeader} from '../../components/Admin/Home/Header';
 import {Container} from 'react-bootstrap';
-import {HomeList} from '../../components/Home/List';
+import {HomeList} from '../../components/Admin/Home/List';
 
 const Homes = () => {
   return (

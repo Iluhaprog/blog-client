@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import {Container} from 'react-bootstrap';
-import {ProjectHeader} from '../../components/Project/Header';
+import {ProjectHeader} from '../../components/Admin/Project/Header';
 import * as PropTypes from 'prop-types';
-import {ProjectCardList} from '../../components/Project/CardList';
+import {ProjectCardList} from '../../components/Admin/Project/CardList';
 import {connect} from 'react-redux';
 import {getAll} from '../../store/project/projectActions';
 

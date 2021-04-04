@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {useParams} from 'react-router';
 import {getById} from '../../store/post/postActions';
 import {connect} from 'react-redux';
-import {PostUpdateForm} from '../../components/Post/UpdateForm';
+import {PostUpdateForm} from '../../components/Admin/Post/UpdateForm';
 import {Container} from 'react-bootstrap';
 
 let Post = ({selected, selectPost}) => {
