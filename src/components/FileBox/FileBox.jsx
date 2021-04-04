@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {FileBoxWrapper} from './FileBoxWrapper';
 import {Badge, Button, Col, Container, Row} from 'react-bootstrap';
-import {FileEarmarkPlus} from 'react-bootstrap-icons';
+import {FileEarmarkPlus, XSquare} from 'react-bootstrap-icons';
 import {FileBoxPreview} from './FileBoxPreview';
 
-function FileBox({fileName, onClick}) {
+function FileBox({fileName, isDeleted, onClick}) {
   const API_URL = process.env.REACT_APP_API_URL;
   return (
     <FileBoxWrapper>
@@ -31,10 +31,12 @@ function FileBox({fileName, onClick}) {
           <Col md={2}>
             <Row className='justify-content-end'>
               <Button
-                variant={'primary'}
+                variant={isDeleted ? 'danger' : 'primary'}
                 onClick={() => onClick(fileName)}
               >
-                <FileEarmarkPlus/>
+                {
+                  isDeleted ? <XSquare /> : <FileEarmarkPlus/>
+                }
               </Button>
             </Row>
           </Col>
@@ -50,6 +52,7 @@ FileBox.defaultProps = {
 
 FileBox.propTypes = {
   fileName: PropTypes.string,
+  isDeleted: PropTypes.bool,
   onClick: PropTypes.func,
 };
 
