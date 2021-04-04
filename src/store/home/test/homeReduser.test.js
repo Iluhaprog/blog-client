@@ -31,6 +31,15 @@ describe('homeReducer', () => {
     });
   });
 
+  test('Should handle FILL_HOMES_ARRAY action', () => {
+    const homeData = {title: 'TEST_HOME_TITLE'};
+    const result = homeReducer(initialState, home.fillHomesArray([homeData]));
+    expect(result).toEqual({
+      ...initialState,
+      homes: [homeData],
+    });
+  });
+
   test('Should handle UPDATE_HOME action', () => {
     const homeData = {id: 1, title: 'TEST_HOME_TITLE'};
     const updatedHome = {...homeData, title: 'NEW_TEST_HOME_TITLE'};

@@ -18,6 +18,11 @@ export const homeReducer = (state = initialState, action) => {
         ...state,
         selected: action.home,
       };
+    case home.FILL_HOMES_ARRAY:
+      return {
+        ...state,
+        homes: [...action.homes],
+      };
     case home.ADD_HOME:
       return {
         ...state,
