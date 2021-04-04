@@ -1,5 +1,5 @@
 import React from 'react';
-import {Nav} from '../../components/Public/Nav/Nav';
+import {Nav} from '../../components/Public/Nav';
 import styled from 'styled-components';
 
 const WorkSpaceBox = styled.main`
