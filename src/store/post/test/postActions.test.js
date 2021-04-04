@@ -144,6 +144,28 @@ describe('Post actions creators', () => {
     });
   });
 
+  test('Should create FILL_POSTS_ARRAY action (async getVisible)', () => {
+    const postData = {
+      data: [{title: 'TEST_POST_TITLE'}],
+      total: 1,
+    };
+    const page = 1;
+    const limit = process.env.REACT_APP_PAGINATION_LIMIT;
+    const order = Filter.DESC;
+    mock.onGet(`/post/visible/${page}/${limit}/${order}`)
+      .reply(HttpStatus.OK, {...postData});
+    const store = mockStore({});
+    const expectedActions = [
+      ...expectedActionsMock,
+      {type: post.FILL_POSTS_ARRAY, posts: postData.data},
+      {type: post.SET_POST_TOTAL, total: 1},
+    ];
+    return store.dispatch(post.getVisible(page, limit, order)).then(() => {
+      const actions = store.getActions();
+      expect(actions).toEqual(expect.arrayContaining(expectedActions));
+    });
+  });
+
   test('Should create FILL_POSTS_ARRAY action (async getLast)', () => {
     const postData = [{title: 'TEST_POST_TITLE'}];
     mock.onGet('/post').reply(HttpStatus.OK, postData);

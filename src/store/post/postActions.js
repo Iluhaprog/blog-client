@@ -69,6 +69,16 @@ export const getAll = postAsyncActionCreator(
     },
 );
 
+export const getVisible = postAsyncActionCreator(
+  (dispatch, page, limit, order) => {
+    return post.getVisible(page, limit, order).then((response) => {
+      const {data} = response;
+      dispatch(fillPostsArray(data.data));
+      dispatch(setPostTotal(data.total));
+    });
+  },
+);
+
 export const getById = postAsyncActionCreator(
     (dispatch, id) => {
       return post.getById(id).then((response) => {
