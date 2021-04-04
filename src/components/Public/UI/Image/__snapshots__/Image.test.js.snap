@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render Image 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-bdfBwQ gxLjaB"
+  >
+    <img
+      alt="https://wallpapercave.com/wp/wp2670841.jpg"
+      height="100px"
+      loading="lazy"
+      src="https://wallpapercave.com/wp/wp2670841.jpg"
+      width="100px"
+    />
+    Loading...
+  </div>
+</DocumentFragment>
+`;
