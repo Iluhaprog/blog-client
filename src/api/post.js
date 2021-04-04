@@ -24,9 +24,9 @@ export function getByTags(tags) {
  * @return {Promise<AxiosResponse<any>>}
  */
 export function getVisible(
-  page,
-  limit =  process.env.REACT_APP_PAGINATION_LIMIT,
-  order = Filter.DESC,
+    page,
+    limit = process.env.REACT_APP_PAGINATION_LIMIT,
+    order = Filter.DESC,
 ) {
   return api.get(`${POST_URL}/visible/${page}/${limit}/${order}`);
 }
