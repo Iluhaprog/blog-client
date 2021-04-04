@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {getAll} from '../../store/social/socialActions';
 import {WorkSpace} from './WorkSpace';
+import {WindowList} from '../../components/Public/WindowList';
 
 let Home = (props) => {
   const {socials, getSocials} = props;
@@ -27,6 +28,7 @@ let Home = (props) => {
         }
       </MenuBar>
       <WorkSpace />
+      <WindowList />
     </>
   );
 };
