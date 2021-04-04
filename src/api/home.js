@@ -55,8 +55,7 @@ export function update(home) {
  */
 export function remove(id) {
   return requestWithToken(
-      (headers) => api.delete(HOME_URL, {
-        params: {id},
+      (headers) => api.delete(`${HOME_URL}/${id}`, {
         headers,
       }),
   );

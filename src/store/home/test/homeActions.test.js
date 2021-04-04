@@ -162,10 +162,9 @@ describe('Home action creator', () => {
 
   test('Should create REMOVE_HOME action (async remove)', () => {
     const id = 1;
-    mock.onDelete('/home').reply((config) => {
-      const {headers, params} = config;
+    mock.onDelete('/home/'+id).reply((config) => {
+      const {headers} = config;
       expect(headers['Authorization']).toBe(`Bearer ${token}`);
-      expect(params.id).toBe(id);
       return [HttpStatus.NO_CONTENT];
     });
     const store = mockStore();

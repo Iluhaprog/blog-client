@@ -62,10 +62,9 @@ describe('Home api module', () => {
 
   test('/home (DELETE)', async () => {
     const id = 1;
-    mock.onDelete('/home').reply((config) => {
-      const {headers, params} = config;
+    mock.onDelete('/home/'+id).reply((config) => {
+      const {headers} = config;
       expect(headers['Authorization']).toBe(`Bearer ${token}`);
-      expect(params.id).toBe(id);
       return [HttpStatus.NO_CONTENT];
     });
 
