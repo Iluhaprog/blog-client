@@ -70,10 +70,9 @@ describe('File api module', () => {
 
   test('/file (DELETE)', async () => {
     const id = 1;
-    mock.onDelete('/file').reply((config) => {
-      const {headers, params} = config;
+    mock.onDelete('/file/'+id).reply((config) => {
+      const {headers} = config;
       expect(headers['Authorization']).toBe(`Bearer ${token}`);
-      expect(params.id).toEqual(id);
       return [HttpStatus.NO_CONTENT];
     });
 

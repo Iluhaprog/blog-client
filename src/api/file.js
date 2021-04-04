@@ -52,8 +52,7 @@ export function create(formData, dirId) {
  */
 export function remove(id) {
   return requestWithToken(
-      (headers) => api.delete(FILE_URL, {
-        params: {id},
+      (headers) => api.delete(`${FILE_URL}/${id}`, {
         headers,
       }),
   );

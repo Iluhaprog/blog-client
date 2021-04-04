@@ -153,10 +153,9 @@ describe('File action creators', () => {
   test('Should create REMOVE_FILE action (async remove)', () => {
     const id = 1;
     jest.spyOn(localStorage, 'getItem').mockReturnValue(token);
-    mock.onDelete('/file').reply((config) => {
-      const {headers, params} = config;
+    mock.onDelete('/file/'+id).reply((config) => {
+      const {headers} = config;
       expect(headers['Authorization']).toBe(`Bearer ${token}`);
-      expect(params.id).toEqual(id);
       return [HttpStatus.NO_CONTENT];
     });
 
