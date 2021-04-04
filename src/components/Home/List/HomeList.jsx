@@ -1,12 +1,17 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Col, Row} from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import {remove, update} from '../../../store/home/homeActions';
+import {getAll, remove, update} from '../../../store/home/homeActions';
 import {connect} from 'react-redux';
 import {HomeUpdateForm} from '../UpdateForm';
 
 let HomeList = (props) => {
-  const {homes, theme, lang, update, remove} = props;
+  const {homes, theme, lang, update, remove, getAll} = props;
+
+  useEffect(() => {
+    getAll();
+  }, []);
+
   return (
     <Row>
       {
@@ -31,6 +36,7 @@ HomeList.propTypes = {
   theme: PropTypes.string,
   lang: PropTypes.object,
   update: PropTypes.func,
+  getAll: PropTypes.func,
   remove: PropTypes.func,
 };
 
@@ -41,6 +47,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  getAll: () => {
+    dispatch(getAll());
+  },
   update: (home) => {
     dispatch(update(home));
   },
