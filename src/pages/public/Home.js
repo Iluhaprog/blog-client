@@ -4,6 +4,7 @@ import {Apple} from '../../components/Public/UI/Icons/Apple';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {getAll} from '../../store/social/socialActions';
+import {WorkSpace} from './WorkSpace';
 
 let Home = (props) => {
   const {socials, getSocials} = props;
@@ -25,6 +26,7 @@ let Home = (props) => {
           ))
         }
       </MenuBar>
+      <WorkSpace />
     </>
   );
 };
