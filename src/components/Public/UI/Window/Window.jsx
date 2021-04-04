@@ -7,9 +7,15 @@ import PropTypes from 'prop-types';
 const WindowBox = styled.div`
   position: absolute;
   width: fit-content;
+  z-index: 1;
+  
+  &:hover {
+    z-index: 2;
+  }
 `;
 
 const Window = ({title, onClose, children}) => {
+  const [tabindex] = useState(Date.now());
   const [x, setX] = useState(100);
   const [y, setY] = useState(100);
   const [offset, setOffset] = useState({x: 0, y: 0});
@@ -42,6 +48,7 @@ const Window = ({title, onClose, children}) => {
 
   return (
     <WindowBox
+      tabIndex={tabindex}
       style={{
         top: `${y}px`,
         left: `${x}px`,

@@ -12,6 +12,7 @@ const WindowFrameWrapper = styled.div`
   min-width: 600px;
   max-width: 100%;
   min-height: 200px;
+  max-height: 87vh;
   border: 1px solid #000000;
   box-shadow: 1px 1px 0px 1px #000000;
   background-color: #fff;
