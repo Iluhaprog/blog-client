@@ -1,8 +1,14 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
+@font-face {
+    font-family: "Chicago";
+    src: url('./assets/public/fonts/ChicagoFLF.ttf') format('opentype');
+}
+
 :root {
     --scroll-track: #e7e7e7;
     --scroll-thumb: #d0d0d0;
+    --public-font: "Chicago", sans-serif;
 }
 
 .App.dark {
