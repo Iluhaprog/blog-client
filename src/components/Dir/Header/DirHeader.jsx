@@ -20,7 +20,7 @@ let DirHeader = (props) => {
         <Badge
           variant='secondary'
         >
-          Directories
+          {lang.adminNav.DIRS}
         </Badge>
       </h2>
       <Button

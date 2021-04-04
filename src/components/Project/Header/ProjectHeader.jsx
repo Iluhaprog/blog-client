@@ -22,7 +22,7 @@ let ProjectHeader = ({
         <Badge
           variant={'secondary'}
         >
-          Projects
+          {lang.adminNav.PROJECTS}
         </Badge>
       </h2>
       <Button
