@@ -18,13 +18,13 @@ const Window = ({title, onClose, children}) => {
   const [tabindex] = useState(Date.now());
   const [x, setX] = useState(100);
   const [y, setY] = useState(100);
-  const [offset, setOffset] = useState({x: 0, y: 0});
+  const [offset, setOffset] = useState({x: 100, y: 100});
   const [isMouseDown, setIsMouseDown] = useState(false);
 
   const mouseDown = (e) => {
     setOffset({
-      x: e.target.offsetLeft - e.clientX,
-      y: e.target.offsetTop - e.clientY,
+      x: e.target.getBoundingClientRect().left - e.clientX,
+      y: e.target.getBoundingClientRect().top - 30 - e.clientY,
     });
     setIsMouseDown(true);
   };
