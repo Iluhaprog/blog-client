@@ -32,4 +32,14 @@ describe('windowActions', () => {
     const actions = store.getActions();
     expect(actions).toEqual(expectedActions);
   });
+
+  test('Should create ADD_WINDOW action', () => {
+    const id = uuid.v4();
+    const content = {id, content: {}};
+    const expectedActions = [{type: win.UPDATE_WINDOW, id, content}]
+    const store = mockStore();
+    store.dispatch(win.updateWindow(id, content));
+    const actions = store.getActions();
+    expect(actions).toEqual(expectedActions);
+  });
 });

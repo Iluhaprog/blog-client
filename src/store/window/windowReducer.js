@@ -14,6 +14,18 @@ export const windowReducer = (state = initialState, action) => {
       return {
         windowList: state.windowList.filter((win) => win.id !== action.id),
       };
+    case win.UPDATE_WINDOW:
+      return {
+        windowList: state.windowList.map((win) => {
+          if (win.id === action.id) {
+            return {
+              ...win,
+              content: action.content,
+            };
+          }
+          return win;
+        })
+      }
     default:
       return {
         ...state,

@@ -23,4 +23,19 @@ describe('windowReducer', () => {
     const result = windowReducer(state, win.removeWindow(windowData.id));
     expect(result).toEqual(initialState);
   });
+
+  test('Should handle UPDATE_WINDOW action', () => {
+    const windowData = {id: uuid.v4(), content: {}};
+    const content = {c: 1, d: 2};
+    const state = {
+      windowList: [windowData],
+    };
+    const result = windowReducer(state, win.updateWindow(
+      windowData.id,
+      content,
+    ));
+    expect(result).toEqual({
+      windowList: [{...windowData, content}],
+    });
+  });
 });
