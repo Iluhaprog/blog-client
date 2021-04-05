@@ -12,7 +12,7 @@ let Posts = ({posts, total, getVisible, openWindow}) => {
   }, []);
 
   useEffect(() => {
-    openWindow(posts);
+    openWindow(posts, total);
   }, [total]);
 
   return (
@@ -36,10 +36,10 @@ const mapDispatchToProps = (dispatch) => ({
   getVisible: () => {
     dispatch(getVisible(0));
   },
-  openWindow: (data) => {
+  openWindow: (data, total) => {
     dispatch(addWindow({
       id: uuid.v4(),
-      content: {page: 0, posts: data},
+      content: {page: 0, total, posts: data},
       title: 'Posts',
       component: PostListContent,
     }));

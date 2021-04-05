@@ -1,7 +1,7 @@
 import React from 'react';
 import * as PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {removeWindow} from '../../../store/window/windowActions';
+import {removeWindow, updateWindow} from '../../../store/window/windowActions';
 import styled from 'styled-components';
 import {Window} from '../UI/Window';
 
@@ -11,7 +11,7 @@ const WindowListBox = styled.div`
   left: 0;
 `;
 
-let WindowList = ({windowList, onClose}) => {
+let WindowList = ({windowList, onClose, onUpdate}) => {
   return (
     <WindowListBox>
       {
@@ -23,7 +23,14 @@ let WindowList = ({windowList, onClose}) => {
               title={win.title}
               onClose={() => onClose(win.id)}
             >
-              {Content && <Content data={win.content}/>}
+              {
+                Content && (
+                  <Content
+                    data={win.content}
+                    onUpdate={(content) => onUpdate(win.id, content)}
+                  />
+                )
+              }
             </Window>
           );
         })
@@ -35,6 +42,7 @@ let WindowList = ({windowList, onClose}) => {
 WindowList.propTypes = {
   windowList: PropTypes.array,
   onClose: PropTypes.func,
+  onUpdate: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -44,6 +52,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps =(dispatch) => ({
   onClose: (id) => {
     dispatch(removeWindow(id));
+  },
+  onUpdate: (id, content) => {
+    dispatch(updateWindow(id, content));
   },
 });
 
