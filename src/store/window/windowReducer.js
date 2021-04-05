@@ -24,8 +24,8 @@ export const windowReducer = (state = initialState, action) => {
             };
           }
           return win;
-        })
-      }
+        }),
+      };
     default:
       return {
         ...state,
