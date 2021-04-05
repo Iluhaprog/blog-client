@@ -15,7 +15,6 @@ const WindowBox = styled.div`
 `;
 
 const Window = ({title, onClose, children}) => {
-  const [tabindex] = useState(Date.now());
   const [x, setX] = useState(100);
   const [y, setY] = useState(100);
   const [offset, setOffset] = useState({x: 100, y: 100});
@@ -48,7 +47,6 @@ const Window = ({title, onClose, children}) => {
 
   return (
     <WindowBox
-      tabIndex={tabindex}
       style={{
         top: `${y}px`,
         left: `${x}px`,
