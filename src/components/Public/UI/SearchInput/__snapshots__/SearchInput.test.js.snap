@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render SearchInput component 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-bdfBwQ eUnQoZ"
+  >
+    <input
+      placeholder="Search"
+      value=""
+    />
+    <button
+      type="submit"
+    >
+      <svg>
+        search.svg
+      </svg>
+    </button>
+  </div>
+</DocumentFragment>
+`;
