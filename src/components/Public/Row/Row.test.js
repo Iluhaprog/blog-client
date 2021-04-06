@@ -3,7 +3,7 @@ import {Row} from './Row';
 
 test('Should render Header component', () => {
   const {asFragment} = render(
-    <Row justifyContent={'center'}>
+    <Row justifyContent={'center'} alignItems={'start'}>
       Test header
     </Row>
   );

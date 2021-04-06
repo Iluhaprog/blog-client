@@ -6,12 +6,12 @@ const RowBox = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: ${({justifyContent}) => justifyContent};
-  align-items: center;
+  align-items: ${({alignItems}) => alignItems};
 `;
 
-const Row = ({justifyContent, children}) => {
+const Row = ({justifyContent, alignItems, children}) => {
   return (
-    <RowBox justifyContent={justifyContent}>
+    <RowBox justifyContent={justifyContent} alignItems={alignItems}>
       {children}
     </RowBox>
   );
@@ -22,7 +22,21 @@ Row.defaultProps = {
 };
 
 Row.propTypes = {
-  justifyContent: PropTypes.string,
+  justifyContent: PropTypes.oneOf([
+    'flex-start',
+    'flex-end',
+    'center',
+    'space-between',
+    'space-around',
+  ]),
+  alignItems: PropTypes.oneOf([
+    'flex-start',
+    'flex-end',
+    'start',
+    'end',
+    'center',
+    'stretch',
+  ]),
   children: PropTypes.node,
 };
 
