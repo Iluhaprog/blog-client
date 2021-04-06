@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render Time component 1`] = `
+<DocumentFragment>
+  <time
+    class="sc-bdfBwQ hWcxSz"
+  >
+    TEST_TIME
+  </time>
+</DocumentFragment>
+`;
