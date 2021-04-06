@@ -17,10 +17,23 @@
     src: url('./assets/public/fonts/LibreBaskerville-Bold.ttf') format('opentype');
 }
 
+@font-face {
+    font-family: "Open Sans";
+    font-weight: 400;
+    src: url('./assets/public/fonts/OpenSans-Regular.ttf') format('opentype');
+}
+
+@font-face {
+    font-family: "Open Sans";
+    font-weight: 700;
+    src: url('./assets/public/fonts/OpenSans-Bold.ttf') format('opentype');
+}
+
 :root {
     --scroll-track: #e7e7e7;
     --scroll-thumb: #d0d0d0;
     --public-font: "Libre Baskerville", sans-serif;
+    --public-font-2: "Open Sans", sans-serif;
     --color-1: #1C1C1C;
 }
 
