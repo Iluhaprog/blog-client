@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render Input component 1`] = `
+<DocumentFragment>
+  <input
+    class="sc-bdfBwQ izwldC"
+    placeholder="Test"
+    value="Ok"
+  />
+</DocumentFragment>
+`;
