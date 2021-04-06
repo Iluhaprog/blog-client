@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import * as PropTypes from 'prop-types';
 
-const HeaderBox = styled.div`
+const HeaderBox = styled.header`
   position: fixed;
   top: 0;
   left: 0;

@@ -2,10 +2,10 @@
 
 exports[`Should render Header component 1`] = `
 <DocumentFragment>
-  <div
+  <header
     class="sc-bdfBwQ iCHfcD"
   >
     Test header
-  </div>
+  </header>
 </DocumentFragment>
 `;
