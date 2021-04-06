@@ -11,6 +11,12 @@
     src: url('./assets/public/fonts/LibreBaskerville-Regular.ttf') format('opentype');
 }
 
+@font-face {
+    font-family: "Libre Baskerville";
+    font-weight: 700;
+    src: url('./assets/public/fonts/LibreBaskerville-Bold.ttf') format('opentype');
+}
+
 :root {
     --scroll-track: #e7e7e7;
     --scroll-thumb: #d0d0d0;
