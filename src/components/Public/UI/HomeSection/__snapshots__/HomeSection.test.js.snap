@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render Background component 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-gsTCUz lgOJUa"
+  >
+    <div
+      class="sc-dlfnbm a-deuv"
+    >
+      <img
+        alt="Home image"
+        src="https://static.toiimg.com/photo/72975551.cms"
+      />
+    </div>
+    <div
+      class="sc-hKgILt gGSnfz"
+    >
+      <div
+        class="sc-eCssSg cBuXME"
+      >
+        <div
+          class="sc-bdfBwQ lbmcdx"
+        >
+          Hello world
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
