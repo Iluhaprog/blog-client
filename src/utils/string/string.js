@@ -5,3 +5,10 @@ export function getNameAndExt(name) {
     subs[subs.length - 1],
   ];
 }
+
+export function getDateAndTime(string) {
+  const stringArr = string.split('T');
+  const date = stringArr[0];
+  const time = stringArr[1]?.split('.')[0];
+  return [date, time];
+}
