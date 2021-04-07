@@ -11,9 +11,9 @@ const POST_URL = '/post';
  * @return {Promise<AxiosResponse<any>>}
  */
 export function getByTags(
-  tags,
-  page,
-  limit = process.env.REACT_APP_PAGINATION_LIMIT,
+    tags,
+    page,
+    limit = process.env.REACT_APP_PAGINATION_LIMIT,
 ) {
   return api.post(`${POST_URL}/by-tags/${page}/${limit}`, tags, {
     headers: {
