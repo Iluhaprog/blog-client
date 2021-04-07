@@ -51,10 +51,11 @@ const postAsyncActionCreator = createDeclarator(
 );
 
 export const getByTags = postAsyncActionCreator(
-    (dispatch, tags) => {
-      return post.getByTags(tags).then((response) => {
+    (dispatch, tags, page, limit) => {
+      return post.getByTags(tags, page, limit).then((response) => {
         const {data} = response;
-        dispatch(fillPostsArray(data));
+        dispatch(fillPostsArray(data[0]));
+        dispatch(setPostTotal(data[1]));
       });
     },
 );

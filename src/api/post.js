@@ -6,10 +6,16 @@ const POST_URL = '/post';
 
 /**
  * @param {number[]} tags
+ * @param {number} page
+ * @param {number} limit
  * @return {Promise<AxiosResponse<any>>}
  */
-export function getByTags(tags) {
-  return api.post(`${POST_URL}/by-tags`, tags, {
+export function getByTags(
+  tags,
+  page,
+  limit = process.env.REACT_APP_PAGINATION_LIMIT,
+) {
+  return api.post(`${POST_URL}/by-tags/${page}/${limit}`, tags, {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',

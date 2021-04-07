@@ -12,10 +12,10 @@ describe('Post api module', () => {
     jest.spyOn(localStorage, 'getItem').mockReturnValue(token);
   });
 
-  test('/post/by-tags (POST)', async () => {
+  test('/post/by-tags/{page}/{limit} (POST)', async () => {
     const tags = [1, 2, 3];
     const postData = {title: 'TEST_POST_TITLE'};
-    mock.onPost('/post/by-tags').reply(
+    mock.onPost('/post/by-tags/0/1').reply(
         (config) => {
           const {data} = config;
           expect(data).toBe(JSON.stringify(tags));
@@ -23,7 +23,7 @@ describe('Post api module', () => {
         },
     );
 
-    const {status, data} = await post.getByTags(tags);
+    const {status, data} = await post.getByTags(tags, 0, 1);
 
     expect(status).toBe(HttpStatus.OK);
     expect(data).toEqual([postData]);

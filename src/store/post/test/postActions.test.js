@@ -104,19 +104,20 @@ describe('Post actions creators', () => {
   test('Should create FILL_POSTS_ARRAY action (async getByTags)', () => {
     const tags = [1, 2, 3];
     const postData = {title: 'TEST_POST_TITLE'};
-    mock.onPost('/post/by-tags').reply(
+    mock.onPost('/post/by-tags/0/1').reply(
         (config) => {
           const {data} = config;
           expect(data).toBe(JSON.stringify(tags));
-          return [HttpStatus.OK, [postData]];
+          return [HttpStatus.OK, [[postData], 1]];
         },
     );
     const store = mockStore({});
     const expectedActions = [
       ...expectedActionsMock,
       {type: post.FILL_POSTS_ARRAY, posts: [postData]},
+      {type: post.SET_POST_TOTAL, total: 1},
     ];
-    return store.dispatch(post.getByTags(tags)).then(() => {
+    return store.dispatch(post.getByTags(tags, 0, 1)).then(() => {
       const actions = store.getActions();
       expect(actions).toEqual(expect.arrayContaining(expectedActions));
     });
