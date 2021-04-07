@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 const ContainerBox = styled.div`
   max-width: ${({maxWidth}) => maxWidth}px;
+  width: 100%;
   margin: 0 auto;
 `;
 

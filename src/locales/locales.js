@@ -57,6 +57,7 @@ const en = {
     DIR_CREATE_DESCRIPTION: 'You must enter a unique dirname.',
     LAST_POSTS: 'Last posts',
     LAST_PROJECTS: 'Last projects',
+    WRITE_TAGS: 'Enter tags separated by commas',
   },
 };
 
@@ -120,6 +121,7 @@ const ru = {
     DIR_CREATE_DESCRIPTION: 'Вы должи ввести уникальное имя директории.',
     LAST_POSTS: 'Последние посты',
     LAST_PROJECTS: 'Последние проекты',
+    WRITE_TAGS: 'Введите теги разделенные запятой',
   },
 };
 
