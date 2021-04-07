@@ -4,9 +4,8 @@ import PropTypes from 'prop-types';
 
 const BackgroundBox = styled.div`
   position: relative;
-  max-height: ${({maxHeight}) => maxHeight}px;
+  height: ${({maxHeight}) => maxHeight}px;
   width: 100%;
-  height: 100vh;
 `;
 
 const ImageBox = styled.div`
