@@ -55,7 +55,7 @@ let Home = ({lang, setLang}) => {
           </Container>
         </Header>
         <main className={styles.main}>
-          <Container maxWidth={1920}>
+          <Container>
             <Switch>
               <Route path={'/posts'}>
                 <Posts />
