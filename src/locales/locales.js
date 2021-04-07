@@ -11,6 +11,7 @@ const en = {
     POSTS: 'Posts',
     PROJECTS: 'Projects',
     ABOUT_ME: 'About me',
+    HOME: 'Home',
   },
   button: {
     SELECT: 'Select',
@@ -72,6 +73,7 @@ const ru = {
     POSTS: 'Посты',
     PROJECTS: 'Проекты',
     ABOUT_ME: 'Обо мне',
+    HOME: 'Главная',
   },
   button: {
     SELECT: 'Выбрать',

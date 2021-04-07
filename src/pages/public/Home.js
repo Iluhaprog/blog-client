@@ -36,6 +36,7 @@ let Home = ({lang, setLang}) => {
                 <Separator indentLeft={50}/>
                 <Nav
                   paths={[
+                    {to: '/', title: lang.nav?.HOME},
                     {to: 'posts', title: lang.nav?.POSTS},
                     {to: 'projects', title: lang.nav?.PROJECTS},
                     {to: 'about', title: lang.nav?.ABOUT_ME},
