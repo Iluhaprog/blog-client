@@ -20,6 +20,7 @@ const en = {
     CLOSE: 'Close',
     READ: 'Read',
     EDIT: 'Edit',
+    MORE_PROJECTS: 'More projects',
   },
   label: {
     FIRST_NAME: 'First name',
@@ -80,6 +81,7 @@ const ru = {
     CLOSE: 'Закрыть',
     READ: 'Читать',
     EDIT: 'Редактировать',
+    MORE_PROJECTS: 'Ещё проекты',
   },
   label: {
     FIRST_NAME: 'Имя',
