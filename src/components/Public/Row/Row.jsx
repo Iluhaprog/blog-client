@@ -7,11 +7,12 @@ const RowBox = styled.div`
   flex-direction: row;
   justify-content: ${({justifyContent}) => justifyContent};
   align-items: ${({alignItems}) => alignItems};
+  flex-wrap: ${({wrap}) => wrap || 'nowrap'};
 `;
 
-const Row = ({justifyContent, alignItems, children}) => {
+const Row = ({justifyContent, alignItems, children, wrap}) => {
   return (
-    <RowBox justifyContent={justifyContent} alignItems={alignItems}>
+    <RowBox justifyContent={justifyContent} alignItems={alignItems} wrap={wrap}>
       {children}
     </RowBox>
   );
@@ -37,6 +38,7 @@ Row.propTypes = {
     'center',
     'stretch',
   ]),
+  wrap: PropTypes.oneOf(['wrap', 'nowrap']),
   children: PropTypes.node,
 };
 
