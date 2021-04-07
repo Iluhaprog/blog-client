@@ -30,7 +30,7 @@ function App(props) {
           </Route>
         </Switch>
         <Modal />
-        <Message />
+        {isAuthorized && <Message />}
       </div>
     </Router>
   );
