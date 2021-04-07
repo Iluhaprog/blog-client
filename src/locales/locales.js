@@ -7,6 +7,11 @@ const en = {
     DIRS: 'Dirs',
     HOMES: 'Homes',
   },
+  nav: {
+    POSTS: 'Posts',
+    PROJECTS: 'Projects',
+    ABOUT_ME: 'About me',
+  },
   button: {
     SELECT: 'Select',
     SELECT_PICTURE: 'Select picture',
@@ -59,6 +64,11 @@ const ru = {
     PROJECTS: 'Проекты',
     DIRS: 'Файлы',
     HOMES: 'Главные',
+  },
+  nav: {
+    POSTS: 'Посты',
+    PROJECTS: 'Проекты',
+    ABOUT_ME: 'Обо мне',
   },
   button: {
     SELECT: 'Выбрать',
