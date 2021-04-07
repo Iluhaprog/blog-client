@@ -20,6 +20,7 @@ import {Column} from '../../components/Public/Column';
 import styles from './public.module.css';
 import {Footer} from '../../components/Public/UI/Footer';
 import {SocialList} from '../../components/Public/SocialList';
+import {Post} from './Post';
 
 let Home = ({lang, setLang}) => {
   return (
@@ -61,7 +62,7 @@ let Home = ({lang, setLang}) => {
                 <Posts />
               </Route>
               <Route path={'/post/:id'}>
-                <Posts />
+                <Post />
               </Route>
               <Route path={'/projects'}>
                 <Projects />
