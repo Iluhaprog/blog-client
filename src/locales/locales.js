@@ -54,6 +54,7 @@ const en = {
     DIR_CREATE_TITLE: 'Enter dirname',
     DIR_CREATE_DESCRIPTION: 'You must enter a unique dirname.',
     LAST_POSTS: 'Last posts',
+    LAST_PROJECTS: 'Last projects',
   },
 };
 
@@ -114,6 +115,7 @@ const ru = {
     DIR_CREATE_TITLE: 'Введите имя директории',
     DIR_CREATE_DESCRIPTION: 'Вы должи ввести уникальное имя директории.',
     LAST_POSTS: 'Последние посты',
+    LAST_PROJECTS: 'Последние проекты',
   },
 };
 
