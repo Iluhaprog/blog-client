@@ -2,6 +2,10 @@
     padding-top: 55px;
 }
 
+.page {
+    padding: 40px;
+}
+
 .col {
     min-height: 100vh;
 }

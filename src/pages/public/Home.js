@@ -54,23 +54,25 @@ let Home = ({lang, setLang}) => {
           </Container>
         </Header>
         <main className={styles.main}>
-          <Switch>
-            <Route path={'/posts'}>
-              <Posts />
-            </Route>
-            <Route path={'/post/:id'}>
-              <Posts />
-            </Route>
-            <Route path={'/projects'}>
-              <Projects />
-            </Route>
-            <Route path={'/about'}>
-              <About />
-            </Route>
-            <Route path={'/'}>
-              <Main />
-            </Route>
-          </Switch>
+          <Container maxWidth={1920}>
+            <Switch>
+              <Route path={'/posts'}>
+                <Posts />
+              </Route>
+              <Route path={'/post/:id'}>
+                <Posts />
+              </Route>
+              <Route path={'/projects'}>
+                <Projects />
+              </Route>
+              <Route path={'/about'}>
+                <About />
+              </Route>
+              <Route path={'/'}>
+                <Main />
+              </Route>
+            </Switch>
+          </Container>
         </main>
         <Footer>
           <SocialList />
