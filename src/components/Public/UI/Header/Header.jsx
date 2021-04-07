@@ -8,6 +8,9 @@ const HeaderBox = styled.header`
   left: 0;
   width: 100%;
   padding: 5px 25px;
+  z-index: 2;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 `;
 
 const Header = ({children}) => {
