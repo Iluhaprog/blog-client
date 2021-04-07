@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render Footer component 1`] = `
+<DocumentFragment>
+  <footer
+    class="sc-bdfBwQ jNGTvk"
+  >
+    Test text
+  </footer>
+</DocumentFragment>
+`;
