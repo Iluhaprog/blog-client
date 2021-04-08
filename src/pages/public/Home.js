@@ -38,7 +38,7 @@ let Home = ({lang, setLang}) => {
                 <Nav
                   paths={[
                     {to: '/', title: lang.nav?.HOME},
-                    {to: 'posts', title: lang.nav?.POSTS},
+                    {to: '/posts/1', title: lang.nav?.POSTS},
                     {to: 'projects', title: lang.nav?.PROJECTS},
                     {to: 'about', title: lang.nav?.ABOUT_ME},
                   ]}
@@ -58,7 +58,7 @@ let Home = ({lang, setLang}) => {
         <main className={styles.main}>
           <Container>
             <Switch>
-              <Route path={'/posts'}>
+              <Route path={'/posts/:page'}>
                 <Posts />
               </Route>
               <Route path={'/post/:id'}>

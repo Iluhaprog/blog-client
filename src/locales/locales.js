@@ -58,6 +58,8 @@ const en = {
     LAST_POSTS: 'Last posts',
     LAST_PROJECTS: 'Last projects',
     WRITE_TAGS: 'Enter tags separated by commas',
+    SEARCH: 'Search',
+    ALL: 'All',
   },
 };
 
@@ -122,6 +124,8 @@ const ru = {
     LAST_POSTS: 'Последние посты',
     LAST_PROJECTS: 'Последние проекты',
     WRITE_TAGS: 'Введите теги разделенные запятой',
+    SEARCH: 'Поиск',
+    ALL: 'Все',
   },
 };
 

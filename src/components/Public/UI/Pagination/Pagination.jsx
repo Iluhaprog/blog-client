@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ReactPaginate from 'react-paginate';
 import styles from './Pagination.module.css';
 
-function Pagination({total, limit, onClick}) {
+function Pagination({total, limit, onClick, initialPage}) {
   const pageCount = Math.ceil(total / limit);
   return (
     <ReactPaginate
@@ -21,6 +21,7 @@ function Pagination({total, limit, onClick}) {
       pageLinkClassName={styles.pageLink}
       activeClassName={styles.active}
       pageCount={pageCount}
+      initialPage={initialPage || 0}
       pageRangeDisplay={3}
       marginPagesDisplayed={1}
       onPageChange={onClick}
@@ -31,6 +32,7 @@ function Pagination({total, limit, onClick}) {
 Pagination.propTypes = {
   total: PropTypes.number,
   limit: PropTypes.number,
+  initialPage: PropTypes.number,
   onClick: PropTypes.func,
 };
 

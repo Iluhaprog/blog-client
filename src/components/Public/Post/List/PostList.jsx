@@ -4,13 +4,14 @@ import PropTypes from 'prop-types';
 import {Column} from '../../Column';
 import {PostCard} from '../Card';
 import {Container} from '../../Container';
-import {useHistory} from 'react-router';
+import {useHistory, useParams} from 'react-router';
 import {Separator} from '../../Separator';
 
 const PostList = ({total, posts, lang, getPosts}) => {
-  const [page, setPage] = useState(0);
-  const history = useHistory();
+  const {page: pageNumber} = useParams();
   const limit = process.env.REACT_APP_PAGINATION_LIMIT;
+  const [page, setPage] = useState((+pageNumber - 1) * limit);
+  const history = useHistory();
 
   useEffect(() => {
     getPosts(page);
@@ -22,6 +23,8 @@ const PostList = ({total, posts, lang, getPosts}) => {
 
   const handlePageClick = (data) => {
     const selected = data.selected * process.env.REACT_APP_PAGINATION_LIMIT;
+    console.log(data.selected);
+    history.push(`/posts/${+data.selected + 1}`);
     setPage(selected);
   };
 
@@ -47,8 +50,9 @@ const PostList = ({total, posts, lang, getPosts}) => {
       </Container>
       <Separator indentBottom={30} />
       <Pagination
-        total={total}
-        limit={limit}
+        total={+total}
+        limit={+limit}
+        initialPage={+Math.ceil(page / limit)}
         onClick={handlePageClick}
       />
     </>
