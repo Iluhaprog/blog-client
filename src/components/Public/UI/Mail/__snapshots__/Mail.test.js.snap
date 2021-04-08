@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render Mail component 1`] = `
+<DocumentFragment>
+  <a
+    class="sc-bdfBwQ glGxZp"
+    href="mailto:test@test.com"
+  >
+    TEST MAIL
+  </a>
+</DocumentFragment>
+`;
