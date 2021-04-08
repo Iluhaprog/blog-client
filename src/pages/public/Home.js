@@ -11,7 +11,7 @@ import {Globe2} from 'react-bootstrap-icons';
 import {setLang} from '../../store/settings/settingsActions';
 import {locales} from '../../locales/locales';
 import {Separator} from '../../components/Public/Separator';
-import {Route, Switch} from 'react-router-dom';
+import {Route, Switch, useHistory} from 'react-router-dom';
 import {Posts} from './Posts';
 import {Projects} from './Projects';
 import {About} from './About';
@@ -23,6 +23,8 @@ import {SocialList} from '../../components/Public/SocialList';
 import {Post} from './Post';
 
 let Home = ({lang, setLang}) => {
+  const history = useHistory();
+
   return (
     <>
       <Column
@@ -33,7 +35,10 @@ let Home = ({lang, setLang}) => {
           <Container>
             <Row justifyContent={'space-between'} alignItems={'center'}>
               <Row alignItems={'center'}>
-                <Logo title={'IN.js'}/>
+                <Logo
+                  title={'IN.js'}
+                  onClick={() => history.push('/')}
+                />
                 <Separator indentLeft={50}/>
                 <Nav
                   paths={[

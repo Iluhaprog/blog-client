@@ -21,9 +21,9 @@ const LogoBox = styled.a`
   }
 `;
 
-const Logo = ({title}) => {
+const Logo = ({title, onClick}) => {
   return (
-    <LogoBox>
+    <LogoBox type={'button'} onClick={onClick}>
       <span>{title?.slice(0, 2)}</span>
       {title.slice(2, title.length)}
     </LogoBox>
@@ -32,6 +32,7 @@ const Logo = ({title}) => {
 
 Logo.propTypes = {
   title: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 export {Logo};
