@@ -1,10 +1,9 @@
 import React from 'react';
 import * as PropTypes from 'prop-types';
 import styled from 'styled-components';
-import MarkdownIt from 'markdown-it';
-import imsize from 'markdown-it-imsize';
+import {makeMD} from '../../../../utils/md';
 
-const mdIt = new MarkdownIt().use(imsize);
+const mdIt = makeMD();
 
 const Box = styled.div`
   width: 100%;
