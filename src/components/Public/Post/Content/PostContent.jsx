@@ -13,6 +13,8 @@ import {Row} from '../../Row';
 import {Tag} from '../../UI/Tag';
 import {Separator} from '../../Separator';
 import {PostText} from '../Text';
+import {Time} from '../../UI/Time';
+import {getDateAndTime} from '../../../../utils/string/string';
 
 const Box = styled.div`
   padding: 15px;
@@ -39,6 +41,7 @@ const Box = styled.div`
 let PostContent = ({post, getPost}) => {
   const {id} = useParams();
   const API_URL = process.env.REACT_APP_API_URL;
+  const [date, time] = getDateAndTime(post.creationDate);
 
   useEffect(() => {
     getPost(id);
@@ -70,6 +73,12 @@ let PostContent = ({post, getPost}) => {
             />
           ))
         }
+      </Row>
+      <Separator indentBottom={15}/>
+      <Row justifyContent={'center'}>
+        <Time>
+          {date + ' - ' + time}
+        </Time>
       </Row>
       <Separator indentBottom={30}/>
       <Container maxWidth={800}>
