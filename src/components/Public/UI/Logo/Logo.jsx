@@ -8,6 +8,12 @@ const LogoBox = styled.a`
   font-family: var(--public-font);
   font-weight: 400;
   
+  &:hover {
+    text-decoration: none;
+    color: var(--color-1);
+    cursor: pointer;
+  }
+  
   span {
     color: #fff;
     background: var(--color-1);
