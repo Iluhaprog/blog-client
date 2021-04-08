@@ -44,8 +44,8 @@ let Home = ({lang, setLang}) => {
                   paths={[
                     {to: '/', title: lang.nav?.HOME},
                     {to: '/posts/1', title: lang.nav?.POSTS},
-                    {to: 'projects', title: lang.nav?.PROJECTS},
-                    {to: 'about', title: lang.nav?.ABOUT_ME},
+                    {to: '/projects', title: lang.nav?.PROJECTS},
+                    {to: '/about', title: lang.nav?.ABOUT_ME},
                   ]}
                 />
               </Row>
