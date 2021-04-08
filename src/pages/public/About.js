@@ -1,8 +1,12 @@
 import React from 'react';
+import styles from './public.module.css';
+import {Profile} from '../../components/Public/Profile';
 
 const About = () => {
   return (
-    <>About</>
+    <section className={styles.page}>
+      <Profile />
+    </section>
   );
 };
 
