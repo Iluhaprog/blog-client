@@ -40,7 +40,7 @@ let Profile = ({user, getUser}) => {
           round
         >
           <img
-            src={user.avatar ? API_URL + '/' + user?.avatar : bg}
+            src={user?.avatar ? API_URL + '/' + user?.avatar : bg}
             alt={user?.login}
           />
         </Image>
@@ -58,25 +58,25 @@ let Profile = ({user, getUser}) => {
                   justifyContent={'space-between'}
                   alignItems={'center'}
                 >
-                  <Title>{`${user.firstName} ${user.lastName}`}</Title>
+                  <Title>{`${user?.firstName} ${user?.lastName}`}</Title>
                   <Mail
-                    href={'mailto:'+user.email}
+                    href={'mailto:'+user?.email}
                   >
-                    <Envelope/> {user.email}
+                    <Envelope/> {user?.email}
                   </Mail>
                 </Row>
               </Box>
             </header>
             <Box>
               <Description>
-                {user.about}
+                {user?.about}
               </Description>
             </Box>
             <footer>
               <TagBox>
                 <Row justifyContent={'flex-start'} wrap={'wrap'}>
                   {
-                    user.skills?.split(',').map((skill) => (
+                    user?.skills?.split(',').map((skill) => (
                       <Tag
                         key={skill}
                         title={skill}

@@ -41,7 +41,7 @@ const Box = styled.div`
 let PostContent = ({post, getPost}) => {
   const {id} = useParams();
   const API_URL = process.env.REACT_APP_API_URL;
-  const [date, time] = getDateAndTime(post.creationDate);
+  const [date, time] = getDateAndTime(post.creationDate || '');
 
   useEffect(() => {
     getPost(id);
