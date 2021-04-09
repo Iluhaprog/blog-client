@@ -111,9 +111,8 @@ describe('Tag action creator', () => {
 
   test('Should create REMOVE_TAG action (async remove)', () => {
     const id = 1;
-    mock.onDelete('/tag').reply((config) => {
-      const {headers, params} = config;
-      expect(params.id).toBe(id);
+    mock.onDelete('/tag/'+id).reply((config) => {
+      const {headers} = config;
       expect(headers['Authorization']).toBe(`Bearer ${token}`);
       return [HttpStatus.NO_CONTENT];
     });

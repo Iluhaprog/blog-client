@@ -30,8 +30,7 @@ export function create(tag) {
  */
 export function remove(id) {
   return requestWithToken(
-      (headers) => api.delete(TAG_URL, {
-        params: {id},
+      (headers) => api.delete(`${TAG_URL}/${id}`, {
         headers,
       }),
   );
