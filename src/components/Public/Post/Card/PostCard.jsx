@@ -43,7 +43,7 @@ const PostCard = (props) => {
   const {title, preview, description, creationDate, tags, lang} = props;
   const {onClick} = props;
   const API_URL = process.env.REACT_APP_API_URL;
-  const [date, time] = getDateAndTime(creationDate);
+  const [date, time] = getDateAndTime(creationDate || '');
 
   return (
     <Card>
