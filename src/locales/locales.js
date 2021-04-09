@@ -6,6 +6,7 @@ const en = {
     PROJECTS: 'Projects',
     DIRS: 'Dirs',
     HOMES: 'Homes',
+    TAGS: 'Tags',
   },
   nav: {
     POSTS: 'Posts',
@@ -40,6 +41,7 @@ const en = {
     SELECT_TAGS: 'Select tags',
     PROJECT_LINK: 'Project link',
     GITHUB_LINK: 'Github link',
+    WRITE_TAG_TITLE: 'Write tag title',
   },
   text: {
     CHANGE_PASSWORD: 'Change password',
@@ -71,6 +73,7 @@ const ru = {
     PROJECTS: 'Проекты',
     DIRS: 'Файлы',
     HOMES: 'Главные',
+    TAGS: 'Теги',
   },
   nav: {
     POSTS: 'Посты',
@@ -105,6 +108,7 @@ const ru = {
     SELECT_TAGS: 'Выберете теги',
     PROJECT_LINK: 'Ссылка на проект',
     GITHUB_LINK: 'Ссылка на Github',
+    WRITE_TAG_TITLE: 'Введите название тега',
   },
   text: {
     CHANGE_PASSWORD: 'Смена пароля',

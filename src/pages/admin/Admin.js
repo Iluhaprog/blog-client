@@ -13,9 +13,10 @@ import {LogoutButton} from '../../components/Admin/LogoutButton';
 import {Post} from './Post';
 import {Project} from './Project';
 import {Homes} from './Home';
+import {Tags} from './Tags';
 
 const Admin = ({lang, theme, isAuthorized}) => {
-  const links = ['profile', 'posts', 'projects', 'dirs', 'homes'];
+  const links = ['profile', 'posts', 'projects', 'dirs', 'homes', 'tags'];
 
   if (!isAuthorized) return <Redirect to='/login' />;
 
@@ -62,6 +63,9 @@ const Admin = ({lang, theme, isAuthorized}) => {
           </Route>
           <Route path='/admin/projects'>
             <Projects />
+          </Route>
+          <Route path={'/admin/tags'}>
+            <Tags />
           </Route>
           <Route path='/admin/dirs'>
             <Dirs />
