@@ -1,0 +1,19 @@
+---
+name: Container
+route: /container
+---
+
+import {Playground, Props} from 'docz';
+import {Container} from './Container';
+
+This component is for wrapping children
+into the container with the maximum width.
+
+<Props of={Container} />
+
+## Basic usage
+<Playground>
+  <Container maxWidth={600}>
+    Container
+  </Container>
+</Playground>

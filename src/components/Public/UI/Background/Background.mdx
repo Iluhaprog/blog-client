@@ -1,0 +1,23 @@
+---
+name: Background
+route: /background
+---
+
+import {Playground, Props} from 'docz';
+import {Card} from '../Card';
+import {Background} from './Background';
+
+<Props of={Background} />
+
+## Basic usage
+<Playground>
+  <Background
+    maxHeight={200}
+    src={'https://images.ctfassets.net/hrltx12pl8hq/4plHDVeTkWuFMihxQnzBSb/aea2f06d675c3d710d095306e377382f/shutterstock_554314555_copy.jpg'}
+    alt={'bg'}
+  >
+    <Card maxWidth={100} maxHeight={100}>
+      Child
+    </Card>
+  </Background>
+</Playground>

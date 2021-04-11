@@ -8,6 +8,7 @@ const Card = styled.div`
   height: 100vh;
   background-color: #fff;
   padding: 15px;
+  color: var(--color-1);
 `;
 
 Card.propTypes = {
