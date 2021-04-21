@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -12,9 +12,15 @@ import {Modal} from './components/Admin/Modal/Modal';
 import {Message} from './components/Admin/Message';
 import {Login} from './pages/admin/Login';
 import {Home} from './pages/public';
+import {getLocales} from './store/locale/localeActions';
 
 function App(props) {
-  const {lang, theme, isAuthorized} = props;
+  const {lang, theme, isAuthorized, getLocales} = props;
+
+  useEffect(() => {
+    getLocales();
+  }, []);
+
   return (
     <Router>
       <div className={`App ${theme}`}>
@@ -40,6 +46,7 @@ App.propTypes = {
   lang: PropTypes.object,
   theme: PropTypes.string,
   isAuthorized: PropTypes.bool,
+  getLocales: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -48,6 +55,10 @@ const mapStateToProps = (state) => ({
   isAuthorized: state.auth.isAuthorized,
 });
 
-const mapDispatchToProps = () => ({});
+const mapDispatchToProps = (dispatch) => ({
+  getLocales: () => {
+    dispatch(getLocales());
+  },
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
