@@ -10,6 +10,7 @@ import {PostCard} from '../Card';
 import {Filter} from '../../../../api/filters';
 import {Separator} from '../../Separator';
 import {useHistory} from 'react-router';
+import {getEntityDataByLang} from '../../../../utils/data/data';
 
 const Box = styled.div`
   padding: 30px 0;
@@ -29,18 +30,25 @@ let LastPosts = ({lang, posts, getPosts}) => {
         <Separator indentTop={40}/>
         <Container maxWidth={860}>
           {
-            posts?.map((post) => (
-              <PostCard
-                key={post.id}
-                title={post.title}
-                description={post.description}
-                preview={post.preview}
-                creationDate={post.creationDate}
-                tags={post.tags}
-                lang={lang}
-                onClick={() => history.push('/post/' + post.id)}
-              />
-            ))
+            posts?.map((post) => {
+              post = getEntityDataByLang(
+                  post,
+                  lang.title,
+                  'postData',
+              );
+              return (
+                <PostCard
+                  key={post.id}
+                  title={post.title}
+                  description={post.description}
+                  preview={post.preview}
+                  creationDate={post.creationDate}
+                  tags={post.tags}
+                  lang={lang}
+                  onClick={() => history.push('/post/' + post.id)}
+                />
+              );
+            })
           }
         </Container>
       </Box>

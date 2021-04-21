@@ -15,6 +15,7 @@ import {Separator} from '../../Separator';
 import {PostText} from '../Text';
 import {Time} from '../../UI/Time';
 import {getDateAndTime} from '../../../../utils/string/string';
+import {getEntityDataByLang} from '../../../../utils/data/data';
 
 const Box = styled.div`
   padding: 15px;
@@ -94,7 +95,11 @@ PostContent.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  post: state.post.selected,
+  post: getEntityDataByLang(
+      state.post.selected,
+      state.settings.lang.title,
+      'postData',
+  ),
 });
 
 const mapDispatchToProps = (dispatch) => ({

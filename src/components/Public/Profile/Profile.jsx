@@ -14,6 +14,7 @@ import {Tag} from '../UI/Tag';
 import {Separator} from '../Separator';
 import {Mail} from '../UI/Mail';
 import {Envelope} from 'react-bootstrap-icons';
+import {getEntityDataByLang} from '../../../utils/data/data';
 
 const Box = styled.div`
   padding: 20px;
@@ -109,7 +110,11 @@ Profile.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  user: state.user.users[0],
+  user: getEntityDataByLang(
+      state.user.users[0],
+      state.settings.lang.title,
+      'userData',
+  ),
 });
 
 const mapDispatchToProps = (dispatch) => ({

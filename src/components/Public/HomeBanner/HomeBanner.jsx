@@ -9,6 +9,7 @@ import {connect} from 'react-redux';
 import {Description} from '../UI/Description';
 import {Column} from '../Column';
 import styled from 'styled-components';
+import {getEntityDataByLang} from '../../../utils/data/data';
 
 const Box = styled.div`
   padding: 25px;
@@ -71,7 +72,11 @@ HomeBanner.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  home: state.home.selected,
+  home: getEntityDataByLang(
+      state.home.selected,
+      state.settings.lang.title,
+      'homeData',
+  ),
 });
 
 const mapDispatchToProps = (dispatch) => ({

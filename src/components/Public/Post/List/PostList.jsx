@@ -6,6 +6,7 @@ import {PostCard} from '../Card';
 import {Container} from '../../Container';
 import {useHistory, useParams} from 'react-router';
 import {Separator} from '../../Separator';
+import {getEntityDataByLang} from '../../../../utils/data/data';
 
 const PostList = ({total, posts, lang, getPosts}) => {
   const {page: pageNumber} = useParams();
@@ -33,18 +34,25 @@ const PostList = ({total, posts, lang, getPosts}) => {
       <Container maxWidth={1000}>
         <Column>
           {
-            posts?.map((post) => (
-              <PostCard
-                key={post.id}
-                title={post.title}
-                description={post.description}
-                preview={post.preview}
-                creationDate={post.creationDate}
-                tags={post.tags}
-                lang={lang}
-                onClick={() => history.push('/post/' + post.id)}
-              />
-            ))
+            posts?.map((post) => {
+              post = getEntityDataByLang(
+                  post,
+                  lang.title,
+                  'postData',
+              );
+              return (
+                <PostCard
+                  key={post.id}
+                  title={post.title}
+                  description={post.description}
+                  preview={post.preview}
+                  creationDate={post.creationDate}
+                  tags={post.tags}
+                  lang={lang}
+                  onClick={() => history.push('/post/' + post.id)}
+                />
+              );
+            })
           }
         </Column>
       </Container>

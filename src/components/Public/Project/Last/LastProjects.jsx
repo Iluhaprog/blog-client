@@ -18,6 +18,7 @@ import {
 import {
   ReactComponent as Link,
 } from '../../../../assets/public/icons/link.svg';
+import {getEntityDataByLang} from '../../../../utils/data/data';
 
 const Box = styled.div`
   padding: 20px;
@@ -64,45 +65,52 @@ let LastProjects = ({projects, getLastProjects, lang}) => {
       <PageTitle>{lang.text.LAST_PROJECTS}</PageTitle>
       <Separator indentBottom={20}/>
       {
-        projects?.slice(0, 3).map((project) => (
-          <>
-            <Background
-              key={project.id}
-              maxHeight={440}
-              src={project.preview ? API_URL + '/' + project.preview : bg}
-              alt={'projects'}
-            >
-              <Box>
-                <Row
-                  justifyContent={
-                    project.id % 2 === 0 ? 'flex-start' : 'flex-end'
-                  }
-                >
-                  <Card
-                    maxWidth={370}
-                    maxHeight={400}
+        projects?.slice(0, 3).map((project) => {
+          project = getEntityDataByLang(
+              project,
+              lang.title,
+              'projectData',
+          );
+          return (
+            <>
+              <Background
+                key={project.id}
+                maxHeight={440}
+                src={project.preview ? API_URL + '/' + project.preview : bg}
+                alt={'projects'}
+              >
+                <Box>
+                  <Row
+                    justifyContent={
+                      project.id % 2 === 0 ? 'flex-start' : 'flex-end'
+                    }
                   >
-                    <CardBox>
-                      <Title>{project.title}</Title>
-                      <Description>
-                        {project.description}
-                      </Description>
-                      <Row>
-                        <a href={project.projectLink}>
-                          <Link />
-                        </a>
-                        <a href={project.githubLink}>
-                          <Github />
-                        </a>
-                      </Row>
-                    </CardBox>
-                  </Card>
-                </Row>
-              </Box>
-            </Background>
-            <Separator indentBottom={20}/>
-          </>
-        ))
+                    <Card
+                      maxWidth={370}
+                      maxHeight={400}
+                    >
+                      <CardBox>
+                        <Title>{project.title}</Title>
+                        <Description>
+                          {project.description}
+                        </Description>
+                        <Row>
+                          <a href={project.projectLink}>
+                            <Link />
+                          </a>
+                          <a href={project.githubLink}>
+                            <Github />
+                          </a>
+                        </Row>
+                      </CardBox>
+                    </Card>
+                  </Row>
+                </Box>
+              </Background>
+              <Separator indentBottom={20}/>
+            </>
+          );
+        })
       }
     </Container>
   );
