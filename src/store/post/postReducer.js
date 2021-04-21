@@ -34,6 +34,7 @@ export const postReducer = (state = initialState, action) => {
     case post.UPDATE_POST:
       return {
         ...state,
+        selected: {...state.selected, ...action.post},
         posts: state.posts.map((post) => {
           return post.id === action.post.id ? action.post : post;
         }),

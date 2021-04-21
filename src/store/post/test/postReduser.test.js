@@ -41,6 +41,7 @@ describe('postReduser', () => {
     const result = postReducer(state, post.updatePost(updatedData));
     expect(result).toEqual({
       ...initialState,
+      selected: updatedData,
       posts: [updatedData],
     });
   });
