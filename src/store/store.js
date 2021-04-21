@@ -14,6 +14,7 @@ import * as social from './social/socialReducer';
 import * as tag from './tag/tagReducer';
 import * as user from './user/userReducer';
 import * as win from './window/windowReducer';
+import * as locale from './locale/localeReducer';
 
 const rootReducer = combineReducers({
   auth: auth.authReducer,
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   tag: tag.tagReducer,
   user: user.userReducer,
   window: win.windowReducer,
+  locale: locale.localeReducer,
 });
 
 const initialState = loadState();

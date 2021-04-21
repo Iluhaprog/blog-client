@@ -15,15 +15,15 @@ export const setLocales = (locales) => ({
 });
 
 const localeAsyncActionCreator = createDeclarator(
-  toggleFetch,
-  message.addMessage,
+    toggleFetch,
+    message.addMessage,
 );
 
 export const getLocales = localeAsyncActionCreator(
-  (dispatch) => {
-    return locale.getLocales().then((response) => {
-      const {data} = response;
-      dispatch(setLocales(data));
-    });
-  },
+    (dispatch) => {
+      return locale.getLocales().then((response) => {
+        const {data} = response;
+        dispatch(setLocales(data));
+      });
+    },
 );

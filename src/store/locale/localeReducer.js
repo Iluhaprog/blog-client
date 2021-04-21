@@ -13,4 +13,4 @@ export const localeReducer = (state = initialState, action) => {
     default:
       return {...state};
   }
-}
+};
