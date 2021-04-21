@@ -26,6 +26,7 @@ export const projectReducer = (state = initialState, action) => {
     case project.UPDATE_PROJECT:
       return {
         ...state,
+        selected: {...state.selected, ...action.project},
         projects: state.projects.map((project) => {
           return project.id === action.project.id ? action.project : project;
         }),

@@ -53,6 +53,7 @@ describe('projectReduser', () => {
     );
     expect(result).toEqual({
       ...initialState,
+      selected: updatedData,
       projects: [updatedData],
     });
   });
