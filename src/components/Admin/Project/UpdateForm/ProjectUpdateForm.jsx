@@ -13,18 +13,41 @@ import {ModalScreenTypes} from '../../../../store/modal/ModalFormTypes';
 import {FileField} from '../../Field/File/File';
 import {InputField} from '../../Field/Input';
 import {TextareaField} from '../../Field/Textarea';
+import {
+  getEntityDataByLang,
+  updateEntityByLang,
+} from '../../../../utils/data/data';
 
 let ProjectUpdateForm = (props) => {
   const {initialValues, showFileModal, update, lang} = props;
+  const initData = getEntityDataByLang(
+      initialValues,
+      lang.title,
+      'projectData',
+  );
 
   const submit = (values) => {
-    update(values);
+    const updatedProject = updateEntityByLang({
+      entity: initialValues,
+      data: values,
+      lang: lang.title,
+      field: 'projectData',
+      getFields: (data) => ({
+        title: data.title,
+        description: data.description,
+      }),
+    });
+    update({
+      ...updatedProject,
+      githubLink: values.githubLink,
+      projectLink: values.projectLink,
+    });
   };
 
   return (
     <Formik
       enableReinitialize
-      initialValues={{...initialValues}}
+      initialValues={{...initData}}
       onSubmit={submit}
     >
       <Form>

@@ -13,6 +13,7 @@ import PropTypes from 'prop-types';
 
 let ProjectHeader = ({
   lang,
+  locales,
   showInputModal,
   create,
 }) => {
@@ -29,7 +30,7 @@ let ProjectHeader = ({
         onClick={() => showInputModal(
             lang.text.PROJECT_CREATE_TITLE,
             lang.text.PROJECT_CREATE_DESCRIPTION,
-            (val) => create(val.title),
+            (val) => create(val.title, locales),
         )}
         variant='primary'
       >
@@ -42,18 +43,23 @@ let ProjectHeader = ({
 ProjectHeader.propTypes = {
   isFetch: PropTypes.bool,
   lang: PropTypes.object,
+  locales: PropTypes.array,
   showInputModal: PropTypes.func,
   create: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
   lang: state.settings.lang,
+  locales: state.locale.array,
 });
 const mapDispatchToProps = (dispatch) => ({
-  create: (title) => {
+  create: (title, locales) => {
     dispatch(create({
-      title,
-      description: '',
+      projectData: locales.map((locale) => ({
+        title: title,
+        description: '',
+        locale: locale,
+      })),
       preview: '',
       projectLink: '',
       githubLink: '',
