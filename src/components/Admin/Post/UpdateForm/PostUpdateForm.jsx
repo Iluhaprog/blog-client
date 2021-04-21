@@ -42,6 +42,7 @@ let PostUpdateForm = (props) => {
       ...updatedPost,
       isVisible: values.isVisible,
       tags: values.tags,
+      preview: values.preview,
     });
   };
 

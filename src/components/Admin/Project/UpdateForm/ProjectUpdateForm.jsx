@@ -37,10 +37,12 @@ let ProjectUpdateForm = (props) => {
         description: data.description,
       }),
     });
+    console.log(updatedProject);
     update({
       ...updatedProject,
       githubLink: values.githubLink,
       projectLink: values.projectLink,
+      preview: values.preview,
     });
   };
 

@@ -36,6 +36,7 @@ let UserUpdateForm = (props) => {
     props.update({
       ...updatedUser,
       skills: values.skills,
+      avatar: values.avatar,
     });
   };
 
