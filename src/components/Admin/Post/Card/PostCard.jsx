@@ -4,10 +4,16 @@ import {Badge, Button, Card, Col, Container, Row} from 'react-bootstrap';
 import broken from '../../../../assets/brkImg.png';
 import {Eye, EyeSlash} from 'react-bootstrap-icons';
 import {useHistory} from 'react-router';
+import {getEntityDataByLang} from '../../../../utils/data/data';
 
 const PostCard = ({post, lang, theme, onDelete}) => {
   const API_URL = process.env.REACT_APP_API_URL;
   const history = useHistory();
+  post = getEntityDataByLang(
+      post,
+      lang.title,
+      'postData',
+  );
   return (
     <Card
       bg={theme}
@@ -68,7 +74,9 @@ const PostCard = ({post, lang, theme, onDelete}) => {
           <Col md={3}>
             <Button
               variant={'primary'}
-              onClick={() => history.push(`/admin/post/${post.id}`)}
+              onClick={() => {
+                history.push(`/admin/post/${post.id}`);
+              }}
             >
               {lang.button.READ}
             </Button>

@@ -12,7 +12,7 @@ import {ModalScreenTypes} from '../../../../store/modal/ModalFormTypes';
 import {create} from '../../../../store/post/postActions';
 
 let PostHeader = (props) => {
-  const {lang} = props;
+  const {lang, locales} = props;
   const {showInputModal, create} = props;
   return (
     <Row className='justify-content-between align-items-center'>
@@ -27,7 +27,7 @@ let PostHeader = (props) => {
         onClick={() => showInputModal(
             lang.text.POST_CREATE_TITLE,
             lang.text.POST_CREATE_DESCRIPTION,
-            (val) => create(val.title),
+            (val) => create(val.title, locales),
         )}
         variant='primary'
       >
@@ -40,22 +40,28 @@ let PostHeader = (props) => {
 PostHeader.propTypes = {
   isFetch: PropTypes.bool,
   lang: PropTypes.object,
+  locales: PropTypes.array,
   create: PropTypes.func,
   showInputModal: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
   isFetch: state.post.isFetch,
+  locales: state.locale.array,
   lang: state.settings.lang,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  create: (title) => {
+  create: (title, locales) => {
     dispatch(create({
-      title,
-      text: '',
+      postData: locales.map((locale) => ({
+        title: title,
+        description: '',
+        text: '',
+        locale: locale,
+      })),
+      isVisible: false,
       preview: '',
-      description: '',
       tags: [],
     }));
   },

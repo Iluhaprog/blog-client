@@ -17,14 +17,31 @@ import {TagSelectField} from '../../Field/TagSelect';
 import {getAll} from '../../../../store/tag/tagActions';
 import {MdRedactorField} from '../../Field/MdRedactor';
 import {VisibilityToggle} from '../../Toggle/Visibility';
+import {
+  getEntityDataByLang,
+  updateEntityByLang,
+} from '../../../../utils/data/data';
 
 let PostUpdateForm = (props) => {
   const {tags, getAllTags, selected, lang, showFileModal, update} = props;
   const [isVisible] = useState(selected.isVisible);
+  const initData = getEntityDataByLang(selected, lang.title, 'postData');
   const submit = (values) => {
+    const updatedPost = updateEntityByLang({
+      entity: selected,
+      data: values,
+      lang: lang.title,
+      field: 'postData',
+      getFields: (data) => ({
+        title: data.title,
+        description: data.description,
+        text: data.text,
+      }),
+    });
     update({
-      ...selected,
-      ...values,
+      ...updatedPost,
+      isVisible: values.isVisible,
+      tags: values.tags,
     });
   };
 
@@ -35,7 +52,7 @@ let PostUpdateForm = (props) => {
   return (
     <Formik
       enableReinitialize
-      initialValues={{...selected}}
+      initialValues={{...initData}}
       onSubmit={submit}
     >
       <Form>
