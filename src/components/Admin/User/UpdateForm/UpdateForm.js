@@ -13,12 +13,30 @@ import PropTypes from 'prop-types';
 import {FileField} from '../../Field/File/File';
 import {InputField} from '../../Field/Input';
 import {TextareaField} from '../../Field/Textarea';
+import {
+  getEntityDataByLang,
+  updateEntityByLang,
+} from '../../../../utils/data/data';
 
 let UserUpdateForm = (props) => {
-  const {lang, isFetch} = props;
+  const {lang, isFetch, user} = props;
 
-  const submit = (values, actions) => {
-    props.update({...values, id: props.initialValues.id});
+  const submit = (values) => {
+    const updatedUser = updateEntityByLang({
+      entity: user,
+      data: values,
+      lang: lang.title,
+      field: 'userData',
+      getFields: (data) => ({
+        firstName: data.firstName,
+        lastName: data.lastName,
+        about: data.about,
+      }),
+    });
+    props.update({
+      ...updatedUser,
+      skills: values.skills,
+    });
   };
 
   return (
@@ -115,6 +133,7 @@ let UserUpdateForm = (props) => {
 
 UserUpdateForm.propTypes = {
   userId: PropTypes.number,
+  user: PropTypes.object,
   isFetch: PropTypes.bool,
   initialValues: PropTypes.object,
   showFileModal: PropTypes.func,
@@ -124,11 +143,14 @@ UserUpdateForm.propTypes = {
 
 const mapStateToProps = (state) => ({
   userId: state.user.data.id,
+  user: state.user.data,
   isFetch: state.user.isFetch,
   lang: state.settings.lang,
-  initialValues: {
-    ...state.user.data,
-  },
+  initialValues: getEntityDataByLang(
+      state.user.data,
+      state.settings.lang.title,
+      'userData',
+  ),
 });
 
 const mapDispatchToProps = (dispatch) => ({
