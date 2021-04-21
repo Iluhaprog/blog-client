@@ -1,4 +1,8 @@
-export function getEntityDataByLang(entity, lang, field) {
+export function getEntityDataByLang(
+    entity = {},
+    lang = '',
+    field = '',
+) {
   const data = entity[field];
   if (entity && data) {
     const currentData = data.find((el) => el.locale.name === lang);
