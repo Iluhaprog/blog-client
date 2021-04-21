@@ -12,3 +12,26 @@ export function getEntityDataByLang(entity, lang, field) {
     ...currentData,
   });
 }
+
+export function updateEntityByLang({
+  entity = {},
+  data = {},
+  lang = '',
+  field = '',
+  getFields = () => {},
+}) {
+  const updatedData = getFields(data);
+  const updatedEntityData = entity[field].map((data) => {
+    if (data.locale.name === lang) {
+      return {
+        ...data,
+        ...updatedData,
+      };
+    }
+    return data;
+  });
+  return {
+    ...entity,
+    [field]: updatedEntityData,
+  };
+}
