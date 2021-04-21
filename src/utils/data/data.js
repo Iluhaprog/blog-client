@@ -13,8 +13,8 @@ export function getEntityDataByLang(
       }
     });
     return Object.assign({}, {
-      ...tmp,
       ...currentData,
+      ...tmp,
     });
   }
   return entity;
