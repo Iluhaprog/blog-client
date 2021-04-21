@@ -7,6 +7,10 @@ import {TextareaField} from '../../Field/Textarea';
 import styled from 'styled-components';
 import {VisibilityToggle} from '../../Toggle/Visibility';
 import {themes} from '../../../../store/settings/settingsReducer';
+import {
+  getEntityDataByLang,
+  updateEntityByLang,
+} from '../../../../utils/data/data';
 
 const FormBox = styled.div`
   padding: 20px;
@@ -20,10 +24,25 @@ const FormBox = styled.div`
 
 const HomeUpdateForm = (props) => {
   const {initialValues, lang, remove, update, theme} = props;
+  const initData = getEntityDataByLang(
+      initialValues,
+      lang.title,
+      'homeData',
+  );
   const submit = (values) => {
+    const updatedHome = updateEntityByLang({
+      entity: initialValues,
+      data: values,
+      lang: lang.title,
+      field: 'homeData',
+      getFields: (data) => ({
+        title: data.title,
+        description: data.description,
+      }),
+    });
     update({
-      ...initialValues,
-      ...values,
+      ...updatedHome,
+      isVisible: values.isVisible,
     });
   };
 
@@ -31,7 +50,7 @@ const HomeUpdateForm = (props) => {
     <FormBox theme={theme}>
       <Formik
         enableReinitialize
-        initialValues={initialValues}
+        initialValues={initData}
         onSubmit={submit}
       >
         <Form>
