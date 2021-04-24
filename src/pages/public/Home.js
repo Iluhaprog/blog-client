@@ -7,7 +7,7 @@ import {Row} from '../../components/Public/Row';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Button} from '../../components/Public/UI/Button';
-import {Globe2} from 'react-bootstrap-icons';
+import {Bookmark, Globe2} from 'react-bootstrap-icons';
 import {setLang} from '../../store/settings/settingsActions';
 import {locales} from '../../locales/locales';
 import {Separator} from '../../components/Public/Separator';
@@ -21,6 +21,7 @@ import styles from './public.module.css';
 import {Footer} from '../../components/Public/UI/Footer';
 import {SocialList} from '../../components/Public/SocialList';
 import {Post} from './Post';
+import {Bookmarks} from './Bookmarks';
 
 let Home = ({lang, setLang}) => {
   const history = useHistory();
@@ -49,14 +50,24 @@ let Home = ({lang, setLang}) => {
                   ]}
                 />
               </Row>
-              <Button
-                onClick={() => setLang(lang.title)}
-                minWidth={50}
-                mod={'small'}
-              >
-                <Globe2/>
-                {' ' + lang.title}
-              </Button>
+              <Row justifyContent={'flex-end'}>
+                <Button
+                  minWidth={20}
+                  mod={'small'}
+                  onClick={() => history.push('/bookmarks')}
+                >
+                  <Bookmark />
+                </Button>
+                <Separator indentLeft={10}/>
+                <Button
+                  onClick={() => setLang(lang.title)}
+                  minWidth={50}
+                  mod={'small'}
+                >
+                  <Globe2/>
+                  {' ' + lang.title}
+                </Button>
+              </Row>
             </Row>
           </Container>
         </Header>
@@ -74,6 +85,9 @@ let Home = ({lang, setLang}) => {
               </Route>
               <Route path={'/about'}>
                 <About />
+              </Route>
+              <Route path={'/bookmarks'}>
+                <Bookmarks />
               </Route>
               <Route path={'/'}>
                 <Main />

@@ -8,7 +8,7 @@ import {useHistory, useParams} from 'react-router';
 import {Separator} from '../../Separator';
 import {getEntityDataByLang} from '../../../../utils/data/data';
 
-const PostList = ({total, posts, lang, getPosts}) => {
+const PostList = ({total, posts, lang, getPosts, addToBookmarks}) => {
   const {page: pageNumber} = useParams();
   const limit = process.env.REACT_APP_PAGINATION_LIMIT;
   const [page, setPage] = useState((+pageNumber - 1) * limit);
@@ -35,6 +35,7 @@ const PostList = ({total, posts, lang, getPosts}) => {
         <Column>
           {
             posts?.map((post) => {
+              const bmPost = post;
               post = getEntityDataByLang(
                   post,
                   lang.title,
@@ -49,6 +50,7 @@ const PostList = ({total, posts, lang, getPosts}) => {
                   creationDate={post.creationDate}
                   tags={post.tags}
                   lang={lang}
+                  addToBookmarks={() => addToBookmarks(bmPost)}
                   onClick={() => history.push('/post/' + post.id)}
                 />
               );
@@ -71,6 +73,7 @@ PostList.propTypes = {
   total: PropTypes.number,
   posts: PropTypes.array,
   lang: PropTypes.object,
+  addToBookmarks: PropTypes.func,
   getPosts: PropTypes.func,
 };
 

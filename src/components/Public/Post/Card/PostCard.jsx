@@ -11,6 +11,7 @@ import {Row} from '../../Row';
 import {Tag} from '../../UI/Tag';
 import {Button} from '../../UI/Button';
 import {Separator} from '../../Separator';
+import {Bookmark} from 'react-bootstrap-icons';
 
 const Card = styled.article`
   display: flex;
@@ -41,7 +42,7 @@ const CardContent = styled.section`
 
 const PostCard = (props) => {
   const {title, preview, description, creationDate, tags, lang} = props;
-  const {onClick} = props;
+  const {onClick, addToBookmarks} = props;
   const API_URL = process.env.REACT_APP_API_URL;
   const [date, time] = getDateAndTime(creationDate || '');
 
@@ -77,12 +78,24 @@ const PostCard = (props) => {
           </Row>
           <Separator indentTop={10} />
           <footer>
-            <Button
-              onClick={onClick}
-              mod={'small'}
-            >
-              {lang.button.READ}
-            </Button>
+            <Row justifyContent={'space-between'}>
+              <Button
+                onClick={onClick}
+                mod={'small'}
+              >
+                {lang.button.READ}
+              </Button>
+              {addToBookmarks && (
+                <Button
+                  onClick={addToBookmarks}
+                  mod={'small'}
+                  minWidth={20}
+                >
+                  <Bookmark/>
+                </Button>
+              )
+              }
+            </Row>
           </footer>
         </div>
       </CardContent>
@@ -98,6 +111,7 @@ PostCard.propTypes = {
   creationDate: PropTypes.string,
   lang: PropTypes.object,
   onClick: PropTypes.func,
+  addToBookmarks: PropTypes.func,
 };
 
 export {PostCard};
