@@ -3,7 +3,7 @@
 exports[`Should render Title component 1`] = `
 <DocumentFragment>
   <h2
-    class="sc-bdfBwQ gEjGXF"
+    class="sc-bdfBwQ jtixIo"
   >
     Test text
   </h2>

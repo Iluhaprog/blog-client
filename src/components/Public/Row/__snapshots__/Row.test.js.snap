@@ -3,7 +3,7 @@
 exports[`Should render Header component 1`] = `
 <DocumentFragment>
   <div
-    class="sc-bdfBwQ iHiDst"
+    class="sc-bdfBwQ ijqLvK"
   >
     Test header
   </div>

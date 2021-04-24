@@ -3,7 +3,7 @@
 exports[`Should render Container component 1`] = `
 <DocumentFragment>
   <div
-    class="sc-bdfBwQ bfmqye"
+    class="sc-bdfBwQ fvMHUV"
   >
     Test child
   </div>
