@@ -6,6 +6,7 @@ const Image = styled.figure`
   height: ${({height}) => height}px;
   border-radius: ${({round}) => round ? '50%' : '0'};
   overflow: hidden;
+  margin: 0;
   flex: 0 0 ${({width}) => width ? `${width}px` : 'auto' };
   
   img {
