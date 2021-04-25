@@ -3,10 +3,19 @@ import * as bookmark from '../bookmarkActions';
 const mockStore = configureStore();
 
 describe('Bookmark actions', () => {
-  test('Should create SET_VIEW action', () => {
-    const expectedActions = [{ type: bookmark.TOGGLE_VIEW }];
+  test('Should create VIEW action', () => {
+    const expectedActions = [{ type: bookmark.VIEW }];
     const store = mockStore({});
-    store.dispatch(bookmark.toggleView());
+    store.dispatch(bookmark.view());
+    const actions = store.getActions();
+    expect(actions).toEqual(expectedActions);
+  });
+
+  test('Should create SET_VIEW action', () => {
+    const isView = true;
+    const expectedActions = [{ type: bookmark.SET_VIEW, isView }];
+    const store = mockStore({});
+    store.dispatch(bookmark.setView(isView));
     const actions = store.getActions();
     expect(actions).toEqual(expectedActions);
   });

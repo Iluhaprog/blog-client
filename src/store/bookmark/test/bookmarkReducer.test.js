@@ -16,11 +16,21 @@ describe('bookmarkReducer', () => {
     uuid.v4.mockImplementationOnce(() => bmId);
   });
 
+  test('Should handle VIEW action', () => {
+    const state = {
+      ...initState,
+      unviewedBookmarksNumber: 10,
+    }
+    const result = bookmarkReducer(state, bookmark.view());
+    expect(result).toEqual(initState);
+  });
+
   test('Should handle SET_VIEW action', () => {
-    const result = bookmarkReducer(initState, bookmark.toggleView());
+    const isView = true;
+    const result = bookmarkReducer(initState, bookmark.setView(isView));
     expect(result).toEqual({
       ...initState,
-      isView: !initState.isView,
+      isView,
     });
   });
 

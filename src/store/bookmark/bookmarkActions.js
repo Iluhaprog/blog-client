@@ -1,9 +1,15 @@
-export const TOGGLE_VIEW = 'TOGGLE_VIEW';
+export const SET_VIEW = 'SET_VIEW';
 export const ADD_BOOKMARK = 'ADD_BOOKMARK';
 export const REMOVE_BOOKMARK = 'REMOVE_BOOKMARK';
+export const VIEW = 'VIEW';
 
-export const toggleView = () => ({
-  type: TOGGLE_VIEW,
+export const view = () => ({
+  type: VIEW,
+});
+
+export const setView = (isView) => ({
+  type: SET_VIEW,
+  isView,
 });
 
 export const addBookmark = (data) => ({
