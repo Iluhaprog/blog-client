@@ -2,6 +2,9 @@ import React, {useEffect} from 'react';
 import {Row} from '../../Row';
 import {BookmarkCard} from '../Card';
 import * as PropTypes from 'prop-types';
+import {Message} from '../../UI/Message';
+import {Stars} from 'react-bootstrap-icons';
+import {Separator} from '../../Separator';
 
 const BookmarkList = ({bookmarks, lang, removeBookmark, toggleView}) => {
   useEffect(() => {
@@ -20,6 +23,20 @@ const BookmarkList = ({bookmarks, lang, removeBookmark, toggleView}) => {
           />
         ))
       }
+      <Message>
+        <Row justifyContent={'center'}>
+          {
+            !bookmarks.length &&
+            (
+              <>
+                <Stars />
+                <Separator indentLeft={20} />
+                {lang.text.EMPTY}
+              </>
+            )
+          }
+        </Row>
+      </Message>
     </Row>
   );
 };

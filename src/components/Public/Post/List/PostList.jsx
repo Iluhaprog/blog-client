@@ -7,6 +7,7 @@ import {Container} from '../../Container';
 import {useHistory, useParams} from 'react-router';
 import {Separator} from '../../Separator';
 import {getEntityDataByLang} from '../../../../utils/data/data';
+import {Message} from '../../UI/Message';
 
 const PostList = ({total, posts, lang, getPosts, addToBookmarks}) => {
   const {page: pageNumber} = useParams();
@@ -24,7 +25,6 @@ const PostList = ({total, posts, lang, getPosts, addToBookmarks}) => {
 
   const handlePageClick = (data) => {
     const selected = data.selected * process.env.REACT_APP_PAGINATION_LIMIT;
-    console.log(data.selected);
     history.push(`/posts/${+data.selected + 1}`);
     setPage(selected);
   };
@@ -56,15 +56,25 @@ const PostList = ({total, posts, lang, getPosts, addToBookmarks}) => {
               );
             })
           }
+          {
+            !posts?.length ? (
+              <Message>
+                {lang.text.NOT_FOUND}
+              </Message>
+            ) : ''
+          }
         </Column>
       </Container>
       <Separator indentBottom={30} />
-      <Pagination
-        total={+total}
-        limit={+limit}
-        initialPage={+Math.ceil(page / limit)}
-        onClick={handlePageClick}
-      />
+      {posts?.length ? (
+        <Pagination
+          total={+total}
+          limit={+limit}
+          initialPage={+Math.ceil(page / limit)}
+          onClick={handlePageClick}
+        />
+      ) : ''
+      }
     </>
   );
 };

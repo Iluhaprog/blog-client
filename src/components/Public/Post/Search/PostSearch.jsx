@@ -7,8 +7,9 @@ import PropTypes from 'prop-types';
 import {Separator} from '../../Separator';
 import {PostList} from '../List';
 import {getByTags} from '../../../../store/post/postActions';
+import {addBookmark} from '../../../../store/bookmark/bookmarkActions';
 
-let PostSearch = ({lang, post, search, tags}) => {
+let PostSearch = ({lang, post, search, tags, addToBookmarks}) => {
   const [queryTags, setQueryTags] = useState([]);
 
   const submit = (values) => {
@@ -36,6 +37,7 @@ let PostSearch = ({lang, post, search, tags}) => {
         total={post.total}
         lang={lang}
         posts={post.posts}
+        addToBookmarks={addToBookmarks}
         getPosts={(page) => search(queryTags, page)}
       />
     </Column>
@@ -47,6 +49,7 @@ PostSearch.propTypes = {
   post: PropTypes.object,
   tags: PropTypes.array,
   search: PropTypes.func,
+  addToBookmarks: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -58,6 +61,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   search: (tags, page) => {
     dispatch(getByTags(tags, page));
+  },
+  addToBookmarks: (data) => {
+    dispatch(addBookmark(data));
   },
 });
 

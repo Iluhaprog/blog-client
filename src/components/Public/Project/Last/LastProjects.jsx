@@ -72,7 +72,7 @@ let LastProjects = ({projects, getLastProjects, lang}) => {
               'projectData',
           );
           return (
-            <>
+            <div key={project.id}>
               <Background
                 key={project.id}
                 maxHeight={440}
@@ -108,7 +108,7 @@ let LastProjects = ({projects, getLastProjects, lang}) => {
                 </Box>
               </Background>
               <Separator indentBottom={20}/>
-            </>
+            </div>
           );
         })
       }

@@ -96,16 +96,7 @@ let Profile = ({user, getUser}) => {
 };
 
 Profile.propTypes = {
-  user: PropTypes.objectOf({
-    id: PropTypes.number,
-    login: PropTypes.string,
-    firstName: PropTypes.string,
-    lastName: PropTypes.string,
-    skills: PropTypes.string,
-    avatar: PropTypes.string,
-    email: PropTypes.string,
-    about: PropTypes.string,
-  }),
+  user: PropTypes.object,
   getUser: PropTypes.func,
 };
 

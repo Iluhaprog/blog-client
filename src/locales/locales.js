@@ -62,6 +62,8 @@ const en = {
     WRITE_TAGS: 'Enter tags separated by commas',
     SEARCH: 'Search',
     ALL: 'All',
+    NOT_FOUND: 'Nothing found, try again.',
+    EMPTY: 'Empty.',
   },
 };
 
@@ -130,6 +132,8 @@ const ru = {
     WRITE_TAGS: 'Введите теги разделенные запятой',
     SEARCH: 'Поиск',
     ALL: 'Все',
+    NOT_FOUND: 'Не найдено, попробуйте еще раз.',
+    EMPTY: 'Пусто.',
   },
 };
 
