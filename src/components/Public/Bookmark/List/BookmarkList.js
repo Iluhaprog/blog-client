@@ -1,9 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Row} from '../../Row';
 import {BookmarkCard} from '../Card';
 import * as PropTypes from 'prop-types';
 
 const BookmarkList = ({bookmarks, lang, removeBookmark, toggleView}) => {
+  useEffect(() => {
+    toggleView();
+  }, []);
+
   return (
     <Row justifyContent={'flex-start'} wrap={'wrap'}>
       {

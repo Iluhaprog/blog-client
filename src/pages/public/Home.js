@@ -22,6 +22,7 @@ import {Footer} from '../../components/Public/UI/Footer';
 import {SocialList} from '../../components/Public/SocialList';
 import {Post} from './Post';
 import {Bookmarks} from './Bookmarks';
+import {BookmarkCounter} from '../../components/Public/Bookmark/Counter';
 
 let Home = ({lang, setLang}) => {
   const history = useHistory();
@@ -57,6 +58,7 @@ let Home = ({lang, setLang}) => {
                   onClick={() => history.push('/bookmarks')}
                 >
                   <Bookmark />
+                  <BookmarkCounter />
                 </Button>
                 <Separator indentLeft={10}/>
                 <Button

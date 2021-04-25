@@ -1,7 +1,7 @@
 import {BookmarkList as BL} from '../List';
 import {
   removeBookmark,
-  toggleView,
+  view,
 } from '../../../../store/bookmark/bookmarkActions';
 import {connect} from 'react-redux';
 
@@ -12,7 +12,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   toggleView: () => {
-    dispatch(toggleView());
+    dispatch(view());
   },
   removeBookmark: (id) => {
     dispatch(removeBookmark(id));
