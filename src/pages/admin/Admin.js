@@ -14,6 +14,8 @@ import {Post} from './Post';
 import {Project} from './Project';
 import {Homes} from './Home';
 import {Tags} from './Tags';
+import {Message} from '../../components/Admin/Message';
+import {Modal} from '../../components/Admin/Modal';
 
 const Admin = ({lang, theme, isAuthorized}) => {
   const links = ['profile', 'posts', 'projects', 'dirs', 'homes', 'tags'];
@@ -80,6 +82,8 @@ const Admin = ({lang, theme, isAuthorized}) => {
             <Homes />
           </Route>
         </Switch>
+        <Modal />
+        <Message />
       </Container>
     </>
   );

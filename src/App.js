@@ -8,8 +8,6 @@ import {
 import {Admin} from './pages/admin';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {Modal} from './components/Admin/Modal/Modal';
-import {Message} from './components/Admin/Message';
 import {Login} from './pages/admin/Login';
 import {Home} from './pages/public';
 import {getLocales} from './store/locale/localeActions';
@@ -35,8 +33,6 @@ function App(props) {
             <Home />
           </Route>
         </Switch>
-        <Modal />
-        {isAuthorized && <Message />}
       </div>
     </Router>
   );
