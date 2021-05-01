@@ -27,15 +27,26 @@ export function login(username, password) {
 }
 
 /**
+ * @param {number} userId
  * @return {Promise<AxiosResponse<any>>}
  */
-export function refreshToken() {
+export function refreshToken(userId) {
   return requestWithToken(
       (headers) => api.get('/auth/refresh-token', {
         headers,
         params: {
           token: localStorage.getItem(process.env.REACT_APP_REFRESH_TOKEN_KEY),
+          userId,
         },
+      }).then((response) => {
+        const tokens = response.data;
+        localStorage.setItem(
+            process.env.REACT_APP_ACCESS_TOKEN_KEY, tokens.accessToken,
+        );
+        localStorage.setItem(
+            process.env.REACT_APP_REFRESH_TOKEN_KEY, tokens.refreshToken,
+        );
+        return response;
       }),
   );
 }

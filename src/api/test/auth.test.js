@@ -32,6 +32,7 @@ describe('Auth api module', () => {
       accessToken: 'TEST_ACCESS_TOKEN',
       refreshToken: 'TEST_REFRESH_TOKEN',
     };
+    jest.spyOn(localStorage, 'setItem').mockReturnValue({});
     jest.spyOn(localStorage, 'getItem').mockReturnValue(token);
     mock.onGet(`${API_URL}/auth/refresh-token`).reply((config) => {
       expect(config.headers['Authorization']).toBe(`Bearer ${token}`);

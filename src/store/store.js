@@ -16,6 +16,7 @@ import * as user from './user/userReducer';
 import * as win from './window/windowReducer';
 import * as locale from './locale/localeReducer';
 import * as bookmark from './bookmark/bookmarkReducer';
+import {refreshToken} from '../utils/middlewares/refresh';
 
 const rootReducer = combineReducers({
   auth: auth.authReducer,
@@ -40,7 +41,7 @@ const initialState = loadState();
 const store = createStore(
     rootReducer,
     initialState,
-    applyMiddleware(thunk),
+    applyMiddleware(thunk, refreshToken),
 );
 
 store.subscribe(() => {
