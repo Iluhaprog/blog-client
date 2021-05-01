@@ -40,7 +40,7 @@ const Background = ({
   return (
     <BackgroundBox maxHeight={maxHeight}>
       <ImageBox>
-        <img src={src} alt={alt}/>
+        <img src={src} width={1280} height={720} alt={alt}/>
       </ImageBox>
       <ContentBox>
         {children}

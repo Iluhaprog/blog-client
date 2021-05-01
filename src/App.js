@@ -5,12 +5,14 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
-import {Admin} from './pages/admin';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {Login} from './pages/admin/Login';
-import {Home} from './pages/public';
 import {getLocales} from './store/locale/localeActions';
+import {Loader} from './components/Public/Loader';
+
+const Admin = React.lazy(() => import('./pages/admin'));
+const Home = React.lazy(() => import('./pages/public'));
+const Login = React.lazy(() => import('./pages/admin/Login'));
 
 function App(props) {
   const {lang, theme, isAuthorized, getLocales} = props;
@@ -20,21 +22,23 @@ function App(props) {
   }, []);
 
   return (
-    <Router>
-      <div className={`App ${theme}`}>
-        <Switch>
-          <Route path='/admin'>
-            <Admin lang={lang} theme={theme} isAuthorized={isAuthorized}/>
-          </Route>
-          <Route path='/login'>
-            <Login />
-          </Route>
-          <Route path='/'>
-            <Home />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+    <React.Suspense fallback={<Loader />}>
+      <Router>
+        <div className={`App ${theme}`}>
+          <Switch>
+            <Route path='/admin'>
+              <Admin lang={lang} theme={theme} isAuthorized={isAuthorized}/>
+            </Route>
+            <Route path='/login'>
+              <Login />
+            </Route>
+            <Route path='/'>
+              <Home />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    </React.Suspense>
   );
 }
 
