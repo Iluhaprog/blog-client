@@ -28,6 +28,7 @@ let PostSearch = ({lang, post, search, tags, addToBookmarks}) => {
     <Column>
       <SearchForm
         submit={submit}
+        isFetch={post.isFetch}
         text={lang.text.WRITE_TAGS}
       />
       <Separator indentBottom={40} />

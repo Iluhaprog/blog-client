@@ -4,7 +4,7 @@ import {SearchInput} from '../../../UI/SearchInput';
 import * as PropTypes from 'prop-types';
 import {Container} from '../../../Container';
 
-const SearchForm = ({submit, text}) => {
+const SearchForm = ({submit, text, isFetch}) => {
   return (
     <Formik
       onSubmit={submit}
@@ -23,6 +23,7 @@ const SearchForm = ({submit, text}) => {
                 <SearchInput
                   mod={'big'}
                   name={field.name}
+                  isFetch={isFetch}
                   placeholder={text}
                   value={field.value}
                   onChange={(e) => {
@@ -40,6 +41,7 @@ const SearchForm = ({submit, text}) => {
 
 SearchForm.propTypes = {
   submit: PropTypes.func,
+  isFetch: PropTypes.bool,
   text: PropTypes.string,
 };
 

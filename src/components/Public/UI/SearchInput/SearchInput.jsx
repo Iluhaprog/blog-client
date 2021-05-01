@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import {Spinner} from 'react-bootstrap';
 import {
   ReactComponent as Search,
 } from '../../../../assets/public/icons/search.svg';
@@ -48,6 +49,7 @@ const SearchInput = ({
   value,
   onChange,
   placeholder,
+  isFetch,
   mod,
   maxWidth,
 }) => {
@@ -60,7 +62,11 @@ const SearchInput = ({
         placeholder={placeholder}
       />
       <button type={'submit'}>
-        <Search />
+        {
+          !isFetch ?
+            <Search /> :
+            <Spinner animation="border" role="status" />
+        }
       </button>
     </SearchInputBox>
   );
@@ -69,6 +75,7 @@ const SearchInput = ({
 SearchInput.propTypes = {
   mod: PropTypes.oneOf(['big', 'small']),
   name: PropTypes.string,
+  isFetch: PropTypes.bool,
   value: PropTypes.string,
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
