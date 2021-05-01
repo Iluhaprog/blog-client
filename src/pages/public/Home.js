@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Header} from '../../components/Public/UI/Header';
 import {Logo} from '../../components/Public/UI/Logo';
 import {Nav} from '../../components/Public/UI/Nav';
@@ -7,7 +7,7 @@ import {Row} from '../../components/Public/Row';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Button} from '../../components/Public/UI/Button';
-import {Bookmark, Globe2} from 'react-bootstrap-icons';
+import {Bookmark, Globe2, List} from 'react-bootstrap-icons';
 import {setLang} from '../../store/settings/settingsActions';
 import {locales} from '../../locales/locales';
 import {Separator} from '../../components/Public/Separator';
@@ -26,6 +26,7 @@ import {BookmarkCounter} from '../../components/Public/Bookmark/Counter';
 
 let Home = ({lang, setLang}) => {
   const history = useHistory();
+  const [menuVisible, setMenuVisible] = useState(false);
 
   return (
     <>
@@ -43,6 +44,8 @@ let Home = ({lang, setLang}) => {
                 />
                 <Separator indentLeft={50}/>
                 <Nav
+                  visible={menuVisible}
+                  hide={() => setMenuVisible(false)}
                   paths={[
                     {to: '/', title: lang.nav?.HOME},
                     {to: '/posts/1', title: lang.nav?.POSTS},
@@ -68,6 +71,14 @@ let Home = ({lang, setLang}) => {
                 >
                   <Globe2/>
                   {' ' + lang.title}
+                </Button>
+                <Separator indentLeft={10}/>
+                <Button
+                  onClick={() => setMenuVisible(!menuVisible)}
+                  minWidth={20}
+                  mod={'small'}
+                >
+                  <List />
                 </Button>
               </Row>
             </Row>
