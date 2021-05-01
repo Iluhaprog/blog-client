@@ -29,6 +29,20 @@ const Card = styled.article`
   footer {
     padding-left: 5px;
   }
+  
+  @media screen and (max-width: 420px) {
+    figure {
+      margin: 0 auto;
+      max-width: 100%;
+      img {
+        width: 100%;
+      }
+    }
+    
+    footer {
+      padding: 0 20px 0 0;
+    }
+  }
 `;
 
 const CardContent = styled.section`

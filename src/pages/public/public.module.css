@@ -9,3 +9,9 @@
 .col {
     min-height: 100vh;
 }
+
+@media screen and (max-width: 420px) {
+    .page {
+        padding: 20px;
+    }
+}

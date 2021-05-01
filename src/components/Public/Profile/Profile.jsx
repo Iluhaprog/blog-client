@@ -34,7 +34,7 @@ let Profile = ({user, getUser}) => {
   return (
     <Container maxWidth={1000}>
       <Separator indentTop={50}/>
-      <Row>
+      <Row wrap={'wrap'}>
         <Image
           width={350}
           height={350}
@@ -56,6 +56,7 @@ let Profile = ({user, getUser}) => {
             >
               <Box>
                 <Row
+                  wrap={'wrap'}
                   justifyContent={'space-between'}
                   alignItems={'center'}
                 >

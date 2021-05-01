@@ -15,6 +15,12 @@ const Image = styled.figure`
     object-fit: cover;
     object-position: center;
   }
+  
+  @media screen and (max-width: 420px) {
+    width: 90vw;
+    height: 90vw;
+    flex: 0 0 auto;
+  }
 `;
 
 Image.propTypes = {

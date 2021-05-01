@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {getAll} from '../../../store/social/socialActions';
 import {connect} from 'react-redux';
 import {Row} from '../Row';
-import {Image} from '../UI/Image';
+// import {Image} from '../UI/Image';
 
 let SocialList = ({socials, getSocials}) => {
   useEffect(() => {
@@ -20,12 +20,12 @@ let SocialList = ({socials, getSocials}) => {
             href={social.link}
             key={social.id}
           >
-            <Image
+            <img
               width={30}
               height={30}
-            >
-              <img src={API_URL + '/' + social.preview} alt={social.title} />
-            </Image>
+              src={API_URL + '/' + social.preview}
+              alt={social.title}
+            />
           </a>
         ))
       }

@@ -23,6 +23,15 @@ import {SocialList} from '../../components/Public/SocialList';
 import {Post} from './Post';
 import {Bookmarks} from './Bookmarks';
 import {BookmarkCounter} from '../../components/Public/Bookmark/Counter';
+import styled from 'styled-components';
+
+const ManuButton = styled.div`
+  display: none;
+  
+  @media screen and (max-width: 420px) {
+    display: block;
+  } 
+`;
 
 let Home = ({lang, setLang}) => {
   const history = useHistory();
@@ -73,13 +82,15 @@ let Home = ({lang, setLang}) => {
                   {' ' + lang.title}
                 </Button>
                 <Separator indentLeft={10}/>
-                <Button
-                  onClick={() => setMenuVisible(!menuVisible)}
-                  minWidth={20}
-                  mod={'small'}
-                >
-                  <List />
-                </Button>
+                <ManuButton>
+                  <Button
+                    onClick={() => setMenuVisible(!menuVisible)}
+                    minWidth={20}
+                    mod={'small'}
+                  >
+                    <List />
+                  </Button>
+                </ManuButton>
               </Row>
             </Row>
           </Container>
