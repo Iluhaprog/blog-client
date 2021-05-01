@@ -12,7 +12,7 @@ import {FileEarmarkPlus} from 'react-bootstrap-icons';
 import {
   initModal,
   setFormType,
-  setVidible,
+  setVisible,
 } from '../../../../store/modal/modalActions';
 import {ModalScreenTypes} from '../../../../store/modal/ModalFormTypes';
 import {SocialForm} from '../Form';
@@ -114,7 +114,7 @@ const mapDispatchToProps = (dispatch) => ({
       successHandler,
     }));
     dispatch(setFormType(ModalScreenTypes.FILE_SELECT));
-    dispatch(setVidible(true));
+    dispatch(setVisible(true));
   },
 });
 

@@ -6,9 +6,15 @@ import {ProjectCard} from '../Card';
 import {Row} from 'react-bootstrap';
 import {useHistory} from 'react-router';
 import {getEntityDataByLang} from '../../../../utils/data/data';
+import {
+  initModal,
+  setFormType,
+  setVisible,
+} from '../../../../store/modal/modalActions';
+import {ModalScreenTypes} from '../../../../store/modal/ModalFormTypes';
 
 let ProjectCardList = (props) => {
-  const {projects, lang, theme, remove} = props;
+  const {projects, lang, theme, remove, showConfirmModal} = props;
   const history = useHistory();
 
   return (
@@ -31,7 +37,12 @@ let ProjectCardList = (props) => {
               projectLink={project.projectLink}
               githubLink={project.githubLink}
               onClick={() => history.push(`/admin/project/${project.id}`)}
-              onDelete={() => remove(project.id)}
+              onDelete={() => {
+                showConfirmModal(
+                    lang.text.DELETE_PROJECT,
+                    () => remove(project.id),
+                );
+              }}
               isAdmin={true}
             />
           );
@@ -47,6 +58,7 @@ ProjectCardList.propTypes = {
   remove: PropTypes.func,
   lang: PropTypes.object,
   theme: PropTypes.string,
+  showConfirmModal: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -61,6 +73,15 @@ const mapDispatchToProps = (dispatch) => ({
   },
   remove: (id) => {
     dispatch(remove(id));
+  },
+  showConfirmModal: (title, successHandler) => {
+    dispatch(initModal({
+      title,
+      description: '',
+      successHandler,
+    }));
+    dispatch(setFormType(ModalScreenTypes.CONFIRM));
+    dispatch(setVisible(true));
   },
 });
 

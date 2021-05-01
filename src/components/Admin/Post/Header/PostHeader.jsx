@@ -6,7 +6,7 @@ import {FileEarmarkPlus} from 'react-bootstrap-icons';
 import {
   initModal,
   setFormType,
-  setVidible,
+  setVisible,
 } from '../../../../store/modal/modalActions';
 import {ModalScreenTypes} from '../../../../store/modal/ModalFormTypes';
 import {create} from '../../../../store/post/postActions';
@@ -72,7 +72,7 @@ const mapDispatchToProps = (dispatch) => ({
       successHandler,
     }));
     dispatch(setFormType(ModalScreenTypes.INPUT));
-    dispatch(setVidible(true));
+    dispatch(setVisible(true));
   },
 });
 

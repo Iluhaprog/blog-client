@@ -64,6 +64,9 @@ const en = {
     ALL: 'All',
     NOT_FOUND: 'Nothing found, try again.',
     EMPTY: 'Empty.',
+    DELETE_DIR: 'Are you sure you want to delete the dir?',
+    DELETE_PROJECT: 'Are you sure you want to delete the project?',
+    DELETE_HOME: 'Are you sure you want to delete the home text?',
   },
 };
 
@@ -134,6 +137,9 @@ const ru = {
     ALL: 'Все',
     NOT_FOUND: 'Не найдено, попробуйте еще раз.',
     EMPTY: 'Пусто.',
+    DELETE_DIR: 'Вы действительно хотите удалить дирректорию?',
+    DELETE_PROJECT: 'Вы действительно хотите удалить проект?',
+    DELETE_HOME: 'Вы действительно хотите удалить текст для главной страницы?',
   },
 };
 

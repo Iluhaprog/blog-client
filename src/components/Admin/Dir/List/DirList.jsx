@@ -5,7 +5,7 @@ import {create, remove as removeFile} from '../../../../store/file/fileActions';
 import {
   initModal,
   setFormType,
-  setVidible,
+  setVisible,
 } from '../../../../store/modal/modalActions';
 import {ModalScreenTypes} from '../../../../store/modal/ModalFormTypes';
 import {connect} from 'react-redux';
@@ -15,8 +15,15 @@ import {getNameAndExt} from '../../../../utils/string/string';
 import {Pagination} from '../../Pagination';
 
 let DirList = (props) => {
-  const {dirs, removeDir, removeFile, createFile, getAll} = props;
-  const {total, theme} = props;
+  const {
+    dirs,
+    removeDir,
+    removeFile,
+    createFile,
+    getAll,
+    showConfirmModal,
+  } = props;
+  const {total, theme, lang} = props;
   const [page, setPage] = useState(0);
 
   const handlePageClick = (data) => {
@@ -40,7 +47,12 @@ let DirList = (props) => {
                 page={page}
                 createFile={createFile}
                 removeFile={removeFile}
-                removeDir={(id) => removeDir(id, page)}
+                removeDir={(id) => {
+                  showConfirmModal(
+                      lang.text.DELETE_DIR,
+                      () => removeDir(id, page),
+                  );
+                }}
               />
             );
           })
@@ -60,6 +72,7 @@ let DirList = (props) => {
 
 DirList.propTypes = {
   dirs: PropTypes.array,
+  lang: PropTypes.object,
   total: PropTypes.number,
   theme: PropTypes.string,
   createFile: PropTypes.func,
@@ -67,10 +80,12 @@ DirList.propTypes = {
   removeDir: PropTypes.func,
   removeFile: PropTypes.func,
   getAll: PropTypes.func,
+  showConfirmModal: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
   dirs: state.dir.directories,
+  lang: state.settings.lang,
   total: state.dir.total,
   theme: state.settings.theme,
 });
@@ -108,7 +123,16 @@ const mapDispatchToProps = (dispatch) => ({
       successHandler,
     }));
     dispatch(setFormType(ModalScreenTypes.INPUT));
-    dispatch(setVidible(true));
+    dispatch(setVisible(true));
+  },
+  showConfirmModal: (title, successHandler) => {
+    dispatch(initModal({
+      title,
+      description: '',
+      successHandler,
+    }));
+    dispatch(setFormType(ModalScreenTypes.CONFIRM));
+    dispatch(setVisible(true));
   },
 });
 

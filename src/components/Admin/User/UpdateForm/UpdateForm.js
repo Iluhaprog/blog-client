@@ -4,7 +4,7 @@ import {update} from '../../../../store/user/userActions';
 import {
   initModal,
   setFormType,
-  setVidible,
+  setVisible,
 } from '../../../../store/modal/modalActions';
 import {ModalScreenTypes} from '../../../../store/modal/ModalFormTypes';
 import {Badge, Button, Col, Container, Row, Spinner} from 'react-bootstrap';
@@ -162,7 +162,7 @@ const mapDispatchToProps = (dispatch) => ({
       successHandler,
     }));
     dispatch(setFormType(ModalScreenTypes.FILE_SELECT));
-    dispatch(setVidible(true));
+    dispatch(setVisible(true));
   },
   update: (user) => {
     dispatch(update(user));

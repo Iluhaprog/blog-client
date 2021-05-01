@@ -7,7 +7,7 @@ import {Formik, Form, Field} from 'formik';
 import {
   initModal,
   setFormType,
-  setVidible,
+  setVisible,
 } from '../../../../store/modal/modalActions';
 import {ModalScreenTypes} from '../../../../store/modal/ModalFormTypes';
 import {FileField} from '../../Field/File/File';
@@ -136,7 +136,7 @@ const mapDispatchToProps = (dispatch) => ({
       successHandler,
     }));
     dispatch(setFormType(ModalScreenTypes.FILE_SELECT));
-    dispatch(setVidible(true));
+    dispatch(setVisible(true));
   },
 });
 

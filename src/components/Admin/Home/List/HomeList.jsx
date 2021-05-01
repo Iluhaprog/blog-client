@@ -4,9 +4,23 @@ import PropTypes from 'prop-types';
 import {getAll, remove, update} from '../../../../store/home/homeActions';
 import {connect} from 'react-redux';
 import {HomeUpdateForm} from '../UpdateForm';
+import {
+  initModal,
+  setFormType,
+  setVisible,
+} from '../../../../store/modal/modalActions';
+import {ModalScreenTypes} from '../../../../store/modal/ModalFormTypes';
 
 let HomeList = (props) => {
-  const {homes, theme, lang, update, remove, getAll} = props;
+  const {
+    homes,
+    theme,
+    lang,
+    update,
+    remove,
+    getAll,
+    showConfirmModal,
+  } = props;
 
   useEffect(() => {
     getAll();
@@ -22,7 +36,12 @@ let HomeList = (props) => {
               lang={lang}
               initialValues={home}
               update={update}
-              remove={() => remove(home.id)}
+              remove={() => {
+                showConfirmModal(
+                    lang.text.DELETE_HOME,
+                    () => remove(home.id),
+                );
+              }}
             />
           </Col>
         ))
@@ -38,6 +57,7 @@ HomeList.propTypes = {
   update: PropTypes.func,
   getAll: PropTypes.func,
   remove: PropTypes.func,
+  showConfirmModal: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -55,6 +75,15 @@ const mapDispatchToProps = (dispatch) => ({
   },
   remove: (id) => {
     dispatch(remove(id));
+  },
+  showConfirmModal: (title, successHandler) => {
+    dispatch(initModal({
+      title,
+      description: '',
+      successHandler,
+    }));
+    dispatch(setFormType(ModalScreenTypes.CONFIRM));
+    dispatch(setVisible(true));
   },
 });
 

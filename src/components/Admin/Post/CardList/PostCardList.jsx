@@ -9,7 +9,7 @@ import {Pagination} from '../../Pagination';
 import {
   initModal,
   setFormType,
-  setVidible,
+  setVisible,
 } from '../../../../store/modal/modalActions';
 import {ModalScreenTypes} from '../../../../store/modal/ModalFormTypes';
 
@@ -119,7 +119,7 @@ const mapDispatchToProps = (dispatch) => ({
       successHandler,
     }));
     dispatch(setFormType(ModalScreenTypes.CONFIRM));
-    dispatch(setVidible(true));
+    dispatch(setVisible(true));
   },
 });
 

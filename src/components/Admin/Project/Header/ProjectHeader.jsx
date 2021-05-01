@@ -6,7 +6,7 @@ import {create} from '../../../../store/project/projectActions';
 import {
   initModal,
   setFormType,
-  setVidible,
+  setVisible,
 } from '../../../../store/modal/modalActions';
 import {ModalScreenTypes} from '../../../../store/modal/ModalFormTypes';
 import PropTypes from 'prop-types';
@@ -72,7 +72,7 @@ const mapDispatchToProps = (dispatch) => ({
       successHandler,
     }));
     dispatch(setFormType(ModalScreenTypes.INPUT));
-    dispatch(setVidible(true));
+    dispatch(setVisible(true));
   },
 });
 

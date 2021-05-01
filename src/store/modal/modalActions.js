@@ -21,7 +21,7 @@ export const setFormType = (formType = ModalScreenTypes.NONE) => ({
   formType,
 });
 
-export const setVidible = (isVisible = false) => ({
+export const setVisible = (isVisible = false) => ({
   type: SET_VISIBLE,
   isVisible,
 });

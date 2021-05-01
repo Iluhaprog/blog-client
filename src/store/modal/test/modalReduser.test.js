@@ -34,7 +34,7 @@ describe('modalReduser', () => {
 
   test('Should handle SET_VISIBLE action', () => {
     const isVisible = true;
-    const result = modalReducer(initialState, modal.setVidible(isVisible));
+    const result = modalReducer(initialState, modal.setVisible(isVisible));
     expect(result).toEqual({
       ...initialState,
       isVisible,

@@ -39,7 +39,7 @@ describe('Modal actions creators', () => {
         isVisible: true,
       },
     ];
-    store.dispatch(modal.setVidible(true));
+    store.dispatch(modal.setVisible(true));
     const actions = store.getActions();
     expect(actions).toEqual(expectedActions);
   });

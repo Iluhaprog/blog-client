@@ -5,7 +5,7 @@ import {create} from '../../../../store/home/homeActions';
 import {
   initModal,
   setFormType,
-  setVidible,
+  setVisible,
 } from '../../../../store/modal/modalActions';
 import {ModalScreenTypes} from '../../../../store/modal/ModalFormTypes';
 import {Badge, Button, Row} from 'react-bootstrap';
@@ -66,7 +66,7 @@ const mapDispatchToProps = (dispatch) => ({
       successHandler,
     }));
     dispatch(setFormType(ModalScreenTypes.INPUT));
-    dispatch(setVidible(true));
+    dispatch(setVisible(true));
   },
 });
 

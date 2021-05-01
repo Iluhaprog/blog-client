@@ -7,7 +7,7 @@ import {FileField} from '../../Field/File/File';
 import {
   initModal,
   setFormType,
-  setVidible,
+  setVisible,
 } from '../../../../store/modal/modalActions';
 import {ModalScreenTypes} from '../../../../store/modal/ModalFormTypes';
 import {Button, Col, Row} from 'react-bootstrap';
@@ -155,7 +155,7 @@ const mapDispatchToProps = (dispatch) => ({
       successHandler,
     }));
     dispatch(setFormType(ModalScreenTypes.FILE_SELECT));
-    dispatch(setVidible(true));
+    dispatch(setVisible(true));
   },
   getAllTags: () => {
     dispatch(getAll());

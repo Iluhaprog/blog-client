@@ -4,7 +4,7 @@ import {create} from '../../../../store/directory/directoryActions';
 import {
   initModal,
   setFormType,
-  setVidible,
+  setVisible,
 } from '../../../../store/modal/modalActions';
 import {ModalScreenTypes} from '../../../../store/modal/ModalFormTypes';
 import {connect} from 'react-redux';
@@ -60,7 +60,7 @@ const mapDispatchToProps = (dispatch) => ({
       successHandler,
     }));
     dispatch(setFormType(ModalScreenTypes.INPUT));
-    dispatch(setVidible(true));
+    dispatch(setVisible(true));
   },
 });
 
