@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import {Row} from '../../Row';
-import {Image} from '../../UI/Image';
+// import {Image} from '../../UI/Image';
 import {getEntityDataByLang} from '../../../../utils/data/data';
 import {Title} from '../../UI/Title';
 import {Separator} from '../../Separator';
@@ -38,13 +38,12 @@ const BookmarkCard = ({data, lang, onDelete}) => {
     <Card>
       <Row alignItems={'center'} justifyContent={'space-between'}>
         <Row alignItems={'center'}>
-          <Image
+          <img
             width={50}
             height={50}
-            round
-          >
-            <img src={`${API_URL}/${data.preview}`} alt={data.title}/>
-          </Image>
+            src={`${API_URL}/${data.preview}`}
+            alt={data.title}
+          />
           <Separator indentLeft={20} />
           <NavLink to={`/post/${data.id}`}>
             <Title>
