@@ -45,7 +45,7 @@ let Profile = ({user, getUser}) => {
             alt={user?.login}
           />
         </Image>
-        <article>
+        <article style={{maxWidth: '650px'}}>
           <Column
             alignItems={'flex-start'}
             justifyContent={'center'}

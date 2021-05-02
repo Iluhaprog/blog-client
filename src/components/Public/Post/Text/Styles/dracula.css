@@ -10,7 +10,9 @@
  * @author Zeno Rocha <hi@zenorocha.com>
  */
 
-.language-js {
+.language-js,
+.language-html,
+.language-css {
   display: block;
   max-width: 800px;
   overflow-x: auto;
@@ -31,6 +33,8 @@
 }
 
 .language-js,
+.language-html,
+.language-css,
 .hljs-subst {
   color: #f8f8f2;
 }
