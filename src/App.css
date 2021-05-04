@@ -3,30 +3,35 @@
 @font-face {
     font-family: "Chicago";
     src: url('./assets/public/fonts/ChicagoFLF.ttf') format('opentype');
+    font-display: swap;
 }
 
 @font-face {
     font-family: "Libre Baskerville";
     font-weight: 400;
     src: url('./assets/public/fonts/LibreBaskerville-Regular.ttf') format('opentype');
+    font-display: swap;
 }
 
 @font-face {
     font-family: "Libre Baskerville";
     font-weight: 700;
     src: url('./assets/public/fonts/LibreBaskerville-Bold.ttf') format('opentype');
+    font-display: swap;
 }
 
 @font-face {
     font-family: "Open Sans";
     font-weight: 400;
     src: url('./assets/public/fonts/OpenSans-Regular.ttf') format('opentype');
+    font-display: swap;
 }
 
 @font-face {
     font-family: "Open Sans";
     font-weight: 700;
     src: url('./assets/public/fonts/OpenSans-Bold.ttf') format('opentype');
+    font-display: swap;
 }
 
 :root {
