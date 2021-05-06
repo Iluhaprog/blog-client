@@ -9,11 +9,16 @@ const Image = styled.figure`
   margin: 0;
   flex: 0 0 ${({width}) => width ? `${width}px` : 'auto' };
   
-  img {
+  span {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: center;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
   }
   
   @media screen and (max-width: 420px) {

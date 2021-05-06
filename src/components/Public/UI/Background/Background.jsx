@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import {LazyLoadImage} from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const BackgroundBox = styled.div`
   position: relative;
@@ -15,11 +17,16 @@ const ImageBox = styled.div`
   width: 100%;
   height: 100%;
   
-  img {
-    width: 100%;
-    height: 100%;
-    object-position: center;
-    object-fit: cover;
+  span {
+    width: 100% !important;
+    height: 100% !important;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-position: center;
+      object-fit: cover;
+    }
   }
 `;
 
@@ -40,7 +47,13 @@ const Background = ({
   return (
     <BackgroundBox maxHeight={maxHeight}>
       <ImageBox>
-        <img src={src} width={1280} height={720} alt={alt}/>
+        <LazyLoadImage
+          src={src}
+          width={1280}
+          height={720}
+          alt={alt}
+          effect={'blur'}
+        />
       </ImageBox>
       <ContentBox>
         {children}

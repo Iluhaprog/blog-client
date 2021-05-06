@@ -9,6 +9,8 @@ import {Separator} from '../../Separator';
 import {Button} from '../../UI/Button';
 import {Trash} from 'react-bootstrap-icons';
 import {NavLink} from 'react-router-dom';
+import {LazyLoadImage} from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const Card = styled.div`
   max-width: 300px;
@@ -38,7 +40,7 @@ const BookmarkCard = ({data, lang, onDelete}) => {
     <Card>
       <Row alignItems={'center'} justifyContent={'space-between'}>
         <Row alignItems={'center'}>
-          <img
+          <LazyLoadImage
             width={50}
             height={50}
             src={`${API_URL}/${data.preview}`}

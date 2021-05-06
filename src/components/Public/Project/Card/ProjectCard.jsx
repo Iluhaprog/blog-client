@@ -9,6 +9,8 @@ import {ReactComponent as Link} from '../../../../assets/public/icons/link.svg';
 import {
   ReactComponent as Github,
 } from '../../../../assets/public/icons/github.svg';
+import {LazyLoadImage} from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const ProjectCardBox = styled.article`
   position: relative;
@@ -27,11 +29,16 @@ const ProjectCardPreview = styled.div`
   width: 100%;
   height: 100%;
   
-  img {
+  span {
     width: 100%;
     height: 100%;
-    object-position: center;
-    object-fit: cover;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-position: center;
+      object-fit: cover;
+    }
   }
 `;
 
@@ -78,7 +85,11 @@ const ProjectCard = (props) => {
   return (
     <ProjectCardBox>
       <ProjectCardPreview>
-        <img src={preview ? API_URL + '/' + preview : empty} alt={title} />
+        <LazyLoadImage
+          effect={'blur'}
+          src={preview ? API_URL + '/' + preview : empty}
+          alt={title}
+        />
       </ProjectCardPreview>
       <ProjectCardItem>
         <Title>{title}</Title>

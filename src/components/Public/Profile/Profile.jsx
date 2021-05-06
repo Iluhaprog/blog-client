@@ -15,6 +15,8 @@ import {Separator} from '../Separator';
 import {Mail} from '../UI/Mail';
 import {Envelope} from 'react-bootstrap-icons';
 import {getEntityDataByLang} from '../../../utils/data/data';
+import {LazyLoadImage} from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const Box = styled.div`
   padding: 20px;
@@ -40,7 +42,8 @@ let Profile = ({user, getUser}) => {
           height={350}
           round
         >
-          <img
+          <LazyLoadImage
+            effect={'blur'}
             src={user?.avatar ? API_URL + '/' + user?.avatar : bg}
             alt={user?.login}
           />

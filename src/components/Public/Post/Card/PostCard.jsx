@@ -12,6 +12,9 @@ import {Tag} from '../../UI/Tag';
 import {Button} from '../../UI/Button';
 import {Separator} from '../../Separator';
 import {Bookmark} from 'react-bootstrap-icons';
+import {LazyLoadImage} from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+
 
 const Card = styled.article`
   display: flex;
@@ -66,7 +69,11 @@ const PostCard = (props) => {
         width={350}
         height={350}
       >
-        <img src={preview ? API_URL + '/' + preview : empty} alt={title}/>
+        <LazyLoadImage
+          src={preview ? API_URL + '/' + preview : empty}
+          effect={'blur'}
+          alt={title}
+        />
       </Image>
       <CardContent>
         <div>
