@@ -46,7 +46,7 @@ const BookmarkCard = ({data, lang, onDelete}) => {
           />
           <Separator indentLeft={20} />
           <NavLink to={`/post/${data.id}`}>
-            <Title>
+            <Title maxWidth={150}>
               {data.title}
             </Title>
           </NavLink>
