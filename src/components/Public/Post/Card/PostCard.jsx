@@ -20,7 +20,7 @@ const Card = styled.article`
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 50px;
-  
+
   &:last-child {
     margin-bottom: 0;
   }
@@ -57,6 +57,12 @@ const CardContent = styled.section`
   justify-content: space-between;
 `;
 
+const HoveredBox = styled.div`
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
 const PostCard = (props) => {
   const {title, preview, description, creationDate, tags, lang} = props;
   const {onClick, addToBookmarks} = props;
@@ -68,6 +74,7 @@ const PostCard = (props) => {
       <Image
         width={350}
         height={350}
+        onClick={onClick}
       >
         <LazyLoadImage
           src={preview ? API_URL + '/' + preview : empty}
@@ -76,7 +83,7 @@ const PostCard = (props) => {
         />
       </Image>
       <CardContent>
-        <div>
+        <HoveredBox onClick={onClick}>
           <header>
             <Title>
               {title}
@@ -88,7 +95,7 @@ const PostCard = (props) => {
           <Time>
             {`${date} - ${time}`}
           </Time>
-        </div>
+        </HoveredBox>
         <div>
           <Row justifyContent={'flex-start'} wrap={'wrap'}>
             {
