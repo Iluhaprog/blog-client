@@ -7,10 +7,10 @@ export const view = () => ({
   type: VIEW,
 });
 
-export const setView = (isView) => ({
-  type: SET_VIEW,
-  isView,
-});
+// export const setView = (isView) => ({
+//   type: SET_VIEW,
+//   isView,
+// });
 
 export const addBookmark = (data) => ({
   type: ADD_BOOKMARK,
